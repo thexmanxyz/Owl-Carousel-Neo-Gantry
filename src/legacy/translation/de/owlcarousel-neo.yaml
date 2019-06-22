@@ -1,0 +1,273 @@
+#######################################################
+#                                                     #
+#   Owl Carousel Neo - Particle for Gantry            #
+#                                                     #
+#   Purpose: This project is based on the default     #
+#            Gantry Helium - Owl Carousel Particle    #
+#            but extends it with additional features  #
+#            (e.g. lazy load, timed slides, ...)      #
+#            and also includes slick new designs.     #
+#                                                     #
+#   Author: Andreas Kar (thex) <andreas.kar@gmx.at>   #
+#   Repository: https://git.io/fA9XW                  #
+#   Homepage: https://gantryprojects.com              #
+#                                                     #
+#   -----------------                                 #
+#   Orignal Particle:                                 #
+#   -----------------                                 #
+#   Author: RocketTheme                               #
+#   Repository: https://git.io/fjwup                  #
+#   Homepage: http://gantry.org/                      #
+#                                                     #
+#######################################################
+
+name: Owl Carousel Neo
+description: Rendert ein Owl Carousel. Dieses Particle ist eine verbesserte und erweiterte Version des in Gantry Helium enthaltenen Owl Carousel Particles.
+type: particle
+icon: fa-sliders
+
+form:
+  fields:
+    enabled:
+      type: input.checkbox
+      label: Aktiviert
+      description: Globale Aktivierung des Owl Carousel Neo Particles.
+      default: true
+
+    set_general:
+      type: container.set
+      label: Allgemein
+      fields:
+        tags:
+            type: collection.keyvalue
+            label: Tag Attribute
+            description: Zusätzliche Attribute für den HTML Container.
+            key_placeholder: Schlüssel (z.B.: style, name, ...)
+            value_placeholder: Wert
+            exclude: ['id', 'class']
+        
+        class:
+          type: input.selectize
+          label: CSS Klassen
+          description: Setzen Sie eine Klasse für die individuelle Gestaltung.
+        
+        title:
+          type: input.text
+          label: Titel
+          description: Benutzerdefinierte Text für den Titel.
+          placeholder: 'Titel eingeben'
+          
+        title_link:
+          type: input.checkbox
+          label: Titel Link
+          description: Bei Aktivierung wird der Button Link auch für das Titel Element gesetzt. 
+          default: false
+        
+        enable_btn:
+          type: input.checkbox
+          label: Aktiviere Button
+          description: Aktiviert oder deaktiviert explizit die Darstellung des Slide Buttons.
+          default: true
+        
+        nav:
+          type: select.select
+          label: Navigation
+          description: Aktiviert oder deaktiviert die Navigationsbuttons (Vorherige / Nächste).
+          default: disable
+          options:
+            enable: Aktiviert
+            disable: Deaktiviert
+        
+        dots:
+          type: select.select
+          label: Punkte
+          description: Aktiviert oder deaktiviert die Navigationspunkte.
+          default: enable
+          options:
+            enable: Aktiviert
+            disable: Deaktiviert
+        
+        autoplay:
+          type: select.select
+          label: Autoplay
+          description: Aktiviert oder deaktiviert Autoplay (automatische Rotation).
+          default: disable
+          options:
+            enable: Aktiviert
+            disable: Deaktiviert
+        
+        autoplaySpeed:
+          type: input.text
+          label: Autoplay Geschwindigkeit
+          description: Setzt die Geschwindigkeit mit der Slides gewechselt werden sollen (Anzeigedauer in Millisekunden).
+          placeholder: 5000
+        
+        lazyLoadImages:
+          type: input.checkbox
+          label: Lazy Load Bilder
+          description: Aktiviere um Bilder per Lazy Load zu laden.
+          default: false
+        
+        lazyLoadEager:
+          type: input.text
+          label: Lazy Vorladen
+          description: Die Anzahl der nach links und rechts vorgeladenen Bilder.
+          placeholder: 0
+          default: 0
+        
+        items:
+          type: collection.list
+          array: true
+          label: Owl Carousel Slides
+          description: Erstellen Sie eine neue Owl Carousel Slide.
+          value: name
+          ajax: true
+        
+          fields:
+            .class:
+              type: input.selectize
+              label: CSS Klassen
+              description: Setzen Sie eine Klasse für die individuelle Gestaltung der Slide.
+            .name:
+              type: input.text
+            .image:
+              type: input.imagepicker
+              label: Bild
+              description: Wählen Sie ein Bild für die Slide.
+            .title:
+              type: input.text
+              label: Titel
+              description: Geben Sie einen Titel für die Slide ein.
+            .desc:
+              type: textarea.textarea
+              label: Beschreibung
+              description: Benutzerdefinierter beschreibender Text der Slide.
+              placeholder: Geben Sie eine kurze Beschreibung ein
+            .link:
+              type: input.text
+              label: Link
+              description: Setzen Sie einen Link für die Slide.
+            .linktext:
+              type: input.text
+              label: Link Text
+              description: Geben Sie den Text für das Link Element ein.
+            .buttonclass:
+              type: input.text
+              label: Button Klasse
+              description: Geben Sie die Button Klasse ein.
+              default: 'button-outline'
+            .showItem:
+              type: select.select
+              label: Zeige Slide
+              description: Wählen Sie das Front-End Darstellungsverhalten für diese Slide.
+              default: yes
+              options:
+                yes: Ja
+                no: Nein
+                once: Einmal
+                annual: Jährlich
+            .startDate:
+              type: input.date
+              label: Startdatum
+              description: Wählen Sie das Datum, wann diese Slide das erste Mal gezeigt werden soll (nur für die Optionen 'Jährlich' und 'Einmal').
+            .endDate:
+              type: input.date
+              label: Enddatum
+              description: Wählen Sie das Datum, wann diese Slide das letzte Mal gezeigt werden soll (nur für die Optionen 'Jährlich' und 'Einmal').
+        
+    set_appearance:
+      type: container.set
+      label: Darstellung
+      fields:
+        _info_appearance:
+          type: separator.note
+          class: alert alert-info
+          content: Bitte bedenken Sie, dass alle hier durchgeführten Einstellung außer <strong>Bildüberlagerung</strong> und <strong>Pfeil</strong> nur für die <strong>Neo Style X</strong> Style gelten. Diese Entscheidung wurde getroffen, um die Kompatibilität mit dem Original Particle zu waren.
+
+        neo.style:
+          type: select.select
+          label: Style
+          description: Wählen Sie eine der vorhanden Vorlagen aus.
+          default: helium
+          options:
+            helium: Helium
+            style-neo1: Neo Style 1
+            style-neo2: Neo Style 2
+            style-neo3: Neo Style 3
+            style-neo4: Neo Style 4
+
+        neo.theme:
+          type: select.select
+          label: Theme
+          description: Wählen Sie den Farbmodus des Carousels.
+          default: theme-b
+          options:
+            theme-b: Schwarz
+            theme-w: Weiß
+
+        neo.control_color:
+          type: select.select
+          label: Elementfarbe
+          description: Wählen Sie die Farbe die für die Kontrollelemente des Carousels verwendet werden soll.
+          default: control-g1
+          options:
+            control-g1: Grau 1
+            control-g2: Grau 2
+            control-gr: Grün
+            control-re: Rot
+            control-bl: Blau
+            control-vi: Violett
+            control-or: Orange
+
+        neo.edges:
+          type: select.select
+          label: Kantenradius
+          description: Wählen Sie wie die Kanten des Owl Carousels dargestellt werden sollen.
+          default: square
+          options:
+            square: Eckig
+            round: Rund
+
+        neo.dots_align:
+          type: select.select
+          label: Punkteausrichtung
+          description: Wählen Sie wie die Navigationspunkte angeordnet werden sollen.
+          default: dots-c
+          options:
+            dots-c: Mitte
+            dots-r: Links
+            dots-l: Rechts
+
+        neo.arrow:
+          type: select.select
+          label: Pfeil
+          description: Wählen Sie den Pfeiltyp bzw. das Pfeilaussehen, welches Sie verwenden wollen.
+          default: chevron
+          options:
+            chevron: Chevron
+            chevron-circle: Chevron Circle
+            arrow: Arrow
+            arrow-circle: Arrow Circle
+            arrow-circle-o: Arrow Circle O
+            long-arrow: Long Arrow
+            angle-double: Angle Double
+
+        neo.imageOverlay:
+          type: select.select
+          label: Bildüberlagerung
+          description: Deaktiviert oder setzt eine der vordefinierten Bildüberlagerungen.
+          default: disable
+          options:
+            disable: Deaktiviert
+            accent: Akzent
+            overlay-h1: Helium (1)
+            overlay-h2: Helium (2)
+            overlay-h3: Helium (3)
+            overlay-h4: Helium (4)
+            overlay-h5: Helium (5)
+            overlay-h6: Helium (6)
+            overlay-gr: Grün
+            overlay-or: Orange
+            overlay-bl: Balu
+            overlay-vi: Violett
+            overlay-tu: Türkis

@@ -1,0 +1,152 @@
+{#######################################################}
+{#                                                     #}
+{#   Owl Carousel Neo - Particle for Gantry            #}
+{#                                                     #}
+{#   Purpose: This project is based on the default     #}
+{#            Gantry Helium - Owl Carousel Particle    #}
+{#            but extends it with additional features  #}
+{#            (e.g. lazy load, timed slides, ...)      #}
+{#            and also includes slick new designs.     #}
+{#                                                     #}
+{#   Author: Andreas Kar (thex) <andreas.kar@gmx.at>   #}
+{#   Repository: https://git.io/fA9XW                  #}
+{#   Homepage: https://gantryprojects.com              #}
+{#                                                     #}
+{#   -----------------                                 #}
+{#   Orignal Particle:                                 #}
+{#   -----------------                                 #}
+{#   Author: RocketTheme                               #}
+{#   Repository: https://git.io/fjwup                  #}
+{#   Homepage: http://gantry.org/                      #}
+{#                                                     #}
+{#######################################################}
+
+{% extends '@nucleus/partials/particle.html.twig' %}
+
+{% set cAttrs = '' %}
+{% if particle.tags %}
+    {% for attr in particle.tag.attributes %}
+        {% for key, value in attr %}
+            {% set cAttrs = cAttrs ~ ' ' ~ key|e ~ '="' ~ value|e('html_attr') ~ '"' %}
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+
+{% set neo = particle.neo %}
+{% if neo.style and neo.style != 'helium' %}
+    {% set ctnClasses = ' style-neo ' ~ neo.style %}
+    {% if neo.edges and neo.edges != 'square' %}
+        {% set ctnClasses = ctnClasses ~ ' sn-' ~ particle.neo.edges %}
+    {% endif %}
+    
+    {% set ctnClasses = ctnClasses ~ ' sn-' ~ neo.dots_align|default('dots-c') %}
+    {% set ctnClasses = ctnClasses ~ ' sn-' ~ neo.theme|default('theme-b') %}
+    
+    {% set hControl = (neo.theme|default('theme-b') == 'theme-b') ? 'control-g1' : 'control-g2' %}
+    {% set ctnClasses = ctnClasses ~ ' sn-' ~ neo.control_color|default(hControl) %}
+    
+{% endif %}
+
+{% if neo.imageOverlay and neo.imageOverlay != 'disable' and neo.imageOverlay != 'accent' %}
+    {% set ctnClasses = ctnClasses ~ ' sn-' ~ neo.imageOverlay|default('overlay-h1') %}
+{% endif %}
+
+{% set arrowLeft = 'fa-' ~ neo.arrow|default('chevron') ~ '-left' %}
+{% set arrowRight = 'fa-' ~ neo.arrow|default('chevron') ~ '-right' %}
+
+{% block particle %}
+
+    <div class="{{ particle.class|e }}"{{cAttrs|raw}}>
+        {% if particle.title %}<h2 class="g-title">{{ particle.title|raw }}</h2>{% endif %}
+
+        <div id="g-owlcarousel-{{ id }}" class="g-owlcarousel owl-carousel{% if neo.imageOverlay != 'disable' %} has-color-overlay{% endif %}{{ctnClasses}}">
+
+            {% for item in particle.items %}
+                {% set showItem = item.showItem|default('yes') %}
+                {% set format = (showItem == 'once') ? 'Y-m-d' : 'm-d' %}
+                {% set start, now, end = item.startDate|date(format), "now"|date(format), item.endDate|date(format) %}
+                {% if showItem == 'once' %}
+                    {% if start <= now and end >= now %}
+                        {% set showItem = 'yes' %}
+                    {% endif %}       
+                {% elseif showItem == 'annual' %}
+                    {% if (start <= end and start <= now and end >= now) or 
+                          (start > end and (start <= now or end >= now)) %}
+                        {% set showItem = 'yes' %}
+                    {% endif %}
+                {% endif %}
+                {% if showItem == 'yes' %}
+                    <div class="g-owlcarousel-item {{ item.class|e }}">
+                        <div class="g-owlcarousel-item-wrapper">
+                            <div class="g-owlcarousel-item-img">
+                                <img {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}src="{{ url(item.image)|e }}" alt="{{ item.title|e }}" />
+                            </div>
+                            <div class="g-owlcarousel-item-content-container">
+                                <div class="g-owlcarousel-item-content-wrapper">
+                                    <div class="g-owlcarousel-item-content">
+                                        {% if item.title %}
+                                            {% if particle.title_link %}<a href="{{ item.link|e }}" tabindex="-1">{% endif %}
+                                                <h1 class="g-owlcarousel-item-title">{{ item.title|raw }}</h1>
+                                            {% if particle.title_link %}</a>{% endif %}
+                                        {% endif %}
+                                        {% if item.desc %}
+                                            <h2 class="g-owlcarousel-item-desc">{{ item.desc|raw }}</h2>{% endif %}
+                                        {% if item.link %}
+                                            <div class="g-owlcarousel-item-link">
+                                                {% if particle.enable_btn %}
+                                                    <a target="_self" class="g-owlcarousel-item-button button {{ item.buttonclass|e }}" href="{{ item.link|e }}" tabindex="-1">
+                                                        {{ item.linktext|raw }}
+                                                    </a>
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% set loadEager = particle.lazyLoadEager|default('0') %}
+{% block javascript_footer %}
+    {% do gantry.load('jquery') %}
+    <script src="{{ url('gantry-theme://js/owl.carousel.2.3.4.min.js') }}"></script>
+    <script type="text/javascript">
+        jQuery(window).load(function() {
+            jQuery('#g-owlcarousel-{{ id }}').owlCarousel({
+                items: 1,
+                rtl: {% if gantry.page.direction == 'rtl' %}true{% else %}false{% endif %},
+                loop: true,
+                {% if particle.nav == 'enable' %}
+                nav: true,
+                navText: ['{{ particle.prevText|default('<i class="fa ' ~ arrowLeft ~ '" aria-hidden="true"></i>')|e('js') }}', '{{ particle.nextText|default('<i class="fa ' ~ arrowRight ~ '" aria-hidden="true"></i>')|e('js') }}'],
+                {% else %}
+                nav: false,
+                {% endif %}
+                {% if particle.dots == 'enable' %}
+                dots: true,
+                {% else %}
+                dots: false,
+                {% endif %}
+                {% if particle.autoplay == 'enable' %}
+                autoplay: true,
+                autoplayTimeout: {{ particle.autoplaySpeed|default('5000')|e('js') }},
+                {% else %}
+                autoplay: false,
+                {% endif %}
+                {% if particle.lazyLoadImages %}
+                lazyLoad: true,
+                    {% if loadEager > 0 %}
+                        lazyLoadEager: {{ loadEager|e('js') }},
+                    {% endif %}
+                {% endif %}
+            })
+        });
+    </script>
+{% endblock %}

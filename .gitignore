@@ -1,0 +1,31 @@
+# Windows thumbnail cache files
+[Tt]humbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# ignore base build file
+base-build.bat
+
+# IntelliJ
+.idea/
+
+# Mac OS
+.DS_Store/

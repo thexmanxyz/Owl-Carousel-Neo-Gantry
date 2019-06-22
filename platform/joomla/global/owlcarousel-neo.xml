@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="file" method="upgrade" version="3.0">
+    <name>Owl Carousel Neo - Gantry Particle (Global)</name>
+    <version>1.0.0</version>
+    <creationDate>22.06.2019</creationDate>
+    <author>Andreas Kar</author>
+    <authorEmail>andreas.kar@gmx.at</authorEmail>
+    <authorUrl>https://gantryprojects.com</authorUrl>
+    <copyright>© 2019 Andreas Kar</copyright>
+    <license>MIT - see LICENSE.pdf</license>
+    <description>
+        <![CDATA[<div class="alert alert-info" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h3>Owl Carousel Neo - Particle for Gantry Framework</h3>
+        <span aria-hidden="true" class="icon-user"></span>&nbsp;<em>Andreas Kar (andreas.kar@gmx.at)</em>
+        <p><b>NOTE</b>:&nbsp;This Particle was installed for Gantry.<br />If you want to install the Particle for a specific Gantry template, you must place the files as follows:</p>
+        <ul><li><code>*.yaml</code> =&gt; <code>/templates/[TEMPLATE]/custom/particles</code></li><li><code>*.twig</code> =&gt; <code>/templates/[TEMPLATE]/custom/particles</code></li><li><code>*.js</code> =&gt; <code>/templates/[TEMPLATE]/custom/js</code></li><li><code>*.scss</code> =&gt; <code>/templates/[TEMPLATE]/custom/scss</code></li></ul>
+        <div>Repository: <a href="https://git.io/fjwu5" title="Github Repository" target="_blank">https://git.io/fjwu5</a></div>
+        <div>Website: <a href="https://gantryprojects.com" title="Gantry Projects Website" target="_blank">https://gantryprojects.com</a></div></div>]]>
+    </description>
+    <fileset>
+        <files folder="particles" target="media/gantry5/engines/nucleus/particles">
+            <filename>owlcarousel-neo.html.twig</filename>
+            <filename>owlcarousel-neo.yaml</filename>
+        </files>
+        <files folder="scss" target="media/gantry5/engines/nucleus/scss">
+            <filename>_owlcarousel-neo.scss</filename>
+        </files>
+        <files folder="js" target="media/gantry5/engines/nucleus/js">
+            <filename>owl.carousel.2.3.4.js</filename>
+            <filename>owl.carousel.2.3.4.min.js</filename>
+        </files>
+    </fileset>
+</extension>
