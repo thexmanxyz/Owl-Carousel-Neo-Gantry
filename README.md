@@ -66,16 +66,16 @@ Please be aware that the template folder path varies in dependence of the used C
 * Timing of slides (annual or one-time)
 * Slide link can be applied to title as well
 * Slide button can be "replaced" by the title link
-* Four new styles (addtionally the default Helium style)
+* Four new styles (additionally also the default Helium style)
 * Two themes (black or white)
 * Seven different control colors
-* Border Radius (square or round)
+* Border radius (square or round)
 * Dot navigation alignment
 * Configuration of next/previous arrows
 * Overlay image improvement
   * all six Helium overlays included
   * five new overlays
-  * use accent overlay of current template  
+  * or use accent overlay of current template  
 
 ## Showroom
 Insight of the *Owl Carousel Neo - Gantry Particle* configuration:
@@ -84,10 +84,31 @@ Insight of the *Owl Carousel Neo - Gantry Particle* configuration:
 
 ![1](/screenshots/backend_general.png)
 
+**Backend (2)** - *[Appearance](/screenshots/backend_appearance.png)*
+
+![2](/screenshots/backend_appearance.png)
+
+** Frontend (1)** - *[Demo 1](/screenshots/frontend_demo1.png)*
+
+![3](/screenshots/frontend_demo1.png)
+
+** Frontend (2)** - *[Demo 2](/screenshots/frontend_demo2.png)*
+
+![4](/screenshots/frontend_demo2.png)
+
+
+** Frontend (3)** - *[Demo 3](/screenshots/frontend_demo3.png)*
+
+![5](/screenshots/frontend_demo3.png)
+
+
+** Frontend (4)** - *[Demo 4](/screenshots/frontend_demo4.png)*
+
+![6](/screenshots/frontend_demo4.png)
 
 ## Future Tasks
 - [ ] Include JS resource loading scheme to provide CDN support for OwlCarousel2
-- [ ] `aria` attributes for links
+- [ ] Include `aria` attributes for links
 
 ## Known Issues
 None
