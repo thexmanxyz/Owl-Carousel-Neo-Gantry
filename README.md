@@ -40,7 +40,7 @@ ___
 3. Copy the `.html.twig` and the `.yaml` file to your particle folder `/[GANTRY_THEME]/custom/particles`. Please check the [listing](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry#cms-template-folder) below to determine where the template folder for your CMS is located.
 4. Copy the `.js` file to the folder `/[GANTRY_THEME]/custom/js`. Create the folder if it does not exist.
 5. Copy the `.scss` file to the folder `/[GANTRY_THEME]/custom/scss`. Create the folder if it does not exist.
-6. Modify the `custom.scss` file located under `/[GANTRY_THEME]/custom/scss` and add the following line `@import "Owl-Carousel-Neo";` at the end.
+6. Modify the `custom.scss` file located under `/[GANTRY_THEME]/custom/scss` and add the following line `@import "owlcarousel-neo";` at the end.
 
 ## CMS Template Folder
 Please be aware that the template folder path varies in dependence of the used CMS. Here is a list of the folders for the different platforms:
@@ -58,7 +58,6 @@ Please be aware that the template folder path varies in dependence of the used C
 1. Go to your Gantry templating backend (e.g. Extensions/Templates).
 2. Switch to **Layout** and add the new appearing Particle called **Owl Carousel Neo** either globally to your site (**base outline**), to a specific template or page by dragging it to the designated section.
 3. Configure the appearance according to your favor.
-4. [Optional] The download package contains the JS file of the project. You can embed it over the backend configuration if you do not want to use the default CDN. If you chose automatic installation the file is already there.
  
 ## Supported Parameters, Particle Options and Features
 * All settings of the original Particle are included and compatible
@@ -87,7 +86,8 @@ Insight of the *Owl Carousel Neo - Gantry Particle* configuration:
 
 
 ## Future Tasks
-- [ ] 
+- [ ] Include JS resource loading scheme to provide CDN support for OwlCarousel2
+- [ ] `aria` attributes for links
 
 ## Known Issues
 None
