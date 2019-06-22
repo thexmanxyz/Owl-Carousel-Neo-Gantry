@@ -63,7 +63,7 @@ Please be aware that the template folder path varies in dependence of the used C
  
 ## Supported Parameters, Particle Options and Features
 * All settings of the original Particle are included and compatible
-* Updated to latest version of [OwlCarousel2](https://owlcarousel2.github.io/OwlCarousel2/)
+* Updated to latest version of [Owl Carousel 2](https://owlcarousel2.github.io/OwlCarousel2/)
 * Lazy loading of images included
 * Timing of slides (annual or one-time)
 * Slide link can be applied to title as well
@@ -112,7 +112,7 @@ A few example configurations which show the new design of the Particle:
 ![6](/screenshots/frontend_demo4.png)
 
 ## Future Tasks
-- [ ] Include JS resource loading scheme to provide CDN support for OwlCarousel2
+- [ ] Include JS resource loading scheme to provide CDN support for Owl Carousel 2
 - [ ] Include `aria` attributes for links
 
 ## Known Issues
@@ -122,6 +122,8 @@ None
 [Gantry Framework](http://gantry.org/)
 
 [Helium Template](https://github.com/gantry/gantry5)
+
+[Owl Carousel 2](https://owlcarousel2.github.io/OwlCarousel2/)
 
 ## Credits
 Thanks to the [Gantry](https://github.com/gantry) team for providing a modern templating framework.
