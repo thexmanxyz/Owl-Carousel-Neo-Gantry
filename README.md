@@ -88,21 +88,21 @@ Insight of the *Owl Carousel Neo - Gantry Particle* configuration:
 
 ![2](/screenshots/backend_appearance.png)
 
-** Frontend (1)** - *[Demo 1](/screenshots/frontend_demo1.png)*
+**Frontend (1)** - *[Demo 1 - Black Mode](/screenshots/frontend_demo1.png)*
 
 ![3](/screenshots/frontend_demo1.png)
 
-** Frontend (2)** - *[Demo 2](/screenshots/frontend_demo2.png)*
+**Frontend (2)** - *[Demo 2 - Black Mode](/screenshots/frontend_demo2.png)*
 
 ![4](/screenshots/frontend_demo2.png)
 
 
-** Frontend (3)** - *[Demo 3](/screenshots/frontend_demo3.png)*
+**Frontend (3)** - *[Demo 3 - White Mode](/screenshots/frontend_demo3.png)*
 
 ![5](/screenshots/frontend_demo3.png)
 
 
-** Frontend (4)** - *[Demo 4](/screenshots/frontend_demo4.png)*
+**Frontend (4)** - *[Demo 4 - White Mode](/screenshots/frontend_demo4.png)*
 
 ![6](/screenshots/frontend_demo4.png)
 
