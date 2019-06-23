@@ -78,7 +78,7 @@ Please be aware that the template folder path varies in dependence of the used C
   * all six Helium overlays included
   * five new overlays
   * or use accent overlay of current template
-* JS and CSS configuration
+* JS configuration
   * Remote, Local and Default
   * Priority and Position (head or footer)
 * JS execution
@@ -122,7 +122,6 @@ A few example configurations which show the new design of the Particle:
 ![7](/screenshots/frontend_demo4.png)
 
 ## Future Tasks
-- [ ] Include JS resource loading scheme to provide CDN support for Owl Carousel 2
 - [ ] Include `aria` attributes for links
 
 ## Known Issues
