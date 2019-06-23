@@ -78,6 +78,7 @@ Please be aware that the template folder path varies in dependence of the used C
   * all six Helium overlays included
   * five new overlays
   * or use accent overlay of current template
+* JS priority and placement (head or footer)
 * JS configuration
   * Remote, Local and Default
   * Priority and Position (head or footer)
