@@ -29,7 +29,7 @@ set scr_log_files=0
 
 REM --- project variables ---
 set prj_id=ocn
-set prj_rev=v1.0.0
+set prj_rev=v1.0.1
 set prj_name=owlcarousel-neo
 set prj_fullname=Owl Carousel Neo
 set prj_title_hr=--------------------

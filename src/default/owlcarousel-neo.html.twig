@@ -62,7 +62,7 @@
 {% set jsExecAttr = _self.getJSExecution(jsExec) %}
 {% set jsPrior = particle.js.priority|default(0) %}
 
-{% set cdnRepo = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2' %}
+{% set cdnRepo = particle.cdn.base_url|default('https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2') %}
 {% set jsPath = _self.getResourceFilePath(particle.js, cdnRepo, apiRev, 
     'owl.carousel.min', 'owl.carousel.2.3.4.min', 'js') %}
 
