@@ -54,7 +54,58 @@
 {% set arrowLeft = 'fa-' ~ neo.arrow|default('chevron') ~ '-left' %}
 {% set arrowRight = 'fa-' ~ neo.arrow|default('chevron') ~ '-right' %}
 
+{% set scriptType = 'text/javascript' %}
+
+{% set apiRev = particle.api.version|default("2.5.4") %}
+{% set jsPlace = particle.js.placement|default('head') %}
+{% set jsExec = particle.js.execution|default("both") %}
+{% set jsExecAttr = _self.getJSExecution(jsExec) %}
+{% set jsPrior = particle.js.priority|default(0) %}
+
+{% set cdnRepo = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2' %}
+{% set jsPath = _self.getResourceFilePath(particle.js, cdnRepo, apiRev, 
+    'owl.carousel.min', 'owl.carousel.2.3.4.min', 'js') %}
+
+{% set loadEager = particle.lazyLoadEager|default('0') %}
+
 {% block particle %}
+
+    {%- scripts in jsPlace with { priority: jsPrior } -%}
+        {% do gantry.load('jquery') %}
+        <script type="{{scriptType}}" src="{{url(jsPath)}}"{{jsExecAttr}}></script>
+        <script type="text/javascript">
+            jQuery(window).load(function() {
+                jQuery('#g-owlcarousel-{{ id }}').owlCarousel({
+                    items: 1,
+                    rtl: {% if gantry.page.direction == 'rtl' %}true{% else %}false{% endif %},
+                    loop: true,
+                    {% if particle.nav == 'enable' %}
+                    nav: true,
+                    navText: ['{{ particle.prevText|default('<i class="fa ' ~ arrowLeft ~ '" aria-hidden="true"></i>')|e('js') }}', '{{ particle.nextText|default('<i class="fa ' ~ arrowRight ~ '" aria-hidden="true"></i>')|e('js') }}'],
+                    {% else %}
+                    nav: false,
+                    {% endif %}
+                    {% if particle.dots == 'enable' %}
+                    dots: true,
+                    {% else %}
+                    dots: false,
+                    {% endif %}
+                    {% if particle.autoplay == 'enable' %}
+                    autoplay: true,
+                    autoplayTimeout: {{ particle.autoplaySpeed|default('5000')|e('js') }},
+                    {% else %}
+                    autoplay: false,
+                    {% endif %}
+                    {% if particle.lazyLoadImages %}
+                    lazyLoad: true,
+                        {% if loadEager > 0 %}
+                            lazyLoadEager: {{ loadEager|e('js') }},
+                        {% endif %}
+                    {% endif %}
+                })
+            });
+        </script>
+    {%- endscripts -%}
 
     <div class="{{ particle.class|e }}"{{cAttrs|raw}}>
         {% if particle.title %}<h2 class="g-title">{{ particle.title|raw }}</h2>{% endif %}
@@ -113,40 +164,43 @@
 
 {% endblock %}
 
-{% set loadEager = particle.lazyLoadEager|default('0') %}
-{% block javascript_footer %}
-    {% do gantry.load('jquery') %}
-    <script src="{{ url('gantry-theme://js/owl.carousel.2.3.4.min.js') }}"></script>
-    <script type="text/javascript">
-        jQuery(window).load(function() {
-            jQuery('#g-owlcarousel-{{ id }}').owlCarousel({
-                items: 1,
-                rtl: {% if gantry.page.direction == 'rtl' %}true{% else %}false{% endif %},
-                loop: true,
-                {% if particle.nav == 'enable' %}
-                nav: true,
-                navText: ['{{ particle.prevText|default('<i class="fa ' ~ arrowLeft ~ '" aria-hidden="true"></i>')|e('js') }}', '{{ particle.nextText|default('<i class="fa ' ~ arrowRight ~ '" aria-hidden="true"></i>')|e('js') }}'],
-                {% else %}
-                nav: false,
-                {% endif %}
-                {% if particle.dots == 'enable' %}
-                dots: true,
-                {% else %}
-                dots: false,
-                {% endif %}
-                {% if particle.autoplay == 'enable' %}
-                autoplay: true,
-                autoplayTimeout: {{ particle.autoplaySpeed|default('5000')|e('js') }},
-                {% else %}
-                autoplay: false,
-                {% endif %}
-                {% if particle.lazyLoadImages %}
-                lazyLoad: true,
-                    {% if loadEager > 0 %}
-                        lazyLoadEager: {{ loadEager|e('js') }},
-                    {% endif %}
-                {% endif %}
-            })
-        });
-    </script>
-{% endblock %}
+{%- macro getResourceFilePath(element, cdnUrl, api, cdnFile, locFile, type) -%}
+    {%- set elPath = element.path|default(locFile ~ "." ~ type) -%}
+    {%- set elOpt = element.option|default("disabled") -%}
+    {%- set path = empty -%}
+    {%- if elOpt == 'local' or elOpt == 'global' -%}
+        {%- set hPath = elPath -%}
+        {%- if hPath is not empty and hPath|slice(0, 1)|lower == '/' -%}
+            {%- set hPath = hPath|slice(1, (hPath|length - 1)) -%}
+        {%- endif -%}
+        {%- set hPath = type ~ '/' ~ hPath -%}
+        {%- if elOpt == 'local' -%}
+            {%- set path = 'gantry-theme://' ~ hPath -%}
+        {%- else -%}
+            {%- set path = 'media/gantry5/engines/nucleus/' ~ hPath -%}
+        {%- endif -%}
+    {%- elseif elOpt == 'custom' -%}
+        {%- set path = elPath -%}
+    {%- endif -%}
+    {%- if path is empty -%}
+        {%- set path = cdnUrl ~ '/' ~ api ~ '/' ~ cdnFile ~ "." ~ type -%}
+    {%- endif -%}
+    {{- path|raw -}}
+{%- endmacro -%}
+
+{%- macro getJSExecution(type) -%}
+    {%- set attribute = '' -%}
+    {%- if type == 'defer' or type == 'both' -%}
+        {%- set attribute = 'defer="defer"' -%}
+    {%- endif -%}
+    {%- if type == 'both' -%}
+        {%- set attribute = attribute ~ ' ' -%}
+    {%- endif -%}
+    {%- if type == 'async' or type == 'both' -%}
+        {%- set attribute = attribute ~ 'async="async"' -%}
+    {%- endif -%}
+    {%- if type is not empty -%}
+        {%- set attribute = ' ' ~ attribute -%}
+    {%- endif -%}
+    {{- attribute|raw -}}
+{%- endmacro -%}
