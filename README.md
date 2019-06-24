@@ -81,7 +81,6 @@ Please be aware that the template folder path varies in dependence of the used C
 * JS priority and placement (head or footer)
 * JS configuration
   * Remote, Local and Default
-  * Priority and Position (head or footer)
 * JS execution
   * Asynchronous
   * Deferred
