@@ -31,7 +31,7 @@ form:
     enabled:
       type: input.checkbox
       label: Enabled
-      description: Globally enable the Owl Carousel Neo particle.
+      description: Globally enable the Owl Carousel Neo Particle.
       default: true
 
     set_general:
