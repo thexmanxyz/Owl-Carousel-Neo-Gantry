@@ -1,5 +1,5 @@
 # Owl Carousel Neo - Particle for Gantry
-This project contains a Gantry Particle and is based on the default **Gantry Helium - Owl Carousel Particle** but extends it with many useful additional features (e.g. lazy load, timed slides, ...) and also includes slick new designs. **Owl Carousel Neo** is an advanced version of the standard Particle created by [Gantry](http://gantry.org/) and [RocketTheme](https://rockettheme.com/). Furthermore, it provides an easy, user friendly and GUI assisted configuration and integration. In the current revision the following CMSs are supported:
+This project contains a Gantry Particle and is based on the default **Gantry Helium - Owl Carousel** but extends it with many useful additional features (e.g. lazy load, timed slides, ...) and also includes slick new designs. **Owl Carousel Neo** is an advanced version of the standard Particle created by [Gantry](http://gantry.org/) and [RocketTheme](https://rockettheme.com/). Furthermore, it provides an easy, user friendly and GUI assisted configuration and integration. In the current revision the following CMSs are supported:
 * Joomla
 * Wordpress
 * Grav
