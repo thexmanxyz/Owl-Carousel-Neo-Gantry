@@ -9,22 +9,22 @@ This project contains a Gantry Particle and is based on the default **Gantry Hel
 * Gantry Templating Framework and Theme
 
 ## Download
-Choose the correct download for your target platform. The Joomla Plugin System is supported for all Gantry themes globally or locally for the templates Helium and Hydrogen. The latest Particle version is **v1.0.3**.
+Choose the correct download for your target platform. The Joomla Plugin System is supported for all Gantry themes globally or locally for the templates Helium and Hydrogen. The latest Particle version is **v1.0.4**.
 ___
 **Default Particle:**
-[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.3/ocn.particle.only.EN.v1.0.3.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.3/ocn.particle.only.DE.v1.0.3.zip)
+[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.4/ocn.particle.only.EN.v1.0.4.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.4/ocn.particle.only.DE.v1.0.4.zip)
 
 **Legacy Particle - Gantry <5.3.2:**
-[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.3/ocn.particle.only.legacy.EN.v1.0.3.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.3/ocn.particle.only.legacy.DE.v1.0.3.zip)
+[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.4/ocn.particle.only.legacy.EN.v1.0.4.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.4/ocn.particle.only.legacy.DE.v1.0.4.zip)
 
 **Joomla Plugin - All Templates (Global):**
-[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.3/ocn.j3.global.EN.v1.0.3.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.3/ocn.j3.global.DE.v1.0.3.zip)
+[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.4/ocn.j3.global.EN.v1.0.4.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.4/ocn.j3.global.DE.v1.0.4.zip)
 
 **Joomla Plugin - Hydrogen:**
-[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.3/ocn.j3.hydrogen.EN.v1.0.3.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.3/ocn.j3.hydrogen.DE.v1.0.3.zip)
+[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.4/ocn.j3.hydrogen.EN.v1.0.4.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.4/ocn.j3.hydrogen.DE.v1.0.4.zip)
 
 **Joomla Plugin - Helium:**
-[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.3/ocn.j3.helium.EN.v1.0.3.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.3/ocn.j3.helium.DE.v1.0.3.zip)
+[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.4/ocn.j3.helium.EN.v1.0.4.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.4/ocn.j3.helium.DE.v1.0.4.zip)
 ___
 
 ## Automatic Installation (Joomla only)
@@ -88,38 +88,42 @@ Please be aware that the template folder path varies in dependence of the used C
 ## Showroom
 Insight of the *Owl Carousel Neo - Gantry Particle* configuration:
 
-**Backend (1)** - *[General](/screenshots/backend_general.png)*
+**Backend (1)** - *[General (1)](/screenshots/backend_general_1.png)*
 
-![1](/screenshots/backend_general.png)
+![1](/screenshots/backend_general_1.png)
 
-**Backend (2)** - *[Appearance](/screenshots/backend_appearance.png)*
+**Backend (2)** - *[General (2)](/screenshots/backend_general_2.png)*
 
-![2](/screenshots/backend_appearance.png)
+![2](/screenshots/backend_general_2.png)
 
-**Backend (3)** - *[API](/screenshots/backend_api.png)*
+**Backend (3)** - *[Appearance](/screenshots/backend_appearance.png)*
 
-![3](/screenshots/backend_api.png)
+![3](/screenshots/backend_appearance.png)
+
+**Backend (4)** - *[API](/screenshots/backend_api.png)*
+
+![4](/screenshots/backend_api.png)
 ___
 
 A few example configurations which show the new design of the Particle:
 
 **Frontend (1)** - *[Demo 1 - Black Mode](/screenshots/frontend_demo1.png)*
 
-![4](/screenshots/frontend_demo1.png)
+![5](/screenshots/frontend_demo1.png)
 
 **Frontend (2)** - *[Demo 2 - Black Mode](/screenshots/frontend_demo2.png)*
 
-![5](/screenshots/frontend_demo2.png)
+![6](/screenshots/frontend_demo2.png)
 
 
 **Frontend (3)** - *[Demo 3 - White Mode](/screenshots/frontend_demo3.png)*
 
-![6](/screenshots/frontend_demo3.png)
+![7](/screenshots/frontend_demo3.png)
 
 
 **Frontend (4)** - *[Demo 4 - White Mode](/screenshots/frontend_demo4.png)*
 
-![7](/screenshots/frontend_demo4.png)
+![8](/screenshots/frontend_demo4.png)
 
 ## Future Tasks
 - [ ] Include `aria` attributes for links
