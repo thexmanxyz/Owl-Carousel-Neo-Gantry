@@ -60,13 +60,13 @@ form:
                 placeholder: 'Enter title'
                 
               title_link:
-                type: input.checkbox
+                type: enable.enable
                 label: Title Link
                 description: Enable to create the button link also on the title element.
                 default: false
 
               enable_btn:
-                type: input.checkbox
+                type: enable.enable
                 label: Enable Button
                 description: Enable or disable the button rendering explicitly
                 default: true
@@ -105,7 +105,7 @@ form:
                 placeholder: 5000
 
               lazyLoadImages:
-                type: input.checkbox
+                type: enable.enable
                 label: Lazy Load Images
                 description: Enable to lazy load the item images.
                 default: false

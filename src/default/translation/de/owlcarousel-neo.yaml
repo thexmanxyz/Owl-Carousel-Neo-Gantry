@@ -60,13 +60,13 @@ form:
                 placeholder: 'Titel eingeben'
                 
               title_link:
-                type: input.checkbox
+                type: enable.enable
                 label: Titel Link
                 description: Bei Aktivierung wird der Button Link auch für das Titel Element gesetzt. 
                 default: false
 
               enable_btn:
-                type: input.checkbox
+                type: enable.enable
                 label: Aktiviere Button
                 description: Aktiviert oder deaktiviert explizit die Darstellung des Slide Buttons.
                 default: true
@@ -105,7 +105,7 @@ form:
                 placeholder: 5000
 
               lazyLoadImages:
-                type: input.checkbox
+                type: enable.enable
                 label: Lazy Load Bilder
                 description: Aktiviere um Bilder per Lazy Load zu laden.
                 default: false
