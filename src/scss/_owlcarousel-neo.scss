@@ -657,27 +657,27 @@
         .owl-next { right: 0.5rem; }
         .owl-prev, .owl-next { z-index: 2; }
 
-		button {
-			&.owl-prev, &.owl-next {
-				width: 20px;
-				height: 20px;
-				top: inherit;
-				font-size: 1rem;
-				border-radius: 0;
-				border: 0;
-				color: #eee;
+        button {
+            &.owl-prev, &.owl-next {
+                width: 20px;
+                height: 20px;
+                top: inherit;
+                font-size: 1rem;
+                border-radius: 0;
+                border: 0;
+                color: #eee;
 
-				&:hover {
-					background: inherit;
-					border-color: inherit;
-				}
+                &:hover {
+                    background: inherit;
+                    border-color: inherit;
+                }
 
-				.fa {
-					position: relative;
-					text-shadow: 1px 1px 1px #000;
-				}
-			}
-		}
+                .fa {
+                    position: relative;
+                    text-shadow: 1px 1px 1px #000;
+                }
+            }
+        }
     }
 
     .owl-item img {
@@ -730,11 +730,11 @@
     }
 
     .owl-nav {
-		button {
-			&.owl-prev, &.owl-next {
-				bottom: 0;
-			}
-		}
+        button {
+            &.owl-prev, &.owl-next {
+                bottom: 0;
+            }
+        }
     }
 }       
 
@@ -759,11 +759,11 @@
     }
 
     .owl-nav {
-		button {
-			&.owl-prev, &.owl-next {
-				top: 0.9375rem;
-			}
-		}
+        button {
+            &.owl-prev, &.owl-next {
+                top: 0.9375rem;
+            }
+        }
     }
 }
 
@@ -789,11 +789,11 @@
     }
 
     .owl-nav {
-		button {
-			&.owl-prev, &.owl-next {
-				top: 0.8125rem;
-			}
-		}
+        button {
+            &.owl-prev, &.owl-next {
+                top: 0.8125rem;
+            }
+        }
     }
 }       
 
@@ -818,11 +818,11 @@
     }
 
     .owl-nav {
-		button {
-			&.owl-prev, &.owl-next {
-				bottom: -0.125rem;
-			}
-		}
+        button {
+            &.owl-prev, &.owl-next {
+                bottom: -0.125rem;
+            }
+        }
     }
 }
 
@@ -874,9 +874,9 @@
         background: rgba(0,0,0,0.5);
         border: 1px solid #fff;
 
-		&:hover, &:focus {
-			background: rgba(0,0,0,0.6);
-		}
+        &:hover, &:focus {
+            background: rgba(0,0,0,0.6);
+        }
     }
 
     .owl-dots {
@@ -910,15 +910,15 @@
     }
 
     .owl-nav {
-		button {
-			&.owl-prev, &.owl-next {
-				color: #eee;
+        button {
+            &.owl-prev, &.owl-next {
+                color: #eee;
 
-				.fa {
-					text-shadow: 1px 1px 1px #000;
-				}
-			}
-		}
+                .fa {
+                    text-shadow: 1px 1px 1px #000;
+                }
+            }
+        }
     }
 }
 
@@ -929,9 +929,9 @@
         border: 1px solid #fff;
         color: #fff;
 
-		&:hover, &:focus {
-			background: rgba(193, 192, 192, 0.5);
-		}
+        &:hover, &:focus {
+            background: rgba(193, 192, 192, 0.5);
+        }
     }
 
     .owl-dots {
@@ -965,38 +965,38 @@
     }
 
     .owl-nav {
-		button {
-			&.owl-prev, &.owl-next {
-				color: #393939;
-	
-				.fa {
-					text-shadow: 1px 1px 1px #AAA;
-				}
-			}
-		}
+        button {
+            &.owl-prev, &.owl-next {
+                color: #393939;
+    
+                .fa {
+                    text-shadow: 1px 1px 1px #AAA;
+                }
+            }
+        }
     }
 }
 
 .g-owlcarousel.style-neo.sn-control-gr {
     .owl-dots {
-		.owl-dot {
-			&.active, &:hover {
-				background: #32be8a;
-			}
-			&.active:hover {
-				background: #66fbbd;
-			}
-		}
+        .owl-dot {
+            &.active, &:hover {
+                background: #32be8a;
+            }
+            &.active:hover {
+                background: #66fbbd;
+            }
+        }
     }
 
     .owl-nav {
-		button {
-			&.owl-prev, &.owl-next {
-				&:hover {
-					color: #32be8a;
-				}
-			}
-		}
+        button {
+            &.owl-prev, &.owl-next {
+                &:hover {
+                    color: #32be8a;
+                }
+            }
+        }
     }
 
     .g-owlcarousel-item-content a:hover h1 {
@@ -1006,24 +1006,24 @@
 
 .g-owlcarousel.style-neo.sn-control-re {
     .owl-dots {
-		.owl-dot {
-			&.active, &:hover {
-				background: #be3232;
-			}
-			&.active:hover {
-				background: #e16262;
-			}
-		}
+        .owl-dot {
+            &.active, &:hover {
+                background: #be3232;
+            }
+            &.active:hover {
+                background: #e16262;
+            }
+        }
     }
 
     .owl-nav {
-		button {
-			&.owl-prev, &.owl-next {
-				&:hover {
-					color: #be3232;
-				}
-			}
-		}
+        button {
+            &.owl-prev, &.owl-next {
+                &:hover {
+                    color: #be3232;
+                }
+            }
+        }
     }
 
     .g-owlcarousel-item-content a:hover h1 {
@@ -1033,24 +1033,24 @@
 
 .g-owlcarousel.style-neo.sn-control-bl {
     .owl-dots {
-		.owl-dot {
-			&.active, &:hover {
-				background: #326abe;
-			}
-			&.active:hover {
-				background: #5f96ea;
-			}
-		}
+        .owl-dot {
+            &.active, &:hover {
+                background: #326abe;
+            }
+            &.active:hover {
+                background: #5f96ea;
+            }
+        }
     }
 
     .owl-nav {
-		button {
-			&.owl-prev, &.owl-next {
-				&:hover {
-					color: #326abe;
-				}
-			}
-		}
+        button {
+            &.owl-prev, &.owl-next {
+                &:hover {
+                    color: #326abe;
+                }
+            }
+        }
     }
 
     .g-owlcarousel-item-content a:hover h1 {
@@ -1060,24 +1060,24 @@
 
 .g-owlcarousel.style-neo.sn-control-vi {
     .owl-dots {
-		.owl-dot {
-			&.active, &:hover {
-				background: #9932be;
-			}
-			&.active:hover {
-				background: #bb4be3;
-			}
-		}
+        .owl-dot {
+            &.active, &:hover {
+                background: #9932be;
+            }
+            &.active:hover {
+                background: #bb4be3;
+            }
+        }
     }
 
     .owl-nav {
-		button {
-			&.owl-prev, &.owl-next {
-				&:hover {
-					color: #9932be;
-				}
-			}
-		}
+        button {
+            &.owl-prev, &.owl-next {
+                &:hover {
+                    color: #9932be;
+                }
+            }
+        }
     }
 
     .g-owlcarousel-item-content a:hover h1 {
@@ -1087,24 +1087,24 @@
 
 .g-owlcarousel.style-neo.sn-control-or {
     .owl-dots {
-		.owl-dot {
-			&.active, &:hover {
-				background: #fd931d;
-			}
-			&.active:hover {
-				background: #fbb566;
-			}
-		}
+        .owl-dot {
+            &.active, &:hover {
+                background: #fd931d;
+            }
+            &.active:hover {
+                background: #fbb566;
+            }
+        }
     }
 
     .owl-nav {
-		button {
-			&.owl-prev, &.owl-next {
-				&:hover {
-					color: #fd931d;
-				}
-			}
-		}
+        button {
+            &.owl-prev, &.owl-next {
+                &:hover {
+                    color: #fd931d;
+                }
+            }
+        }
     }
 
     .g-owlcarousel-item-content a:hover h1 {
@@ -1114,24 +1114,24 @@
 
 .g-owlcarousel.style-neo.sn-control-g1 {
     .owl-dots {
-		.owl-dot {
-			&.active, &:hover {
-				background: #AAA;
-			}
-			&.active:hover {
-				background: #CCC;
-			}
-		}
+        .owl-dot {
+            &.active, &:hover {
+                background: #AAA;
+            }
+            &.active:hover {
+                background: #CCC;
+            }
+        }
     }
 
     .owl-nav {
-		button {
-			&.owl-prev, &.owl-next {
-				&:hover {
-					color: #AAA;
-				}
-			}
-		}
+        button {
+            &.owl-prev, &.owl-next {
+                &:hover {
+                    color: #AAA;
+                }
+            }
+        }
     }
 
     .g-owlcarousel-item-content a:hover h1 {
@@ -1141,24 +1141,24 @@
 
 .g-owlcarousel.style-neo.sn-control-g2 {
     .owl-dots {
-		.owl-dot {
-			&.active, &:hover {
-				background: #CCC;
-			}
-			&.active:hover {
-				background: #AAA;
-			}
-		}
+        .owl-dot {
+            &.active, &:hover {
+                background: #CCC;
+            }
+            &.active:hover {
+                background: #AAA;
+            }
+        }
     }
 
     .owl-nav {
-		button {
-			&.owl-prev, &.owl-next {
-				&:hover {
-					color: #CCC;
-				}
-			}
-		}
+        button {
+            &.owl-prev, &.owl-next {
+                &:hover {
+                    color: #CCC;
+                }
+            }
+        }
     }
 
     .g-owlcarousel-item-content a:hover h1 {
@@ -1169,15 +1169,15 @@
 .g-owlcarousel.sn-overlay-h1 {
     &.has-color-overlay {
         .owl-stage > .owl-item {
-			&:nth-child(even), &:nth-child(odd) {
-				.g-owlcarousel-item-img:after {
-					background-color: #8f4dae;
-					background-color: #8f4dae;
-					background-image: -webkit-linear-gradient(-410deg, #8f4dae, #4db2b3);
-					background-image: linear-gradient(140deg,#8f4dae, #4db2b3);
-					opacity: 0.9;
-				}
-			}
+            &:nth-child(even), &:nth-child(odd) {
+                .g-owlcarousel-item-img:after {
+                    background-color: #8f4dae;
+                    background-color: #8f4dae;
+                    background-image: -webkit-linear-gradient(-410deg, #8f4dae, #4db2b3);
+                    background-image: linear-gradient(140deg,#8f4dae, #4db2b3);
+                    opacity: 0.9;
+                }
+            }
         }
     }
 }
@@ -1185,15 +1185,15 @@
 .g-owlcarousel.sn-overlay-h2 {
     &.has-color-overlay {
         .owl-stage > .owl-item {
-			&:nth-child(even), &:nth-child(odd) {
-				.g-owlcarousel-item-img:after {
-					background-color: #4cad9e;
-					background-color: #4cad9e;
-					background-image: -webkit-linear-gradient(-410deg, #4cad9e, #b34b4b);
-					background-image: linear-gradient(140deg,#4cad9e, #b34b4b);
-					opacity: 0.9;
-				}
-			}
+            &:nth-child(even), &:nth-child(odd) {
+                .g-owlcarousel-item-img:after {
+                    background-color: #4cad9e;
+                    background-color: #4cad9e;
+                    background-image: -webkit-linear-gradient(-410deg, #4cad9e, #b34b4b);
+                    background-image: linear-gradient(140deg,#4cad9e, #b34b4b);
+                    opacity: 0.9;
+                }
+            }
         }
     }
 }
@@ -1201,15 +1201,15 @@
 .g-owlcarousel.sn-overlay-h3 {
     &.has-color-overlay {
         .owl-stage > .owl-item {
-			&:nth-child(even), &:nth-child(odd) {
-				.g-owlcarousel-item-img:after {
-					background-color: #355c7d;
-					background-color: #355c7d;
-					background-image: -webkit-linear-gradient(-410deg, #355c7d, #c06c84);
-					background-image: linear-gradient(140deg,#355c7d, #c06c84);
-					opacity: 0.9;
-				}
-			}
+            &:nth-child(even), &:nth-child(odd) {
+                .g-owlcarousel-item-img:after {
+                    background-color: #355c7d;
+                    background-color: #355c7d;
+                    background-image: -webkit-linear-gradient(-410deg, #355c7d, #c06c84);
+                    background-image: linear-gradient(140deg,#355c7d, #c06c84);
+                    opacity: 0.9;
+                }
+            }
         }
     }
 }
@@ -1217,15 +1217,15 @@
 .g-owlcarousel.sn-overlay-h4 {
     &.has-color-overlay {
         .owl-stage > .owl-item {
-			&:nth-child(even), &:nth-child(odd) {
-				.g-owlcarousel-item-img:after {
-					background-color: #2a363b;
-					background-color: #2a363b;
-					background-image: -webkit-linear-gradient(-410deg, #2a363b, #e84a5f);
-					background-image: linear-gradient(140deg,#2a363b, #e84a5f);
-					opacity: 0.9;
-				}
-			}
+            &:nth-child(even), &:nth-child(odd) {
+                .g-owlcarousel-item-img:after {
+                    background-color: #2a363b;
+                    background-color: #2a363b;
+                    background-image: -webkit-linear-gradient(-410deg, #2a363b, #e84a5f);
+                    background-image: linear-gradient(140deg,#2a363b, #e84a5f);
+                    opacity: 0.9;
+                }
+            }
         }
     }
 }
@@ -1233,15 +1233,15 @@
 .g-owlcarousel.sn-overlay-h5 {
     &.has-color-overlay {
         .owl-stage > .owl-item {
-			&:nth-child(even), &:nth-child(odd) {
-				.g-owlcarousel-item-img:after {
-					background-color: #474747;
-					background-color: #474747;
-					background-image: -webkit-linear-gradient(-410deg, #474747, #a8a7a7);
-					background-image: linear-gradient(140deg,#474747, #a8a7a7);
-					opacity: 0.9;
-				}
-			}
+            &:nth-child(even), &:nth-child(odd) {
+                .g-owlcarousel-item-img:after {
+                    background-color: #474747;
+                    background-color: #474747;
+                    background-image: -webkit-linear-gradient(-410deg, #474747, #a8a7a7);
+                    background-image: linear-gradient(140deg,#474747, #a8a7a7);
+                    opacity: 0.9;
+                }
+            }
         }
     }
 }
@@ -1249,15 +1249,15 @@
 .g-owlcarousel.sn-overlay-h6 {
     &.has-color-overlay {
         .owl-stage > .owl-item {
-			&:nth-child(even), &:nth-child(odd) {
-				.g-owlcarousel-item-img:after {
-					background-color: #474747;
-					background-color: #474747;
-					background-image: -webkit-linear-gradient(-410deg, #474747, #a8a7a7);
-					background-image: linear-gradient(140deg,#474747, #a8a7a7);
-					opacity: 0.9;
-				}
-			}
+            &:nth-child(even), &:nth-child(odd) {
+                .g-owlcarousel-item-img:after {
+                    background-color: #474747;
+                    background-color: #474747;
+                    background-image: -webkit-linear-gradient(-410deg, #474747, #a8a7a7);
+                    background-image: linear-gradient(140deg,#474747, #a8a7a7);
+                    opacity: 0.9;
+                }
+            }
         }
     }
 }
@@ -1265,15 +1265,15 @@
 .g-owlcarousel.sn-overlay-gr {
     &.has-color-overlay {
         .owl-stage > .owl-item {
-			&:nth-child(even), &:nth-child(odd) {
-				.g-owlcarousel-item-img:after {
-					background-color: 4cdb9c;
-					background-color: 4cdb9c;
-					background-image: -webkit-linear-gradient(-410deg, #4cdb9c, #212624);
-					background-image: linear-gradient(140deg, #4cdb9c, #212624);
-					opacity: 0.9;
-				}
-			}
+            &:nth-child(even), &:nth-child(odd) {
+                .g-owlcarousel-item-img:after {
+                    background-color: 4cdb9c;
+                    background-color: 4cdb9c;
+                    background-image: -webkit-linear-gradient(-410deg, #4cdb9c, #212624);
+                    background-image: linear-gradient(140deg, #4cdb9c, #212624);
+                    opacity: 0.9;
+                }
+            }
         }
     }
 }
@@ -1281,15 +1281,15 @@
 .g-owlcarousel.sn-overlay-or {
     &.has-color-overlay {
         .owl-stage > .owl-item {
-			&:nth-child(even), &:nth-child(odd) {
-				.g-owlcarousel-item-img:after {
-					background-color: db974c;
-					background-color: db974c;
-					background-image: -webkit-linear-gradient(-410deg, #db974c, #212624);
-					background-image: linear-gradient(140deg, #db974c, #212624);
-					opacity: 0.9;
-				}
-			}
+            &:nth-child(even), &:nth-child(odd) {
+                .g-owlcarousel-item-img:after {
+                    background-color: db974c;
+                    background-color: db974c;
+                    background-image: -webkit-linear-gradient(-410deg, #db974c, #212624);
+                    background-image: linear-gradient(140deg, #db974c, #212624);
+                    opacity: 0.9;
+                }
+            }
         }
     }
 }
@@ -1297,15 +1297,15 @@
 .g-owlcarousel.sn-overlay-bl {
     &.has-color-overlay {
         .owl-stage > .owl-item {
-			&:nth-child(even), &:nth-child(odd) {
-				.g-owlcarousel-item-img:after {
-					background-color: 4c93db;
-					background-color: 4c93db;
-					background-image: -webkit-linear-gradient(-410deg, #4c93db, #212624);
-					background-image: linear-gradient(140deg, #4c93db, #212624);
-					opacity: 0.9;
-				}
-			}
+            &:nth-child(even), &:nth-child(odd) {
+                .g-owlcarousel-item-img:after {
+                    background-color: 4c93db;
+                    background-color: 4c93db;
+                    background-image: -webkit-linear-gradient(-410deg, #4c93db, #212624);
+                    background-image: linear-gradient(140deg, #4c93db, #212624);
+                    opacity: 0.9;
+                }
+            }
         }
     }
 }
@@ -1313,15 +1313,15 @@
 .g-owlcarousel.sn-overlay-vi {
     &.has-color-overlay {
         .owl-stage > .owl-item {
-			&:nth-child(even), &:nth-child(odd) {
-				.g-owlcarousel-item-img:after {
-					background-color: b54cdb;
-					background-color: b54cdb;
-					background-image: -webkit-linear-gradient(-410deg, #b54cdb, #212624);
-					background-image: linear-gradient(140deg, #b54cdb, #212624);
-					opacity: 0.9;
-				}
-			}
+            &:nth-child(even), &:nth-child(odd) {
+                .g-owlcarousel-item-img:after {
+                    background-color: b54cdb;
+                    background-color: b54cdb;
+                    background-image: -webkit-linear-gradient(-410deg, #b54cdb, #212624);
+                    background-image: linear-gradient(140deg, #b54cdb, #212624);
+                    opacity: 0.9;
+                }
+            }
         }
     }
 }
@@ -1329,15 +1329,15 @@
 .g-owlcarousel.sn-overlay-tu {
     &.has-color-overlay {
         .owl-stage > .owl-item {
-			&:nth-child(even), &:nth-child(odd) {
-				.g-owlcarousel-item-img:after {
-					background-color: 4cd0db;
-					background-color: 4cd0db;
-					background-image: -webkit-linear-gradient(-410deg, #4cd0db, #212624);
-					background-image: linear-gradient(140deg, #4cd0db, #212624);
-					opacity: 0.9;
-				}
-			}
+            &:nth-child(even), &:nth-child(odd) {
+                .g-owlcarousel-item-img:after {
+                    background-color: 4cd0db;
+                    background-color: 4cd0db;
+                    background-image: -webkit-linear-gradient(-410deg, #4cd0db, #212624);
+                    background-image: linear-gradient(140deg, #4cd0db, #212624);
+                    opacity: 0.9;
+                }
+            }
         }
     }
 }
