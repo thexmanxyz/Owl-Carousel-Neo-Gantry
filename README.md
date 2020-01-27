@@ -41,7 +41,7 @@ ___
 3. Copy the `.html.twig` and the `.yaml` file to your particle folder `/[GANTRY_THEME]/custom/particles`. Please check the [listing](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry#cms-template-folder) below to determine where the template folder for your CMS is located.
 4. Copy the `.js` file to the folder `/[GANTRY_THEME]/custom/js`. Create the folder if it does not exist.
 5. Copy the `.scss` file to the folder `/[GANTRY_THEME]/custom/scss`. Create the folder if it does not exist.
-6. Modify the `custom.scss` file located under `/[GANTRY_THEME]/custom/scss` and add the following line `@import "owlcarousel-neo";` at the end.
+6. Create or modify the `custom.scss` file located under `/[GANTRY_THEME]/custom/scss` and add the following line `@import "owlcarousel-neo";` at the end.
 7. Don't forget that you have to import the Gantry dependencies within the `custom.scss` file before you import the **Owl Carousel Neo** Particle if not already done. Please use the following statement to import the dependencies file: `@import "dependencies";`
 
 ## CMS Template Folder
