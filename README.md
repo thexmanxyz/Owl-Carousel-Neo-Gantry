@@ -30,7 +30,7 @@ ___
 ## Automatic Installation (Joomla only)
 1. Download the Plugin of the *Owl Carousel Neo Particle* for **Hydrogen, Helium or Global** installation.
 2. Install it over the Joomla Plugin System.
-3. Modify the `custom.scss` file located under `/[GANTRY_THEME]/custom/scss` and add the following line `@import "owlcarousel-neo";` at the end. Please check the list below to determine where the template folder for your CMS is located.
+3. Create or modify the `custom.scss` file located under `/[GANTRY_THEME]/custom/scss` and add the following line `@import "owlcarousel-neo";` at the end. Please check the list below to determine where the template folder for your CMS is located.
 4. Don't forget that you have to import the Gantry dependencies within the `custom.scss` file before you import the **Owl Carousel Neo** Particle if not already done. Please use the following statement to import the dependencies file: `@import "dependencies";`
 
 *If you install the plugin globally be aware that the resource location changes to `/media/gantry5/engines/nucleus`*
