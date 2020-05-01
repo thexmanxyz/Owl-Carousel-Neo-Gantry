@@ -78,6 +78,8 @@ Please be aware that the template folder path varies in dependence of the used C
   * all six Helium overlays included
   * five new overlays
   * or use accent overlay of current template
+* Delay the loading of carousel controls
+* Option to define JS run time
 * JS priority and placement (head or footer)
 * JS configuration
   * Remote, Local and Default
