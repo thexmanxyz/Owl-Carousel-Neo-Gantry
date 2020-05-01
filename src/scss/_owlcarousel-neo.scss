@@ -566,6 +566,41 @@
 }
         
 // Extension
+
+$c-green1: #32be8a;
+$c-green2: #66fbbd;
+$c-red1: #be3232;
+$c-red2: #e16262;
+$c-blue1: #326abe;
+$c-blue2: #5f96ea;
+$c-violet1: #9932be;
+$c-violet2: #bb4be3;
+$c-orange1: #fd931d;
+$c-orange2: #fbb566;
+
+$overlay1-c-a: #8f4dae;
+$overlay1-c-b: #4db2b3;
+$overlay2-c-a: #4cad9e;
+$overlay2-c-b: #b34b4b;
+$overlay3-c-a: #355c7d;
+$overlay3-c-b: #c06c84;
+$overlay4-c-a: #2a363b;
+$overlay4-c-b: #e84a5f;
+$overlay5-c-a: #474747;
+$overlay5-c-b: #a8a7a7;
+$overlay6-c-a: #474747;
+$overlay6-c-b: #a8a7a7;
+$overlay7-c-a: #4cdb9c;
+$overlay7-c-b: #212624;
+$overlay8-c-a: #db974c;
+$overlay8-c-b: #212624;
+$overlay9-c-a: #4c93db;
+$overlay9-c-b: #212624;
+$overlay10-c-a: #b54cdb;
+$overlay10-c-b: #212624;
+$overlay11-c-a: #4cd0db;
+$overlay11-c-b: #212624;
+
 .g-owlcarousel.style-neo {
 
     .g-owlcarousel-item-wrapper {
@@ -981,10 +1016,10 @@
     .owl-dots {
         .owl-dot {
             &.active, &:hover {
-                background: #32be8a;
+                background: $c-green1;
             }
             &.active:hover {
-                background: #66fbbd;
+                background: $c-green2;
             }
         }
     }
@@ -993,14 +1028,14 @@
         button {
             &.owl-prev, &.owl-next {
                 &:hover {
-                    color: #32be8a;
+                    color: $c-green1;
                 }
             }
         }
     }
 
     .g-owlcarousel-item-content a:hover h1 {
-        color: #32be8a !important;
+        color: $c-green1 !important;
     }
 }
 
@@ -1008,10 +1043,10 @@
     .owl-dots {
         .owl-dot {
             &.active, &:hover {
-                background: #be3232;
+                background: $c-red1;
             }
             &.active:hover {
-                background: #e16262;
+                background: $c-red2;
             }
         }
     }
@@ -1020,14 +1055,14 @@
         button {
             &.owl-prev, &.owl-next {
                 &:hover {
-                    color: #be3232;
+                    color: $c-red1;
                 }
             }
         }
     }
 
     .g-owlcarousel-item-content a:hover h1 {
-        color: #be3232 !important;
+        color: $c-red1 !important;
     }
 }
 
@@ -1035,10 +1070,10 @@
     .owl-dots {
         .owl-dot {
             &.active, &:hover {
-                background: #326abe;
+                background: $c-blue1;
             }
             &.active:hover {
-                background: #5f96ea;
+                background: $c-blue2;
             }
         }
     }
@@ -1047,14 +1082,14 @@
         button {
             &.owl-prev, &.owl-next {
                 &:hover {
-                    color: #326abe;
+                    color: $c-blue1;
                 }
             }
         }
     }
 
     .g-owlcarousel-item-content a:hover h1 {
-        color: #326abe !important;
+        color: $c-blue1 !important;
     }
 }
 
@@ -1062,10 +1097,10 @@
     .owl-dots {
         .owl-dot {
             &.active, &:hover {
-                background: #9932be;
+                background: $c-violet1;
             }
             &.active:hover {
-                background: #bb4be3;
+                background: $c-violet2;
             }
         }
     }
@@ -1074,14 +1109,14 @@
         button {
             &.owl-prev, &.owl-next {
                 &:hover {
-                    color: #9932be;
+                    color: $c-violet1;
                 }
             }
         }
     }
 
     .g-owlcarousel-item-content a:hover h1 {
-        color: #9932be !important;
+        color: $c-violet1 !important;
     }
 }
 
@@ -1089,10 +1124,10 @@
     .owl-dots {
         .owl-dot {
             &.active, &:hover {
-                background: #fd931d;
+                background: $c-orange1;
             }
             &.active:hover {
-                background: #fbb566;
+                background: $c-orange2;
             }
         }
     }
@@ -1101,14 +1136,14 @@
         button {
             &.owl-prev, &.owl-next {
                 &:hover {
-                    color: #fd931d;
+                    color: $c-orange1;
                 }
             }
         }
     }
 
     .g-owlcarousel-item-content a:hover h1 {
-        color: #fd931d !important;
+        color: $c-orange1 !important;
     }
 }
 
@@ -1171,10 +1206,9 @@
         .owl-stage > .owl-item {
             &:nth-child(even), &:nth-child(odd) {
                 .g-owlcarousel-item-img:after {
-                    background-color: #8f4dae;
-                    background-color: #8f4dae;
-                    background-image: -webkit-linear-gradient(-410deg, #8f4dae, #4db2b3);
-                    background-image: linear-gradient(140deg,#8f4dae, #4db2b3);
+                    background-color: $overlay1-c-a;
+                    background-image: -webkit-linear-gradient(-410deg, $overlay1-c-a, $overlay1-c-b);
+                    background-image: linear-gradient(140deg, $overlay1-c-a, $overlay1-c-b);
                     opacity: 0.9;
                 }
             }
@@ -1187,10 +1221,9 @@
         .owl-stage > .owl-item {
             &:nth-child(even), &:nth-child(odd) {
                 .g-owlcarousel-item-img:after {
-                    background-color: #4cad9e;
-                    background-color: #4cad9e;
-                    background-image: -webkit-linear-gradient(-410deg, #4cad9e, #b34b4b);
-                    background-image: linear-gradient(140deg,#4cad9e, #b34b4b);
+                    background-color: $overlay2-c-a;
+                    background-image: -webkit-linear-gradient(-410deg, $overlay2-c-a, $overlay2-c-b);
+                    background-image: linear-gradient(140deg, $overlay2-c-a, $overlay2-c-b);
                     opacity: 0.9;
                 }
             }
@@ -1203,10 +1236,9 @@
         .owl-stage > .owl-item {
             &:nth-child(even), &:nth-child(odd) {
                 .g-owlcarousel-item-img:after {
-                    background-color: #355c7d;
-                    background-color: #355c7d;
-                    background-image: -webkit-linear-gradient(-410deg, #355c7d, #c06c84);
-                    background-image: linear-gradient(140deg,#355c7d, #c06c84);
+                    background-color: $overlay3-c-a;
+                    background-image: -webkit-linear-gradient(-410deg, $overlay3-c-a, $overlay3-c-b);
+                    background-image: linear-gradient(140deg, $overlay3-c-a, $overlay3-c-b);
                     opacity: 0.9;
                 }
             }
@@ -1219,10 +1251,9 @@
         .owl-stage > .owl-item {
             &:nth-child(even), &:nth-child(odd) {
                 .g-owlcarousel-item-img:after {
-                    background-color: #2a363b;
-                    background-color: #2a363b;
-                    background-image: -webkit-linear-gradient(-410deg, #2a363b, #e84a5f);
-                    background-image: linear-gradient(140deg,#2a363b, #e84a5f);
+                    background-color: $overlay4-c-a;
+                    background-image: -webkit-linear-gradient(-410deg, $overlay4-c-a, $overlay4-c-b);
+                    background-image: linear-gradient(140deg, $overlay4-c-a, $overlay4-c-b);
                     opacity: 0.9;
                 }
             }
@@ -1235,10 +1266,9 @@
         .owl-stage > .owl-item {
             &:nth-child(even), &:nth-child(odd) {
                 .g-owlcarousel-item-img:after {
-                    background-color: #474747;
-                    background-color: #474747;
-                    background-image: -webkit-linear-gradient(-410deg, #474747, #a8a7a7);
-                    background-image: linear-gradient(140deg,#474747, #a8a7a7);
+                    background-color: $overlay5-c-a;
+                    background-image: -webkit-linear-gradient(-410deg, $overlay5-c-a, $overlay5-c-b);
+                    background-image: linear-gradient(140deg, $overlay5-c-a, $overlay5-c-b);
                     opacity: 0.9;
                 }
             }
@@ -1251,10 +1281,9 @@
         .owl-stage > .owl-item {
             &:nth-child(even), &:nth-child(odd) {
                 .g-owlcarousel-item-img:after {
-                    background-color: #474747;
-                    background-color: #474747;
-                    background-image: -webkit-linear-gradient(-410deg, #474747, #a8a7a7);
-                    background-image: linear-gradient(140deg,#474747, #a8a7a7);
+                    background-color: $overlay6-c-a;
+                    background-image: -webkit-linear-gradient(-410deg, $overlay6-c-a, $overlay6-c-b);
+                    background-image: linear-gradient(140deg, $overlay6-c-a, $overlay6-c-b);
                     opacity: 0.9;
                 }
             }
@@ -1267,10 +1296,9 @@
         .owl-stage > .owl-item {
             &:nth-child(even), &:nth-child(odd) {
                 .g-owlcarousel-item-img:after {
-                    background-color: 4cdb9c;
-                    background-color: 4cdb9c;
-                    background-image: -webkit-linear-gradient(-410deg, #4cdb9c, #212624);
-                    background-image: linear-gradient(140deg, #4cdb9c, #212624);
+                    background-color: $overlay7-c-a;
+                    background-image: -webkit-linear-gradient(-410deg, $overlay7-c-a, $overlay7-c-b);
+                    background-image: linear-gradient(140deg, $overlay7-c-a, $overlay7-c-b);
                     opacity: 0.9;
                 }
             }
@@ -1283,10 +1311,9 @@
         .owl-stage > .owl-item {
             &:nth-child(even), &:nth-child(odd) {
                 .g-owlcarousel-item-img:after {
-                    background-color: db974c;
-                    background-color: db974c;
-                    background-image: -webkit-linear-gradient(-410deg, #db974c, #212624);
-                    background-image: linear-gradient(140deg, #db974c, #212624);
+                    background-color: $overlay8-c-a;
+                    background-image: -webkit-linear-gradient(-410deg, $overlay8-c-a, $overlay8-c-b);
+                    background-image: linear-gradient(140deg, $overlay8-c-a, $overlay8-c-b);
                     opacity: 0.9;
                 }
             }
@@ -1299,10 +1326,9 @@
         .owl-stage > .owl-item {
             &:nth-child(even), &:nth-child(odd) {
                 .g-owlcarousel-item-img:after {
-                    background-color: 4c93db;
-                    background-color: 4c93db;
-                    background-image: -webkit-linear-gradient(-410deg, #4c93db, #212624);
-                    background-image: linear-gradient(140deg, #4c93db, #212624);
+                    background-color: $overlay9-c-a;
+                    background-image: -webkit-linear-gradient(-410deg, $overlay9-c-a, $overlay9-c-b);
+                    background-image: linear-gradient(140deg, $overlay9-c-a, $overlay9-c-b);
                     opacity: 0.9;
                 }
             }
@@ -1315,10 +1341,9 @@
         .owl-stage > .owl-item {
             &:nth-child(even), &:nth-child(odd) {
                 .g-owlcarousel-item-img:after {
-                    background-color: b54cdb;
-                    background-color: b54cdb;
-                    background-image: -webkit-linear-gradient(-410deg, #b54cdb, #212624);
-                    background-image: linear-gradient(140deg, #b54cdb, #212624);
+                    background-color: $overlay10-c-a;
+                    background-image: -webkit-linear-gradient(-410deg, $overlay10-c-a, $overlay10-c-b);
+                    background-image: linear-gradient(140deg, $overlay10-c-a, $overlay10-c-b);
                     opacity: 0.9;
                 }
             }
@@ -1331,14 +1356,12 @@
         .owl-stage > .owl-item {
             &:nth-child(even), &:nth-child(odd) {
                 .g-owlcarousel-item-img:after {
-                    background-color: 4cd0db;
-                    background-color: 4cd0db;
-                    background-image: -webkit-linear-gradient(-410deg, #4cd0db, #212624);
-                    background-image: linear-gradient(140deg, #4cd0db, #212624);
+                    background-color: $overlay11-c-a;
+                    background-image: -webkit-linear-gradient(-410deg, $overlay11-c-a, $overlay11-c-b);
+                    background-image: linear-gradient(140deg, $overlay11-c-a, $overlay11-c-b);
                     opacity: 0.9;
                 }
             }
         }
     }
 }
-                

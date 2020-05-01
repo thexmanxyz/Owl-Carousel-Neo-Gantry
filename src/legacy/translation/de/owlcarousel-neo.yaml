@@ -114,7 +114,30 @@ form:
           description: Die Anzahl der nach links und rechts vorgeladenen Bilder.
           placeholder: 0
           default: 0
-        
+
+        delaySlideElements:
+          type: enable.enable
+          label: Verzögere Slide-Elemente
+          description: Aktivieren Sie diese Option, um das Laden der Slide-Elemente und Slide-Steuerelemente zu verzögern. Ändern Sie diese Einstellung nur, wenn Sie wissen, was sie tun (experimentell).
+          default: false
+
+        delaySlideElementsTime:
+          type: input.text
+          label: Verzögerungszeit für Slide-Elemente
+          description: Die Zeit in Millisekunden, welche für das verzögerte Laden von Slide-Elementen und Slide-Steuerelementen verwendet wird (experimentell).
+          placeholder: 500
+          default: 500
+
+        loadTime:
+          type: select.select
+          label: Ladezeitpunkt
+          description: Wählen Sie den Ladezeitpunkt für OwlCarousel2. Ändern Sie diese Einstellung nur, wenn Sie wissen, was sie tun (experimentell).
+          default: full_load
+          options:
+            full_load: Voll geladen
+            dom_ready: DOM bereit
+            instant: Sofort
+
         items:
           type: collection.list
           array: true

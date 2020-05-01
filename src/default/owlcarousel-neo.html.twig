@@ -67,6 +67,7 @@
     'owl.carousel.min', 'owl.carousel.2.3.4.min', 'js') %}
 
 {% set loadEager = particle.lazyLoadEager|default('0') %}
+{% set loadTime = particle.loadTime|default('full_load') %}
 
 {% block particle %}
 
@@ -74,18 +75,18 @@
         {% do gantry.load('jquery') %}
         <script type="{{scriptType}}" src="{{url(jsPath)}}"{{jsExecAttr}}></script>
         <script type="text/javascript">
-            jQuery(window).load(function() {
+            var loadOwlCarousel = function() {
                 jQuery('#g-owlcarousel-{{ id }}').owlCarousel({
                     items: 1,
                     rtl: {% if gantry.page.direction == 'rtl' %}true{% else %}false{% endif %},
                     loop: true,
-                    {% if particle.nav == 'enable' %}
-                    nav: true,
                     navText: ['{{ particle.prevText|default('<i class="fa ' ~ arrowLeft ~ '" aria-hidden="true"></i>')|e('js') }}', '{{ particle.nextText|default('<i class="fa ' ~ arrowRight ~ '" aria-hidden="true"></i>')|e('js') }}'],
+                    {% if particle.nav == 'enable' and not particle.delaySlideElements %}
+                    nav: true,
                     {% else %}
                     nav: false,
                     {% endif %}
-                    {% if particle.dots == 'enable' %}
+                    {% if particle.dots == 'enable' and not particle.delaySlideElements %}
                     dots: true,
                     {% else %}
                     dots: false,
@@ -103,6 +104,35 @@
                         {% endif %}
                     {% endif %}
                 })
+                {% if particle.delaySlideElements %}
+                    jQuery('.g-owlcarousel-item').each(function() { jQuery(this).css('display',''); });
+                    setTimeout(function(){
+                        var $owl = jQuery('.owl-carousel');
+                        $owl.data('owl.carousel').options.nav = {{ (particle.nav == 'enable') ? 'true' : 'false' }};
+                        $owl.data('owl.carousel').options.dots = {{ (particle.dots == 'enable') ? 'true' : 'false' }};
+                        $owl.trigger( 'refresh.owl.carousel' );
+                    }, {{ particle.delaySlideElementsTime|default(500) }});
+                {% endif %}
+            };
+
+            {% if loadTime == 'dom_ready' %}
+                jQuery(document).ready(loadOwlCarousel);
+            {% elseif showItem == 'instant' %}
+                loadOwlCarousel();
+            {% endif %}
+
+            jQuery(window).load(function() {
+                {% if loadTime == 'full_load' %}
+                    loadOwlCarousel();
+                {% endif %}
+
+                jQuery('.g-owlcarousel-item').each(function() { jQuery(this).css('display',''); });
+                setTimeout(function(){
+                    var $owl = jQuery('.owl-carousel');
+                    $owl.data('owl.carousel').options.nav = {{ (particle.nav == 'enable') ? 'true' : 'false' }};
+                    $owl.data('owl.carousel').options.dots = {{ (particle.dots == 'enable') ? 'true' : 'false' }};
+                    $owl.trigger( 'refresh.owl.carousel' );
+                }, {{ particle.delaySlideElementsTime|default(500) }});
             });
         </script>
     {%- endscripts -%}
@@ -129,7 +159,7 @@
                     {% endif %}
                 {% endif %}
                 {% if showItem == 'yes' %}
-                    <div class="g-owlcarousel-item {{ item.class|e }}">
+                    <div class="g-owlcarousel-item {{ item.class|e }}" {% if particle.delaySlideElements %} style="display: none;"{% endif %}>
                         <div class="g-owlcarousel-item-wrapper">
                             <div class="g-owlcarousel-item-img">
                                 <img {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}src="{{ url(item.image)|e }}" alt="{{ item.title|e }}" />

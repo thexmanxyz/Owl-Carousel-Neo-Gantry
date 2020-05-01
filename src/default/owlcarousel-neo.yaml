@@ -117,6 +117,29 @@ form:
                 placeholder: 0
                 default: 0
 
+              delaySlideElements:
+                type: enable.enable
+                label: Delay Slide Elements
+                description: Enable to delay the loading of slide controls and elements. Only change this option if you know what you are doing (experimental).
+                default: false
+
+              delaySlideElementsTime:
+                type: input.text
+                label: Delay Slide Elements Time
+                description: The time im milliseconds which is used to delay the slide controls and elements (experimental).
+                placeholder: 500
+                default: 500
+
+              loadTime:
+                type: select.select
+                label: Load time
+                description: Select the loading time for OwlCarousel2. Only change this option if you know what you are doing (experimental).
+                default: full_load
+                options:
+                  full_load: Fully Loaded
+                  dom_ready: DOM ready
+                  instant: Instant
+
               items:
                 type: collection.list
                 array: true
