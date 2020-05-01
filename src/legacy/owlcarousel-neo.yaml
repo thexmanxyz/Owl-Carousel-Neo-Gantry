@@ -56,36 +56,6 @@ form:
           label: Title
           description: Customize the title text.
           placeholder: 'Enter title'
-          
-        title_link:
-          type: input.checkbox
-          label: Title Link
-          description: Enable to create the button link also on the title element.
-          default: false
-
-        enable_btn:
-          type: input.checkbox
-          label: Enable Button
-          description: Enable or disable the button rendering explicitly
-          default: true
-
-        nav:
-          type: select.select
-          label: Prev / Next
-          description: Enable or disable the Prev / Next navigation.
-          default: disable
-          options:
-            enable: Enable
-            disable: Disable
-
-        dots:
-          type: select.select
-          label: Dots
-          description: Enable or disable the Dots navigation.
-          default: enable
-          options:
-            enable: Enable
-            disable: Disable
 
         autoplay:
           type: select.select
@@ -101,42 +71,6 @@ form:
           label: Autoplay Speed
           description: Set the speed of the Autoplay, in milliseconds.
           placeholder: 5000
-
-        lazyLoadImages:
-          type: input.checkbox
-          label: Lazy Load Images
-          description: Enable to lazy load the item images.
-          default: false
-
-        lazyLoadEager:
-          type: input.text
-          label: Lazy Load Eager
-          description: Number of eagerly pre-loaded images to the left and right.
-          placeholder: 0
-          default: 0
-
-        delaySlideElements:
-          type: enable.enable
-          label: Delay Slide Elements
-          description: Enable to delay the loading of slide controls and elements. Only change this option if you know what you are doing (experimental).
-          default: false
-
-        delaySlideElementsTime:
-          type: input.text
-          label: Delay Slide Elements Time
-          description: The time im milliseconds which is used to delay the slide controls and elements (experimental).
-          placeholder: 500
-          default: 500
-
-        loadTime:
-          type: select.select
-          label: Load time
-          description: Select the loading time for OwlCarousel2. Only change this option if you know what you are doing (experimental).
-          default: full_load
-          options:
-            full_load: Fully Loaded
-            dom_ready: DOM ready
-            instant: Instant
 
         items:
           type: collection.list
@@ -197,6 +131,95 @@ form:
               type: input.date
               label: End Date
               description: Select the date when the item should be last shown (only for 'annual' and 'once').
+
+    set_controls:
+      type: container.set
+      label: Controls
+      fields:
+        title_link:
+          type: input.checkbox
+          label: Title Link
+          description: Enable to create the button link also on the title element.
+          default: false
+
+        enable_btn:
+          type: input.checkbox
+          label: Enable Button
+          description: Enable or disable the button rendering explicitly
+          default: true
+
+        nav:
+          type: select.select
+          label: Prev / Next
+          description: Enable, disable or define appearance by class for the prev / next navigation below.
+          default: disable
+          options:
+            enable: Enable
+            disable: Disable
+
+        dots:
+          type: select.select
+          label: Dots
+          description: Enable, disable or define appearance by class for the dots navigation below.
+          default: enable
+          options:
+            enable: Enable
+            disable: Disable
+
+        _info_elements_class:
+          type: separator.note
+          class: alert alert-info
+          content: You can attach any class. But this feature might be very useful in combination with: http://docs.gantry.org/gantry5/tutorials/utility-classes#responsive-utility-classes
+
+        nav_class:
+          type: input.selectize
+          label: Prev / Next Class(es)
+          description: Set a specific CSS class on both of the controls.
+
+        dots_class:
+          type: input.selectize
+          label: Dots Class(es)
+          description: Set a specific CSS class on the dots container.
+
+    set_timing:
+      type: container.set
+      label: Timing
+      fields:
+        lazyLoadImages:
+          type: input.checkbox
+          label: Lazy Load Images
+          description: Enable to lazy load the item images.
+          default: false
+
+        lazyLoadEager:
+          type: input.text
+          label: Lazy Load Eager
+          description: Number of eagerly pre-loaded images to the left and right.
+          placeholder: 0
+          default: 0
+
+        delaySlideElements:
+          type: enable.enable
+          label: Delay Slide Elements
+          description: Enable to delay the loading of slide controls and elements. Only change this option if you know what you are doing (experimental).
+          default: false
+
+        delaySlideElementsTime:
+          type: input.text
+          label: Delay Slide Elements Time
+          description: The time im milliseconds which is used to delay the slide controls and elements (experimental).
+          placeholder: 500
+          default: 500
+
+        loadTime:
+          type: select.select
+          label: Load time
+          description: Select the loading time for OwlCarousel2. Only change this option if you know what you are doing (experimental).
+          default: full_load
+          options:
+            full_load: Fully Loaded
+            dom_ready: DOM ready
+            instant: Instant
 
     set_appearance:
       type: container.set

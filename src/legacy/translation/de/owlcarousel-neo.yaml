@@ -45,48 +45,18 @@ form:
             key_placeholder: Schlüssel (z.B.: style, name, ...)
             value_placeholder: Wert
             exclude: ['id', 'class']
-        
+
         class:
           type: input.selectize
           label: CSS Klassen
           description: Setzen Sie eine Klasse für die individuelle Gestaltung.
-        
+
         title:
           type: input.text
           label: Titel
           description: Benutzerdefinierte Text für den Titel.
           placeholder: 'Titel eingeben'
-          
-        title_link:
-          type: input.checkbox
-          label: Titel Link
-          description: Bei Aktivierung wird der Button Link auch für das Titel Element gesetzt. 
-          default: false
-        
-        enable_btn:
-          type: input.checkbox
-          label: Aktiviere Button
-          description: Aktiviert oder deaktiviert explizit die Darstellung des Slide Buttons.
-          default: true
-        
-        nav:
-          type: select.select
-          label: Navigation
-          description: Aktiviert oder deaktiviert die Navigationsbuttons (Vorherige / Nächste).
-          default: disable
-          options:
-            enable: Aktiviert
-            disable: Deaktiviert
-        
-        dots:
-          type: select.select
-          label: Punkte
-          description: Aktiviert oder deaktiviert die Navigationspunkte.
-          default: enable
-          options:
-            enable: Aktiviert
-            disable: Deaktiviert
-        
+
         autoplay:
           type: select.select
           label: Autoplay
@@ -95,48 +65,12 @@ form:
           options:
             enable: Aktiviert
             disable: Deaktiviert
-        
+
         autoplaySpeed:
           type: input.text
           label: Autoplay Geschwindigkeit
           description: Setzt die Geschwindigkeit mit der Slides gewechselt werden sollen (Anzeigedauer in Millisekunden).
           placeholder: 5000
-        
-        lazyLoadImages:
-          type: input.checkbox
-          label: Lazy Load Bilder
-          description: Aktiviere um Bilder per Lazy Load zu laden.
-          default: false
-        
-        lazyLoadEager:
-          type: input.text
-          label: Lazy Vorladen
-          description: Die Anzahl der nach links und rechts vorgeladenen Bilder.
-          placeholder: 0
-          default: 0
-
-        delaySlideElements:
-          type: enable.enable
-          label: Verzögere Slide-Elemente
-          description: Aktivieren Sie diese Option, um das Laden der Slide-Elemente und Slide-Steuerelemente zu verzögern. Ändern Sie diese Einstellung nur, wenn Sie wissen, was sie tun (experimentell).
-          default: false
-
-        delaySlideElementsTime:
-          type: input.text
-          label: Verzögerungszeit für Slide-Elemente
-          description: Die Zeit in Millisekunden, welche für das verzögerte Laden von Slide-Elementen und Slide-Steuerelementen verwendet wird (experimentell).
-          placeholder: 500
-          default: 500
-
-        loadTime:
-          type: select.select
-          label: Ladezeitpunkt
-          description: Wählen Sie den Ladezeitpunkt für OwlCarousel2. Ändern Sie diese Einstellung nur, wenn Sie wissen, was sie tun (experimentell).
-          default: full_load
-          options:
-            full_load: Voll geladen
-            dom_ready: DOM bereit
-            instant: Sofort
 
         items:
           type: collection.list
@@ -145,7 +79,7 @@ form:
           description: Erstellen Sie eine neue Owl Carousel Slide.
           value: name
           ajax: true
-        
+
           fields:
             .class:
               type: input.selectize
@@ -197,7 +131,96 @@ form:
               type: input.date
               label: Enddatum
               description: Wählen Sie das Datum, wann diese Slide das letzte Mal gezeigt werden soll (nur für die Optionen 'Jährlich' und 'Einmal').
-        
+
+    set_controls:
+      type: container.set
+      label: Steuerelemente
+      fields:
+        title_link:
+          type: input.checkbox
+          label: Titel Link
+          description: Bei Aktivierung wird der Button Link auch für das Titel Element gesetzt. 
+          default: false
+
+        enable_btn:
+          type: input.checkbox
+          label: Aktiviere Button
+          description: Aktiviert oder deaktiviert explizit die Darstellung des Slide Buttons.
+          default: true
+
+        nav:
+          type: select.select
+          label: Navigation
+          description: Aktiviert, deaktiviert oder erlaubt das Einblenden der Navigationsbuttons (Vorherige / Nächste) auf Basis einer Klasse weiter unten.
+          default: disable
+          options:
+            enable: Aktiviert
+            disable: Deaktiviert
+
+        dots:
+          type: select.select
+          label: Punkte
+          description: Aktiviert, deaktiviert oder erlaubt das Einblenden der Navigationspunkte auf Basis einer Klasse weiter unten.
+          default: enable
+          options:
+            enable: Aktiviert
+            disable: Deaktiviert
+
+        _info_elements_class:
+          type: separator.note
+          class: alert alert-info
+          content: Sie können jede beliebige Klasse anhängen. Diese Funktion ist jedoch besonders nützlich im Kombination mit: http://docs.gantry.org/gantry5/tutorials/utility-classes#responsive-utility-classes
+
+        nav_class:
+          type: input.selectize
+          label: Navigation Class(es)
+          description: Setzen Sie eine Klasse auf beide Navigationsbuttons.
+
+        dots_class:
+          type: input.selectize
+          label: Punkte Class(es)
+          description: Setzen Sie eine Klasse auf den Container der Navigationspunkte.
+
+    set_timing:
+      type: container.set
+      label: Timing
+      fields:
+        lazyLoadImages:
+          type: input.checkbox
+          label: Lazy Load Bilder
+          description: Aktiviere um Bilder per Lazy Load zu laden.
+          default: false
+
+        lazyLoadEager:
+          type: input.text
+          label: Lazy Vorladen
+          description: Die Anzahl der nach links und rechts vorgeladenen Bilder.
+          placeholder: 0
+          default: 0
+
+        delaySlideElements:
+          type: enable.enable
+          label: Verzögere Slide-Elemente
+          description: Aktivieren Sie diese Option, um das Laden der Slide-Elemente und Slide-Steuerelemente zu verzögern. Ändern Sie diese Einstellung nur, wenn Sie wissen, was sie tun (experimentell).
+          default: false
+
+        delaySlideElementsTime:
+          type: input.text
+          label: Verzögerungszeit für Slide-Elemente
+          description: Die Zeit in Millisekunden, welche für das verzögerte Laden von Slide-Elementen und Slide-Steuerelementen verwendet wird (experimentell).
+          placeholder: 500
+          default: 500
+
+        loadTime:
+          type: select.select
+          label: Ladezeitpunkt
+          description: Wählen Sie den Ladezeitpunkt für OwlCarousel2. Ändern Sie diese Einstellung nur, wenn Sie wissen, was sie tun (experimentell).
+          default: full_load
+          options:
+            full_load: Voll geladen
+            dom_ready: DOM bereit
+            instant: Sofort
+
     set_appearance:
       type: container.set
       label: Darstellung

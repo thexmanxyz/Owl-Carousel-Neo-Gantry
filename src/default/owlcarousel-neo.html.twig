@@ -86,10 +86,16 @@
                     {% else %}
                     nav: false,
                     {% endif %}
+                    {% if particle.nav_class %}
+                    navClass: ['owl-prev {{particle.nav_class|e}}','owl-next {{particle.nav_class|e}}'],
+                    {% endif %}
                     {% if particle.dots == 'enable' and not particle.delaySlideElements %}
                     dots: true,
                     {% else %}
                     dots: false,
+                    {% endif %}
+                    {% if particle.dots_class %}
+                    dotsClass: 'owl-dots {{particle.dots_class|e}}',
                     {% endif %}
                     {% if particle.autoplay == 'enable' %}
                     autoplay: true,
