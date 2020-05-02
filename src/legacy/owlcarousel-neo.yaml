@@ -58,13 +58,10 @@ form:
           placeholder: 'Enter title'
 
         autoplay:
-          type: select.select
+          type: input.checkbox
           label: Autoplay
           description: Enable or disable the Autoplay.
-          default: disable
-          options:
-            enable: Enable
-            disable: Disable
+          default: false
 
         autoplaySpeed:
           type: input.text
@@ -108,6 +105,14 @@ form:
               type: input.text
               label: Link Text
               description: Input the text for the item link.
+            .linktitle:
+              type: input.text
+              label: Title Link Title
+              description: Input the text for the item title link title attribute. If nothing is defined the title text will be used.
+            .buttontitle:
+              type: input.text
+              label: Button Link Title
+              description: Input the text for the button link title attribute. If nothing is defined the button text will be used.
             .buttonclass:
               type: input.text
               label: Button Class
@@ -136,49 +141,72 @@ form:
       type: container.set
       label: Controls
       fields:
+        enable_title:
+          type: input.checkbox
+          label: Title
+          description: Enable or disable the title rendering explicitly
+          default: true
+
         title_link:
           type: input.checkbox
-          label: Title Link
+          label: Link
           description: Enable to create the button link also on the title element.
           default: false
 
+        enable_desc:
+          type: input.checkbox
+          label: Description
+          description: Enable or disable the description rendering explicitly
+          default: true
+
         enable_btn:
           type: input.checkbox
-          label: Enable Button
+          label: Button
           description: Enable or disable the button rendering explicitly
           default: true
 
         nav:
-          type: select.select
+          type: input.checkbox
           label: Prev / Next
           description: Enable, disable or define appearance by class for the prev / next navigation below.
-          default: disable
-          options:
-            enable: Enable
-            disable: Disable
+          default: false
 
         dots:
-          type: select.select
+          type: input.checkbox
           label: Dots
           description: Enable, disable or define appearance by class for the dots navigation below.
-          default: enable
-          options:
-            enable: Enable
-            disable: Disable
+          default: true
 
         _info_elements_class:
           type: separator.note
           class: alert alert-info
-          content: You can attach any class. But this feature might be very useful in combination with: http://docs.gantry.org/gantry5/tutorials/utility-classes#responsive-utility-classes
+          content: You can attach any class. But this feature might be very useful in combination with the following responsive utility classes: http://docs.gantry.org/gantry5/tutorials/utility-classes#responsive-utility-classes
+
+        title_class:
+          type: input.selectize
+          label: Title Class
+          description: Set a specific CSS class on the title.
+
+        desc_class:
+          type: input.selectize
+          label: Description Class
+          description: Set a specific CSS class on the description.
+          default: hidden-phone
+
+        button_class:
+          type: input.selectize
+          label: Button Class
+          description: Set a specific CSS class on the button.
+          default: hidden-phone
 
         nav_class:
           type: input.selectize
-          label: Prev / Next Class(es)
+          label: Prev / Next Class
           description: Set a specific CSS class on both of the controls.
 
         dots_class:
           type: input.selectize
-          label: Dots Class(es)
+          label: Dots Class
           description: Set a specific CSS class on the dots container.
 
     set_timing:

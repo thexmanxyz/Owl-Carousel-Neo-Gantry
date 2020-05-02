@@ -69,19 +69,36 @@
 {% set loadEager = particle.lazyLoadEager|default('0') %}
 {% set loadTime = particle.loadTime|default('full_load') %}
 
+{%- set dots -%}
+{{ _self.isEnabled(particle.dots|default(true)) }}
+{%- endset -%}
+{%- set nav -%}
+{{ _self.isEnabled(particle.nav|default(false)) }}
+{%- endset -%}
+{%- set autoPlay -%}
+{{ _self.isEnabled(particle.autoplay|default(false)) }}
+{%- endset -%}
+
 {% block particle %}
 
     {%- scripts in jsPlace with { priority: jsPrior } -%}
         {% do gantry.load('jquery') %}
         <script type="{{scriptType}}" src="{{url(jsPath)}}"{{jsExecAttr}}></script>
         <script type="text/javascript">
+            var refreshFunction = function(){
+                var $owl = jQuery('.owl-carousel');
+                $owl.data('owl.carousel').options.nav = {{ nav }};
+                $owl.data('owl.carousel').options.dots = {{ dots }};
+                $owl.trigger( 'refresh.owl.carousel' );
+            };
+
             var loadOwlCarousel = function() {
                 jQuery('#g-owlcarousel-{{ id }}').owlCarousel({
                     items: 1,
                     rtl: {% if gantry.page.direction == 'rtl' %}true{% else %}false{% endif %},
                     loop: true,
                     navText: ['{{ particle.prevText|default('<i class="fa ' ~ arrowLeft ~ '" aria-hidden="true"></i>')|e('js') }}', '{{ particle.nextText|default('<i class="fa ' ~ arrowRight ~ '" aria-hidden="true"></i>')|e('js') }}'],
-                    {% if particle.nav == 'enable' and not particle.delaySlideElements %}
+                    {% if nav == 'true' and not particle.delaySlideElements %}
                     nav: true,
                     {% else %}
                     nav: false,
@@ -89,7 +106,7 @@
                     {% if particle.nav_class %}
                     navClass: ['owl-prev {{particle.nav_class|e}}','owl-next {{particle.nav_class|e}}'],
                     {% endif %}
-                    {% if particle.dots == 'enable' and not particle.delaySlideElements %}
+                    {% if dots == 'true' and not particle.delaySlideElements %}
                     dots: true,
                     {% else %}
                     dots: false,
@@ -97,7 +114,7 @@
                     {% if particle.dots_class %}
                     dotsClass: 'owl-dots {{particle.dots_class|e}}',
                     {% endif %}
-                    {% if particle.autoplay == 'enable' %}
+                    {% if autoPlay == 'true' %}
                     autoplay: true,
                     autoplayTimeout: {{ particle.autoplaySpeed|default('5000')|e('js') }},
                     {% else %}
@@ -109,15 +126,11 @@
                             lazyLoadEager: {{ loadEager|e('js') }},
                         {% endif %}
                     {% endif %}
-                })
+                });
+
                 {% if particle.delaySlideElements %}
                     jQuery('.g-owlcarousel-item').each(function() { jQuery(this).css('display',''); });
-                    setTimeout(function(){
-                        var $owl = jQuery('.owl-carousel');
-                        $owl.data('owl.carousel').options.nav = {{ (particle.nav == 'enable') ? 'true' : 'false' }};
-                        $owl.data('owl.carousel').options.dots = {{ (particle.dots == 'enable') ? 'true' : 'false' }};
-                        $owl.trigger( 'refresh.owl.carousel' );
-                    }, {{ particle.delaySlideElementsTime|default(500) }});
+                    setTimeout(refreshFunction, {{ particle.delaySlideElementsTime|default(500) }});
                 {% endif %}
             };
 
@@ -133,12 +146,7 @@
                 {% endif %}
 
                 jQuery('.g-owlcarousel-item').each(function() { jQuery(this).css('display',''); });
-                setTimeout(function(){
-                    var $owl = jQuery('.owl-carousel');
-                    $owl.data('owl.carousel').options.nav = {{ (particle.nav == 'enable') ? 'true' : 'false' }};
-                    $owl.data('owl.carousel').options.dots = {{ (particle.dots == 'enable') ? 'true' : 'false' }};
-                    $owl.trigger( 'refresh.owl.carousel' );
-                }, {{ particle.delaySlideElementsTime|default(500) }});
+                setTimeout(refreshFunction, {{ particle.delaySlideElementsTime|default(500) }});
             });
         </script>
     {%- endscripts -%}
@@ -150,6 +158,8 @@
 
             {% for item in particle.items %}
                 {% set showItem = item.showItem|default('yes') %}
+                {% set titleText = (item.linktitle) ? item.linktitle|e : item.title|e %}
+                {% set buttonTitle = (item.buttontitle) ? item.buttontitle|e : item.linktext|e %}
                 {% if showItem != 'yes' and showItem != 'no' %}
                     {% set format = (showItem == 'once') ? 'Y-m-d' : 'm-d' %}
                     {% set start, now, end = item.startDate|date(format), "now"|date(format), item.endDate|date(format) %}
@@ -173,20 +183,17 @@
                             <div class="g-owlcarousel-item-content-container">
                                 <div class="g-owlcarousel-item-content-wrapper">
                                     <div class="g-owlcarousel-item-content">
-                                        {% if item.title %}
-                                            {% if particle.title_link %}<a href="{{ item.link|e }}" tabindex="-1">{% endif %}
-                                                <h1 class="g-owlcarousel-item-title">{{ item.title|raw }}</h1>
+                                        {% if item.title and particle.enable_title|default(true) %}
+                                            {% if particle.title_link %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" tabindex="-1">{% endif %}
+                                                <h1 class="g-owlcarousel-item-title{% if particle.title_class %} {{ particle.title_class|e }}{% endif %}">{{ item.title|raw }}</h1>
                                             {% if particle.title_link %}</a>{% endif %}
                                         {% endif %}
-                                        {% if item.desc %}
-                                            <h2 class="g-owlcarousel-item-desc">{{ item.desc|raw }}</h2>{% endif %}
-                                        {% if item.link %}
-                                            <div class="g-owlcarousel-item-link">
-                                                {% if particle.enable_btn %}
-                                                    <a target="_self" class="g-owlcarousel-item-button button {{ item.buttonclass|e }}" href="{{ item.link|e }}" tabindex="-1">
-                                                        {{ item.linktext|raw }}
-                                                    </a>
-                                                {% endif %}
+                                        {% if item.desc and particle.enable_desc|default(true) %}
+                                            <h2 class="g-owlcarousel-item-desc{% if particle.desc_class %} {{ particle.desc_class|e }}{% endif %}">{{ item.desc|raw }}</h2>
+                                        {% endif %}
+                                        {% if item.link and particle.enable_btn %}
+                                            <div class="g-owlcarousel-item-link {{ particle.button_class|e }}">
+                                                <a target="_self" class="g-owlcarousel-item-button button{% if particle.button_class %} {{ item.button_class|e }}{% endif %}" href="{{ item.link|e }}" title="{{ buttonTitle }}" tabindex="-1">{{ item.linktext|raw }}</a>
                                             </div>
                                         {% endif %}
                                     </div>
@@ -241,4 +248,12 @@
         {%- set attribute = ' ' ~ attribute -%}
     {%- endif -%}
     {{- attribute|raw -}}
+{%- endmacro -%}
+
+{%- macro isEnabled(field) -%}
+    {%- if field == 'disable' or not field  -%}
+        false
+    {%- else -%}
+        true
+    {%- endif -%}
 {%- endmacro -%}

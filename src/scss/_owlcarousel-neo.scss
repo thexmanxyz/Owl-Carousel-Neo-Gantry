@@ -433,20 +433,12 @@
                             line-height: 1.875rem;
                             padding-bottom: 0;
                         }
-
-                        @include breakpoint(mobile-only) {
-                            display: none;
-                        }
                     }
 
                     .g-owlcarousel-item-button {
                         @include breakpoint(tablet-range) {
                             padding: 1rem 2.625rem;
                             font-size: $core-font-size - 0.4;
-                        }
-
-                        @include breakpoint(mobile-only) {
-                            display: none;
                         }
                     }
                 }
