@@ -74,6 +74,7 @@ Please be aware that the template folder path varies in dependence of the used C
 * Border radius (square or round)
 * Dot navigation alignment
 * Configuration of next/previous arrows
+* Full responsive configuration of all controls
 * Overlay image improvement
   * all six Helium overlays included
   * five new overlays
