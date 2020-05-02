@@ -99,13 +99,21 @@ Insight of the *Owl Carousel Neo - Gantry Particle* configuration:
 
 ![2](/screenshots/backend_general_2.png)
 
-**Backend (3)** - *[Appearance](/screenshots/backend_appearance.png)*
+**Backend (3)** - *[Controls](/screenshots/backend_controls.png)*
 
-![3](/screenshots/backend_appearance.png)
+![3](/screenshots/backend_controls.png)
 
-**Backend (4)** - *[API](/screenshots/backend_api.png)*
+**Backend (4)** - *[Timing](/screenshots/backend_timing.png)*
 
-![4](/screenshots/backend_api.png)
+![4](/screenshots/backend_timing.png)
+
+**Backend (5)** - *[Appearance](/screenshots/backend_appearance.png)*
+
+![5](/screenshots/backend_appearance.png)
+
+**Backend (6)** - *[API](/screenshots/backend_api.png)*
+
+![6](/screenshots/backend_api.png)
 ___
 
 A few example configurations which show the new design of the Particle:
