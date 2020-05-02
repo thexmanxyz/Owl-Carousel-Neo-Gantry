@@ -69,6 +69,23 @@ form:
           description: Set the speed of the Autoplay, in milliseconds.
           placeholder: 5000
 
+        imageLink:
+          type: select.select
+          label: Image Link
+          description: Add slide link on the background image as well.
+          default: disable
+          options:
+            enable: Enable
+            disable: Disable
+            custom: Custom Breakpoint
+
+        imageLinkBreakpoint:
+          type: input.text
+          label: Image Link Breakpoint
+          description: Define at what width in pixel the slide link should also be applied to the background image.
+          placeholder: 480
+          default: 480
+
         items:
           type: collection.list
           array: true

@@ -71,6 +71,23 @@ form:
                 description: Setzt die Geschwindigkeit mit der Slides gewechselt werden sollen (Anzeigedauer in Millisekunden).
                 placeholder: 5000
 
+              imageLink:
+                type: select.select
+                label: Bild Link
+                description: Wählen Sie aus, ob der Slide Link auch auf das Hintergrund Bild angewendet werden soll.
+                default: disable
+                options:
+                  enable: Aktiviert
+                  disable: Deaktiviert
+                  custom: Benutzerdefinierter Breakpoint
+
+              imageLinkBreakpoint:
+                type: input.text
+                label: Bild Link Breakpoint
+                description: Legen Sie fest, ab welcher Breite in Pixel der Slide Link auf das Hintergrund Bild angewendet werden soll.
+                placeholder: 480
+                default: 480
+
               lazyLoadImages:
                 type: enable.enable
                 label: Lazy Load Bilder

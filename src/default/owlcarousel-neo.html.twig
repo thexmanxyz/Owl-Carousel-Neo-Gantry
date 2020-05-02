@@ -82,7 +82,7 @@
 {% block particle %}
 
     {%- scripts in jsPlace with { priority: jsPrior } -%}
-        {% do gantry.load('jquery') %}
+        {%- do gantry.load('jquery') -%}
         <script type="{{scriptType}}" src="{{url(jsPath)}}"{{jsExecAttr}}></script>
         <script type="text/javascript">
             var refreshFunction = function(){
@@ -93,58 +93,100 @@
             };
 
             var loadOwlCarousel = function() {
-                jQuery('#g-owlcarousel-{{ id }}').owlCarousel({
+                var eachSlide = function(width) {
+                    jQuery('.g-owlcarousel-item').each(function() {
+                        if(jQuery(window).width() <= width && jQuery(this).find('a:first').length > 0) {
+                            var linkTag = jQuery(this).find('a:first').clone().children().remove().end()[0].outerHTML;
+                            jQuery(this).find('a').each(function() {
+                                if(jQuery(this).hasClass('button')) {
+                                    jQuery(this).parent().attr('data-html', jQuery(this)[0].outerHTML);
+                                    jQuery(this).replaceWith('');
+                                } else {
+                                    jQuery(this).children().attr('data-html', jQuery(this)[0].outerHTML);
+                                    var hHtml = jQuery(this).html();
+                                    parent = jQuery(this).parent();
+                                    jQuery(this).remove();
+                                    parent.prepend(hHtml);
+                                }
+                            });
+                            jQuery(this).wrapInner(linkTag);
+                        } else {
+                            if (jQuery(this).find('[data-html]').length > 0) {
+                                var link = jQuery(this).find('a');
+                                link.parent().html(link.html());
+                                jQuery(this).find('[data-html]').each(function() {
+                                    jQuery(this).html(jQuery(this).attr('data-html'));
+                                    jQuery(this).removeAttr('data-html');
+                                });
+                            }
+                        }
+                    });
+                };
+                var owl = jQuery('#g-owlcarousel-{{ id }}');
+                owl.owlCarousel({
                     items: 1,
-                    rtl: {% if gantry.page.direction == 'rtl' %}true{% else %}false{% endif %},
+                    rtl: {%- if gantry.page.direction == 'rtl' -%}true{%- else -%}false{%- endif -%},
                     loop: true,
                     navText: ['{{ particle.prevText|default('<i class="fa ' ~ arrowLeft ~ '" aria-hidden="true"></i>')|e('js') }}', '{{ particle.nextText|default('<i class="fa ' ~ arrowRight ~ '" aria-hidden="true"></i>')|e('js') }}'],
-                    {% if nav == 'true' and not particle.delaySlideElements %}
+                    {%- if nav == 'true' and not particle.delaySlideElements -%}
                     nav: true,
-                    {% else %}
+                    {%- else -%}
                     nav: false,
-                    {% endif %}
-                    {% if particle.nav_class %}
+                    {%- endif -%}
+                    {%- if particle.nav_class -%}
                     navClass: ['owl-prev {{particle.nav_class|e}}','owl-next {{particle.nav_class|e}}'],
-                    {% endif %}
-                    {% if dots == 'true' and not particle.delaySlideElements %}
+                    {%- endif -%}
+                    {%- if dots == 'true' and not particle.delaySlideElements -%}
                     dots: true,
-                    {% else %}
+                    {%- else -%}
                     dots: false,
-                    {% endif %}
-                    {% if particle.dots_class %}
+                    {%- endif -%}
+                    {%- if particle.dots_class -%}
                     dotsClass: 'owl-dots {{particle.dots_class|e}}',
-                    {% endif %}
-                    {% if autoPlay == 'true' %}
+                    {%- endif -%}
+                    {%- if autoPlay == 'true' -%}
                     autoplay: true,
                     autoplayTimeout: {{ particle.autoplaySpeed|default('5000')|e('js') }},
-                    {% else %}
+                    {%- else -%}
                     autoplay: false,
-                    {% endif %}
-                    {% if particle.lazyLoadImages %}
+                    {%- endif -%}
+                    {%- if particle.lazyLoadImages -%}
                     lazyLoad: true,
-                        {% if loadEager > 0 %}
+                        {%- if loadEager > 0 -%}
                             lazyLoadEager: {{ loadEager|e('js') }},
-                        {% endif %}
-                    {% endif %}
+                        {%- endif -%}
+                    {%- endif -%}
                 });
 
-                {% if particle.delaySlideElements %}
+                {% if particle.imageLink == 'custom' %}
+                    var checkSize = function() { eachSlide({{particle.imageLinkBreakpoint|e|default(480)}}); };
+                    checkSize();
+                    var resizeTimer;
+                    jQuery(window).on('resize', function(e) {
+                        clearTimeout(resizeTimer);
+                        resizeTimer = setTimeout(function() {
+                            checkSize();
+                        }, 250);
+                    });
+                {% endif %}
+
+
+                {%- if particle.delaySlideElements -%}
                     jQuery('.g-owlcarousel-item').each(function() { jQuery(this).css('display',''); });
                     setTimeout(refreshFunction, {{ particle.delaySlideElementsTime|default(500) }});
-                {% endif %}
+                {%- endif -%}
             };
 
-            {% if loadTime == 'dom_ready' %}
+            {%- if loadTime == 'dom_ready' -%}
                 jQuery(document).ready(loadOwlCarousel);
-            {% elseif showItem == 'instant' %}
+            {%- elseif showItem == 'instant' -%}
                 loadOwlCarousel();
-            {% endif %}
+            {%- endif -%}
 
             jQuery(window).load(function() {
-                {% if loadTime == 'full_load' %}
+                {%- if loadTime == 'full_load' -%}
                     loadOwlCarousel();
-                {% endif %}
-
+                {%- endif -%}
                 jQuery('.g-owlcarousel-item').each(function() { jQuery(this).css('display',''); });
                 setTimeout(refreshFunction, {{ particle.delaySlideElementsTime|default(500) }});
             });
@@ -176,30 +218,34 @@
                 {% endif %}
                 {% if showItem == 'yes' %}
                     <div class="g-owlcarousel-item {{ item.class|e }}" {% if particle.delaySlideElements %} style="display: none;"{% endif %}>
-                        <div class="g-owlcarousel-item-wrapper">
-                            <div class="g-owlcarousel-item-img">
-                                <img {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}src="{{ url(item.image)|e }}" alt="{{ item.title|e }}" />
-                            </div>
-                            <div class="g-owlcarousel-item-content-container">
-                                <div class="g-owlcarousel-item-content-wrapper">
-                                    <div class="g-owlcarousel-item-content">
-                                        {% if item.title and particle.enable_title|default(true) %}
-                                            {% if particle.title_link %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" tabindex="-1">{% endif %}
-                                                <h1 class="g-owlcarousel-item-title{% if particle.title_class %} {{ particle.title_class|e }}{% endif %}">{{ item.title|raw }}</h1>
-                                            {% if particle.title_link %}</a>{% endif %}
-                                        {% endif %}
-                                        {% if item.desc and particle.enable_desc|default(true) %}
-                                            <h2 class="g-owlcarousel-item-desc{% if particle.desc_class %} {{ particle.desc_class|e }}{% endif %}">{{ item.desc|raw }}</h2>
-                                        {% endif %}
-                                        {% if item.link and particle.enable_btn %}
-                                            <div class="g-owlcarousel-item-link {{ particle.button_class|e }}">
-                                                <a target="_self" class="g-owlcarousel-item-button button{% if particle.button_class %} {{ item.button_class|e }}{% endif %}" href="{{ item.link|e }}" title="{{ buttonTitle }}" tabindex="-1">{{ item.linktext|raw }}</a>
-                                            </div>
-                                        {% endif %}
+                        {% if particle.imageLink == 'enable' %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" tabindex="-1">{% endif %}
+                            <div class="g-owlcarousel-item-wrapper">
+                                <div class="g-owlcarousel-item-img">
+                                    <img {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}src="{{ url(item.image)|e }}" alt="{{ item.title|e }}" />
+                                </div>
+                                <div class="g-owlcarousel-item-content-container">
+                                    <div class="g-owlcarousel-item-content-wrapper">
+                                        <div class="g-owlcarousel-item-content">
+                                            {% if item.title and particle.enable_title|default(true) %}
+                                                {% if particle.title_link and particle.imageLink != 'enable' %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" tabindex="-1">{% endif %}
+                                                    <h1 class="g-owlcarousel-item-title{% if particle.title_class %} {{ particle.title_class|e }}{% endif %}">{{ item.title|raw }}</h1>
+                                                {% if particle.title_link and particle.imageLink != 'enable' %}</a>{% endif %}
+                                            {% endif %}
+                                            {% if item.desc and particle.enable_desc|default(true) %}
+                                                <h2 class="g-owlcarousel-item-desc{% if particle.desc_class %} {{ particle.desc_class|e }}{% endif %}">{{ item.desc|raw }}</h2>
+                                            {% endif %}
+                                            {% if item.link and particle.enable_btn %}
+                                                <div class="g-owlcarousel-item-link {{ particle.button_class|e }}">
+                                                    {% if particle.imageLink != 'enable' %}
+                                                        <a target="_self" class="g-owlcarousel-item-button button{% if particle.button_class %} {{ item.button_class|e }}{% endif %}" href="{{ item.link|e }}" title="{{ buttonTitle }}" tabindex="-1">{{ item.linktext|raw }}</a>
+                                                    {% endif %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        {% if particle.imageLink == 'enable' %}</a>{% endif %}
                     </div>
                 {% endif %}
             {% endfor %}
