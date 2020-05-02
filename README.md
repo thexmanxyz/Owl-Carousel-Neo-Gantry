@@ -66,7 +66,7 @@ Please be aware that the template folder path varies in dependence of the used C
 * Updated to latest version of [Owl Carousel 2](https://owlcarousel2.github.io/OwlCarousel2/)
 * Lazy loading of images included
 * Timing of slides (annual or one-time)
-* Slide link can be applied to title as well
+* Slide link can be applied to title and background as well
 * Slide button can be "replaced" by the title link
 * Four new styles (additionally also the default Helium style)
 * Two themes (black or white)
