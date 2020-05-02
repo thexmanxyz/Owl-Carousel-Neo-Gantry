@@ -88,6 +88,12 @@ form:
                 placeholder: 480
                 default: 480
 
+              imageLinkResize:
+                type: enable.enable
+                label: Image Link Resize
+                description: Define if the link should be applied to the background during the resize event. Can cause issues.
+                default: true
+
               items:
                 type: collection.list
                 array: true

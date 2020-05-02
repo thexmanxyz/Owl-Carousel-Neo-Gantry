@@ -39,12 +39,12 @@ form:
       label: Allgemein
       fields:
         tags:
-            type: collection.keyvalue
-            label: Tag Attribute
-            description: Zusätzliche Attribute für den HTML Container.
-            key_placeholder: Schlüssel (z.B.: style, name, ...)
-            value_placeholder: Wert
-            exclude: ['id', 'class']
+          type: collection.keyvalue
+          label: Tag Attribute
+          description: Zusätzliche Attribute für den HTML Container.
+          key_placeholder: Schlüssel (z.B.: style, name, ...)
+          value_placeholder: Wert
+          exclude: ['id', 'class']
 
         class:
           type: input.selectize
@@ -85,6 +85,12 @@ form:
           description: Legen Sie fest, ab welcher Breite in Pixel der Slide Link auf das Hintergrund Bild angewendet werden soll.
           placeholder: 480
           default: 480
+
+        imageLinkResize:
+          type: input.checkbox
+          label: Bild Link Resize
+          description: Legen Sie fest, ob der Link während des Resize Events auf das Hintergrund Bild angewendet werden soll. Kann Probleme verursachen.
+          default: true
 
         items:
           type: collection.list
@@ -158,7 +164,7 @@ form:
       type: container.set
       label: Steuerelemente
       fields:
-        enable_titel:
+        enable_title:
           type: input.checkbox
           label: Titel
           description: Aktiviert oder deaktiviert explizit die Darstellung des Titels.

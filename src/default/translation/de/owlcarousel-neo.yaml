@@ -41,12 +41,12 @@ form:
             label: Allgemein
             fields:
               tags:
-                  type: collection.keyvalue
-                  label: Tag Attribute
-                  description: Zusätzliche Attribute für den HTML Container.
-                  key_placeholder: Schlüssel (z.B.: style, name, ...)
-                  value_placeholder: Wert
-                  exclude: ['id', 'class']
+                type: collection.keyvalue
+                label: Tag Attribute
+                description: Zusätzliche Attribute für den HTML Container.
+                key_placeholder: Schlüssel (z.B.: style, name, ...)
+                value_placeholder: Wert
+                exclude: ['id', 'class']
 
               class:
                 type: input.selectize
@@ -88,11 +88,12 @@ form:
                 placeholder: 480
                 default: 480
 
-              lazyLoadImages:
+              imageLinkResize:
                 type: enable.enable
-                label: Lazy Load Bilder
-                description: Aktiviere um Bilder per Lazy Load zu laden.
-                default: false
+                label: Bild Link Resize
+                description: Legen Sie fest, ob der Link während des Resize Events auf das Hintergrund Bild angewendet werden soll. Kann Probleme verursachen.
+                default: true
+
 
               items:
                 type: collection.list
@@ -170,7 +171,7 @@ form:
                 label: Titel
                 description: Aktiviert oder deaktiviert explizit die Darstellung des Titels.
                 default: true
-                
+
               title_link:
                 type: enable.enable
                 label: Link
@@ -236,6 +237,12 @@ form:
         tab_timing:
             label: Timing
             fields:
+              lazyLoadImages:
+                type: enable.enable
+                label: Lazy Load Bilder
+                description: Aktiviere um Bilder per Lazy Load zu laden.
+                default: false
+
               lazyLoadEager:
                 type: input.text
                 label: Lazy Vorladen
@@ -399,7 +406,7 @@ form:
                 type: separator.note
                 class: alert alert-info
                 content: Bitte beachten Sie die Pfad und Standort Einstellungen. Für <code>Lokal</code> und <code>Global</code> geben Sie bitte ausschließlich den Dateinamen an.
-              
+
               js.option:
                 type: select.select
                 label: JS Datei Standort

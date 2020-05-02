@@ -158,18 +158,19 @@
                     {%- endif -%}
                 });
 
-                {% if particle.imageLink == 'custom' %}
+                {%- if particle.imageLink == 'custom' -%}
                     var checkSize = function() { eachSlide({{particle.imageLinkBreakpoint|e|default(480)}}); };
                     checkSize();
-                    var resizeTimer;
-                    jQuery(window).on('resize', function(e) {
-                        clearTimeout(resizeTimer);
-                        resizeTimer = setTimeout(function() {
-                            checkSize();
-                        }, 250);
-                    });
-                {% endif %}
-
+                    {%- if particle.imageLinkResize|default(true) -%}
+                        var resizeTimer;
+                        jQuery(window).on('resize', function(e) {
+                            clearTimeout(resizeTimer);
+                            resizeTimer = setTimeout(function() {
+                                checkSize();
+                            }, 250);
+                        });
+                    {%- endif -%}
+                {%- endif -%}
 
                 {%- if particle.delaySlideElements -%}
                     jQuery('.g-owlcarousel-item').each(function() { jQuery(this).css('display',''); });
