@@ -131,10 +131,10 @@
 
                 {%- if particle.imageLink == 'custom' -%}
                     var eachSlide = function(width) {
+                        var windowWidth = jQuery(window).width();
                         jQuery('.g-owlcarousel-item').each(function() {
-                            var windowWidth = jQuery(window).width();
                             if(windowWidth <= width && jQuery(this).find('> a').length == 0) {
-                                var linkTag = jQuery(this).find('a:first-child').clone().removeClass().children().remove().end()[0].outerHTML;
+                                var linkTag = jQuery(this).find('a:first-child').clone().removeClass().empty().remove();
                                 jQuery(this).find('a').each(function() {
                                     if(jQuery(this).hasClass('button')) {
                                         jQuery(this).parent().attr('data-html', jQuery(this)[0].outerHTML);
@@ -147,7 +147,7 @@
                                         parent.prepend(hHtml);
                                     }
                                 });
-                                jQuery(this).wrapInner(linkTag);
+                                jQuery(this).wrapInner(linkTag[0].outerHTML);
                             } else if(windowWidth > width) {
                                 if (jQuery(this).find('[data-html]').length > 0) {
                                     var link = jQuery(this).find('> a');
