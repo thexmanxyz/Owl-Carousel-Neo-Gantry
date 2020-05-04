@@ -10,6 +10,8 @@ This project contains a Gantry Particle and is based on the default **Gantry Hel
 
 ## Download
 Choose the correct download for your target platform. The Joomla Plugin System is supported for all Gantry themes globally or locally for the templates Helium and Hydrogen. The latest Particle version is **v1.0.5**.
+
+**Attention:** When migrating from **v1.0.5** or below to **v1.1.0** or higher the existing settings of the Particle will be reset.
 ___
 **Default Particle:**
 [English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.5/ocn.particle.only.EN.v1.0.5.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.0.5/ocn.particle.only.DE.v1.0.5.zip)
@@ -64,21 +66,22 @@ Please be aware that the template folder path varies in dependence of the used C
 ## Supported Parameters, Particle Options and Features
 * All settings of the original Particle are included and compatible
 * Updated to latest version of [Owl Carousel 2](https://owlcarousel2.github.io/OwlCarousel2/)
+* Four new basic alignment styles for the slider
+* Two themes (black or white) for the new styles
+* Default Helium style with additional settings (dots and text)
 * Lazy loading of images included
 * Timing of slides (annual or one-time)
-* Slide link can be applied to title and background as well
-* Slide button can be "replaced" by the title link
-* Four new styles (additionally also the default Helium style)
-* Two themes (black or white)
 * Seven different control colors
-* Border radius (square or round)
 * Dot navigation alignment
-* Configuration of next/previous arrows
+* Configuration of navigation arrows
 * Full responsive configuration of all controls
 * Overlay image improvement
   * all six Helium overlays included
   * five new overlays
   * or use accent overlay of current template
+* Border radius (square or round)
+* Link can be applied to title and slide as well
+* Slide button can be "replaced" by the title link
 * Delay the loading of carousel controls
 * Option to define JS run time
 * JS priority and placement (head or footer)
