@@ -49,14 +49,18 @@ form:
         class:
           type: input.selectize
           label: CSS Klassen
-          description: Setzen Sie eine Klasse für die individuelle Gestaltung.
+          description: Setzen Sie Klassen für die individuelle Gestaltung.
 
         title:
           type: input.text
           label: Titel
-          description: Benutzerdefinierte Text für den Titel.
+          description: Benutzerdefinierte Text für den Titel des Particles.
           placeholder: 'Titel eingeben'
 
+    set_behavior:
+      type: container.set
+      label: Verhalten
+      fields:
         autoplay:
           type: input.checkbox
           label: Autoplay
@@ -69,77 +73,86 @@ form:
           description: Setzt die Geschwindigkeit mit der Slides gewechselt werden sollen (Anzeigedauer in Millisekunden).
           placeholder: 5000
 
-        imageLink:
+        title_link:
+          type: input.checkbox
+          label: Titel Link
+          description: Bei Aktivierung wird der Button Link auch für das Titel Element gesetzt. 
+          default: false
+
+        slideLink:
           type: select.select
-          label: Bild Link
-          description: Wählen Sie aus, ob der Slide Link auch auf das Hintergrund Bild angewendet werden soll. Wenn die Option Benutzerdefinierter Breakpoint ausgewählt wurde, wird der Pixelwert im nächsten Feld als Breakpoint verwendet.
+          label: Slide Link
+          description: Wählen Sie aus, ob der Button oder Titel Link stattdessen auf die ganze Slide angewendet werden soll. Wenn die Option Benutzerdefinierter Breakpoint ausgewählt wurde, wird der Pixelwert im nächsten Feld als Breakpoint verwendet.
           default: disable
           options:
             enable: Aktiviert
             disable: Deaktiviert
             custom: Benutzerdefinierter Breakpoint
 
-        imageLinkBreakpoint:
+        slideLinkBreakpoint:
           type: input.text
-          label: Bild Link Breakpoint
-          description: Legen Sie fest, ab welcher Breite in Pixel der Slide Link auf das Hintergrund Bild angewendet werden soll.
+          label: Slide Link Breakpoint
+          description: Legen Sie fest, ab welcher Breite (in Pixel) der Link auf die ganze Slide angewedet werden soll. Sie müssen Benutzerdefinierter Breakpoint in der Slide Link Einstellung auswählen.
           placeholder: 480
           default: 480
 
-        imageLinkResize:
+        slideLinkResize:
           type: input.checkbox
-          label: Bild Link Resize
-          description: Legen Sie fest, ob der Link während des Window Resize Events auf das Hintergrund Bild angewendet werden soll. Kann bei Aktivierung Probleme verursachen. Verhindert bei Deaktivierung jedoch, dass ein Linkwechsel beim Resize durchgeführt wird.
+          label: Slide Link Resize
+          description: Legen Sie fest, ob der Link während des Window Resize Events auf die Slide angewendet werden soll. Kann bei Aktivierung Probleme verursachen. Verhindert bei Deaktivierung jedoch, dass ein Linkwechsel beim Resize durchgeführt wird.
           default: true
 
+    set_slides:
+      type: container.set
+      label: Slides
+      fields:
         items:
           type: collection.list
           array: true
-          label: Owl Carousel Slides
+          label: Slides
           description: Erstellen Sie eine neue Owl Carousel Slide.
           value: name
           ajax: true
-
           fields:
             .class:
               type: input.selectize
               label: CSS Klassen
-              description: Setzen Sie eine Klasse für die individuelle Gestaltung der Slide.
+              description: Setzen Sie Klassen für die individuelle Gestaltung der Slide.
             .name:
               type: input.text
             .image:
               type: input.imagepicker
               label: Bild
               description: Wählen Sie ein Bild für die Slide.
+            .link:
+              type: input.text
+              label: Link
+              description: Setzen Sie einen Link für die Slide. Dieser wird entweder für den Button, Titel oder die ganze Slide verwendet.
             .title:
               type: input.text
-              label: Titel
+              label: Titel Text
               description: Geben Sie einen Titel für die Slide ein.
+            .linktitle:
+              type: input.text
+              label: Titel Link Title
+              description: Geben Sie den Text für das Link Title Attribut des Titels ein. Wenn Sie dieses Feld leer lassen, wird der Titel Text von oben verwendet.
             .desc:
               type: textarea.textarea
               label: Beschreibung
               description: Benutzerdefinierter beschreibender Text der Slide.
               placeholder: Geben Sie eine kurze Beschreibung ein
-            .link:
-              type: input.text
-              label: Link
-              description: Setzen Sie einen Link für die Slide.
             .linktext:
               type: input.text
-              label: Link Text
-              description: Geben Sie den Text für das Link Element ein.
-            .linktitle:
-              type: input.text
-              label: Titel Link Title
-              description: Geben Sie den Text für das Link Title Attribut des Titels ein. Wenn Sie dieses Feld leer lassen, wird der Titel Text verwendet.
+              label: Button Text
+              description: Geben Sie den Text für das Button Element ein.
             .buttontitle:
               type: input.text
               label: Button Link Title
               description: Geben Sie den Text für das Link Title Attribut des Buttons ein. Wenn Sie dieses Feld leer lassen, wird der Button Text verwendet.
             .buttonclass:
               type: input.text
-              label: Button Klasse
-              description: Geben Sie die Button Klasse ein.
+              label: Button Klassen
+              description: Setzen Sie Klassen für die individuelle Gestaltung des Buttons.
               default: 'button-outline'
             .showItem:
               type: select.select
@@ -170,12 +183,6 @@ form:
           description: Aktiviert oder deaktiviert explizit die Darstellung des Titels.
           default: true
 
-        title_link:
-          type: input.checkbox
-          label: Link
-          description: Bei Aktivierung wird der Button Link auch für das Titel Element gesetzt. 
-          default: false
-
         enable_desc:
           type: input.checkbox
           label: Beschreibung
@@ -191,46 +198,46 @@ form:
         nav:
           type: input.checkbox
           label: Navigation
-          description: Aktiviert, deaktiviert oder erlaubt das Einblenden der Navigationsbuttons (Vorherige / Nächste) auf Basis einer Klasse weiter unten.
+          description: Aktiviert oder deaktiviert explizit die Darstellung der Navigationsbuttons (Vorherige / Nächste).
           default: false
 
         dots:
           type: input.checkbox
           label: Punkte
-          description: Aktiviert, deaktiviert oder erlaubt das Einblenden der Navigationspunkte auf Basis einer Klasse weiter unten.
+          description: Aktiviert oder deaktiviert explizit die Darstellung der Navigationspunkte.
           default: true
 
         _info_elements_class:
           type: separator.note
           class: alert alert-info
-          content: Sie können jede beliebige Klasse anhängen. Diese Funktion ist jedoch besonders nützlich im Kombination mit folgenden Responsiv Utility Klassen: http://docs.gantry.org/gantry5/tutorials/utility-classes#responsive-utility-classes 
+          content: Sie können jede beliebige Klasse anhängen. Diese Funktion ist jedoch besonders nützlich im Kombination mit den Gantry 5 <a href="http://docs.gantry.org/gantry5/tutorials/utility-classes#responsive-utility-classes" target"_blank" title="Ulitity Classes">Responsive Utility Classes</a>.
 
         title_class:
           type: input.selectize
-          label: Navigation Klassen
-          description: Setzen Sie eine Klasse auf den Titel.
+          label: Titel Klassen
+          description: Setzen Sie Klassen für die individuelle Gestaltung auf den Titel.
 
         desc_class:
           type: input.selectize
-          label: Navigation Klassen
-          description: Setzen Sie eine Klasse auf die Beschreibung.
+          label: Beschreibung Klassen
+          description: Setzen Sie Klassen für die individuelle Gestaltung auf die Beschreibung.
           default: hidden-phone
 
         button_class:
           type: input.selectize
-          label: Navigation Klassen
-          description: Setzen Sie eine Klasse auf den Button.
+          label: Button Klassen
+          description: Setzen Sie Klassen für die individuelle Gestaltung auf den Button.
           default: hidden-phone
 
         nav_class:
           type: input.selectize
           label: Navigation Klassen
-          description: Setzen Sie eine Klasse auf beide Navigationsbuttons.
+          description: Setzen Sie Klassen für die individuelle Gestaltung auf beide Navigationsbuttons.
 
         dots_class:
           type: input.selectize
           label: Punkte Klassen
-          description: Setzen Sie eine Klasse auf den Container der Navigationspunkte.
+          description: Setzen Sie Klassen für die individuelle Gestaltungauf den Container der Navigationspunkte.
 
     set_timing:
       type: container.set
@@ -276,10 +283,6 @@ form:
       type: container.set
       label: Darstellung
       fields:
-        _info_appearance:
-          type: separator.note
-          class: alert alert-info
-          content: Bitte bedenken Sie, dass alle hier durchgeführten Einstellung außer <strong>Bildüberlagerung</strong> und <strong>Pfeil</strong> nur für die <strong>Neo Style X</strong> Style gelten. Diese Entscheidung wurde getroffen, um die Kompatibilität mit dem Original Particle zu waren.
 
         neo.style:
           type: select.select
@@ -292,6 +295,26 @@ form:
             style-neo2: Neo Style 2
             style-neo3: Neo Style 3
             style-neo4: Neo Style 4
+
+        _info_appearance_helium:
+          type: separator.note
+          class: alert alert-info
+          content: Die folgenden Einstellungen gelten nur für <strong>Helium-basierte</strong> Styles.
+
+        helium.color:
+          type: select.select
+          label: Titel- / Beschreibungsfarbe
+          description: Wählen Sie die Farbe, in welcher die Slide Texte (Titel und Beschreibung) dargestellt werden sollen.
+          default: accent
+          options:
+            accent: Accent
+            color-b: Schwarz
+            color-w: Weiß
+ 
+        _info_appearance_neo:
+          type: separator.note
+          class: alert alert-info
+          content: Die folgenden Einstellung gelten nur für die <strong>Neo Style X</strong> Styles. Diese Entscheidung wurde getroffen, um die Kompatibilität mit dem Original Particle zu waren.
 
         neo.theme:
           type: select.select
@@ -325,20 +348,15 @@ form:
             square: Eckig
             round: Rund
 
-        neo.dots_align:
-          type: select.select
-          label: Punkteausrichtung
-          description: Wählen Sie wie die Navigationspunkte angeordnet werden sollen.
-          default: dots-c
-          options:
-            dots-c: Mitte
-            dots-r: Links
-            dots-l: Rechts
+        _info_appearance_all:
+          type: separator.note
+          class: alert alert-info
+          content: Die folgenden Einstellungen werden von allen Styles berücksichtig. Egal ob es sich hierbei um ein <strong>Neo Style X</strong> oder ein Helium-basierendes Style handelt.
 
-        neo.arrow:
+        all.arrow:
           type: select.select
-          label: Pfeil
-          description: Wählen Sie den Pfeiltyp bzw. das Pfeilaussehen, welches Sie verwenden wollen.
+          label: Navigationspfeile
+          description: Wählen Sie den Pfeiltyp bzw. das Pfeilaussehen, welches Sie für die Navigation verwenden wollen.
           default: chevron
           options:
             chevron: Chevron
@@ -349,7 +367,17 @@ form:
             long-arrow: Long Arrow
             angle-double: Angle Double
 
-        neo.imageOverlay:
+        all.dots_align:
+          type: select.select
+          label: Punkteausrichtung
+          description: Wählen Sie wie die Navigationspunkte angeordnet werden sollen.
+          default: dots-c
+          options:
+            dots-c: Mitte
+            dots-r: Rechts
+            dots-l: Links
+
+        all.imageOverlay:
           type: select.select
           label: Bildüberlagerung
           description: Deaktiviert oder setzt eine der vordefinierten Bildüberlagerungen.

@@ -33,26 +33,35 @@
 {% endif %}
 
 {% set neo = particle.neo %}
+{% set helium = particle.helium %}
+{% set all = particle.all %}
 {% if neo.style and neo.style != 'helium' %}
     {% set ctnClasses = ' style-neo ' ~ neo.style %}
     {% if neo.edges and neo.edges != 'square' %}
         {% set ctnClasses = ctnClasses ~ ' sn-' ~ particle.neo.edges %}
     {% endif %}
     
-    {% set ctnClasses = ctnClasses ~ ' sn-' ~ neo.dots_align|default('dots-c') %}
     {% set ctnClasses = ctnClasses ~ ' sn-' ~ neo.theme|default('theme-b') %}
-    
     {% set hControl = (neo.theme|default('theme-b') == 'theme-b') ? 'control-g1' : 'control-g2' %}
     {% set ctnClasses = ctnClasses ~ ' sn-' ~ neo.control_color|default(hControl) %}
     
 {% endif %}
 
-{% if neo.imageOverlay and neo.imageOverlay != 'disable' and neo.imageOverlay != 'accent' %}
-    {% set ctnClasses = ctnClasses ~ ' sn-' ~ neo.imageOverlay|default('overlay-h1') %}
+{% if neo.style and neo.style == 'helium' %}
+    {% set heliumColor = helium.color|default('color-w') %}
+    {% if heliumColor != 'accent' %}
+        {% set ctnClasses = ctnClasses ~ ' sh-' ~ heliumColor %}
+    {% endif %}
 {% endif %}
 
-{% set arrowLeft = 'fa-' ~ neo.arrow|default('chevron') ~ '-left' %}
-{% set arrowRight = 'fa-' ~ neo.arrow|default('chevron') ~ '-right' %}
+{% set ctnClasses = ctnClasses ~ ' sa-' ~ all.dots_align|default('dots-c') %}
+
+{% if all.imageOverlay and all.imageOverlay != 'disable' and all.imageOverlay != 'accent' %}
+    {% set ctnClasses = ctnClasses ~ ' sa-' ~ all.imageOverlay|default('overlay-h1') %}
+{% endif %}
+
+{% set arrowLeft = 'fa-' ~ all.arrow|default('chevron') ~ '-left' %}
+{% set arrowRight = 'fa-' ~ all.arrow|default('chevron') ~ '-right' %}
 
 {% set scriptType = 'text/javascript' %}
 
@@ -129,7 +138,7 @@
                     {%- endif -%}
                 });
 
-                {%- if particle.imageLink == 'custom' -%}
+                {%- if particle.slideLink == 'custom' -%}
                     var eachSlide = function(width) {
                         var windowWidth = jQuery(window).width();
                         jQuery('.g-owlcarousel-item').each(function() {
@@ -138,7 +147,8 @@
                                 jQuery(this).find('a').each(function() {
                                     if(jQuery(this).hasClass('button')) {
                                         jQuery(this).parent().attr('data-html', jQuery(this)[0].outerHTML);
-                                        jQuery(this).replaceWith('');
+                                        var newButton = jQuery(this).clone().removeAttr('href').removeAttr('target');
+                                        jQuery(this).replaceWith(newButton[0].outerHTML.replace('<a ', '<span ').replace('<\/a', '<\/span'));
                                     } else {
                                         jQuery(this).children().attr('data-html', jQuery(this)[0].outerHTML);
                                         var hHtml = jQuery(this).html();
@@ -160,9 +170,9 @@
                             }
                         });
                     };
-                    var checkSize = function() { eachSlide({{particle.imageLinkBreakpoint|e|default(480)}}); };
+                    var checkSize = function() { eachSlide({{particle.slideLinkBreakpoint|e|default(480)}}); };
                     checkSize();
-                    {%- if particle.imageLinkResize|default(true) -%}
+                    {%- if particle.slideLinkResize|default(true) -%}
                         var resizeTimer;
                         jQuery(window).on('resize', function(e) {
                             clearTimeout(resizeTimer);
@@ -198,7 +208,7 @@
     <div class="{{ particle.class|e }}"{{cAttrs|raw}}>
         {% if particle.title %}<h2 class="g-title">{{ particle.title|raw }}</h2>{% endif %}
 
-        <div id="g-owlcarousel-{{ id }}" class="g-owlcarousel owl-carousel{% if neo.imageOverlay != 'disable' %} has-color-overlay{% endif %}{{ctnClasses}}">
+        <div id="g-owlcarousel-{{ id }}" class="g-owlcarousel owl-carousel{% if all.imageOverlay != 'disable' %} has-color-overlay{% endif %}{{ctnClasses}}">
 
             {% for item in particle.items %}
                 {% set showItem = item.showItem|default('yes') %}
@@ -210,7 +220,7 @@
                     {% if showItem == 'once' %}
                         {% if start <= now and end >= now %}
                             {% set showItem = 'yes' %}
-                        {% endif %}       
+                        {% endif %}
                     {% elseif showItem == 'annual' %}
                         {% if (start <= end and start <= now and end >= now) or 
                               (start > end and (start <= now or end >= now)) %}
@@ -220,7 +230,7 @@
                 {% endif %}
                 {% if showItem == 'yes' %}
                     <div class="g-owlcarousel-item {{ item.class|e }}" {% if particle.delaySlideElements %} style="display: none;"{% endif %}>
-                        {% if particle.imageLink == 'enable' %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" tabindex="-1">{% endif %}
+                        {% if particle.slideLink == 'enable' %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" tabindex="-1">{% endif %}
                             <div class="g-owlcarousel-item-wrapper">
                                 <div class="g-owlcarousel-item-img">
                                     <img {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}src="{{ url(item.image)|e }}" alt="{{ item.title|e }}" />
@@ -229,25 +239,25 @@
                                     <div class="g-owlcarousel-item-content-wrapper">
                                         <div class="g-owlcarousel-item-content">
                                             {% if item.title and particle.enable_title|default(true) %}
-                                                {% if particle.title_link and particle.imageLink != 'enable' %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" tabindex="-1">{% endif %}
+                                                {% if particle.title_link and particle.slideLink != 'enable' %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" tabindex="-1">{% endif %}
                                                     <h1 class="g-owlcarousel-item-title{% if particle.title_class %} {{ particle.title_class|e }}{% endif %}">{{ item.title|raw }}</h1>
-                                                {% if particle.title_link and particle.imageLink != 'enable' %}</a>{% endif %}
+                                                {% if particle.title_link and particle.slideLink != 'enable' %}</a>{% endif %}
                                             {% endif %}
                                             {% if item.desc and particle.enable_desc|default(true) %}
                                                 <h2 class="g-owlcarousel-item-desc{% if particle.desc_class %} {{ particle.desc_class|e }}{% endif %}">{{ item.desc|raw }}</h2>
                                             {% endif %}
                                             {% if item.link and particle.enable_btn %}
                                                 <div class="g-owlcarousel-item-link {{ particle.button_class|e }}">
-                                                    {% if particle.imageLink != 'enable' %}
-                                                        <a target="_self" class="g-owlcarousel-item-button button{% if particle.button_class %} {{ item.button_class|e }}{% endif %}" href="{{ item.link|e }}" title="{{ buttonTitle }}" tabindex="-1">{{ item.linktext|raw }}</a>
-                                                    {% endif %}
+                                                    {% set btnClasses = (particle.button_class|e) ? ' ' ~ particle.button_class|e : '' %}
+                                                    {% set btnClasses = btnClasses ~ ((item.buttonclass|e) ? ' ' ~ item.buttonclass|e : '') %}
+                                                    <{% if particle.slideLink != 'enable' %}a target="_self" href="{{ item.link|e }}"{% else %}span{% endif %} class="g-owlcarousel-item-button button{{btnClasses}}" title="{{ buttonTitle }}" tabindex="-1">{{ item.linktext|raw }}</{% if particle.slideLink != 'enable' %}a{% else %}span{% endif %}>
                                                 </div>
                                             {% endif %}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        {% if particle.imageLink == 'enable' %}</a>{% endif %}
+                        {% if particle.slideLink == 'enable' %}</a>{% endif %}
                     </div>
                 {% endif %}
             {% endfor %}

@@ -54,9 +54,13 @@ form:
         title:
           type: input.text
           label: Title
-          description: Customize the title text.
+          description: Customize the title text for the Particle.
           placeholder: 'Enter title'
 
+    set_behavior:
+      type: container.set
+      label: Behavior
+      fields:
         autoplay:
           type: input.checkbox
           label: Autoplay
@@ -69,77 +73,86 @@ form:
           description: Set the speed of the Autoplay, in milliseconds.
           placeholder: 5000
 
-        imageLink:
+        title_link:
+          type: input.checkbox
+          label: Title Link
+          description: Enable to apply the button link also on the title element.
+          default: false
+
+        slideLink:
           type: select.select
-          label: Image Link
-          description: Add the slide link on the background image as well. When using the Custom Breakpoint option the pixel value below is used to determine the breakpoint.
+          label: Slide Link
+          description: Add the button or title link on the whole slide instead. When using the Custom Breakpoint option the pixel value below is used to determine the breakpoint.
           default: disable
           options:
             enable: Enable
             disable: Disable
             custom: Custom Breakpoint
 
-        imageLinkBreakpoint:
+        slideLinkBreakpoint:
           type: input.text
-          label: Image Link Breakpoint
-          description: Define at what width in pixel the slide link should also be applied to the background image.
+          label: Slide Link Breakpoint
+          description: Define at what width (in pixel) the link should only be applied on the whole slide. You have to select Custom Breakpoint in the the Slide Link setting.
           placeholder: 480
           default: 480
 
-        imageLinkResize:
+        slideLinkResize:
           type: input.checkbox
-          label: Image Link Resize
-          description: Define if the link should be applied to the background during the window resize event. Can cause issues when activated. If you deactivate this setting the link switch will not be done during resize.
+          label: Slide Link Resize
+          description: Define if the link should be applied to the slide during the window resize event. Can cause issues when activated. If you deactivate this setting the link switch will not be done during resize.
           default: true
 
+    set_slides:
+      type: container.set
+      label: Slides
+      fields:
         items:
           type: collection.list
           array: true
-          label: Owl Carousel Items
+          label: Slides
           description: Create each Owl Carousel item to display.
           value: name
           ajax: true
-
           fields:
             .class:
               type: input.selectize
               label: CSS Classes
-              description: CSS class names for the individual item.
+              description: CSS classes for the slide.
             .name:
               type: input.text
             .image:
               type: input.imagepicker
               label: Image
               description: Select desired image.
+            .link:
+              type: input.text
+              label: Link
+              description: Input the item link. Used for button, title or whole slide.
             .title:
               type: input.text
-              label: Title
-              description: Enter the title
+              label: Title Text
+              description: Enter the title text.
+            .linktitle:
+              type: input.text
+              label: Title Link Title
+              description: Input the text for the item title link title attribute. If nothing is defined the title text from above will be used.
             .desc:
               type: textarea.textarea
               label: Description
               description: Customize the description.
               placeholder: Enter short description
-            .link:
-              type: input.text
-              label: Link
-              description: Input the item link.
             .linktext:
               type: input.text
-              label: Link Text
-              description: Input the text for the item link.
-            .linktitle:
-              type: input.text
-              label: Title Link Title
-              description: Input the text for the item title link title attribute. If nothing is defined the title text will be used.
+              label: Button Text
+              description: Input the text for the button item.
             .buttontitle:
               type: input.text
               label: Button Link Title
               description: Input the text for the button link title attribute. If nothing is defined the button text will be used.
             .buttonclass:
               type: input.text
-              label: Button Class
-              description: Input the button class.
+              label: Button Classes
+              description: Set CSS classes for the button.
               default: 'button-outline'
             .showItem:
               type: select.select
@@ -170,12 +183,6 @@ form:
           description: Enable or disable the title rendering explicitly
           default: true
 
-        title_link:
-          type: input.checkbox
-          label: Link
-          description: Enable to create the button link also on the title element.
-          default: false
-
         enable_desc:
           type: input.checkbox
           label: Description
@@ -191,46 +198,46 @@ form:
         nav:
           type: input.checkbox
           label: Prev / Next
-          description: Enable, disable or define appearance by class for the prev / next navigation below.
+          description: Enable or disable the prev / next navigation rendering explicitly.
           default: false
 
         dots:
           type: input.checkbox
           label: Dots
-          description: Enable, disable or define appearance by class for the dots navigation below.
+          description: Enable or disable the dots navigation rendering explicitly.
           default: true
 
         _info_elements_class:
           type: separator.note
           class: alert alert-info
-          content: You can attach any class. But this feature might be very useful in combination with the following responsive utility classes: http://docs.gantry.org/gantry5/tutorials/utility-classes#responsive-utility-classes
+          content: You can attach any class. But this feature might be very useful in combination with the Gantry 5 <a href="http://docs.gantry.org/gantry5/tutorials/utility-classes#responsive-utility-classes" target"_blank" title="Ulitity Classes">Responsive Utility Classes</a>.
 
         title_class:
           type: input.selectize
-          label: Title Class
-          description: Set a specific CSS class on the title.
+          label: Title Classes
+          description: Set specific CSS classes on the title.
 
         desc_class:
           type: input.selectize
-          label: Description Class
-          description: Set a specific CSS class on the description.
+          label: Description Classes
+          description: Set specific CSS classes on the description.
           default: hidden-phone
 
         button_class:
           type: input.selectize
-          label: Button Class
-          description: Set a specific CSS class on the button.
+          label: Button Classes
+          description: Set specific CSS classes on the button.
           default: hidden-phone
 
         nav_class:
           type: input.selectize
-          label: Prev / Next Class
-          description: Set a specific CSS class on both of the controls.
+          label: Prev / Next Classes
+          description: Set specific CSS classes on both of the navigation buttons.
 
         dots_class:
           type: input.selectize
-          label: Dots Class
-          description: Set a specific CSS class on the dots container.
+          label: Dots Classes
+          description: Set specific CSS classes on the navigation dots container.
 
     set_timing:
       type: container.set
@@ -276,10 +283,6 @@ form:
       type: container.set
       label: Appearance
       fields:
-        _info_appearance:
-          type: separator.note
-          class: alert alert-info
-          content: Please beware that all settings except <strong>Image Overlay</strong> and <strong>Arrow</strong> are only respected by the <strong>Neo Style X</strong> styles. This decision was made to keep compatibility with the original Particle.
 
         neo.style:
           type: select.select
@@ -292,6 +295,26 @@ form:
             style-neo2: Neo Style 2
             style-neo3: Neo Style 3
             style-neo4: Neo Style 4
+
+        _info_appearance_helium:
+          type: separator.note
+          class: alert alert-info
+          content: The following settings only apply for <strong>Helium-based</strong> styles.
+
+        helium.color:
+          type: select.select
+          label: Title / Description Color
+          description: Select a color for the rendering of the slide text elements (title and description).
+          default: accent
+          options:
+            accent: Accent
+            color-b: Black
+            color-w: White
+
+        _info_appearance_neo:
+          type: separator.note
+          class: alert alert-info
+          content: The following settings are only respected by the <strong>Neo Style X</strong> styles. This decision was made to keep compatibility with the original Particle.
 
         neo.theme:
           type: select.select
@@ -325,20 +348,15 @@ form:
             square: Square
             round: Round
 
-        neo.dots_align:
-          type: select.select
-          label: Dots Align
-          description: Select how you want to align the Dots.
-          default: dots-c
-          options:
-            dots-c: Center
-            dots-r: Left
-            dots-l: Right
+        _info_appearance_all:
+          type: separator.note
+          class: alert alert-info
+          content: The following settings are respected by all styles no matter if <strong>Neo Style X</strong> or any <strong>Helium-based</strong> style.
 
-        neo.arrow:
+        all.arrow:
           type: select.select
-          label: Arrow
-          description: Select the arrow type / appearance you want to use.
+          label: Navigation Arrows
+          description: Select the navigation arrow type / appearance you want to use.
           default: chevron
           options:
             chevron: Chevron
@@ -349,7 +367,17 @@ form:
             long-arrow: Long Arrow
             angle-double: Angle Double
 
-        neo.imageOverlay:
+        all.dots_align:
+          type: select.select
+          label: Dots Align
+          description: Select how you want to align the Dots.
+          default: dots-c
+          options:
+            dots-c: Center
+            dots-r: Right
+            dots-l: Left
+
+        all.imageOverlay:
           type: select.select
           label: Image Overlay
           description: Disable or select one of the predefined overlays.
