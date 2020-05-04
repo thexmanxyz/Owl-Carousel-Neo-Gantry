@@ -72,7 +72,7 @@ form:
         imageLink:
           type: select.select
           label: Bild Link
-          description: Wählen Sie aus, ob der Slide Link auch auf das Hintergrund Bild angewendet werden soll.
+          description: Wählen Sie aus, ob der Slide Link auch auf das Hintergrund Bild angewendet werden soll. Wenn die Option Benutzerdefinierter Breakpoint ausgewählt wurde, wird der Pixelwert im nächsten Feld als Breakpoint verwendet.
           default: disable
           options:
             enable: Aktiviert
@@ -89,7 +89,7 @@ form:
         imageLinkResize:
           type: input.checkbox
           label: Bild Link Resize
-          description: Legen Sie fest, ob der Link während des Resize Events auf das Hintergrund Bild angewendet werden soll. Kann Probleme verursachen.
+          description: Legen Sie fest, ob der Link während des Window Resize Events auf das Hintergrund Bild angewendet werden soll. Kann bei Aktivierung Probleme verursachen. Verhindert bei Deaktivierung jedoch, dass ein Linkwechsel beim Resize durchgeführt wird.
           default: true
 
         items:

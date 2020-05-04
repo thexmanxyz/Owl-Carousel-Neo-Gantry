@@ -93,35 +93,6 @@
             };
 
             var loadOwlCarousel = function() {
-                var eachSlide = function(width) {
-                    jQuery('.g-owlcarousel-item').each(function() {
-                        if(jQuery(window).width() <= width && jQuery(this).find('a:first').length > 0) {
-                            var linkTag = jQuery(this).find('a:first').clone().children().remove().end()[0].outerHTML;
-                            jQuery(this).find('a').each(function() {
-                                if(jQuery(this).hasClass('button')) {
-                                    jQuery(this).parent().attr('data-html', jQuery(this)[0].outerHTML);
-                                    jQuery(this).replaceWith('');
-                                } else {
-                                    jQuery(this).children().attr('data-html', jQuery(this)[0].outerHTML);
-                                    var hHtml = jQuery(this).html();
-                                    parent = jQuery(this).parent();
-                                    jQuery(this).remove();
-                                    parent.prepend(hHtml);
-                                }
-                            });
-                            jQuery(this).wrapInner(linkTag);
-                        } else {
-                            if (jQuery(this).find('[data-html]').length > 0) {
-                                var link = jQuery(this).find('a');
-                                link.parent().html(link.html());
-                                jQuery(this).find('[data-html]').each(function() {
-                                    jQuery(this).html(jQuery(this).attr('data-html'));
-                                    jQuery(this).removeAttr('data-html');
-                                });
-                            }
-                        }
-                    });
-                };
                 var owl = jQuery('#g-owlcarousel-{{ id }}');
                 owl.owlCarousel({
                     items: 1,
@@ -159,6 +130,35 @@
                 });
 
                 {%- if particle.imageLink == 'custom' -%}
+                    var eachSlide = function(width) {
+                        jQuery('.g-owlcarousel-item').each(function() {
+                            if(jQuery(window).width() <= width && jQuery(this).find('div > a:first-child').length > 0) {
+                                var linkTag = jQuery(this).find('a:first').clone().removeClass().children().remove().end()[0].outerHTML;
+                                jQuery(this).find('a').each(function() {
+                                    if(jQuery(this).hasClass('button')) {
+                                        jQuery(this).parent().attr('data-html', jQuery(this)[0].outerHTML);
+                                        jQuery(this).replaceWith('');
+                                    } else {
+                                        jQuery(this).children().attr('data-html', jQuery(this)[0].outerHTML);
+                                        var hHtml = jQuery(this).html();
+                                        parent = jQuery(this).parent();
+                                        jQuery(this).remove();
+                                        parent.prepend(hHtml);
+                                    }
+                                });
+                                jQuery(this).wrapInner(linkTag);
+                            } else {
+                                if (jQuery(this).find('[data-html]').length > 0) {
+                                    var link = jQuery(this).find('a');
+                                    link.parent().html(link.html());
+                                    jQuery(this).find('[data-html]').each(function() {
+                                        jQuery(this).html(jQuery(this).attr('data-html'));
+                                        jQuery(this).removeAttr('data-html');
+                                    });
+                                }
+                            }
+                        });
+                    };
                     var checkSize = function() { eachSlide({{particle.imageLinkBreakpoint|e|default(480)}}); };
                     checkSize();
                     {%- if particle.imageLinkResize|default(true) -%}

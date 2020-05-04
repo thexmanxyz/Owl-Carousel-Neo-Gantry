@@ -74,7 +74,7 @@ form:
               imageLink:
                 type: select.select
                 label: Image Link
-                description: Add slide link on the background image as well.
+                description: Add the slide link on the background image as well. When using the Custom Breakpoint option the pixel value below is used to determine the breakpoint.
                 default: disable
                 options:
                   enable: Enable
@@ -91,7 +91,7 @@ form:
               imageLinkResize:
                 type: enable.enable
                 label: Image Link Resize
-                description: Define if the link should be applied to the background during the resize event. Can cause issues.
+                description: Define if the link should be applied to the background during the window resize event. Can cause issues when activated. If you deactivate this setting the link switch will not be done during resize.
                 default: true
 
               items:
