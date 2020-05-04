@@ -132,9 +132,8 @@
                 {%- if particle.imageLink == 'custom' -%}
                     var eachSlide = function(width) {
                         jQuery('.g-owlcarousel-item').each(function() {
-                            var firstLink = jQuery(this).find('div > a:first-child');
-                            if(jQuery(window).width() <= width && firstLink.length > 0) {
-                                var linkTag = firstLink.clone().removeClass().children().remove().end()[0].outerHTML;
+                            if(jQuery(window).width() <= width && jQuery(this).find('div > a:first-child').length > 0) {
+                                var linkTag = jQuery(this).find('a:first').clone().removeClass().children().remove().end()[0].outerHTML;
                                 jQuery(this).find('a').each(function() {
                                     if(jQuery(this).hasClass('button')) {
                                         jQuery(this).parent().attr('data-html', jQuery(this)[0].outerHTML);
