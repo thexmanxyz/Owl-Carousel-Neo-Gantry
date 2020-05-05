@@ -154,20 +154,50 @@ form:
             dots-r: Right
             dots-l: Left
 
-        all.control_color:
+        all.dots_color:
           type: select.select
-          label: Control Color
-          description: Select the color for the controls. On Helium style only the dots are changed.
+          label: Navigation Dots Color
+          description: Select the color for the navigation dots.
           default: default
           options:
             default: Default
-            control-g1: Grey 1
-            control-g2: Grey 2
-            control-gr: Green
-            control-re: Red
-            control-bl: Blue
-            control-vi: Violet
-            control-or: Orange
+            control-d-g1: Grey 1
+            control-d-g2: Grey 2
+            control-d-gr: Green
+            control-d-re: Red
+            control-d-bl: Blue
+            control-d-vi: Violet
+            control-d-or: Orange
+
+        all.buttons_color:
+          type: select.select
+          label: Navigation Buttons Color
+          description: Select the color for the navigation buttons.
+          default: default
+          options:
+            default: Default
+            control-b-g1: Grey 1
+            control-b-g2: Grey 2
+            control-b-gr: Green
+            control-b-re: Red
+            control-b-bl: Blue
+            control-b-vi: Violet
+            control-b-or: Orange
+
+        all.text_color:
+          type: select.select
+          label: Slide Text Color
+          description: Select the color for the slide text hover.
+          default: default
+          options:
+            default: Default
+            control-t-g1: Grey 1
+            control-t-g2: Grey 2
+            control-t-gr: Green
+            control-t-re: Red
+            control-t-bl: Blue
+            control-t-vi: Violet
+            control-t-or: Orange
 
         all.imageOverlay:
           type: select.select

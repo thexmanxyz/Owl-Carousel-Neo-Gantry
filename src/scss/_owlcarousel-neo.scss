@@ -1010,7 +1010,7 @@ $overlay11-c-b: #212624;
                 }
             }
         }
-        &.sa-control-gr, &.sa-control-re, &.sa-control-bl, &.sa-control-vi, &.sa-control-or, &.sa-control-g1, &.sa-control-g2 {
+        &.sa-control-b-gr, &.sa-control-b-re, &.sa-control-b-bl, &.sa-control-b-vi, &.sa-control-b-or, &.sa-control-b-g1, &.sa-control-b-g2 {
             .owl-nav {
                 button {
                     &.owl-prev, &.owl-next {
@@ -1022,7 +1022,7 @@ $overlay11-c-b: #212624;
             }
         }
 
-        &.sa-control-gr {
+        &.sa-control-b-gr {
             .owl-nav {
                 button {
                     &.owl-prev, &.owl-next {
@@ -1034,7 +1034,7 @@ $overlay11-c-b: #212624;
             }
         }
 
-         &.sa-control-re {
+        &.sa-control-b-re {
             .owl-nav {
                 button {
                     &.owl-prev, &.owl-next {
@@ -1046,7 +1046,7 @@ $overlay11-c-b: #212624;
             }
         }
 
-        &.sa-control-bl {
+        &.sa-control-b-bl {
             .owl-nav {
                 button {
                     &.owl-prev, &.owl-next {
@@ -1058,7 +1058,7 @@ $overlay11-c-b: #212624;
             }
         }
 
-        &.sa-control-vi {
+        &.sa-control-b-vi {
             .owl-nav {
                 button {
                     &.owl-prev, &.owl-next {
@@ -1070,7 +1070,7 @@ $overlay11-c-b: #212624;
             }
         }
 
-        &.sa-control-or {
+        &.sa-control-b-or {
             .owl-nav {
                 button {
                     &.owl-prev, &.owl-next {
@@ -1082,7 +1082,7 @@ $overlay11-c-b: #212624;
             }
         }
 
-        &.sa-control-g1 {
+        &.sa-control-b-g1 {
             .owl-nav {
                 button {
                     &.owl-prev, &.owl-next {
@@ -1094,7 +1094,7 @@ $overlay11-c-b: #212624;
             }
         }
 
-        &.sa-control-g2 {
+        &.sa-control-b-g2 {
             .owl-nav {
                 button {
                     &.owl-prev, &.owl-next {
@@ -1278,7 +1278,7 @@ $overlay11-c-b: #212624;
         }
     }
 
-    &.sa-control-gr {
+    &.sa-control-d-gr {
         .owl-dots {
             .owl-dot {
                 &.active, &:hover {
@@ -1289,7 +1289,8 @@ $overlay11-c-b: #212624;
                 }
             }
         }
-
+	}
+    &.sa-control-b-gr {
         .owl-nav {
             button {
                 &.owl-prev, &.owl-next {
@@ -1299,13 +1300,14 @@ $overlay11-c-b: #212624;
                 }
             }
         }
-
+	}
+    &.sa-control-t-gr {
         .g-owlcarousel-item-content a:hover h1 {
             color: $c-green1 !important;
         }
     }
 
-    &.sa-control-re {
+    &.sa-control-d-re {
         .owl-dots {
             .owl-dot {
                 &.active, &:hover {
@@ -1316,7 +1318,8 @@ $overlay11-c-b: #212624;
                 }
             }
         }
-
+	}
+    &.sa-control-b-re {
         .owl-nav {
             button {
                 &.owl-prev, &.owl-next {
@@ -1326,13 +1329,14 @@ $overlay11-c-b: #212624;
                 }
             }
         }
-
+	}
+    &.sa-control-t-re {
         .g-owlcarousel-item-content a:hover h1 {
             color: $c-red1 !important;
         }
     }
 
-    &.sa-control-bl {
+    &.sa-control-d-bl {
         .owl-dots {
             .owl-dot {
                 &.active, &:hover {
@@ -1343,7 +1347,8 @@ $overlay11-c-b: #212624;
                 }
             }
         }
-
+	}
+    &.sa-control-b-bl {
         .owl-nav {
             button {
                 &.owl-prev, &.owl-next {
@@ -1353,13 +1358,14 @@ $overlay11-c-b: #212624;
                 }
             }
         }
-
+	}
+    &.sa-control-t-bl {
         .g-owlcarousel-item-content a:hover h1 {
             color: $c-blue1 !important;
         }
     }
 
-    &.sa-control-vi {
+    &.sa-control-d-vi {
         .owl-dots {
             .owl-dot {
                 &.active, &:hover {
@@ -1370,7 +1376,8 @@ $overlay11-c-b: #212624;
                 }
             }
         }
-
+	}
+	&.sa-control-b-vi {
         .owl-nav {
             button {
                 &.owl-prev, &.owl-next {
@@ -1380,13 +1387,14 @@ $overlay11-c-b: #212624;
                 }
             }
         }
-
+	}
+    &.sa-control-t-vi {
         .g-owlcarousel-item-content a:hover h1 {
             color: $c-violet1 !important;
         }
     }
 
-    &.sa-control-or {
+    &.sa-control-d-or {
         .owl-dots {
             .owl-dot {
                 &.active, &:hover {
@@ -1397,7 +1405,8 @@ $overlay11-c-b: #212624;
                 }
             }
         }
-
+	}
+    &.sa-control-b-or {
         .owl-nav {
             button {
                 &.owl-prev, &.owl-next {
@@ -1407,13 +1416,14 @@ $overlay11-c-b: #212624;
                 }
             }
         }
-
+	}
+    &.sa-control-t-or {
         .g-owlcarousel-item-content a:hover h1 {
             color: $c-orange1 !important;
         }
     }
 
-    &.sa-control-g1 {
+    &.sa-control-d-g1 {
         .owl-dots {
             .owl-dot {
                 &.active, &:hover {
@@ -1424,7 +1434,8 @@ $overlay11-c-b: #212624;
                 }
             }
         }
-
+	}
+    &.sa-control-b-g1 {
         .owl-nav {
             button {
                 &.owl-prev, &.owl-next {
@@ -1434,13 +1445,14 @@ $overlay11-c-b: #212624;
                 }
             }
         }
-
+	}
+    &.sa-control-t-g1 {
         .g-owlcarousel-item-content a:hover h1 {
             color: #AAA !important;
         }
     }
 
-    &.sa-control-g2 {
+    &.sa-control-d-g2 {
         .owl-dots {
             .owl-dot {
                 &.active, &:hover {
@@ -1451,7 +1463,8 @@ $overlay11-c-b: #212624;
                 }
             }
         }
-
+	}
+    &.sa-control-b-g2 {
         .owl-nav {
             button {
                 &.owl-prev, &.owl-next {
@@ -1461,7 +1474,8 @@ $overlay11-c-b: #212624;
                 }
             }
         }
-
+	}
+    &.sa-control-t-g2 {
         .g-owlcarousel-item-content a:hover h1 {
             color: #CCC !important;
         }

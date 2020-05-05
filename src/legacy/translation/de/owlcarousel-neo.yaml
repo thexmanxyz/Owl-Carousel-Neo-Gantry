@@ -154,20 +154,60 @@ form:
             dots-r: Rechts
             dots-l: Links
 
-        all.control_color:
+        all.dots_align:
           type: select.select
-          label: Elementfarbe
-          description: Wählen Sie die Farbe die für die Kontrollelemente des Carousels verwendet werden soll. Beim Helium Style werden nur die Navigationspunkte angepasst.
+          label: Navigationspunkte Ausrichtung
+          description: Wählen Sie wie die Navigationspunkte angeordnet werden sollen.
+          default: dots-c
+          options:
+            dots-c: Mitte
+            dots-r: Rechts
+            dots-l: Links
+
+        all.dots_color:
+          type: select.select
+          label: Navigationspunkte Farbe
+          description: Wählen Sie die Farbe die für die Navigationspunkte des Carousels verwendet werden soll.
           default: default
           options:
             default: Standard
-            control-g1: Grau 1
-            control-g2: Grau 2
-            control-gr: Grün
-            control-re: Rot
-            control-bl: Blau
-            control-vi: Violett
-            control-or: Orange
+            control-d-g1: Grau 1
+            control-d-g2: Grau 2
+            control-d-gr: Grün
+            control-d-re: Rot
+            control-d-bl: Blau
+            control-d-vi: Violett
+            control-d-or: Orange
+
+        all.buttons_color:
+          type: select.select
+          label: Navigationsbuttons Farbe
+          description: Wählen Sie die Farbe die für die Navigationsbuttons des Carousels verwendet werden soll.
+          default: default
+          options:
+            default: Standard
+            control-b-g1: Grau 1
+            control-b-g2: Grau 2
+            control-b-gr: Grün
+            control-b-re: Rot
+            control-b-bl: Blau
+            control-b-vi: Violett
+            control-b-or: Orange
+
+        all.text_color:
+          type: select.select
+          label: Slide Text Farbe
+          description: Wählen Sie die Farbe die für den Slide Text des Carousels beim Hover verwendet werden soll.
+          default: default
+          options:
+            default: Standard
+            control-t-g1: Grau 1
+            control-t-g2: Grau 2
+            control-t-gr: Grün
+            control-t-re: Rot
+            control-t-bl: Blau
+            control-t-vi: Violett
+            control-t-or: Orange
 
         all.imageOverlay:
           type: select.select
