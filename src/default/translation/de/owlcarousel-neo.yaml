@@ -59,6 +59,146 @@ form:
                 description: Benutzerdefinierte Text für den Titel des Particles.
                 placeholder: 'Titel eingeben'
 
+        tab_appearance:
+            label: Darstellung
+            fields:
+
+              neo.style:
+                type: select.select
+                label: Style
+                description: Wählen Sie eine der vorhanden Vorlagen aus.
+                default: helium
+                options:
+                  helium: Helium
+                  style-neo1: Neo Style 1
+                  style-neo2: Neo Style 2
+                  style-neo3: Neo Style 3
+                  style-neo4: Neo Style 4
+
+              _info_appearance_helium:
+                type: separator.note
+                class: alert alert-info
+                content: Die folgenden Einstellungen gelten nur für <strong>Helium-basierte</strong> Styles.
+
+              helium.color:
+                type: select.select
+                label: Theme
+                description: Wählen Sie die Farbe, in welcher die Slide Texte (Titel und Beschreibung) dargestellt werden sollen.
+                default: accent
+                options:
+                accent: Akzent
+                  color-b: Schwarz
+                  color-w: Weiß
+
+              helium.position:
+                type: select.select
+                label: Navigationspunkte Position
+                description: Wählen Sie eine vertikale Position für die Darstellung der Navigationspunkte.
+                default: default
+                options:
+                  dots-d: Standard (12% von unten)
+                  dots-t: Oben
+                  dots-i: 12% von oben
+                  dots-b: Unten
+
+              helium.underlay:
+                type: select.select
+                label: Navigationpunkte Underlay
+                description: Wählen Sie ein Styling für das Underlay der Navigationspunkte.
+                default: default
+                options:
+                  disable: Deaktiviert
+                  dots-u-square: Eckig
+                  dots-u-round1: Rund 1
+                  dots-u-round2: Rund 2
+
+              _info_appearance_neo:
+                type: separator.note
+                class: alert alert-info
+                content: Die folgenden Einstellung gelten nur für die <strong>Neo Style X</strong> Styles. Diese Entscheidung wurde getroffen, um die Kompatibilität mit dem Original Particle zu waren.
+
+              neo.theme:
+                type: select.select
+                label: Theme
+                description: Wählen Sie den Farbmodus des Carousels.
+                default: theme-b
+                options:
+                  theme-b: Schwarz
+                  theme-w: Weiß
+
+              _info_appearance_all:
+                type: separator.note
+                class: alert alert-info
+                content: Die folgenden Einstellungen werden von allen Styles berücksichtig. Egal ob es sich hierbei um ein <strong>Neo Style X</strong> oder ein Helium-basierendes Style handelt.
+
+              all.arrow:
+                type: select.select
+                label: Navigationspfeile
+                description: Wählen Sie den Pfeiltyp bzw. das Pfeilaussehen, welches Sie für die Navigation verwenden wollen.
+                default: chevron
+                options:
+                  chevron: Chevron
+                  chevron-circle: Chevron Circle
+                  arrow: Arrow
+                  arrow-circle: Arrow Circle
+                  arrow-circle-o: Arrow Circle O
+                  long-arrow: Long Arrow
+                  angle-double: Angle Double
+
+              all.dots_align:
+                type: select.select
+                label: Navigationspunkte Ausrichtung
+                description: Wählen Sie wie die Navigationspunkte angeordnet werden sollen.
+                default: dots-c
+                options:
+                  dots-c: Mitte
+                  dots-r: Rechts
+                  dots-l: Links
+
+              all.control_color:
+                type: select.select
+                label: Elementfarbe
+                description: Wählen Sie die Farbe die für die Kontrollelemente des Carousels verwendet werden soll. Beim Helium Style werden nur die Navigationspunkte angepasst.
+                default: default
+                options:
+                  default: Standard
+                  control-g1: Grau 1
+                  control-g2: Grau 2
+                  control-gr: Grün
+                  control-re: Rot
+                  control-bl: Blau
+                  control-vi: Violett
+                  control-or: Orange
+
+              all.imageOverlay:
+                type: select.select
+                label: Bildüberlagerung
+                description: Deaktiviert oder setzt eine der vordefinierten Bildüberlagerungen.
+                default: disable
+                options:
+                  disable: Deaktiviert
+                  accent: Akzent
+                  overlay-h1: Helium (1)
+                  overlay-h2: Helium (2)
+                  overlay-h3: Helium (3)
+                  overlay-h4: Helium (4)
+                  overlay-h5: Helium (5)
+                  overlay-h6: Helium (6)
+                  overlay-gr: Grün
+                  overlay-or: Orange
+                  overlay-bl: Balu
+                  overlay-vi: Violett
+                  overlay-tu: Türkis
+
+              all.edges:
+                type: select.select
+                label: Kantenradius
+                description: Wählen Sie wie die Kanten des Owl Carousels dargestellt werden sollen.
+                default: square
+                options:
+                  square: Eckig
+                  round: Rund
+
         tab_behavior:
             label: Verhalten
             fields:
@@ -102,6 +242,71 @@ form:
                 label: Slide Link Resize
                 description: Legen Sie fest, ob der Link während des Window Resize Events auf die Slide angewendet werden soll. Kann bei Aktivierung Probleme verursachen. Verhindert bei Deaktivierung jedoch, dass ein Linkwechsel beim Resize durchgeführt wird.
                 default: true
+
+        tab_controls:
+            label: Steuerelemente
+            fields:
+              enable_title:
+                type: enable.enable
+                label: Titel
+                description: Aktiviert oder deaktiviert explizit die Darstellung des Titels.
+                default: true
+
+              enable_desc:
+                type: enable.enable
+                label: Beschreibung
+                description: Aktiviert oder deaktiviert explizit die Darstellung der Beschreibung.
+                default: true
+
+              enable_btn:
+                type: enable.enable
+                label: Button
+                description: Aktiviert oder deaktiviert explizit die Darstellung des Slide Buttons.
+                default: true
+
+              nav:
+                type: enable.enable
+                label: Navigationsbuttons
+                description: Aktiviert oder deaktiviert explizit die Darstellung der Navigationsbuttons (Vorherige / Nächste).
+                default: false
+
+              dots:
+                type: enable.enable
+                label: Navigationspunkte
+                description: Aktiviert oder deaktiviert explizit die Darstellung der Navigationspunkte.
+                default: true
+
+              _info_elements_class:
+                type: separator.note
+                class: alert alert-info
+                content: Sie können jede beliebige Klasse anhängen. Diese Funktion ist jedoch besonders nützlich im Kombination mit den Gantry 5 <a href="http://docs.gantry.org/gantry5/tutorials/utility-classes#responsive-utility-classes" target"_blank" title="Ulitity Classes">Responsive Utility Classes</a>.
+
+              title_class:
+                type: input.selectize
+                label: Titel Klassen
+                description: Setzen Sie Klassen für die individuelle Gestaltung auf den Titel.
+
+              desc_class:
+                type: input.selectize
+                label: Beschreibung Klassen
+                description: Setzen Sie Klassen für die individuelle Gestaltung auf die Beschreibung.
+                default: hidden-phone
+
+              button_class:
+                type: input.selectize
+                label: Button Klassen
+                description: Setzen Sie Klassen für die individuelle Gestaltung auf den Button.
+                default: hidden-phone
+
+              nav_class:
+                type: input.selectize
+                label: Navigationsbuttons Klassen
+                description: Setzen Sie Klassen für die individuelle Gestaltung auf beide Navigationsbuttons.
+
+              dots_class:
+                type: input.selectize
+                label: Navigationspunkte Klassen
+                description: Setzen Sie Klassen für die individuelle Gestaltung auf den Container der Navigationspunkte.
 
         tab_slides:
             label: Slides
@@ -173,71 +378,6 @@ form:
                     label: Enddatum
                     description: Wählen Sie das Datum, wann diese Slide das letzte Mal gezeigt werden soll (nur für die Optionen 'Jährlich' und 'Einmal').
 
-        tab_controls:
-            label: Steuerelemente
-            fields:
-              enable_title:
-                type: enable.enable
-                label: Titel
-                description: Aktiviert oder deaktiviert explizit die Darstellung des Titels.
-                default: true
-
-              enable_desc:
-                type: enable.enable
-                label: Beschreibung
-                description: Aktiviert oder deaktiviert explizit die Darstellung der Beschreibung.
-                default: true
-
-              enable_btn:
-                type: enable.enable
-                label: Button
-                description: Aktiviert oder deaktiviert explizit die Darstellung des Slide Buttons.
-                default: true
-
-              nav:
-                type: enable.enable
-                label: Navigation
-                description: Aktiviert oder deaktiviert explizit die Darstellung der Navigationsbuttons (Vorherige / Nächste).
-                default: false
-
-              dots:
-                type: enable.enable
-                label: Punkte
-                description: Aktiviert oder deaktiviert explizit die Darstellung der Navigationspunkte.
-                default: true
-
-              _info_elements_class:
-                type: separator.note
-                class: alert alert-info
-                content: Sie können jede beliebige Klasse anhängen. Diese Funktion ist jedoch besonders nützlich im Kombination mit den Gantry 5 <a href="http://docs.gantry.org/gantry5/tutorials/utility-classes#responsive-utility-classes" target"_blank" title="Ulitity Classes">Responsive Utility Classes</a>.
-
-              title_class:
-                type: input.selectize
-                label: Titel Klassen
-                description: Setzen Sie Klassen für die individuelle Gestaltung auf den Titel.
-
-              desc_class:
-                type: input.selectize
-                label: Beschreibung Klassen
-                description: Setzen Sie Klassen für die individuelle Gestaltung auf die Beschreibung.
-                default: hidden-phone
-
-              button_class:
-                type: input.selectize
-                label: Button Klassen
-                description: Setzen Sie Klassen für die individuelle Gestaltung auf den Button.
-                default: hidden-phone
-
-              nav_class:
-                type: input.selectize
-                label: Navigation Klassen
-                description: Setzen Sie Klassen für die individuelle Gestaltung auf beide Navigationsbuttons.
-
-              dots_class:
-                type: input.selectize
-                label: Punkte Klassen
-                description: Setzen Sie Klassen für die individuelle Gestaltung auf den Container der Navigationspunkte.
-
         tab_timing:
             label: Timing
             fields:
@@ -276,123 +416,6 @@ form:
                   full_load: Voll geladen
                   dom_ready: DOM bereit
                   instant: Sofort
-
-        tab_appearance:
-            label: Darstellung
-            fields:
-
-              neo.style:
-                type: select.select
-                label: Style
-                description: Wählen Sie eine der vorhanden Vorlagen aus.
-                default: helium
-                options:
-                  helium: Helium
-                  style-neo1: Neo Style 1
-                  style-neo2: Neo Style 2
-                  style-neo3: Neo Style 3
-                  style-neo4: Neo Style 4
-
-              _info_appearance_helium:
-                type: separator.note
-                class: alert alert-info
-                content: Die folgenden Einstellungen gelten nur für <strong>Helium-basierte</strong> Styles.
-
-              helium.color:
-                type: select.select
-                label: Titel- / Beschreibungsfarbe
-                description: Wählen Sie die Farbe, in welcher die Slide Texte (Titel und Beschreibung) dargestellt werden sollen.
-                default: accent
-                options:
-                accent: Akzent
-                  color-b: Schwarz
-                  color-w: Weiß
- 
-              _info_appearance_neo:
-                type: separator.note
-                class: alert alert-info
-                content: Die folgenden Einstellung gelten nur für die <strong>Neo Style X</strong> Styles. Diese Entscheidung wurde getroffen, um die Kompatibilität mit dem Original Particle zu waren.
-
-              neo.theme:
-                type: select.select
-                label: Theme
-                description: Wählen Sie den Farbmodus des Carousels.
-                default: theme-b
-                options:
-                  theme-b: Schwarz
-                  theme-w: Weiß
-
-              neo.control_color:
-                type: select.select
-                label: Elementfarbe
-                description: Wählen Sie die Farbe die für die Kontrollelemente des Carousels verwendet werden soll.
-                default: control-g1
-                options:
-                  control-g1: Grau 1
-                  control-g2: Grau 2
-                  control-gr: Grün
-                  control-re: Rot
-                  control-bl: Blau
-                  control-vi: Violett
-                  control-or: Orange
-
-              neo.edges:
-                type: select.select
-                label: Kantenradius
-                description: Wählen Sie wie die Kanten des Owl Carousels dargestellt werden sollen.
-                default: square
-                options:
-                  square: Eckig
-                  round: Rund
-
-              _info_appearance_all:
-                type: separator.note
-                class: alert alert-info
-                content: Die folgenden Einstellungen werden von allen Styles berücksichtig. Egal ob es sich hierbei um ein <strong>Neo Style X</strong> oder ein Helium-basierendes Style handelt.
-
-              all.arrow:
-                type: select.select
-                label: Navigationspfeile
-                description: Wählen Sie den Pfeiltyp bzw. das Pfeilaussehen, welches Sie für die Navigation verwenden wollen.
-                default: chevron
-                options:
-                  chevron: Chevron
-                  chevron-circle: Chevron Circle
-                  arrow: Arrow
-                  arrow-circle: Arrow Circle
-                  arrow-circle-o: Arrow Circle O
-                  long-arrow: Long Arrow
-                  angle-double: Angle Double
-
-              all.dots_align:
-                type: select.select
-                label: Punkteausrichtung
-                description: Wählen Sie wie die Navigationspunkte angeordnet werden sollen.
-                default: dots-c
-                options:
-                  dots-c: Mitte
-                  dots-r: Rechts
-                  dots-l: Links
-
-              all.imageOverlay:
-                type: select.select
-                label: Bildüberlagerung
-                description: Deaktiviert oder setzt eine der vordefinierten Bildüberlagerungen.
-                default: disable
-                options:
-                  disable: Deaktiviert
-                  accent: Akzent
-                  overlay-h1: Helium (1)
-                  overlay-h2: Helium (2)
-                  overlay-h3: Helium (3)
-                  overlay-h4: Helium (4)
-                  overlay-h5: Helium (5)
-                  overlay-h6: Helium (6)
-                  overlay-gr: Grün
-                  overlay-or: Orange
-                  overlay-bl: Balu
-                  overlay-vi: Violett
-                  overlay-tu: Türkis
 
         tab_api:
             label: API

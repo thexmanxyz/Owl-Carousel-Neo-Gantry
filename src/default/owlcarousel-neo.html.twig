@@ -35,16 +35,12 @@
 {% set neo = particle.neo %}
 {% set helium = particle.helium %}
 {% set all = particle.all %}
+
+{% set neoTheme = neo.theme|default('theme-b') %}
+
 {% if neo.style and neo.style != 'helium' %}
     {% set ctnClasses = ' style-neo ' ~ neo.style %}
-    {% if neo.edges and neo.edges != 'square' %}
-        {% set ctnClasses = ctnClasses ~ ' sn-' ~ particle.neo.edges %}
-    {% endif %}
-    
-    {% set ctnClasses = ctnClasses ~ ' sn-' ~ neo.theme|default('theme-b') %}
-    {% set hControl = (neo.theme|default('theme-b') == 'theme-b') ? 'control-g1' : 'control-g2' %}
-    {% set ctnClasses = ctnClasses ~ ' sn-' ~ neo.control_color|default(hControl) %}
-    
+    {% set ctnClasses = ctnClasses ~ ' sn-' ~ neoTheme %}    
 {% endif %}
 
 {% if neo.style and neo.style == 'helium' %}
@@ -52,9 +48,30 @@
     {% if heliumColor != 'accent' %}
         {% set ctnClasses = ctnClasses ~ ' sh-' ~ heliumColor %}
     {% endif %}
+    {% set ctnClasses = ctnClasses ~ ' sh-' ~ helium.position|default('dots-d') %}
+
+    {% set underlay = helium.underlay|default('disable') %}
+    {% if underlay != 'disable' %}
+        {% set ctnClasses = ctnClasses ~ ' sh-' ~ underlay %}
+    {% endif %}
 {% endif %}
 
+{% if all.edges and all.edges != 'square' %}
+    {% set ctnClasses = ctnClasses ~ ' sa-' ~ particle.all.edges %}
+{% endif %}  
+
 {% set ctnClasses = ctnClasses ~ ' sa-' ~ all.dots_align|default('dots-c') %}
+
+{% set hCtrlClass = '' %}
+{% if neo.style != 'helium' %}
+    {% set hCtrlClass1 = (neoTheme == 'theme-b') ? 'control-g1' : 'control-g2' %}
+    {% set hCtrlClass2 = all.control_color|default(hCtrlClass1) %}
+    {% set hCtrlClass = (hCtrlClass2 != 'default') ? hCtrlClass2 : hCtrlClass1 %}
+    {% set hCtrlClass = ' sa-' ~ hCtrlClass %}
+{% elseif neo.style == 'helium' and all.control_color and all.control_color != 'default' %}
+    {% set hCtrlClass = ' sa-' ~ all.control_color %}
+{% endif %}
+{% set ctnClasses = ctnClasses ~ hCtrlClass %}
 
 {% if all.imageOverlay and all.imageOverlay != 'disable' and all.imageOverlay != 'accent' %}
     {% set ctnClasses = ctnClasses ~ ' sa-' ~ all.imageOverlay|default('overlay-h1') %}

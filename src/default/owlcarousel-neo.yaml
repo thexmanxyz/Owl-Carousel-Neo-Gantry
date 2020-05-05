@@ -59,6 +59,146 @@ form:
                 description: Customize the title text for the Particle.
                 placeholder: 'Enter title'
 
+        tab_appearance:
+            label: Appearance
+            fields:
+
+              neo.style:
+                type: select.select
+                label: Style
+                description: Select one of the predefined styles.
+                default: helium
+                options:
+                  helium: Helium
+                  style-neo1: Neo Style 1
+                  style-neo2: Neo Style 2
+                  style-neo3: Neo Style 3
+                  style-neo4: Neo Style 4
+
+              _info_appearance_helium:
+                type: separator.note
+                class: alert alert-info
+                content: The following settings only apply for <strong>Helium-based</strong> styles.
+
+              helium.color:
+                type: select.select
+                label: Theme
+                description: Select a color for the rendering of the slide text elements (title and description).
+                default: accent
+                options:
+                  accent: Accent
+                  color-b: Black
+                  color-w: White
+
+              helium.position:
+                type: select.select
+                label: Navigation Dots Position
+                description: Select a vertical position for the rendering of the navigation dots.
+                default: default
+                options:
+                  dots-d: Default (12% from bottom)
+                  dots-t: Top
+                  dots-i: 12% from top
+                  dots-b: Bottom
+
+              helium.underlay:
+                type: select.select
+                label: Navigation Dots Underlay
+                description: Select a styling for the navigation dots underlay.
+                default: default
+                options:
+                  disable: Disable
+                  dots-u-square: Square
+                  dots-u-round1: Round-1
+                  dots-u-round2: Round-2
+
+              _info_appearance_neo:
+                type: separator.note
+                class: alert alert-info
+                content: The following settings are only respected by the <strong>Neo Style X</strong> styles. This decision was made to keep compatibility with the original Particle.
+
+              neo.theme:
+                type: select.select
+                label: Theme
+                description: Select the color mode of the carousel.
+                default: theme-b
+                options:
+                  theme-b: Black
+                  theme-w: White
+
+              _info_appearance_all:
+                type: separator.note
+                class: alert alert-info
+                content: The following settings are respected by all styles no matter if <strong>Neo Style X</strong> or any <strong>Helium-based</strong> style.
+
+              all.arrow:
+                type: select.select
+                label: Navigation Arrows
+                description: Select the navigation arrow type / appearance you want to use.
+                default: chevron
+                options:
+                  chevron: Chevron
+                  chevron-circle: Chevron Circle
+                  arrow: Arrow
+                  arrow-circle: Arrow Circle
+                  arrow-circle-o: Arrow Circle O
+                  long-arrow: Long Arrow
+                  angle-double: Angle Double
+
+              all.dots_align:
+                type: select.select
+                label: Navigation Dots Align
+                description: Select how you want to align the Dots.
+                default: dots-c
+                options:
+                  dots-c: Center
+                  dots-r: Right
+                  dots-l: Left
+
+              all.control_color:
+                type: select.select
+                label: Control Color
+                description: Select the color for the controls.
+                default: default
+                options:
+                  default: Default
+                  control-g1: Grey 1
+                  control-g2: Grey 2
+                  control-gr: Green
+                  control-re: Red
+                  control-bl: Blue
+                  control-vi: Violet
+                  control-or: Orange
+
+              all.imageOverlay:
+                type: select.select
+                label: Image Overlay
+                description: Disable or select one of the predefined overlays.
+                default: disable
+                options:
+                  disable: Disable
+                  accent: Accent
+                  overlay-h1: Helium (1)
+                  overlay-h2: Helium (2)
+                  overlay-h3: Helium (3)
+                  overlay-h4: Helium (4)
+                  overlay-h5: Helium (5)
+                  overlay-h6: Helium (6)
+                  overlay-gr: Green
+                  overlay-or: Orange
+                  overlay-bl: Blue
+                  overlay-vi: Violet
+                  overlay-tu: Turquoise
+
+              all.edges:
+                type: select.select
+                label: Border Radius
+                description: Select how the edges should be styled.
+                default: square
+                options:
+                  square: Square
+                  round: Round
+
         tab_behavior:
             label: Behavior
             fields:
@@ -102,6 +242,71 @@ form:
                 label: Slide Link Resize
                 description: Define if the link should be applied to the slide during the window resize event. Can cause issues when activated. If you deactivate this setting the link switch will not be done during resize.
                 default: true
+
+        tab_controls:
+            label: Controls
+            fields:
+              enable_title:
+                type: enable.enable
+                label: Title
+                description: Enable or disable the title rendering explicitly
+                default: true
+
+              enable_desc:
+                type: enable.enable
+                label: Description
+                description: Enable or disable the description rendering explicitly
+                default: true
+
+              enable_btn:
+                type: enable.enable
+                label: Button
+                description: Enable or disable the button rendering explicitly
+                default: true
+
+              nav:
+                type: enable.enable
+                label: Navigation Buttons
+                description: Enable or disable the navigation button rendering explicitly.
+                default: false
+
+              dots:
+                type: enable.enable
+                label: Navigation Dots
+                description: Enable or disable the navigation dots rendering explicitly.
+                default: true
+
+              _info_elements_class:
+                type: separator.note
+                class: alert alert-info
+                content: You can attach any class. But this feature might be very useful in combination with the Gantry 5 <a href="http://docs.gantry.org/gantry5/tutorials/utility-classes#responsive-utility-classes" target"_blank" title="Ulitity Classes">Responsive Utility Classes</a>.
+
+              title_class:
+                type: input.selectize
+                label: Title Classes
+                description: Set specific CSS classes on the title.
+
+              desc_class:
+                type: input.selectize
+                label: Description Classes
+                description: Set specific CSS classes on the description.
+                default: hidden-phone
+
+              button_class:
+                type: input.selectize
+                label: Button Classes
+                description: Set specific CSS classes on the button.
+                default: hidden-phone
+
+              nav_class:
+                type: input.selectize
+                label: Navigation Button Classes
+                description: Set specific CSS classes on both of the navigation buttons.
+
+              dots_class:
+                type: input.selectize
+                label: Navigation Dots Classes
+                description: Set specific CSS classes on the navigation dots container.
 
         tab_slides:
             label: Slides
@@ -173,71 +378,6 @@ form:
                     label: End Date
                     description: Select the date when the item should be last shown (only for 'annual' and 'once').
 
-        tab_controls:
-            label: Controls
-            fields:
-              enable_title:
-                type: enable.enable
-                label: Title
-                description: Enable or disable the title rendering explicitly
-                default: true
-
-              enable_desc:
-                type: enable.enable
-                label: Description
-                description: Enable or disable the description rendering explicitly
-                default: true
-
-              enable_btn:
-                type: enable.enable
-                label: Button
-                description: Enable or disable the button rendering explicitly
-                default: true
-
-              nav:
-                type: enable.enable
-                label: Prev / Next
-                description: Enable or disable the prev / next navigation rendering explicitly.
-                default: false
-
-              dots:
-                type: enable.enable
-                label: Dots
-                description: Enable or disable the dots navigation rendering explicitly.
-                default: true
-
-              _info_elements_class:
-                type: separator.note
-                class: alert alert-info
-                content: You can attach any class. But this feature might be very useful in combination with the Gantry 5 <a href="http://docs.gantry.org/gantry5/tutorials/utility-classes#responsive-utility-classes" target"_blank" title="Ulitity Classes">Responsive Utility Classes</a>.
-
-              title_class:
-                type: input.selectize
-                label: Title Classes
-                description: Set specific CSS classes on the title.
-
-              desc_class:
-                type: input.selectize
-                label: Description Classes
-                description: Set specific CSS classes on the description.
-                default: hidden-phone
-
-              button_class:
-                type: input.selectize
-                label: Button Classes
-                description: Set specific CSS classes on the button.
-                default: hidden-phone
-
-              nav_class:
-                type: input.selectize
-                label: Prev / Next Classes
-                description: Set specific CSS classes on both of the navigation buttons.
-
-              dots_class:
-                type: input.selectize
-                label: Dots Classes
-                description: Set specific CSS classes on the navigation dots container.
-
         tab_timing:
             label: Timing
             fields:
@@ -276,123 +416,6 @@ form:
                   full_load: Fully Loaded
                   dom_ready: DOM ready
                   instant: Instant
-
-        tab_appearance:
-            label: Appearance
-            fields:
-
-              neo.style:
-                type: select.select
-                label: Style
-                description: Select one of the predefined styles.
-                default: helium
-                options:
-                  helium: Helium
-                  style-neo1: Neo Style 1
-                  style-neo2: Neo Style 2
-                  style-neo3: Neo Style 3
-                  style-neo4: Neo Style 4
-
-              _info_appearance_helium:
-                type: separator.note
-                class: alert alert-info
-                content: The following settings only apply for <strong>Helium-based</strong> styles.
-
-              helium.color:
-                type: select.select
-                label: Title / Description Color
-                description: Select a color for the rendering of the slide text elements (title and description).
-                default: accent
-                options:
-                  accent: Accent
-                  color-b: Black
-                  color-w: White
-
-              _info_appearance_neo:
-                type: separator.note
-                class: alert alert-info
-                content: The following settings are only respected by the <strong>Neo Style X</strong> styles. This decision was made to keep compatibility with the original Particle.
-
-              neo.theme:
-                type: select.select
-                label: Theme
-                description: Select the color mode of the carousel.
-                default: theme-b
-                options:
-                  theme-b: Black
-                  theme-w: White
-
-              neo.control_color:
-                type: select.select
-                label: Control Color
-                description: Select the color for the controls.
-                default: control-g1
-                options:
-                  control-g1: Grey 1
-                  control-g2: Grey 2
-                  control-gr: Green
-                  control-re: Red
-                  control-bl: Blue
-                  control-vi: Violet
-                  control-or: Orange
-
-              neo.edges:
-                type: select.select
-                label: Border Radius
-                description: Select how the edges should be styled.
-                default: square
-                options:
-                  square: Square
-                  round: Round
-
-              _info_appearance_all:
-                type: separator.note
-                class: alert alert-info
-                content: The following settings are respected by all styles no matter if <strong>Neo Style X</strong> or any <strong>Helium-based</strong> style.
-
-              all.arrow:
-                type: select.select
-                label: Navigation Arrows
-                description: Select the navigation arrow type / appearance you want to use.
-                default: chevron
-                options:
-                  chevron: Chevron
-                  chevron-circle: Chevron Circle
-                  arrow: Arrow
-                  arrow-circle: Arrow Circle
-                  arrow-circle-o: Arrow Circle O
-                  long-arrow: Long Arrow
-                  angle-double: Angle Double
-
-              all.dots_align:
-                type: select.select
-                label: Dots Align
-                description: Select how you want to align the Dots.
-                default: dots-c
-                options:
-                  dots-c: Center
-                  dots-r: Right
-                  dots-l: Left
-
-              all.imageOverlay:
-                type: select.select
-                label: Image Overlay
-                description: Disable or select one of the predefined overlays.
-                default: disable
-                options:
-                  disable: Disable
-                  accent: Accent
-                  overlay-h1: Helium (1)
-                  overlay-h2: Helium (2)
-                  overlay-h3: Helium (3)
-                  overlay-h4: Helium (4)
-                  overlay-h5: Helium (5)
-                  overlay-h6: Helium (6)
-                  overlay-gr: Green
-                  overlay-or: Orange
-                  overlay-bl: Blue
-                  overlay-vi: Violet
-                  overlay-tu: Turquoise
 
         tab_api:
             label: API
