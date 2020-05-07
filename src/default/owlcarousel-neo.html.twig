@@ -36,16 +36,17 @@
 {% set helium = particle.helium %}
 {% set all = particle.all %}
 
-{% set neoTheme = neo.theme|default('theme-b') %}
+{% set neoTheme = all.theme|default('theme-b') %}
 
 {% if neo.style and neo.style != 'helium' %}
     {% set ctnClasses = ' style-neo ' ~ neo.style %}
-    {% set ctnClasses = ctnClasses ~ ' sn-' ~ neoTheme %}    
+    {% set neoTheme = (neoTheme == 'accent') ? 'theme-b' : neoTheme %}
+    {% set ctnClasses = ctnClasses ~ ' sn-' ~ neoTheme %}
 {% endif %}
 
 {% if neo.style and neo.style == 'helium' %}
-    {% set heliumColor = helium.color|default('color-w') %}
-    {% if heliumColor != 'accent' %}
+    {% if neoTheme != 'accent' %}
+        {% set heliumColor = neoTheme == 'theme-b' ? 'color-b' : 'color-w' %}
         {% set ctnClasses = ctnClasses ~ ' sh-' ~ heliumColor %}
     {% endif %}
     {% set ctnClasses = ctnClasses ~ ' sh-' ~ helium.position|default('dots-d') %}
@@ -64,33 +65,32 @@
 
 {% if neo.style != 'helium' %}
     {% set hCtrlClass1 = (neoTheme == 'theme-b') ? 'control-d-g1' : 'control-d-g2' %}
+
     {% set hCtrlClass2 = all.dots_color|default(hCtrlClass1) %}
     {% set hCtrlClass2 = (hCtrlClass2 != 'default') ? hCtrlClass2 : hCtrlClass1 %}
     {% set ctnClasses = ctnClasses ~ ' sa-' ~ hCtrlClass2 %}
 
-    {% set hCtrlClass1 = (neoTheme == 'theme-b') ? 'control-b-g1' : 'control-b-g2' %}
     {% set hCtrlClass2 = all.buttons_color|default(hCtrlClass1) %}
     {% set hCtrlClass2 = (hCtrlClass2 != 'default') ? hCtrlClass2 : hCtrlClass1 %}
     {% set ctnClasses = ctnClasses ~ ' sa-' ~ hCtrlClass2 %}
 
-    {% set hCtrlClass1 = (neoTheme == 'theme-b') ? 'control-t-g1' : 'control-t-g2' %}
     {% set hCtrlClass2 = all.text_color|default(hCtrlClass1) %}
     {% set hCtrlClass2 = (hCtrlClass2 != 'default') ? hCtrlClass2 : hCtrlClass1 %}
     {% set ctnClasses = ctnClasses ~ ' sa-' ~ hCtrlClass2 %}
 
 {% elseif neo.style == 'helium' %}
 
-	{% if all.dots_color and all.dots_color != 'default' %}
-		{% set ctnClasses = ctnClasses ~ ' sa-' ~ all.dots_color %}
-	{% endif %}
+    {% if all.dots_color and all.dots_color != 'default' %}
+        {% set ctnClasses = ctnClasses ~ ' sa-' ~ all.dots_color %}
+    {% endif %}
 
-	{% if all.buttons_color and all.buttons_color != 'default' %}
-		{% set ctnClasses = ctnClasses ~ ' sa-' ~ all.buttons_color %}
-	{% endif %}
+    {% if all.buttons_color and all.buttons_color != 'default' %}
+        {% set ctnClasses = ctnClasses ~ ' sa-' ~ all.buttons_color %}
+    {% endif %}
 
-	{% if all.text_color and all.text_color != 'default' %}
-		{% set ctnClasses = ctnClasses ~ ' sa-' ~ all.text_color %}
-	{% endif %}
+    {% if all.text_color and all.text_color != 'default' %}
+        {% set ctnClasses = ctnClasses ~ ' sa-' ~ all.text_color %}
+    {% endif %}
 
 {% endif %}
 

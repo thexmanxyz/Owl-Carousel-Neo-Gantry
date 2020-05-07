@@ -65,7 +65,7 @@ form:
         neo.style:
           type: select.select
           label: Style
-          description: Wählen Sie eine der vorhanden Vorlagen aus.
+          description: Wählen Sie eine der vorhanden Vorlagen aus. Nicht alle der unten angeführten Einstellungen gelten für jedes Style. Bitte beachten Sie die Notiz über jedem Abschnitt. Diese Entscheidung wurde getroffen, um die Kompatibilität mit dem Original Particle zu waren.<ul><li><b>Helium: </b> Einstellbar mit den Einstellungen weiter unten.</li><li><b>Neo Style 1: </b>Oben (Punkte) und unten (Pfeile, Titel).</li><li><b>Neo Style 2: </b>Oben (Pfeile, Titel) und unten (Punkte).</li><li><b>Neo Style 3: </b>Oben (Pfeile, Punkte) und unten (Titel).</li><li><b>Neo Style 4: </b>Oben (Titel) und unten (Pfeile, Punkte).</li></ul>
           default: helium
           options:
             helium: Helium
@@ -78,16 +78,6 @@ form:
           type: separator.note
           class: alert alert-info
           content: Die folgenden Einstellungen gelten nur für <strong>Helium-basierte</strong> Styles.
-
-        helium.color:
-          type: select.select
-          label: Theme
-          description: Wählen Sie die Farbe, in welcher die Slide Texte (Titel und Beschreibung) dargestellt werden sollen.
-          default: accent
-          options:
-            accent: Accent
-            color-b: Schwarz
-            color-w: Weiß
 
         helium.position:
           type: select.select
@@ -111,24 +101,20 @@ form:
             dots-u-round1: Rund 1
             dots-u-round2: Rund 2
 
-        _info_appearance_neo:
-          type: separator.note
-          class: alert alert-info
-          content: Die folgenden Einstellung gelten nur für die <strong>Neo Style X</strong> Styles. Diese Entscheidung wurde getroffen, um die Kompatibilität mit dem Original Particle zu waren.
-
-        neo.theme:
-          type: select.select
-          label: Theme
-          description: Wählen Sie den Farbmodus des Carousels.
-          default: theme-b
-          options:
-            theme-b: Schwarz
-            theme-w: Weiß
-
         _info_appearance_all:
           type: separator.note
           class: alert alert-info
           content: Die folgenden Einstellungen werden von allen Styles berücksichtig. Egal ob es sich hierbei um ein <strong>Neo Style X</strong> oder ein Helium-basierendes Style handelt.
+
+        all.theme:
+          type: select.select
+          label: Theme
+          description: Wählen Sie den Farbmodus des Carousels.<ul><b>Helium: <b>Die Farbe der Slide Texte (Titel und Beschreibung) wird geändert.<li><b>Neo Style X: </b>Alles wird auf Basis der gewählten Theme geändert.</li></ul>
+          default: accent
+          options:
+            theme-b: Schwarz
+            theme-w: Weiß
+            accent: Akzent
 
         all.arrow:
           type: select.select
@@ -143,16 +129,6 @@ form:
             arrow-circle-o: Arrow Circle O
             long-arrow: Long Arrow
             angle-double: Angle Double
-
-        all.dots_align:
-          type: select.select
-          label: Navigationspunkte Ausrichtung
-          description: Wählen Sie wie die Navigationspunkte angeordnet werden sollen.
-          default: dots-c
-          options:
-            dots-c: Mitte
-            dots-r: Rechts
-            dots-l: Links
 
         all.dots_align:
           type: select.select
@@ -263,7 +239,7 @@ form:
         slideLink:
           type: select.select
           label: Slide Link
-          description: Wählen Sie aus, ob der Button oder Titel Link stattdessen auf die ganze Slide angewendet werden soll. Wenn die Option Benutzerdefinierter Breakpoint ausgewählt wurde, wird der Pixelwert im nächsten Feld als Breakpoint verwendet.
+          description: Wählen Sie aus, ob der Button oder Titel Link stattdessen auf die ganze Slide angewendet werden soll. Wenn die Option <b>Benutzerdefinierter Breakpoint</b> ausgewählt wurde, wird der Pixelwert im nächsten Feld als Breakpoint verwendet.
           default: disable
           options:
             enable: Aktiviert
@@ -273,7 +249,7 @@ form:
         slideLinkBreakpoint:
           type: input.text
           label: Slide Link Breakpoint
-          description: Legen Sie fest, ab welcher Breite (in Pixel) der Link auf die ganze Slide angewedet werden soll. Sie müssen Benutzerdefinierter Breakpoint in der Slide Link Einstellung auswählen.
+          description: Legen Sie fest, ab welcher Breite (in Pixel) der Link auf die ganze Slide angewedet werden soll. Sie müssen <b>Benutzerdefinierter Breakpoint</b> in der <b>Slide Link</b> Einstellung auswählen.
           placeholder: 480
           default: 480
 
@@ -341,7 +317,7 @@ form:
 
         nav_class:
           type: input.selectize
-          label: Navgiationsbuttons Klassen
+          label: Navigationsbuttons Klassen
           description: Setzen Sie Klassen für die individuelle Gestaltung auf beide Navigationsbuttons.
 
         dots_class:
@@ -414,11 +390,11 @@ form:
             .startDate:
               type: input.date
               label: Startdatum
-              description: Wählen Sie das Datum, wann diese Slide das erste Mal gezeigt werden soll (nur für die Optionen 'Jährlich' und 'Einmal').
+              description: Wählen Sie das Datum, wann diese Slide das erste Mal gezeigt werden soll (nur für die Optionen <b>Jährlich</b> und <b>Einmal</b>).
             .endDate:
               type: input.date
               label: Enddatum
-              description: Wählen Sie das Datum, wann diese Slide das letzte Mal gezeigt werden soll (nur für die Optionen 'Jährlich' und 'Einmal').
+              description: Wählen Sie das Datum, wann diese Slide das letzte Mal gezeigt werden soll (nur für die Optionen <b>Jährlich</b> und <b>Einmal</b>).
 
     set_timing:
       type: container.set
