@@ -54,7 +54,7 @@ form:
         title:
           type: input.text
           label: Titel
-          description: Benutzerdefinierte Text für den Titel des Particles.
+          description: Benutzerdefinierter Text für den Titel des Particles.
           placeholder: 'Titel eingeben'
 
     set_appearance:
@@ -65,7 +65,7 @@ form:
         neo.style:
           type: select.select
           label: Style
-          description: Wählen Sie eine der vorhanden Vorlagen aus. Nicht alle der unten angeführten Einstellungen gelten für jedes Style. Bitte beachten Sie die Notiz über jedem Abschnitt. Diese Entscheidung wurde getroffen, um die Kompatibilität mit dem Original Particle zu waren.<ul><li><b>Helium: </b> Einstellbar mit den Einstellungen weiter unten.</li><li><b>Neo Style 1: </b>Oben (Punkte) und unten (Pfeile, Titel).</li><li><b>Neo Style 2: </b>Oben (Pfeile, Titel) und unten (Punkte).</li><li><b>Neo Style 3: </b>Oben (Pfeile, Punkte) und unten (Titel).</li><li><b>Neo Style 4: </b>Oben (Titel) und unten (Pfeile, Punkte).</li></ul>
+          description: Wählen Sie eine der vorhanden Vorlagen aus. Nicht alle der unten angeführten Einstellungen gelten für jedes Style. Bitte beachten Sie die Notiz über jedem Abschnitt. Diese Entscheidung wurde getroffen, um die Kompatibilität mit dem Original Particle zu wahren.<ul><li><b>Helium: </b> Einstellbar mit den Einstellungen weiter unten.</li><li><b>Neo Style 1: </b>Oben (Punkte) und unten (Pfeile, Titel).</li><li><b>Neo Style 2: </b>Oben (Pfeile, Titel) und unten (Punkte).</li><li><b>Neo Style 3: </b>Oben (Pfeile, Punkte) und unten (Titel).</li><li><b>Neo Style 4: </b>Oben (Titel) und unten (Pfeile, Punkte).</li></ul>
           default: helium
           options:
             helium: Helium
@@ -79,27 +79,76 @@ form:
           class: alert alert-info
           content: Die folgenden Einstellungen gelten nur für <strong>Helium-basierte</strong> Styles.
 
-        helium.position:
+        helium.nav_border:
           type: select.select
-          label: Navigationspunkte Position
-          description: Wählen Sie eine vertikale Position für die Darstellung der Navigationspunkte.
+          label: Navigationsbuttons Rand.
+          description: Wählen Sie einen Randtyp für die Navigationsbuttons. Typen die mit 'immer' gekennzeichnet sind behalten den Rand auch beim Hover.
           default: default
           options:
-            dots-d: Standard (12% von unten)
-            dots-t: Oben
-            dots-i: 12% von oben
+            default: Standard
+            nav-btn-b-def-a: Standard immer
+            nav-btn-b-fine: Fein (50% transparent)
+            nav-btn-b-fine-a: Fein immer (50% transparent)
+            nav-btn-b-none: Nichts
+
+        helium.nav_shape:
+          type: select.select
+          label: Navigationsbuttons Form
+          description: Wählen Sie eine Form für die Navigationsbuttons.
+          default: default
+          options:
+            default: Standard (Rund)
+            nav-btn-s-square: Eckig
+            nav-btn-s-round1: Abgerundet (2px)
+            nav-btn-s-round2: Abgerundet (15px)
+            nav-btn-s-partly1: Teilweise abgerundet (2px)
+            nav-btn-s-partly2: Teilweise abgerundet (2px)
+            nav-btn-s-partly3: Teilweise abgerundet (15px)
+            nav-btn-s-partly4: Teilweise abgerundet (15px)
+
+        helium.nav_position:
+          type: select.select
+          label: Navigationsbuttons Position
+          description: Wählen Sie eine Position für die Navigationsbuttons. Bitte denken Sie daran, dass diese Einstellung zur Überlappung mit den <b>Navigationspunkten</b> führen kann.
+          default: default
+          options:
+            default: Standard (Mitte)
+            nav-btn-p-t: Oben (48px | 48px)
+            nav-btn-p-tn: Oben (16px | 16px)
+            nav-btn-p-tn1: Oben (10px | 10px)
+            nav-btn-p-tc: Oben (48px | 30%)
+            nav-btn-p-tnc: Oben (16px | 30%)
+            nav-btn-p-tnc1: Oben (10px | 30%)
+            nav-btn-p-te: Oben Kante (Ecke)
+            nav-btn-p-b: Unten (48px | 48px)
+            nav-btn-p-bn: Unten (16px | 16px)
+            nav-btn-p-bn1: Unten (10px | 10px)
+            nav-btn-p-bc: Unten (48px | 30%)
+            nav-btn-p-bnc: Unten (16px | 30%)
+            nav-btn-p-bnc1: Unten (10px | 30%)
+            nav-btn-p-be: Unten Kante (Ecke)
+
+        helium.dots_position:
+          type: select.select
+          label: Navigationspunkte Position
+          description: Wählen Sie eine vertikale Position für die Darstellung der Navigationspunkte. Bitte denken Sie daran, dass diese Einstellung zur Überlappung mit den <b>Navigationsbuttons</b> führen kann.
+          default: dots-d
+          options:
+            dots-d: Standard (dynamisch unten)
             dots-b: Unten
+            dots-i: Dynamisch oben
+            dots-t: Oben
 
         helium.underlay:
           type: select.select
           label: Navigationpunkte Underlay
           description: Wählen Sie ein Styling für das Underlay der Navigationspunkte.
-          default: default
+          default: disable
           options:
             disable: Deaktiviert
             dots-u-square: Eckig
-            dots-u-round1: Rund 1
-            dots-u-round2: Rund 2
+            dots-u-round1: Rund (2px)
+            dots-u-round2: Rund (15px)
 
         _info_appearance_all:
           type: separator.note
@@ -109,7 +158,7 @@ form:
         all.theme:
           type: select.select
           label: Theme
-          description: Wählen Sie den Farbmodus des Carousels.<ul><b>Helium: <b>Die Farbe der Slide Texte (Titel und Beschreibung) wird geändert.<li><b>Neo Style X: </b>Alles wird auf Basis der gewählten Theme geändert.</li></ul>
+          description: Wählen Sie den Farbmodus des Carousels.<ul><b>Helium: </b>Die Farbe der Slide Texte (Titel und Beschreibung) wird geändert.<li><b>Neo Style X: </b>Alles wird auf Basis der gewählten Theme geändert.</li></ul>
           default: accent
           options:
             theme-b: Schwarz
@@ -129,6 +178,17 @@ form:
             arrow-circle-o: Arrow Circle O
             long-arrow: Long Arrow
             angle-double: Angle Double
+
+        all.dots_size:
+          type: select.select
+          label: Navigationspunkte Größe
+          description: Wählen Sie eine Größe für die Navigationspunkte.
+          default: default
+          options:
+            default: Standard (15px)
+            dots-size-s1: klein (12px)
+            dots-size-s2: kleiner (10px)
+            dots-size-t: winzig (8px)
 
         all.dots_align:
           type: select.select
@@ -212,7 +272,8 @@ form:
           default: square
           options:
             square: Eckig
-            round: Rund
+            round-1: Abgerundet (2px)
+            round-2: Abgerundet (15px)
 
     set_behavior:
       type: container.set
@@ -261,7 +322,7 @@ form:
 
     set_controls:
       type: container.set
-      label: Steuerelemente
+      label: Elemente
       fields:
         enable_title:
           type: input.checkbox
@@ -358,7 +419,7 @@ form:
             .linktitle:
               type: input.text
               label: Titel Link Title
-              description: Geben Sie den Text für das Link Title Attribut des Titels ein. Wenn Sie dieses Feld leer lassen, wird der Titel Text von oben verwendet.
+              description: Geben Sie den Text für das Link <code>title</code> Attribut des Titels ein. Wenn Sie dieses Feld leer lassen, wird der Titel Text von oben verwendet.
             .desc:
               type: textarea.textarea
               label: Beschreibung
@@ -371,7 +432,7 @@ form:
             .buttontitle:
               type: input.text
               label: Button Link Title
-              description: Geben Sie den Text für das Link Title Attribut des Buttons ein. Wenn Sie dieses Feld leer lassen, wird der Button Text verwendet.
+              description: Geben Sie den Text für das Link <code>title</code> Attribut des Buttons ein. Wenn Sie dieses Feld leer lassen, wird der Button Text verwendet.
             .buttonclass:
               type: input.text
               label: Button Klassen
@@ -447,12 +508,12 @@ form:
           placeholder: 2.3.4
           default: 2.3.4
 
-      cdn.base_url:
-        type: input.text
-        label: CDN Basis URL
-        description: Die Basis URL für den Owl Carousel 2 CDN Server.
-        placeholder: https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2
-        default: https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2
+        cdn.base_url:
+          type: input.text
+          label: CDN Basis URL
+          description: Die Basis URL für den Owl Carousel 2 CDN Server.
+          placeholder: https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2
+          default: https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2
 
         js.placement:
           type: select.select

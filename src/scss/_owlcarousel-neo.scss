@@ -570,30 +570,308 @@ $c-violet2: #bb4be3;
 $c-orange1: #fd931d;
 $c-orange2: #fbb566;
 
-$overlay1-c-a: #8f4dae;
-$overlay1-c-b: #4db2b3;
-$overlay2-c-a: #4cad9e;
-$overlay2-c-b: #b34b4b;
-$overlay3-c-a: #355c7d;
-$overlay3-c-b: #c06c84;
-$overlay4-c-a: #2a363b;
-$overlay4-c-b: #e84a5f;
-$overlay5-c-a: #474747;
-$overlay5-c-b: #a8a7a7;
-$overlay6-c-a: #474747;
-$overlay6-c-b: #a8a7a7;
-$overlay7-c-a: #4cdb9c;
-$overlay7-c-b: #212624;
-$overlay8-c-a: #db974c;
-$overlay8-c-b: #212624;
-$overlay9-c-a: #4c93db;
-$overlay9-c-b: #212624;
-$overlay10-c-a: #b54cdb;
-$overlay10-c-b: #212624;
-$overlay11-c-a: #4cd0db;
-$overlay11-c-b: #212624;
+$overlay1-c1: #8f4dae;
+$overlay1-c2: #4db2b3;
+$overlay2-c1: #4cad9e;
+$overlay2-c2: #b34b4b;
+$overlay3-c1: #355c7d;
+$overlay3-c2: #c06c84;
+$overlay4-c1: #2a363b;
+$overlay4-c2: #e84a5f;
+$overlay5-c1: #474747;
+$overlay5-c2: #a8a7a7;
+$overlay6-c1: #474747;
+$overlay6-c2: #a8a7a7;
+$overlay7-c1: #4cdb9c;
+$overlay7-c2: #212624;
+$overlay8-c1: #db974c;
+$overlay8-c2: #212624;
+$overlay9-c1: #4c93db;
+$overlay9-c2: #212624;
+$overlay10-c1: #b54cdb;
+$overlay10-c2: #212624;
+$overlay11-c1: #4cd0db;
+$overlay11-c2: #212624;
+
+/* Mixins Navigation Buttons */
+@mixin nav-btn-position1($top: null, $bottom: null, $vertical) { @include nav-btn-position2($top, $bottom, $vertical); }
+@mixin nav-btn-position2($top: null, $bottom: null, $vertical, $tr: null, $br: null) {
+    .owl-nav {
+        button {
+            &.owl-prev {
+                top: $top;
+                bottom: $bottom;
+                left: $vertical;
+                border-top-left-radius: $tr;
+                border-bottom-left-radius: $br;
+            }
+            &.owl-next {
+                top: $top;
+                bottom: $bottom;
+                right: $vertical;
+                border-top-right-radius: $tr;
+                border-bottom-right-radius: $br;
+            }
+        }
+    }
+}
+
+@mixin nav-btn-radius1($r) { @include nav-btn-radius2($r1: $r, $r3: $r); }
+@mixin nav-btn-radius2($r1, $r2: null, $r3, $r4: null) {
+    .owl-nav {
+        button {
+            &.owl-prev {
+                border-radius: $r1 $r2;
+            }
+            &.owl-next {
+                border-radius: $r3 $r4;
+            }
+        }
+    }
+}
+@mixin nav-btn-radius3($pos, $r) {
+    .owl-nav {
+        button {
+            &.owl-prev {
+                border-#{$pos}-left-radius: $r;
+                border-#{$pos}: 0;
+                border-left: 0;
+                &:hover {
+                    border-#{$pos}: 0;
+                    border-left: 0;
+                }
+            }
+            &.owl-next {
+                border-#{$pos}-right-radius: $r;
+                border-#{$pos}: 0;
+                border-right: 0;
+                &:hover {
+                    border-#{$pos}: 0;
+                    border-right: 0;
+                }
+            }
+        }
+    }
+}
+
+@mixin nav-btn-border($border: null, $border-color: null) {
+    .owl-nav {
+        button {
+            &.owl-prev, &.owl-next {
+                border: $border;
+                &:hover {
+                    border-color: $border-color;
+                }
+            }
+        }
+    }
+}
+
+/* Navigation Dots */
+@mixin nav-dots-size($w, $h, $m) {
+    .owl-dots {
+        .owl-dot {
+            width: $w;
+            height: $h;
+            margin: 0 $m;
+        }
+    }
+}
+
+@mixin nav-dots-dsize-mobile() {
+    .owl-dots { height: 1.8125rem; }
+    @include nav-dots-size(12px, 12px, 0.1875rem);
+}
+
+
+@mixin nav-dots-radius($pos, $r1, $r2) {
+    &.sa-round, &.sa-round-2 {
+        .owl-dots {
+            border-#{$pos}-left-radius: $r1;
+            border-#{$pos}-right-radius: $r1;
+        }
+    }
+    &.sa-round-1 {
+        .owl-dots {
+            border-#{$pos}-left-radius: $r2;
+            border-#{$pos}-right-radius: $r2;
+        }
+    }
+}
+
+@mixin nav-dots-radius-edge($radius) {
+    &.sh-dots-b {
+        &.sa-dots-l {
+            .owl-dots {
+                border-bottom-left-radius: $radius;
+            }
+        }
+        &.sa-dots-r {
+            .owl-dots {
+                border-bottom-right-radius: $radius;
+            }
+        }
+    }
+    &.sh-dots-t {
+        &.sa-dots-l {
+            .owl-dots {
+                border-top-left-radius: $radius;
+            }
+        }
+        &.sa-dots-r {
+            .owl-dots {
+                border-top-right-radius: $radius;
+            }
+        }
+    }
+}
+
+
+@mixin nav-dots-align($p){
+    &.sa-dots-l .owl-dots {
+        text-align: left;
+        padding-left: $p;
+    }
+    &.sa-dots-r .owl-dots {
+        text-align: right;
+        padding-right: $p;
+    }
+}
+
+@mixin nav-dots-style($w: null, $p: null, $bg: null) {
+    .owl-dots {
+        max-width: $w;
+        background: $bg; 
+        padding: $p;
+    }
+}
+
+@mixin nav-dots-btns-neo($dots-top: null, $dots-bottom: null, $padding, $btn-top: null, $btn-bottom: null){
+    .owl-dots {
+        top: $dots-top;
+        bottom: $dots-bottom;
+        padding-top: $padding;
+    }
+    
+    .owl-nav {
+        button {
+            &.owl-prev, &.owl-next {
+                top: $btn-top;
+                bottom: $btn-bottom;
+            }
+        }
+    }
+}
+
+/* Mixins Control Coloring */
+@mixin nav-control-color($name, $c1, $c2) {
+    &.sa-control-d-#{$name} {
+        .owl-dots {
+            .owl-dot {
+                &.active, &:hover {
+                    background: $c1;
+                }
+                &.active:hover {
+                    background: $c2;
+                }
+            }
+        }
+	}
+    &.sa-control-b-#{$name} {
+        .owl-nav {
+            button {
+                &.owl-prev, &.owl-next {
+                    &:hover {
+                        color: $c1;
+                    }
+                }
+            }
+        }
+	}
+    &.sa-control-t-#{$name} {
+        .g-owlcarousel-item-content a:hover h1 {
+            color: $c1 !important;
+        }
+    }
+}
+
+@mixin nav-control-color-h($name, $c) {
+    &.sa-control-b-#{$name} {
+        .owl-nav {
+            button {
+                &.owl-prev, &.owl-next {
+                    &:hover {
+                        border: 1px solid $c;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Mixin Slide */
+@mixin slide-text-color($c, $speed) {
+    .g-owlcarousel-item-wrapper {
+        .g-owlcarousel-item-content-container {
+            .g-owlcarousel-item-content-wrapper {
+                .g-owlcarousel-item-content {
+                    .g-owlcarousel-item-title,
+                    .g-owlcarousel-item-desc {
+                        color: $c;
+                    }
+                    .g-owlcarousel-item-title {
+                        @include transition($speed);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin slide-text-position($pos) {
+    .g-owlcarousel-item-wrapper {
+        .g-owlcarousel-item-content-container {
+            .g-owlcarousel-item-content-wrapper .g-owlcarousel-item-content{
+                .g-owlcarousel-item-title {
+                    #{$pos}: 0;
+                }
+                .g-owlcarousel-item-desc {
+                    margin-#{$pos}: 35px;
+                    #{$pos}: 0;
+                }
+            }
+        }
+    }
+}
+
+/* Mixins Overlay */
+@mixin owl-overlay($name, $c1, $c2) {
+    &.sa-overlay-#{$name} {
+        &.has-color-overlay {
+            .owl-stage > .owl-item {
+                &:nth-child(even), &:nth-child(odd) {
+                    .g-owlcarousel-item-img:after {
+                        background-color: $c1;
+                        background-image: -webkit-linear-gradient(-410deg, $c1, $c2);
+                        background-image: linear-gradient(140deg, $c1, $c2);
+                        opacity: 0.9;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Mixins Shadow */
+@mixin owl-shadow($val) {
+    -webkit-box-shadow: $val;
+    -moz-box-shadow: $val;
+    box-shadow: $val;
+}
 
 .g-owlcarousel {
+    
+    /* Neo Styles Only */
     &.style-neo {
         .g-owlcarousel-item-wrapper {
             .g-owlcarousel-item-img {
@@ -617,12 +895,8 @@ $overlay11-c-b: #212624;
                             font-size: 1rem;
                             line-height: 1.2;
                             text-align: center;
-                            -webkit-box-shadow: 4px -2px 6px -4px #000;
-                            -moz-box-shadow: 4px -2px 6px -4px #000;
-                            box-shadow: 4px -2px 6px -4px #000;
-                            -webkit-transition: all 0.3s;
-                            -moz-transition: all 0.3s;
-                            transition: all 0.3s;
+                            @include owl-shadow(4px -2px 6px -4px #000);
+                            @include transition(all 0.3s);
                         }
 
                         .g-owlcarousel-item-desc {
@@ -640,54 +914,30 @@ $overlay11-c-b: #212624;
                             font-size: 0.9rem;
                             font-weight: 400;
                             border-radius: 0;
-                            -webkit-transition: all 0.3s;
-                            -moz-transition: all 0.3s;
-                            transition: all 0.3s;
+                            @include transition(all 0.3s);
                         }
                     }
                 }
-
-                @include breakpoint(very-large-desktop-range) {
-                    width: 100%;
-                }
-
-                @include breakpoint(large-desktop-range) {
-                    width: 100%;
-                }
-
-                @include breakpoint(desktop-range) {
-                    width: 100%;
-                }
-
-                @include breakpoint(tablet-range) {
-                    width: 100%;
-                }
-
-                @include breakpoint(large-mobile-range) {
-                    width: 100%;
-                }
-
-                @include breakpoint(small-mobile-range) {
-                    width: 100%;
-                }
+                @include breakpoint(very-large-desktop-range) { width: 100%; }
+                @include breakpoint(large-desktop-range) { width: 100%; }
+                @include breakpoint(desktop-range) { width: 100%; }
+                @include breakpoint(tablet-range) { width: 100%; }
+                @include breakpoint(large-mobile-range) { width: 100%; }
+                @include breakpoint(small-mobile-range) { width: 100%; }
             }
         }
 
         .owl-dots {
             height: 1.875rem;
             padding-top: 0.1875rem;
-            -webkit-box-shadow: 0 2px 6px -4px #000;
-            -moz-box-shadow: 0 2px 6px -4px #000;
-            box-shadow: 0 2px 6px -4px #000;
+            @include owl-shadow(0 2px 6px -4px #000);
 
             .owl-dot {
                 margin: 0 0.25rem;    
                 opacity: 0.8;
                 width: 14px;
                 height: 14px;
-                -webkit-box-shadow: inset 0px 0px 5px -3px #000;
-                -moz-box-shadow: inset 0px 0px 5px -3px #000;
-                box-shadow: inset 0px 0px 5px -3px #000;
+                @include owl-shadow(inset 0px 0px 5px -3px #000);
             }
         }
 
@@ -836,53 +1086,97 @@ $overlay11-c-b: #212624;
             }
         }
 
-        @include breakpoint(small-mobile-range) {
-            .owl-dots {
-                height: 1.8125rem;
-
-                .owl-dot {
-                    margin: 0 0.1875rem;
-                    width: 12px;
-                    height: 12px;
-                }
-            }
-        }
-
-        @include breakpoint(large-mobile-range) {
-            .owl-dots {
-                height: 1.8125rem;
-
-                .owl-dot {
-                    margin: 0 0.1875rem;
-                    width: 12px;
-                    height: 12px;
-                }
-            }
-        }
+        @include breakpoint(small-mobile-range) { @include nav-dots-dsize-mobile(); }
+        @include breakpoint(large-mobile-range) { @include nav-dots-dsize-mobile(); }
+    }
+    
+    &.style-neo1 {
+        @include slide-text-position(bottom);
+        @include nav-dots-btns-neo(0, $padding: 0.1875rem, $btn-bottom: 0);
     }
 
+    &.style-neo2 {
+        @include slide-text-position(top);
+        @include nav-dots-btns-neo($dots-bottom: 0, $padding: 0.125rem, $btn-top: 0.9375rem);
+    }
+
+    &.style-neo3 {
+        @include slide-text-position(bottom);
+        @include nav-dots-btns-neo(0, $padding: 0.1875rem, $btn-top: 0.75rem);
+    }
+
+    &.style-neo4 {
+        @include slide-text-position(top);
+        @include nav-dots-btns-neo($dots-bottom: 0, $padding: 0.1875rem, $btn-bottom: -0.125rem);
+    }
+
+    &.style-neo1, &.style-neo3 { @include nav-dots-radius(top, 15px, 2px); }
+    &.style-neo2, &.style-neo4 { @include nav-dots-radius(bottom, 15px, 2px); }
+
+    &.style-neo1, &.style-neo2 { @include nav-dots-align(0.5rem) }
+    &.style-neo3, &.style-neo4 { @include nav-dots-align(2rem) }
+
+    /* Helium Styles Only */
     &:not(.style-neo) {
 
         .g-owlcarousel-item-wrapper {
             .g-owlcarousel-item-content-container {
                  .g-owlcarousel-item-content-wrapper {
                     .g-owlcarousel-item-content {
-                    .g-owlcarousel-item-title {
-                        -webkit-transition: all 0.3s;
-                        -moz-transition: all 0.3s;
-                        transition: all 0.3s;
-                    }
+                        .g-owlcarousel-item-title {
+                            @include transition(all 0.3s);
+                        }
                     }
                 }
             }
         }
 
+        &.sh-nav-btn-b-def { @include nav-btn-border($border-color: transparent !important); }
+        &.sh-nav-btn-b-def-a { @include nav-btn-border(1px solid #fff); }
+        &.sh-nav-btn-b-fine { @include nav-btn-border(1px solid rgba(255,255,255,0.5), transparent !important); }
+        &.sh-nav-btn-b-fine-a { @include nav-btn-border(1px solid rgba(255,255,255,0.5)); }
+        &.sh-nav-btn-b-none { @include nav-btn-border(0 solid transparent !important); }
+
+        &.sh-nav-btn-s-square { @include nav-btn-radius1(0); }
+        &.sh-nav-btn-s-round1 { @include nav-btn-radius1(2px); }
+        &.sh-nav-btn-s-round2 { @include nav-btn-radius1(15px); }
+        
+        &.sh-nav-btn-s-partly1 { @include nav-btn-radius2(2px, 0, 0, 2px); }
+        &.sh-nav-btn-s-partly2 { @include nav-btn-radius2(0, 2px, 2px, 0); }
+        &.sh-nav-btn-s-partly3 { @include nav-btn-radius2(15px, 0, 0, 15px); }
+        &.sh-nav-btn-s-partly4 { @include nav-btn-radius2(0, 15px, 15px, 0); }
+
+        &.sh-nav-btn-p-t { @include nav-btn-position1(69px, $vertical: 3rem); }
+        &.sh-nav-btn-p-tc { @include nav-btn-position1(69px, $vertical: 30%); }        
+        &.sh-nav-btn-p-tn { @include nav-btn-position1(37px, $vertical: 16px); }    
+        &.sh-nav-btn-p-tnc { @include nav-btn-position1(37px, $vertical: 30%); } 
+        &.sh-nav-btn-p-tn1 { @include nav-btn-position1(30px, $vertical: 10px); }
+        &.sh-nav-btn-p-tnc1 { @include nav-btn-position1(30px, $vertical: 30%); }
+
+        &.sh-nav-btn-p-b { @include nav-btn-position1(inherit, 27px, 3rem); }
+        &.sh-nav-btn-p-bc { @include nav-btn-position1(inherit, 27px, 30%); }
+        &.sh-nav-btn-p-bn { @include nav-btn-position1(inherit, -5px, 16px); }
+        &.sh-nav-btn-p-bnc { @include nav-btn-position1(inherit, -5px, 30%); }
+        &.sh-nav-btn-p-bn1 { @include nav-btn-position1(inherit, -11px, 10px); }
+        &.sh-nav-btn-p-bnc1 { @include nav-btn-position1(inherit, -11px, 30%); }
+
+        &.sh-nav-btn-p-te {
+            @include nav-btn-position2(21px, $vertical: 0, $tr: 0);
+            &.sa-round-1 { @include nav-btn-radius3(top, 2px); }
+            &.sa-round-2 { @include nav-btn-radius3(top, 15px); }
+        }
+
+        &.sh-nav-btn-p-be {
+            @include nav-btn-position2(inherit, -21px, 0, $br: 0);
+            &.sa-round-1 { @include nav-btn-radius3(bottom, 2px); }
+            &.sa-round-2 { @include nav-btn-radius3(bottom, 15px); }
+        }
+
         &.sh-dots-u-square, &.sh-dots-u-round1, &.sh-dots-u-round2 {
-            .owl-dots {
-                 width: 250px;
-                 background: rgba(0, 0, 0, 0.5); 
-                 padding: 6px 8px 9px 8px;
-            }
+            @include nav-dots-style(300px, 4px 8px 7px 8px, rgba(0, 0, 0, 0.5));
+            &.sa-dots-size-s1 { @include nav-dots-style(250px, 2px 6px 5px 6px); }
+            &.sa-dots-size-s2 { @include nav-dots-style(200px, 1px 5px 4px 5px); }
+            &.sa-dots-size-t { @include nav-dots-style(150px, 0 4px 3px 4px); }       
         }
 
         &.sh-dots-u-round1 {
@@ -898,40 +1192,20 @@ $overlay11-c-b: #212624;
         }
 
         &.sh-dots-u-square, &.sh-dots-u-round1 {
-            &.sa-round {
-                &.sh-dots-b {
-                    &.sa-dots-l {
-                        .owl-dots {
-                            border-bottom-left-radius: 15px;
-                        }
-                    }
-                    &.sa-dots-r {
-                        .owl-dots {
-                            border-bottom-right-radius: 15px;
-                        }
-                    }
-                }
-                &.sh-dots-t {
-                    &.sa-dots-l {
-                        .owl-dots {
-                            border-top-left-radius: 15px;
-                        }
-                    }
-                    &.sa-dots-r {
-                        .owl-dots {
-                            border-top-right-radius: 15px;
-                        }
-                    }
-                }
-            }
+            &.sa-round, &.sa-round-2 { @include nav-dots-radius-edge(15px); }
+            &.sa-round-1 { @include nav-dots-radius-edge(2px); }
         }
 
         &.sa-dots-c, &.sa-dots-l, &.sa-dots-r {
             .owl-dots {
                 text-align: center;
                 margin: 0 auto;
-                width: 300px;
+                max-width: 300px;
             }
+
+            &.sa-dots-size-s1 { @include nav-dots-style(250px); }
+            &.sa-dots-size-s2 { @include nav-dots-style(200px); }
+            &.sa-dots-size-t { @include nav-dots-style(150px); }  
         }
 
         &.sa-dots-c {
@@ -952,9 +1226,10 @@ $overlay11-c-b: #212624;
         }
 
         &.sh-dots-b, &.sh-dots-t {
-            .owl-dots {
-                padding: 6px 8px 9px 8px;
-            }
+            @include nav-dots-style($p: 4px 8px 7px 8px);
+            &.sa-dots-size-s1 { @include nav-dots-style($p: 2px 6px 5px 6px); }
+            &.sa-dots-size-s2 { @include nav-dots-style($p: 1px 5px 4px 5px); }
+            &.sa-dots-size-t { @include nav-dots-style($p: 0px 4px 3px 4px); }
         }
 
         &.sh-dots-b {
@@ -973,676 +1248,70 @@ $overlay11-c-b: #212624;
         &.sh-dots-i {
             .owl-dots {
                 top: 12%;
-                bottom: inherit;
+                bottom: inherit;          
+                @include breakpoint(desktop-range) { top: 5%; }
+                @include breakpoint(tablet-range) { top: 1rem; }
+                @include breakpoint(mobile-only) { top: 0.5rem; }
             }
         }
 
-        &.sh-color-b {
-            .g-owlcarousel-item-wrapper {
-                .g-owlcarousel-item-content-container {
-                     .g-owlcarousel-item-content-wrapper {
-                        .g-owlcarousel-item-content {
-                            .g-owlcarousel-item-title,
-                            .g-owlcarousel-item-desc {
-                                color: #000;
-                            }
-                            .g-owlcarousel-item-title {
-                                -webkit-transition: all 0.3s;
-                                -moz-transition: all 0.3s;
-                                transition: all 0.3s;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        &.sh-color-w {
-            .g-owlcarousel-item-wrapper {
-                .g-owlcarousel-item-content-container {
-                     .g-owlcarousel-item-content-wrapper {
-                        .g-owlcarousel-item-content {
-                            .g-owlcarousel-item-title,
-                            .g-owlcarousel-item-desc {
-                                color: #fff;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        &.sh-color-b { @include slide-text-color(#000, all 0.3s); }
+        &.sh-color-w { @include slide-text-color(#fff, all 0.3s); }
+        
         &.sa-control-b-gr, &.sa-control-b-re, &.sa-control-b-bl, &.sa-control-b-vi, &.sa-control-b-or, &.sa-control-b-g1, &.sa-control-b-g2 {
             .owl-nav {
                 button {
                     &.owl-prev, &.owl-next {
                         &:hover {
-                            background: rgba(0,0,0,0.5);
+                            background: rgba(0,0,0,0.3);
                         }
                     }
                 }
             }
         }
 
-        &.sa-control-b-gr {
-            .owl-nav {
-                button {
-                    &.owl-prev, &.owl-next {
-                        &:hover {
-							border: 1px solid $c-green1;
-                        }
-                    }
-                }
-            }
-        }
-
-        &.sa-control-b-re {
-            .owl-nav {
-                button {
-                    &.owl-prev, &.owl-next {
-                        &:hover {
-							border: 1px solid $c-red1;
-                        }
-                    }
-                }
-            }
-        }
-
-        &.sa-control-b-bl {
-            .owl-nav {
-                button {
-                    &.owl-prev, &.owl-next {
-                        &:hover {
-							border: 1px solid $c-blue1;
-                        }
-                    }
-                }
-            }
-        }
-
-        &.sa-control-b-vi {
-            .owl-nav {
-                button {
-                    &.owl-prev, &.owl-next {
-                        &:hover {
-							border: 1px solid $c-violet1;
-                        }
-                    }
-                }
-            }
-        }
-
-        &.sa-control-b-or {
-            .owl-nav {
-                button {
-                    &.owl-prev, &.owl-next {
-                        &:hover {
-							border: 1px solid $c-orange1;
-                        }
-                    }
-                }
-            }
-        }
-
-        &.sa-control-b-g1 {
-            .owl-nav {
-                button {
-                    &.owl-prev, &.owl-next {
-                        &:hover {
-							border: 1px solid #AAA;
-                        }
-                    }
-                }
-            }
-        }
-
-        &.sa-control-b-g2 {
-            .owl-nav {
-                button {
-                    &.owl-prev, &.owl-next {
-                        &:hover {
-							border: 1px solid #CCC;
-                        }
-                    }
-                }
-            }
-        }
+        @include nav-control-color-h(gr, $c-green1);
+        @include nav-control-color-h(re, $c-red1);
+        @include nav-control-color-h(bl, $c-blue1);
+        @include nav-control-color-h(vi, $c-violet1);
+        @include nav-control-color-h(or, $c-orange1);
+        @include nav-control-color-h(g1, #aaa);
+        @include nav-control-color-h(g2, #ccc);
     }
 
-    &.style-neo1 {
-        .g-owlcarousel-item-wrapper {
-            .g-owlcarousel-item-content-container {
-                .g-owlcarousel-item-content-wrapper .g-owlcarousel-item-content{
-                    .g-owlcarousel-item-title {
-                        bottom: 0;
-                    }
-                    .g-owlcarousel-item-desc {
-                        margin-bottom: 35px;
-                        bottom: 0;
-                    }
-                }
-            }
-        }
-
-        .owl-dots {
-            top: 0;
-            padding-top: 0.1875rem;
-        }
-
-        .owl-nav {
-            button {
-                &.owl-prev, &.owl-next {
-                    bottom: 0;
-                }
-            }
-        }
-    }
-
-    &.style-neo2 {
-        .g-owlcarousel-item-wrapper {
-            .g-owlcarousel-item-content-container {
-                .g-owlcarousel-item-content-wrapper .g-owlcarousel-item-content {
-                    .g-owlcarousel-item-title {
-                        top: 0;
-                    }
-                    .g-owlcarousel-item-desc {
-                        margin-top: 35px;
-                        top: 0;
-                    }
-                }
-            }
-        }
-
-        .owl-dots {
-            bottom: 0;
-            padding-top: 0.125rem;
-        }
-
-        .owl-nav {
-            button {
-                &.owl-prev, &.owl-next {
-                    top: 0.9375rem;
-                }
-            }
-        }
-    }
-
-    &.style-neo3 {
-        .g-owlcarousel-item-wrapper {
-            .g-owlcarousel-item-content-container {
-                .g-owlcarousel-item-content-wrapper .g-owlcarousel-item-content {
-                    .g-owlcarousel-item-title {
-                        bottom: 0;
-                    }
-
-                    .g-owlcarousel-item-desc {
-                        margin-bottom: 35px;
-                        bottom: 0;
-                    }
-                }
-            }
-        }
-
-        .owl-dots {
-            top: 0;
-            padding-top: 0.1875rem;
-        }
-
-        .owl-nav {
-            button {
-                &.owl-prev, &.owl-next {
-                    top: 0.75rem;
-                }
-            }
-        }
-    }
-
-    &.style-neo4 {
-        .g-owlcarousel-item-wrapper {
-            .g-owlcarousel-item-content-container {
-                .g-owlcarousel-item-content-wrapper .g-owlcarousel-item-content {
-                    .g-owlcarousel-item-title {
-                        top: 0;
-                    }
-                    .g-owlcarousel-item-desc {
-                        margin-top: 35px;
-                        top: 0;
-                    }
-                }
-            }
-        }
-
-        .owl-dots {
-            bottom: 0;
-            padding-top: 0.1875rem;
-        }
-
-        .owl-nav {
-            button {
-                &.owl-prev, &.owl-next {
-                    bottom: -0.125rem;
-                }
-            }
-        }
-    }
-
-    &.style-neo1,
-    &.style-neo3 {
-        &.sa-round .owl-dots {
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-        }
-    }
-
-    &.style-neo2,
-    &.style-neo4 {
-        &.sa-round .owl-dots {
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-        }
-    }
-
-    &.style-neo1,
-    &.style-neo2 {
-        &.sa-dots-l .owl-dots {
-            text-align: left;
-            padding-left: 0.5rem;
-        }
-    }
-
-    &.style-neo1,
-    &.style-neo2, {
-        &.sa-dots-r .owl-dots {
-            text-align: right;
-            padding-right: 0.5rem;
-        }
-    }
-
-    &.style-neo3,
-    &.style-neo4 {
-        &.sa-dots-l .owl-dots {
-            text-align: left;
-            padding-left: 2rem;
-        }
-    }
-
-    &.style-neo3,
-    &.style-neo4, {
-        &.sa-dots-r .owl-dots {
-            text-align: right;
-            padding-right: 2rem;
-        }
-    }
-
-    &.sa-round {
+    &.sa-round, &.sa-round-2 {
         .owl-stage-outer {
             border-radius: 15px;
         }
     }
 
-    &.sa-control-d-gr {
-        .owl-dots {
-            .owl-dot {
-                &.active, &:hover {
-                    background: $c-green1;
-                }
-                &.active:hover {
-                    background: $c-green2;
-                }
-            }
-        }
-	}
-    &.sa-control-b-gr {
-        .owl-nav {
-            button {
-                &.owl-prev, &.owl-next {
-                    &:hover {
-                        color: $c-green1;
-                    }
-                }
-            }
-        }
-	}
-    &.sa-control-t-gr {
-        .g-owlcarousel-item-content a:hover h1 {
-            color: $c-green1 !important;
+    &.sa-round-1 {
+        .owl-stage-outer {
+            border-radius: 2px;
         }
     }
 
-    &.sa-control-d-re {
-        .owl-dots {
-            .owl-dot {
-                &.active, &:hover {
-                    background: $c-red1;
-                }
-                &.active:hover {
-                    background: $c-red2;
-                }
-            }
-        }
-	}
-    &.sa-control-b-re {
-        .owl-nav {
-            button {
-                &.owl-prev, &.owl-next {
-                    &:hover {
-                        color: $c-red1;
-                    }
-                }
-            }
-        }
-	}
-    &.sa-control-t-re {
-        .g-owlcarousel-item-content a:hover h1 {
-            color: $c-red1 !important;
-        }
-    }
+    &.sa-dots-size-s1 { @include nav-dots-size(12px, 12px, 4px); }
+    &.sa-dots-size-s2 { @include nav-dots-size(10px, 10px, 3px); }
+    &.sa-dots-size-t { @include nav-dots-size(8px, 8px, 2px); }
 
-    &.sa-control-d-bl {
-        .owl-dots {
-            .owl-dot {
-                &.active, &:hover {
-                    background: $c-blue1;
-                }
-                &.active:hover {
-                    background: $c-blue2;
-                }
-            }
-        }
-	}
-    &.sa-control-b-bl {
-        .owl-nav {
-            button {
-                &.owl-prev, &.owl-next {
-                    &:hover {
-                        color: $c-blue1;
-                    }
-                }
-            }
-        }
-	}
-    &.sa-control-t-bl {
-        .g-owlcarousel-item-content a:hover h1 {
-            color: $c-blue1 !important;
-        }
-    }
+    @include nav-control-color(gr, $c-green1, $c-green2);
+    @include nav-control-color(re, $c-red1, $c-red2);
+    @include nav-control-color(bl, $c-blue1, $c-blue2);
+    @include nav-control-color(vi, $c-violet1, $c-violet2);
+    @include nav-control-color(or, $c-orange1, $c-orange2);
+    @include nav-control-color(g1, #aaa, #ccc);
+    @include nav-control-color(g2, #ccc, #aaa);
 
-    &.sa-control-d-vi {
-        .owl-dots {
-            .owl-dot {
-                &.active, &:hover {
-                    background: $c-violet1;
-                }
-                &.active:hover {
-                    background: $c-violet2;
-                }
-            }
-        }
-	}
-	&.sa-control-b-vi {
-        .owl-nav {
-            button {
-                &.owl-prev, &.owl-next {
-                    &:hover {
-                        color: $c-violet1;
-                    }
-                }
-            }
-        }
-	}
-    &.sa-control-t-vi {
-        .g-owlcarousel-item-content a:hover h1 {
-            color: $c-violet1 !important;
-        }
-    }
-
-    &.sa-control-d-or {
-        .owl-dots {
-            .owl-dot {
-                &.active, &:hover {
-                    background: $c-orange1;
-                }
-                &.active:hover {
-                    background: $c-orange2;
-                }
-            }
-        }
-	}
-    &.sa-control-b-or {
-        .owl-nav {
-            button {
-                &.owl-prev, &.owl-next {
-                    &:hover {
-                        color: $c-orange1;
-                    }
-                }
-            }
-        }
-	}
-    &.sa-control-t-or {
-        .g-owlcarousel-item-content a:hover h1 {
-            color: $c-orange1 !important;
-        }
-    }
-
-    &.sa-control-d-g1 {
-        .owl-dots {
-            .owl-dot {
-                &.active, &:hover {
-                    background: #AAA;
-                }
-                &.active:hover {
-                    background: #CCC;
-                }
-            }
-        }
-	}
-    &.sa-control-b-g1 {
-        .owl-nav {
-            button {
-                &.owl-prev, &.owl-next {
-                    &:hover {
-                        color: #AAA;
-                    }
-                }
-            }
-        }
-	}
-    &.sa-control-t-g1 {
-        .g-owlcarousel-item-content a:hover h1 {
-            color: #AAA !important;
-        }
-    }
-
-    &.sa-control-d-g2 {
-        .owl-dots {
-            .owl-dot {
-                &.active, &:hover {
-                    background: #CCC;
-                }
-                &.active:hover {
-                    background: #AAA;
-                }
-            }
-        }
-	}
-    &.sa-control-b-g2 {
-        .owl-nav {
-            button {
-                &.owl-prev, &.owl-next {
-                    &:hover {
-                        color: #CCC;
-                    }
-                }
-            }
-        }
-	}
-    &.sa-control-t-g2 {
-        .g-owlcarousel-item-content a:hover h1 {
-            color: #CCC !important;
-        }
-    }
-
-    &.sa-overlay-h1 {
-        &.has-color-overlay {
-            .owl-stage > .owl-item {
-                &:nth-child(even), &:nth-child(odd) {
-                    .g-owlcarousel-item-img:after {
-                        background-color: $overlay1-c-a;
-                        background-image: -webkit-linear-gradient(-410deg, $overlay1-c-a, $overlay1-c-b);
-                        background-image: linear-gradient(140deg, $overlay1-c-a, $overlay1-c-b);
-                        opacity: 0.9;
-                    }
-                }
-            }
-        }
-    }
-
-    &.sa-overlay-h2 {
-        &.has-color-overlay {
-            .owl-stage > .owl-item {
-                &:nth-child(even), &:nth-child(odd) {
-                    .g-owlcarousel-item-img:after {
-                        background-color: $overlay2-c-a;
-                        background-image: -webkit-linear-gradient(-410deg, $overlay2-c-a, $overlay2-c-b);
-                        background-image: linear-gradient(140deg, $overlay2-c-a, $overlay2-c-b);
-                        opacity: 0.9;
-                    }
-                }
-            }
-        }
-    }
-
-    &.sa-overlay-h3 {
-        &.has-color-overlay {
-            .owl-stage > .owl-item {
-                &:nth-child(even), &:nth-child(odd) {
-                    .g-owlcarousel-item-img:after {
-                        background-color: $overlay3-c-a;
-                        background-image: -webkit-linear-gradient(-410deg, $overlay3-c-a, $overlay3-c-b);
-                        background-image: linear-gradient(140deg, $overlay3-c-a, $overlay3-c-b);
-                        opacity: 0.9;
-                    }
-                }
-            }
-        }
-    }
-
-    &.sa-overlay-h4 {
-        &.has-color-overlay {
-            .owl-stage > .owl-item {
-                &:nth-child(even), &:nth-child(odd) {
-                    .g-owlcarousel-item-img:after {
-                        background-color: $overlay4-c-a;
-                        background-image: -webkit-linear-gradient(-410deg, $overlay4-c-a, $overlay4-c-b);
-                        background-image: linear-gradient(140deg, $overlay4-c-a, $overlay4-c-b);
-                        opacity: 0.9;
-                    }
-                }
-            }
-        }
-    }
-
-    &.sa-overlay-h5 {
-        &.has-color-overlay {
-            .owl-stage > .owl-item {
-                &:nth-child(even), &:nth-child(odd) {
-                    .g-owlcarousel-item-img:after {
-                        background-color: $overlay5-c-a;
-                        background-image: -webkit-linear-gradient(-410deg, $overlay5-c-a, $overlay5-c-b);
-                        background-image: linear-gradient(140deg, $overlay5-c-a, $overlay5-c-b);
-                        opacity: 0.9;
-                    }
-                }
-            }
-        }
-    }
-
-    &.sa-overlay-h6 {
-        &.has-color-overlay {
-            .owl-stage > .owl-item {
-                &:nth-child(even), &:nth-child(odd) {
-                    .g-owlcarousel-item-img:after {
-                        background-color: $overlay6-c-a;
-                        background-image: -webkit-linear-gradient(-410deg, $overlay6-c-a, $overlay6-c-b);
-                        background-image: linear-gradient(140deg, $overlay6-c-a, $overlay6-c-b);
-                        opacity: 0.9;
-                    }
-                }
-            }
-        }
-    }
-
-    &.sa-overlay-gr {
-        &.has-color-overlay {
-            .owl-stage > .owl-item {
-                &:nth-child(even), &:nth-child(odd) {
-                    .g-owlcarousel-item-img:after {
-                        background-color: $overlay7-c-a;
-                        background-image: -webkit-linear-gradient(-410deg, $overlay7-c-a, $overlay7-c-b);
-                        background-image: linear-gradient(140deg, $overlay7-c-a, $overlay7-c-b);
-                        opacity: 0.9;
-                    }
-                }
-            }
-        }
-    }
-
-    &.sa-overlay-or {
-        &.has-color-overlay {
-            .owl-stage > .owl-item {
-                &:nth-child(even), &:nth-child(odd) {
-                    .g-owlcarousel-item-img:after {
-                        background-color: $overlay8-c-a;
-                        background-image: -webkit-linear-gradient(-410deg, $overlay8-c-a, $overlay8-c-b);
-                        background-image: linear-gradient(140deg, $overlay8-c-a, $overlay8-c-b);
-                        opacity: 0.9;
-                    }
-                }
-            }
-        }
-    }
-
-    &.sa-overlay-bl {
-        &.has-color-overlay {
-            .owl-stage > .owl-item {
-                &:nth-child(even), &:nth-child(odd) {
-                    .g-owlcarousel-item-img:after {
-                        background-color: $overlay9-c-a;
-                        background-image: -webkit-linear-gradient(-410deg, $overlay9-c-a, $overlay9-c-b);
-                        background-image: linear-gradient(140deg, $overlay9-c-a, $overlay9-c-b);
-                        opacity: 0.9;
-                    }
-                }
-            }
-        }
-    }
-
-    &.sa-overlay-vi {
-        &.has-color-overlay {
-            .owl-stage > .owl-item {
-                &:nth-child(even), &:nth-child(odd) {
-                    .g-owlcarousel-item-img:after {
-                        background-color: $overlay10-c-a;
-                        background-image: -webkit-linear-gradient(-410deg, $overlay10-c-a, $overlay10-c-b);
-                        background-image: linear-gradient(140deg, $overlay10-c-a, $overlay10-c-b);
-                        opacity: 0.9;
-                    }
-                }
-            }
-        }
-    }
-
-    &.sa-overlay-tu {
-        &.has-color-overlay {
-            .owl-stage > .owl-item {
-                &:nth-child(even), &:nth-child(odd) {
-                    .g-owlcarousel-item-img:after {
-                        background-color: $overlay11-c-a;
-                        background-image: -webkit-linear-gradient(-410deg, $overlay11-c-a, $overlay11-c-b);
-                        background-image: linear-gradient(140deg, $overlay11-c-a, $overlay11-c-b);
-                        opacity: 0.9;
-                    }
-                }
-            }
-        }
-    }    
+    @include owl-overlay(h1, $overlay1-c1, $overlay1-c2);
+    @include owl-overlay(h2, $overlay2-c1, $overlay2-c2);
+    @include owl-overlay(h3, $overlay3-c1, $overlay3-c2);
+    @include owl-overlay(h4, $overlay4-c1, $overlay4-c2);
+    @include owl-overlay(h5, $overlay5-c1, $overlay5-c2);
+    @include owl-overlay(h6, $overlay6-c1, $overlay6-c2);
+    @include owl-overlay(gr, $overlay7-c1, $overlay7-c2);
+    @include owl-overlay(or, $overlay8-c1, $overlay8-c2);
+    @include owl-overlay(bl, $overlay9-c1, $overlay9-c2);
+    @include owl-overlay(vi, $overlay10-c1, $overlay10-c2);
+    @include owl-overlay(tu, $overlay11-c1, $overlay11-c2);
 }

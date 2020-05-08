@@ -49,11 +49,22 @@
         {% set heliumColor = neoTheme == 'theme-b' ? 'color-b' : 'color-w' %}
         {% set ctnClasses = ctnClasses ~ ' sh-' ~ heliumColor %}
     {% endif %}
-    {% set ctnClasses = ctnClasses ~ ' sh-' ~ helium.position|default('dots-d') %}
+    {% set ctnClasses = ctnClasses ~ ' sh-' ~ helium.dots_position|default('dots-d') %}
 
     {% set underlay = helium.underlay|default('disable') %}
     {% if underlay != 'disable' %}
         {% set ctnClasses = ctnClasses ~ ' sh-' ~ underlay %}
+    {% endif %}
+
+    {% set navBorder = (helium.nav_border == 'default') ? 'nav-btn-b-def' : helium.nav_border %}
+    {% set ctnClasses = ctnClasses ~ ' sh-' ~ navBorder %}
+
+    {% if helium.nav_shape != 'default' %}
+        {% set ctnClasses = ctnClasses ~ ' sh-' ~ helium.nav_shape %}
+    {% endif %}
+
+    {% if helium.nav_position != 'default' %}
+        {% set ctnClasses = ctnClasses ~ ' sh-' ~ helium.nav_position %}
     {% endif %}
 {% endif %}
 
@@ -62,6 +73,11 @@
 {% endif %}  
 
 {% set ctnClasses = ctnClasses ~ ' sa-' ~ all.dots_align|default('dots-c') %}
+
+{% set dotSize = all.dots_size|default('default') %}
+{% if dotSize != 'default' %}
+    {% set ctnClasses = ctnClasses ~ ' sa-' ~ dotSize %}
+{% endif %}
 
 {% if neo.style != 'helium' %}
     {% set hCtrlClass1 = (neoTheme == 'theme-b') ? 'control-d-g1' : 'control-d-g2' %}

@@ -60,7 +60,7 @@ form:
                 placeholder: 'Enter title'
 
         tab_appearance:
-            label: Styling
+            label: Appearance
             fields:
 
               neo.style:
@@ -80,27 +80,76 @@ form:
                 class: alert alert-info
                 content: The following settings only apply for <strong>Helium-based</strong> styles.
 
-              helium.position:
+              helium.nav_border:
                 type: select.select
-                label: Navigation Dots Position
-                description: Select a vertical position for the rendering of the navigation dots.
+                label: Navigation Buttons Border
+                description: Select a border type for the navigation buttons. Types denote with 'always' will always show a border, even on hovering the button.
                 default: default
                 options:
-                  dots-d: Default (12% from bottom)
-                  dots-t: Top
-                  dots-i: 12% from top
+                  default: Default
+                  nav-btn-b-def-a: Default Always
+                  nav-btn-b-fine: Fine (50% transparent)
+                  nav-btn-b-fine-a: Fine Always (50% transparent)
+                  nav-btn-b-none: None
+
+              helium.nav_shape:
+                type: select.select
+                label: Navigation Buttons Shape
+                description: Select a shape for the navigation buttons.
+                default: default
+                options:
+                  default: Default (round)
+                  nav-btn-s-square: Square
+                  nav-btn-s-round1: Rounded (2px)
+                  nav-btn-s-round2: Rounded (15px)
+                  nav-btn-s-partly1: Partly Rounded (2px)
+                  nav-btn-s-partly2: Partly Rounded (2px)
+                  nav-btn-s-partly3: Partly Rounded (15px)
+                  nav-btn-s-partly4: Partly Rounded (15px)
+
+              helium.nav_position:
+                type: select.select
+                label: Navigation Buttons Position
+                description: Select a position for the navigation buttons. Please be aware that this setting might cause an overlay with the <b>navigation dots</b> position or alignment.
+                default: default
+                options:
+                  default: Default (middle)
+                  nav-btn-p-t: Top (48px | 48px)
+                  nav-btn-p-tn: Top (16px | 16px)
+                  nav-btn-p-tn1: Top (10px | 10px)
+                  nav-btn-p-tc: Top (48px | 30%)
+                  nav-btn-p-tnc: Top (16px | 30%)
+                  nav-btn-p-tnc1: Top (10px | 30%)
+                  nav-btn-p-te: Top Edge (Corner)
+                  nav-btn-p-b: Bottom (48px | 48px)
+                  nav-btn-p-bn: Bottom (16px | 16px)
+                  nav-btn-p-bn1: Bottom (10px | 10px)
+                  nav-btn-p-bc: Bottom (48px | 30%)
+                  nav-btn-p-bnc: Bottom (16px | 30%)
+                  nav-btn-p-bnc1: Bottom (10px | 30%)
+                  nav-btn-p-be: Bottom Edge (Corner)
+
+              helium.dots_position:
+                type: select.select
+                label: Navigation Dots Position
+                description: Select a vertical position for the rendering of the navigation dots. Please be aware that this setting might cause an overlay with the <b>navigation buttons</b> position or alignment.
+                default: dots-d
+                options:
+                  dots-d: Default (Dynamic Bottom)
                   dots-b: Bottom
+                  dots-i: Dynamic Top
+                  dots-t: Top
 
               helium.underlay:
                 type: select.select
                 label: Navigation Dots Underlay
                 description: Select a styling for the navigation dots underlay.
-                default: default
+                default: disable
                 options:
                   disable: Disable
                   dots-u-square: Square
-                  dots-u-round1: Round-1
-                  dots-u-round2: Round-2
+                  dots-u-round1: Rounded (2px)
+                  dots-u-round2: Rounded (15px)
 
               _info_appearance_all:
                 type: separator.note
@@ -130,6 +179,17 @@ form:
                   arrow-circle-o: Arrow Circle O
                   long-arrow: Long Arrow
                   angle-double: Angle Double
+
+              all.dots_size:
+                type: select.select
+                label: Navigation Dots Size
+                description: Select a size for the navigation dots.
+                default: default
+                options:
+                  default: Default (15px)
+                  dots-size-s1: Small (12px)
+                  dots-size-s2: Smaller (10px)
+                  dots-size-t: Tiny (8px)
 
               all.dots_align:
                 type: select.select
@@ -213,7 +273,8 @@ form:
                 default: square
                 options:
                   square: Square
-                  round: Round
+                  round-1: Rounded (2px)
+                  round-2: Rounded (15px)
 
         tab_behavior:
             label: Behavior
@@ -356,7 +417,7 @@ form:
                   .linktitle:
                     type: input.text
                     label: Title Link Title
-                    description: Input the text for the item title link title attribute. If nothing is defined the title text from above will be used.
+                    description: Input the text for the item title link <code>title</code> attribute. If nothing is defined the title text from above will be used.
                   .desc:
                     type: textarea.textarea
                     label: Description
@@ -369,7 +430,7 @@ form:
                   .buttontitle:
                     type: input.text
                     label: Button Link Title
-                    description: Input the text for the button link title attribute. If nothing is defined the button text will be used.
+                    description: Input the text for the button link <code>title</code> attribute. If nothing is defined the button text will be used.
                   .buttonclass:
                     type: input.text
                     label: Button Classes
