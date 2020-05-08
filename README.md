@@ -160,7 +160,7 @@ A few example configurations which show the new design of the Particle:
 
 **Frontend (7)** - *[Demo 7 - Helium-based](/screenshots/frontend_demo7.png)*
 
-![15](/screenshots/frontend_demo6.png)
+![15](/screenshots/frontend_demo7.png)
 
 ## Future Tasks
 - [ ] Include `aria` attributes for links
