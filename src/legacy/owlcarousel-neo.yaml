@@ -290,6 +290,12 @@ form:
           description: Set the speed of the Autoplay, in milliseconds.
           placeholder: 5000
 
+        autoplayHoverPause:
+          type: enable.enable
+          label: Autoplay Hover Pause
+          description: Enable or disable the Autoplay when hovering the current slide.
+          default: false
+
         title_link:
           type: input.checkbox
           label: Title Link

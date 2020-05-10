@@ -142,6 +142,8 @@
 {{ _self.isEnabled(particle.autoplay|default(false)) }}
 {%- endset -%}
 
+{% set autoPlayHoverPause = particle.autoplayHoverPause|default(false) %}
+
 {% block particle %}
 
     {%- scripts in jsPlace with { priority: jsPrior } -%}
@@ -181,6 +183,9 @@
                     {%- if autoPlay == 'true' -%}
                     autoplay: true,
                     autoplayTimeout: {{ particle.autoplaySpeed|default('5000')|e('js') }},
+                        {%- if autoPlayHoverPause -%}
+                            autoplayHoverPause: true,
+                        {%- endif -%}
                     {%- else -%}
                     autoplay: false,
                     {%- endif -%}
