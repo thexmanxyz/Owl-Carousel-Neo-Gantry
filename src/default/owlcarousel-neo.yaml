@@ -279,15 +279,6 @@ form:
         tab_behavior:
             label: Behavior
             fields:
-              looping:
-                type: select.select
-                label: Looping
-                description: Select how you want to be iterated over the slides.<ul><li><b>Loop: </b>Infinity loop. Duplicate last and first items to get loop illusion.</li><li><b>Rewind: </b>Should be gone backwards when the boundary (start / end) is reached.</li><li><b>Off: </b> Navigation only possible until start or end.</li></ul>
-                default: loop
-                options:
-                  loop: Loop
-                  rewind: Rewind
-                  off: Off
 
               autoplay:
                 type: enable.enable
@@ -306,6 +297,51 @@ form:
                 label: Autoplay Hover Pause
                 description: Enable or disable the Autoplay when hovering the current slide.
                 default: false
+
+              looping:
+                type: select.select
+                label: Looping
+                description: Select how you want to be iterated over the slides.<ul><li><b>Loop: </b>Infinity loop. Duplicate last and first items to get loop illusion.</li><li><b>Rewind: </b>Should be gone backwards when the boundary (start / end) is reached.</li><li><b>Off: </b> Navigation only possible until start or end.</li></ul>
+                default: loop
+                options:
+                  loop: Loop
+                  rewind: Rewind
+                  off: Off
+
+              startPosition:
+                type: input.text
+                label: Start Position
+                description: The start position the carousel is loaded with. Starts with 0.
+                placeholder: 0
+                default: 0
+
+              slideBy:
+                type: input.text
+                label: Sliding Count
+                description: The amount of slides to be slided on a slide event.
+                placeholder: 1
+                default: 1
+
+              smartSpeed:
+                type: input.text
+                label: Transition Speed
+                description: The amount of time (in milliseconds) used between transition of two slides by default (all events plus autoplay).
+                placeholder: 250
+                default: 250
+
+              navSpeed:
+                type: input.text
+                label: Transition Speed Buttons
+                description: The amount of time (in milliseconds) used between transition of two slides for navigation button events.
+                placeholder: 250
+                default: 250
+
+              dotsSpeed:
+                type: input.text
+                label: Transition Speed Dots
+                description: The amount of time (in milliseconds) used between transition of two slides for navigation dots events.
+                placeholder: 250
+                default: 250
 
               title_link:
                 type: enable.enable
@@ -335,6 +371,30 @@ form:
                 label: Slide Link Resize
                 description: Define if the link should be applied to the slide during the window resize event. Can cause issues when activated. If you deactivate this setting the link switch will not be done during resize.
                 default: true
+
+              mouseDrag:
+                type: enable.enable
+                label: Mouse Drag
+                description: Enable or disable the mouse drag.
+                default: true
+
+              touchDrag:
+                type: enable.enable
+                label: Touch Drag
+                description: Enable or disable the touch drag.
+                default: true
+
+              pullDrag:
+                type: enable.enable
+                label: Pull Drag
+                description: Enable or disable the pull drag (stage to edge).
+                default: true
+
+              freeDrag:
+                type: enable.enable
+                label: Free Drag
+                description: Enable or disable the free drag (item to edge).
+                default: false
 
         tab_controls:
             label: Controls

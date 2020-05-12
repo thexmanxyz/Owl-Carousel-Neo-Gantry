@@ -143,9 +143,19 @@
 {%- endset -%}
 
 {% set autoPlayHoverPause = particle.autoplayHoverPause|default(false) %}
+{% set looping = particle.looping|default('loop') %}
+{% set startPosition = particle.startPosition|default(0) %}
+{% set slideBy = particle.slideBy|default(1) %}
+{% set smartSpeed = particle.smartSpeed|default(250) %}
+{% set navSpeed = particle.navSpeed|default(250) %}
+{% set dotsSpeed = particle.dotsSpeed|default(250) %}
+{% set mouseDrag = particle.mouseDrag|default(true) %}
+{% set touchDrag = particle.touchDrag|default(true) %}
+{% set pullDrag = particle.pullDrag|default(true) %}
+{% set freeDrag = particle.freeDrag|default(false) %}
+
 {% set itemSpace = particle.item_space|default(0) %}
 {% set itemCenter = particle.item_center|default(false) %}
-{% set looping = particle.looping|default('loop') %}
 
 {% block particle %}
 
@@ -170,6 +180,32 @@
                     {% if itemCenter %}
                     center: true,
                     {% endif %}
+                    {% if startPosition and startPosition > 0 %}
+                    startPosition: {{startPosition}},
+                    {% endif %}
+                    {% if slideBy > 1 %}
+                    slideBy: {{startPosition}},
+                    {% endif %}
+                    {% if smartSpeed != 250 %}
+                    smartSpeed: {{smartSpeed}},
+                    {% endif %}
+                    {% if navSpeed != 250 %}
+                    navSpeed: {{navSpeed}},
+                    {% endif %}       
+                    {% if dotsSpeed != 250 %}
+                    dotsSpeed: {{dotsSpeed}},
+                    {% endif %}
+
+                    //slideTransition
+                    //merge
+                    //mergeFit
+                    //responsive
+                    //responsiveRefreshRate
+                    //animateOut
+                    //AnimateIn
+                    //checkVisible
+                    
+                    
                     rtl: {%- if gantry.page.direction == 'rtl' -%}true{%- else -%}false{%- endif -%},
                     {% if looping == 'loop' %}
                     loop: true,
@@ -202,6 +238,18 @@
                     {%- else -%}
                     autoplay: false,
                     {%- endif -%}
+                    {% if not mouseDrag %}
+                    mouseDrag: false,
+                    {% endif %}
+                    {% if not touchDrag %}
+                    touchDrag: false,
+                    {% endif %}
+                    {% if not pullDrag %}     
+                    pullDrag: false,
+                    {% endif %}
+                    {% if freeDrag %}
+                    freeDrag: true,
+                    {% endif %}
                     {%- if particle.lazyLoadImages -%}
                     lazyLoad: true,
                         {%- if loadEager > 0 -%}

@@ -279,16 +279,6 @@ form:
         tab_behavior:
             label: Verhalten
             fields:
-              looping:
-                type: select.select
-                label: Looping
-                description: Definieren Sie, wie über die Slides iteriert werden soll.<ul><li><b>Loop: </b>Unendlicher Loop. Dupliziert die letzten und ersten Elemente, um eine Loop-Illusion zu erhalten.</li><li><b>Rewind: </b>Soll zurückgesprungen werden, wenn die Grenzen (Anfang / Ende) erreicht wurden.</li><li><b>Aus: </b> Navigieren nur bis zum Anfang oder Ende möglich</li></ul>
-                default: loop
-                options:
-                  loop: Loop
-                  rewind: Rewind
-                  none: Aus
-
               autoplay:
                 type: enable.enable
                 label: Autoplay
@@ -306,6 +296,51 @@ form:
                 label: Autoplay Hover Pause
                 description: Aktiviert oder deaktiviert Autoplay wenn über die aktuelle Slide gehovert wird.
                 default: false
+
+              looping:
+                type: select.select
+                label: Looping
+                description: Definieren Sie, wie über die Slides iteriert werden soll.<ul><li><b>Loop: </b>Unendlicher Loop. Dupliziert die letzten und ersten Elemente, um eine Loop-Illusion zu erhalten.</li><li><b>Rewind: </b>Soll zurückgesprungen werden, wenn die Grenzen (Anfang / Ende) erreicht wurden.</li><li><b>Aus: </b> Navigieren nur bis zum Anfang oder Ende möglich</li></ul>
+                default: loop
+                options:
+                  loop: Loop
+                  rewind: Rewind
+                  none: Aus
+
+              startPosition:
+                type: input.text
+                label: Startposition
+                description: Die Startposition mit der das Carousel geladen wird. Startet mit 0.
+                placeholder: 0
+                default: 0
+
+              slideBy:
+                type: input.text
+                label: Slidinganzahl
+                description: Die Anzahl an Slides, die bei einem Slide-Event geslided werden sollen.
+                placeholder: 1
+                default: 1
+
+              smartSpeed:
+                type: input.text
+                label: Übergangsgeschwindigkeit
+                description: Die Zeit (in Millisekunden), die standardmäßig für den Übergang zwischen zwei Slides verwendet wird (alle Events und Autoplay).
+                placeholder: 250
+                default: 250
+
+              navSpeed:
+                type: input.text
+                label: Übergangsgeschwindigkeit Buttons
+                description: Die Zeit (in Millisekunden), die für den Übergang zwischen zwei Slides bei Navigationbutton-Events verwendet wird.
+                placeholder: 250
+                default: 250
+
+              dotsSpeed:
+                type: input.text
+                label: Übergangsgeschwindigkeit Punkte
+                description: Die Zeit (in Millisekunden), die für den Übergang zwischen zwei Slides bei Navigationspunkten-Events verwendet wird.
+                placeholder: 250
+                default: 250
 
               title_link:
                 type: enable.enable
@@ -335,6 +370,30 @@ form:
                 label: Slide Link Resize
                 description: Legen Sie fest, ob der Link während des Window Resize Events auf die Slide angewendet werden soll. Kann bei Aktivierung Probleme verursachen. Verhindert bei Deaktivierung jedoch, dass ein Linkwechsel beim Resize durchgeführt wird.
                 default: true
+
+              mouseDrag:
+                type: enable.enable
+                label: Mausziehen
+                description: Aktivieren oder deakivieren Sie das Mausziehen.
+                default: true
+
+              touchDrag:
+                type: enable.enable
+                label: Touchziehen
+                description: Aktivieren oder deakivieren Sie das Touchziehen.
+                default: true
+
+              pullDrag:
+                type: enable.enable
+                label: Pullziehen
+                description: Aktivieren oder deakivieren Sie das Pullziehen (Stage zur Kante).
+                default: true
+
+              freeDrag:
+                type: enable.enable
+                label: Freiziehen
+                description: Aktivieren oder deakivieren Sie das Freiziehen (Element zur Kante).
+                default: false
 
         tab_controls:
             label: Elemente
