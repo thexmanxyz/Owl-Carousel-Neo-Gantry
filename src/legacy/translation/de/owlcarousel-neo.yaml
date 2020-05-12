@@ -57,6 +57,19 @@ form:
           description: Benutzerdefinierter Text für den Titel des Particles.
           placeholder: 'Titel eingeben'
 
+        responsiveRefreshRate:
+          type: input.text
+          label: Responsive Refresh Rate
+          description: Die Responsive Refresh Rate die während Resize-Events verwendet wird. Kleinere Werte bedeuten häufigere Updates.
+          placeholder: 200
+          default: 200
+
+        checkVisible:
+          type: enable.enable
+          label: Prüfe Sichtbarkeit
+          description: Sie können diese Option deaktivieren wenn Sie wissen, dass das Carousel immer angezeigt wird. Dies verhindert den aufwändigen und erzwungenen Browser Layout Reflow von <code>$element.is(':visible')</code>.
+          default: true
+
     set_appearance:
       type: container.set
       label: Darstellung
@@ -279,6 +292,7 @@ form:
       type: container.set
       label: Verhalten
       fields:
+
         autoplay:
           type: input.checkbox
           label: Autoplay
@@ -296,51 +310,6 @@ form:
           label: Autoplay Hover Pause
           description: Aktiviert oder deaktiviert Autoplay wenn über die aktuelle Slide gehovert wird.
           default: false
-
-        looping:
-          type: select.select
-          label: Looping
-          description: Definieren Sie, wie über die Slides iteriert werden soll.<ul><li><b>Loop: </b>Unendlicher Loop. Dupliziert die letzten und ersten Elemente, um eine Loop-Illusion zu erhalten.</li><li><b>Rewind: </b>Soll zurückgesprungen werden, wenn die Grenzen (Anfang / Ende) erreicht wurden.</li><li><b>Aus: </b> Navigieren nur bis zum Anfang oder Ende möglich</li></ul>
-          default: loop
-          options:
-            loop: Loop
-            rewind: Rewind
-            off: Aus
-
-        startPosition:
-          type: input.text
-          label: Starposition
-          description: Die Startposition mit der das Carousel geladen wird. Startet mit 0.
-          placeholder: 0
-          default: 0
-
-        slideBy:
-          type: input.text
-          label: Slidinganzahl
-          description: Die Anzahl an Slides, die bei einem Slide-Event geslided werden sollen.
-          placeholder: 1
-          default: 1
-
-        smartSpeed:
-          type: input.text
-          label: Übergangsgeschwindigkeit
-          description: Die Zeit (in Millisekunden), die standardmäßig für den Übergang zwischen zwei Slides verwendet wird (alle Events und Autoplay).
-          placeholder: 250
-          default: 250
-
-        navSpeed:
-          type: input.text
-          label: Übergangsgeschwindigkeit Buttons
-          description: Die Zeit (in Millisekunden), die für den Übergang zwischen zwei Slides bei Navigationbutton-Events verwendet wird.
-          placeholder: 250
-          default: 250
-
-        dotsSpeed:
-          type: input.text
-          label: Übergangsgeschwindigkeit Punkte
-          description: Die Zeit (in Millisekunden), die für den Übergang zwischen zwei Slides bei Navigationspunkten-Events verwendet wird.
-          placeholder: 250
-          default: 250
 
         title_link:
           type: input.checkbox
@@ -371,26 +340,109 @@ form:
           description: Legen Sie fest, ob der Link während des Window Resize Events auf die Slide angewendet werden soll. Kann bei Aktivierung Probleme verursachen. Verhindert bei Deaktivierung jedoch, dass ein Linkwechsel beim Resize durchgeführt wird.
           default: true
 
+        looping:
+          type: select.select
+          label: Looping
+          description: Definieren Sie, wie über die Slides iteriert werden soll.<ul><li><b>Loop: </b>Unendlicher Loop. Dupliziert die letzten und ersten Elemente, um eine Loop-Illusion zu erhalten.</li><li><b>Rewind: </b>Soll zurückgesprungen werden, wenn die Grenzen (Anfang / Ende) erreicht wurden.</li><li><b>Aus: </b> Navigieren nur bis zum Anfang oder Ende möglich</li></ul>
+          default: loop
+          options:
+            loop: Loop
+            rewind: Rewind
+            off: Aus
+
+        slideTransition:
+          type: select.select
+          label: Slideübergang
+          description: Wählen Sie den Übergangstyp, denn Sie für den Slideübergang verwenden möchten.
+          default: none
+          options:
+            none: Keinen
+            ease: Ease
+            linear: Linear
+            ease-in: Ease-In
+            ease-out: Ease-Out
+            ease-in-out: Ease-In-Out
+
+        fallbackEasing:
+          type: select.select
+          label: Fallback Easing
+          description: Wählen Sie den Easing Fallback Typ, den Sie für <code>$.animate</code> verwenden möchten.
+          default: swing
+          options:
+            swing: Swing
+            linear: Linear
+            easeInQuad: easeInQuad
+            easeOutQuad: easeOutQuad
+            easeInOutQuad: easeInOutQuad
+            easeInCubic: easeInCubic
+            easeOutCubic: easeOutCubic
+            easeInOutCubic: easeInOutCubic
+            easeInQuart: easeInQuart
+            easeOutQuart: easeOutQuart
+            easeInOutQuart: easeInOutQuart
+            easeInQuint: easeInQuint
+            easeOutQuint: easeOutQuint
+            easeInOutQuint: easeInOutQuint
+            easeInExpo: easeInExpo
+            easeOutExpo: easeOutExpo
+            easeInOutExpo: easeInOutExpo
+            easeInSine: easeInSine
+            easeOutSine: easeOutSine
+            easeInOutSine: easeInOutSine
+            easeInCirc: easeInCirc
+            easeOutCirc: easeOutCirc
+            easeInOutCirc: easeInOutCirc
+            easeInElastic: easeInElastic
+            easeOutElastic: easeOutElastic
+            easeInOutElastic: easeInOutElastic
+            easeInBack: easeInBack
+            easeOutBack: easeOutBack
+            easeInOutBack: easeInOutBack
+            easeInBounce: easeInBounce
+            easeOutBounce: easeOutBounce
+            easeInOutBounce: easeInOutBounce
+
+        smartSpeed:
+          type: input.text
+          label: Übergangsgeschwindigkeit
+          description: Die Zeit (in Millisekunden), die standardmäßig für den Übergang zwischen zwei Slides verwendet wird (alle Events und Autoplay).
+          placeholder: 250
+          default: 250
+
+        navSpeed:
+          type: input.text
+          label: Übergangsgeschwindigkeit Buttons
+          description: Die Zeit (in Millisekunden), die für den Übergang zwischen zwei Slides bei Navigationbutton-Events verwendet wird.
+          placeholder: 250
+          default: 250
+
+        dotsSpeed:
+          type: input.text
+          label: Übergangsgeschwindigkeit Punkte
+          description: Die Zeit (in Millisekunden), die für den Übergang zwischen zwei Slides bei Navigationspunkten-Events verwendet wird.
+          placeholder: 250
+          default: 250
+
         mouseDrag:
-          type: enable.enable
+          type: input.checkbox
           label: Mausziehen
           description: Aktivieren oder deakivieren Sie das Mausziehen.
           default: true
 
         touchDrag:
-          type: enable.enable
+          type: input.checkbox
           label: Touchziehen
           description: Aktivieren oder deakivieren Sie das Touchziehen.
           default: true
 
         pullDrag:
-          type: enable.enable
+          type: input.checkbox
           label: Pullziehen
           description: Aktivieren oder deakivieren Sie das Pullziehen (Stage zur Kante).
           default: true
 
         freeDrag:
-          type: enable.enable
+          type: input.checkbox
           label: Freiziehen
           description: Aktivieren oder deakivieren Sie das Freiziehen (Element zur Kante).
           default: false
@@ -465,6 +517,21 @@ form:
       type: container.set
       label: Slides
       fields:
+
+        startPosition:
+          type: input.text
+          label: Starposition
+          description: Die Startposition mit der das Carousel geladen wird. Startet mit 0.
+          placeholder: 0
+          default: 0
+
+        slideBy:
+          type: input.text
+          label: Slidinganzahl
+          description: Die Anzahl an Slides, die bei einem Slide-Event geslided werden sollen.
+          placeholder: 1
+          default: 1
+
         item_count:
           type: input.text
           label: Slideanzahl

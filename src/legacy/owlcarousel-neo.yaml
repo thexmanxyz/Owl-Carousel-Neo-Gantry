@@ -57,6 +57,19 @@ form:
           description: Customize the title text for the Particle.
           placeholder: 'Enter title'
 
+        responsiveRefreshRate:
+          type: input.text
+          label: Responsive Refresh Rate
+          description: Responsive refresh rate used during resize events. Smaller values mean more frequent updates.
+          placeholder: 200
+          default: 200
+
+        checkVisible:
+          type: input.checkbox
+          label: Check Visible
+          description: If you know that the carousel will always be visible you can disable this setting to prevent the expensive browser layout forced reflow the <code>$element.is(':visible')</code> does.
+          default: true
+
     set_appearance:
       type: container.set
       label: Appearance
@@ -278,6 +291,7 @@ form:
       type: container.set
       label: Behavior
       fields:
+
         autoplay:
           type: input.checkbox
           label: Autoplay
@@ -295,51 +309,6 @@ form:
           label: Autoplay Hover Pause
           description: Enable or disable the Autoplay when hovering the current slide.
           default: false
-
-        looping:
-          type: select.select
-          label: Looping
-          description: Select how you want to be iterated over the slides.<ul><li><b>Loop: </b>Infinity loop. Duplicate last and first items to get loop illusion.</li><li><b>Rewind: </b>Should be gone backwards when the boundary (start / end) is reached.</li><li><b>Off: </b> Navigation only possible until start or end.</li></ul>
-          default: loop
-          options:
-            loop: Loop
-            rewind: Rewind
-            off: Off
-
-        startPosition:
-          type: input.text
-          label: Start Position
-          description: The start position the carousel is loaded with. Starts with 0.
-          placeholder: 0
-          default: 0
-
-        slideBy:
-          type: input.text
-          label: Sliding Count
-          description: The amount of slides to be slided on slide a event.
-          placeholder: 1
-          default: 1
-
-        smartSpeed:
-          type: input.text
-          label: Transition Speed
-          description: The amount of time (in milliseconds) used between transition of two slides by default (all events plus autoplay).
-          placeholder: 250
-          default: 250
-
-        navSpeed:
-          type: input.text
-          label: Transition Speed Buttons
-          description: The amount of time (in milliseconds) used between transition of two slides for navigation button events.
-          placeholder: 250
-          default: 250
-
-        dotsSpeed:
-          type: input.text
-          label: Transition Speed Dots
-          description: The amount of time (in milliseconds) used between transition of two slides for navigation dots events.
-          placeholder: 250
-          default: 250
 
         title_link:
           type: input.checkbox
@@ -370,26 +339,109 @@ form:
           description: Define if the link should be applied to the slide during the window resize event. Can cause issues when activated. If you deactivate this setting the link switch will not be done during resize.
           default: true
 
+        looping:
+          type: select.select
+          label: Looping
+          description: Select how you want to be iterated over the slides.<ul><li><b>Loop: </b>Infinity loop. Duplicate last and first items to get loop illusion.</li><li><b>Rewind: </b>Should be gone backwards when the boundary (start / end) is reached.</li><li><b>Off: </b> Navigation only possible until start or end.</li></ul>
+          default: loop
+          options:
+            loop: Loop
+            rewind: Rewind
+            off: Off
+
+        slideTransition:
+          type: select.select
+          label: Slide Transition
+          description: Select the transition type you want to use between slide transition.
+          default: none
+          options:
+            none: None
+            ease: Ease
+            linear: Linear
+            ease-in: Ease-In
+            ease-out: Ease-Out
+            ease-in-out: Ease-In-Out
+
+        fallbackEasing:
+          type: select.select
+          label: Fallback Easing
+          description: Select the easing fallback type you want to use for CSS2 <code>$.animate</code>.
+          default: swing
+          options:
+            swing: Swing
+            linear: Linear
+            easeInQuad: easeInQuad
+            easeOutQuad: easeOutQuad
+            easeInOutQuad: easeInOutQuad
+            easeInCubic: easeInCubic
+            easeOutCubic: easeOutCubic
+            easeInOutCubic: easeInOutCubic
+            easeInQuart: easeInQuart
+            easeOutQuart: easeOutQuart
+            easeInOutQuart: easeInOutQuart
+            easeInQuint: easeInQuint
+            easeOutQuint: easeOutQuint
+            easeInOutQuint: easeInOutQuint
+            easeInExpo: easeInExpo
+            easeOutExpo: easeOutExpo
+            easeInOutExpo: easeInOutExpo
+            easeInSine: easeInSine
+            easeOutSine: easeOutSine
+            easeInOutSine: easeInOutSine
+            easeInCirc: easeInCirc
+            easeOutCirc: easeOutCirc
+            easeInOutCirc: easeInOutCirc
+            easeInElastic: easeInElastic
+            easeOutElastic: easeOutElastic
+            easeInOutElastic: easeInOutElastic
+            easeInBack: easeInBack
+            easeOutBack: easeOutBack
+            easeInOutBack: easeInOutBack
+            easeInBounce: easeInBounce
+            easeOutBounce: easeOutBounce
+            easeInOutBounce: easeInOutBounce
+
+        smartSpeed:
+          type: input.text
+          label: Transition Speed
+          description: The amount of time (in milliseconds) used between transition of two slides by default (all events plus autoplay).
+          placeholder: 250
+          default: 250
+
+        navSpeed:
+          type: input.text
+          label: Transition Speed Buttons
+          description: The amount of time (in milliseconds) used between transition of two slides for navigation button events.
+          placeholder: 250
+          default: 250
+
+        dotsSpeed:
+          type: input.text
+          label: Transition Speed Dots
+          description: The amount of time (in milliseconds) used between transition of two slides for navigation dots events.
+          placeholder: 250
+          default: 250
+
         mouseDrag:
-          type: enable.enable
+          type: input.checkbox
           label: Mouse Drag
           description: Enable or disable the mouse drag.
           default: true
 
         touchDrag:
-          type: enable.enable
+          type: input.checkbox
           label: Touch Drag
           description: Enable or disable the touch drag.
           default: true
 
         pullDrag:
-          type: enable.enable
+          type: input.checkbox
           label: Pull Drag
           description: Enable or disable the pull drag (stage to edge).
           default: true
 
         freeDrag:
-          type: enable.enable
+          type: input.checkbox
           label: Free Drag
           description: Enable or disable the free drag (item to edge).
           default: false
@@ -464,6 +516,21 @@ form:
       type: container.set
       label: Slides
       fields:
+
+        startPosition:
+          type: input.text
+          label: Start Position
+          description: The start position the carousel is loaded with. Starts with 0.
+          placeholder: 0
+          default: 0
+
+        slideBy:
+          type: input.text
+          label: Slideby Count
+          description: The amount of slides that will be slided during a slide event.
+          placeholder: 1
+          default: 1
+
         item_count:
           type: input.text
           label: Slide Count
