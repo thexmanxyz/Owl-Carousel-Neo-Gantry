@@ -143,6 +143,9 @@
 {%- endset -%}
 
 {% set autoPlayHoverPause = particle.autoplayHoverPause|default(false) %}
+{% set itemSpace = particle.item_space|default(0) %}
+{% set itemCenter = particle.item_center|default(false) %}
+{% set looping = particle.looping|default('loop') %}
 
 {% block particle %}
 
@@ -160,9 +163,19 @@
             var loadOwlCarousel = function() {
                 var owl = jQuery('#g-owlcarousel-{{ id }}');
                 owl.owlCarousel({
-                    items: 1,
+                    items: {{particle.item_count|default(1)}},
+                    {% if itemSpace != 0 %}
+                    margin: {{itemSpace}},
+                    {% endif %}
+                    {% if itemCenter %}
+                    center: true,
+                    {% endif %}
                     rtl: {%- if gantry.page.direction == 'rtl' -%}true{%- else -%}false{%- endif -%},
+                    {% if looping == 'loop' %}
                     loop: true,
+                    {% elseif looping == 'rewind' %}
+                    rewind: true,
+                    {% endif %}
                     navText: ['{{ particle.prevText|default('<i class="fa ' ~ arrowLeft ~ '" aria-hidden="true"></i>')|e('js') }}', '{{ particle.nextText|default('<i class="fa ' ~ arrowRight ~ '" aria-hidden="true"></i>')|e('js') }}'],
                     {%- if nav == 'true' and not particle.delaySlideElements -%}
                     nav: true,

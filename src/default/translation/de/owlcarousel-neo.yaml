@@ -279,6 +279,16 @@ form:
         tab_behavior:
             label: Verhalten
             fields:
+              looping:
+                type: select.select
+                label: Looping
+                description: Definieren Sie, wie über die Slides iteriert werden soll.<ul><li><b>Loop: </b>Unendlicher Loop. Dupliziert die letzten und ersten Elemente, um eine Loop-Illusion zu erhalten.</li><li><b>Rewind: </b>Soll zurückgesprungen werden, wenn die Grenzen (Anfang / Ende) erreicht wurden.</li><li><b>Aus: </b> Navigieren nur bis zum Anfang oder Ende möglich</li></ul>
+                default: loop
+                options:
+                  loop: Loop
+                  rewind: Rewind
+                  none: Aus
+
               autoplay:
                 type: enable.enable
                 label: Autoplay
@@ -394,6 +404,26 @@ form:
         tab_slides:
             label: Slides
             fields:
+              item_count:
+                type: input.text
+                label: Slideanzahl
+                description: Legen Sie fest wieviele Slides gleichzeitig am Bildschirm angezeigt werden sollen.
+                placeholder: ''
+                default: 1
+
+              item_space:
+                type: input.text
+                label: Slideabstand
+                description: Der Abstand der zwischen den Slides eingefügt werden soll.
+                placeholder: Abstand in px
+                default: 0
+
+              item_center:
+                type: enable.enable
+                label: Slidezentrierung
+                description: Zentriert die aktuelle Slide wenn mehrere Slides (mehr als 1) angezeigt werden.
+                default: false
+
               items:
                 type: collection.list
                 array: true

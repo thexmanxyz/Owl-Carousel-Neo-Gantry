@@ -279,6 +279,16 @@ form:
       type: container.set
       label: Verhalten
       fields:
+        looping:
+          type: select.select
+          label: Looping
+          description: Definieren Sie, wie über die Slides iteriert werden soll.<ul><li><b>Loop: </b>Unendlicher Loop. Dupliziert die letzten und ersten Elemente, um eine Loop-Illusion zu erhalten.</li><li><b>Rewind: </b>Soll zurückgesprungen werden, wenn die Grenzen (Anfang / Ende) erreicht wurden.</li><li><b>Aus: </b> Navigieren nur bis zum Anfang oder Ende möglich</li></ul>
+          default: loop
+          options:
+            loop: Loop
+            rewind: Rewind
+            off: Aus
+
         autoplay:
           type: input.checkbox
           label: Autoplay
@@ -292,7 +302,7 @@ form:
           placeholder: 5000
 
         autoplayHoverPause:
-          type: enable.enable
+          type: input.checkbox
           label: Autoplay Hover Pause
           description: Aktiviert oder deaktiviert Autoplay wenn über die aktuelle Slide gehovert wird.
           default: false
@@ -396,6 +406,26 @@ form:
       type: container.set
       label: Slides
       fields:
+        item_count:
+          type: input.text
+          label: Slideanzahl
+          description: Legen Sie fest wieviele Slides gleichzeitig am Bildschirm angezeigt werden sollen.
+          placeholder: ''
+          default: 1
+
+        item_space:
+          type: input.text
+          label: Slideabstand
+          description: Der Abstand der zwischen den Slides eingefügt werden soll.
+          placeholder: Abstand in px
+          default: 0
+
+        item_center:
+          type: input.checkbox
+          label: Slidezentrierung
+          description: Zentriert die aktuelle Slide wenn mehrere Slides (mehr als 1) angezeigt werden.
+          default: false
+
         items:
           type: collection.list
           array: true
@@ -481,7 +511,7 @@ form:
           default: 0
 
         delaySlideElements:
-          type: enable.enable
+          type: input.checkbox
           label: Verzögere Slide-Elemente
           description: Aktivieren Sie diese Option, um das Laden der Slide-Elemente und Slide-Steuerelemente zu verzögern. Ändern Sie diese Einstellung nur, wenn Sie wissen, was sie tun (experimentell).
           default: false

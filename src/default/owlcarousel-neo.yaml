@@ -279,6 +279,16 @@ form:
         tab_behavior:
             label: Behavior
             fields:
+              looping:
+                type: select.select
+                label: Looping
+                description: Select how you want to be iterated over the slides.<ul><li><b>Loop: </b>Infinity loop. Duplicate last and first items to get loop illusion.</li><li><b>Rewind: </b>Should be gone backwards when the boundary (start / end) is reached.</li><li><b>Off: </b> Navigation only possible until start or end.</li></ul>
+                default: loop
+                options:
+                  loop: Loop
+                  rewind: Rewind
+                  off: Off
+
               autoplay:
                 type: enable.enable
                 label: Autoplay
@@ -394,6 +404,26 @@ form:
         tab_slides:
             label: Slides
             fields:
+              item_count:
+                type: input.text
+                label: Slide Count
+                description: The number of items you want to see simultaneously on the screen.
+                placeholder: 'number of slides'
+                default: 1
+
+              item_space:
+                type: input.text
+                label: Slide Space
+                description: The space to be inserted between the slides 
+                placeholder: space in px
+                default: 0
+
+              item_center:
+                type: enable.enable
+                label: Slide Centering
+                description: Centers the current slide in case there are multiple slides (more than 1) shown.
+                default: false
+
               items:
                 type: collection.list
                 array: true
