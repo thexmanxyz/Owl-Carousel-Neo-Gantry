@@ -70,6 +70,27 @@ form:
           description: If you know that the carousel will always be visible you can disable this setting to prevent the expensive browser layout forced reflow the <code>$element.is(':visible')</code> does.
           default: true
 
+        navElement:
+          type: input.text
+          label: Navigation DOM Element
+          description: DOM element type for a single directional navigation link.
+          placeholder: div
+          default: div
+
+        itemElement:
+          type: input.text
+          label: Item DOM Element
+          description: DOM element type used for <code>owl-item</code>.
+          placeholder: div
+          default: div
+  
+        stageElement:
+          type: input.text
+          label: Stage DOM Element
+          description: DOM element type use for <code>owl-stage</code>.
+          placeholder: div
+          default: div
+
     set_look:
       type: container.set
       label: Look
@@ -579,6 +600,13 @@ form:
           label: Slide Centering
           description: Centers the current slide in case there are multiple slides (more than 1) shown.
           default: false
+
+        stage_padding:
+          type: input.text
+          label: Stage Padding 
+          description: Padding left and right on stage (can see neighbours).
+          placeholder: padding in px
+          default: 0
 
         items:
           type: collection.list

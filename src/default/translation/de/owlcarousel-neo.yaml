@@ -70,7 +70,27 @@ form:
                 type: enable.enable
                 label: Prüfe Sichtbarkeit
                 description: Sie können diese Option deaktivieren wenn Sie wissen, dass das Carousel immer angezeigt wird. Dies verhindert den aufwändigen und erzwungenen Browser Layout Reflow von <code>$element.is(':visible')</code>.
-                default: true
+
+              navElement:
+                type: input.text
+                label: Navigation DOM Element
+                description: DOM Elementtyp, der für einzelne direktionale Navigationlinks verwendet wird.
+                placeholder: div
+                default: div
+
+              itemElement:
+                type: input.text
+                label: Item DOM Element
+                description: DOM Elementtyp, der für <code>owl-item</code> Elemente verwendet wird.
+                placeholder: div
+                default: div
+
+              stageElement:
+                type: input.text
+                label: Stage DOM Element
+                description: Dom Elementtyp, der für <code>owl-stage</code> verwendet wird.
+                placeholder: div
+                default: div
 
         tab_look:
             label: Aussehen
@@ -577,6 +597,13 @@ form:
                 label: Slidezentrierung
                 description: Zentriert die aktuelle Slide wenn mehrere Slides (mehr als 1) angezeigt werden.
                 default: false
+
+              stage_padding:
+                type: input.text
+                label: Stage Abstand 
+                description: Abstand links und recht der Stage (Nachbarn werden sichtbar).
+                placeholder: Abstand in px
+                default: 0
 
               items:
                 type: collection.list
