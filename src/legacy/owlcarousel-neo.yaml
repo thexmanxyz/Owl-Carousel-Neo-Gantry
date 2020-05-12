@@ -70,9 +70,9 @@ form:
           description: If you know that the carousel will always be visible you can disable this setting to prevent the expensive browser layout forced reflow the <code>$element.is(':visible')</code> does.
           default: true
 
-    set_appearance:
+    set_look:
       type: container.set
-      label: Appearance
+      label: Look
       fields:
 
         neo.style:
@@ -292,6 +292,16 @@ form:
       label: Behavior
       fields:
 
+        looping:
+          type: select.select
+          label: Looping
+          description: Select how you want to be iterated over the slides.<ul><li><b>Loop: </b>Infinity loop. Duplicate last and first items to get loop illusion.</li><li><b>Rewind: </b>Should be gone backwards when the boundary (start / end) is reached.</li><li><b>Off: </b> Navigation only possible until start or end.</li></ul>
+          default: loop
+          options:
+            loop: Loop
+            rewind: Rewind
+            off: Off
+
         autoplay:
           type: input.checkbox
           label: Autoplay
@@ -339,20 +349,56 @@ form:
           description: Define if the link should be applied to the slide during the window resize event. Can cause issues when activated. If you deactivate this setting the link switch will not be done during resize.
           default: true
 
-        looping:
-          type: select.select
-          label: Looping
-          description: Select how you want to be iterated over the slides.<ul><li><b>Loop: </b>Infinity loop. Duplicate last and first items to get loop illusion.</li><li><b>Rewind: </b>Should be gone backwards when the boundary (start / end) is reached.</li><li><b>Off: </b> Navigation only possible until start or end.</li></ul>
-          default: loop
-          options:
-            loop: Loop
-            rewind: Rewind
-            off: Off
+        mouseDrag:
+          type: input.checkbox
+          label: Mouse Drag
+          description: Enable or disable the mouse drag.
+          default: true
+
+        touchDrag:
+          type: input.checkbox
+          label: Touch Drag
+          description: Enable or disable the touch drag.
+          default: true
+
+        pullDrag:
+          type: input.checkbox
+          label: Pull Drag
+          description: Enable or disable the pull drag (stage to edge).
+          default: true
+
+        freeDrag:
+          type: input.checkbox
+          label: Free Drag
+          description: Enable or disable the free drag (item to edge).
+          default: false
+
+    set_animate:
+      type: container.set
+      label: Animate
+      fields:
+
+         _info_animate_class:
+           type: separator.note
+           class: alert alert-info
+           content: Please mind custom animation libraries like <a href="https://animate.style" target"_blank" title="Animate.css">Animate.css</a> when changing the following two settings.
+
+        animateIn:
+          type: input.text
+          label: Animate In
+          description: Class for CSS3 animation used during slide-in (e.g. Animate.css). Only works for single slide view.
+          placeholder: every CSS class e.g. Animate.CSS
+
+        animateOut:
+          type: input.text
+          label: Animate Out
+          description: Class for CSS3 animation used during slide-out (e.g. Animate.css). Only works for single slide view.
+          placeholder: every CSS class e.g. Animate.CSS
 
         slideTransition:
           type: select.select
           label: Slide Transition
-          description: Select the transition type you want to use between slide transition.
+          description: Select the transition type you want to use for the stage.
           default: none
           options:
             none: None
@@ -404,7 +450,7 @@ form:
         smartSpeed:
           type: input.text
           label: Transition Speed
-          description: The amount of time (in milliseconds) used between transition of two slides by default (all events plus autoplay).
+          description: The amount of time (in milliseconds) used between transition of two slides by default (all events).
           placeholder: 250
           default: 250
 
@@ -422,29 +468,12 @@ form:
           placeholder: 250
           default: 250
 
-        mouseDrag:
-          type: input.checkbox
-          label: Mouse Drag
-          description: Enable or disable the mouse drag.
-          default: true
-
-        touchDrag:
-          type: input.checkbox
-          label: Touch Drag
-          description: Enable or disable the touch drag.
-          default: true
-
-        pullDrag:
-          type: input.checkbox
-          label: Pull Drag
-          description: Enable or disable the pull drag (stage to edge).
-          default: true
-
-        freeDrag:
-          type: input.checkbox
-          label: Free Drag
-          description: Enable or disable the free drag (item to edge).
-          default: false
+        autoplayTSpeed:
+          type: input.text
+          label: Transition Speed Autoplay
+          description: The amount of time (in milliseconds) used between transition of two slides for autoplay events.
+          placeholder: 250
+          default: 250
 
     set_controls:
       type: container.set
@@ -524,18 +553,18 @@ form:
           placeholder: 0
           default: 0
 
-        slideBy:
-          type: input.text
-          label: Slideby Count
-          description: The amount of slides that will be slided during a slide event.
-          placeholder: 1
-          default: 1
-
         item_count:
           type: input.text
           label: Slide Count
           description: The number of items you want to see simultaneously on the screen.
           placeholder: 'number of slides'
+          default: 1
+
+        slideBy:
+          type: input.text
+          label: Slideby Count
+          description: The amount of slides that will be slided during a slide event.
+          placeholder: 1
           default: 1
 
         item_space:

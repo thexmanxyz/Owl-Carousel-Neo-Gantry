@@ -72,8 +72,8 @@ form:
                 description: Sie können diese Option deaktivieren wenn Sie wissen, dass das Carousel immer angezeigt wird. Dies verhindert den aufwändigen und erzwungenen Browser Layout Reflow von <code>$element.is(':visible')</code>.
                 default: true
 
-        tab_appearance:
-            label: Darstellung
+        tab_look:
+            label: Aussehen
             fields:
 
               neo.style:
@@ -293,6 +293,16 @@ form:
             label: Verhalten
             fields:
 
+              looping:
+                type: select.select
+                label: Looping
+                description: Definieren Sie, wie über die Slides iteriert werden soll.<ul><li><b>Loop: </b>Unendlicher Loop. Dupliziert die letzten und ersten Elemente, um eine Loop-Illusion zu erhalten.</li><li><b>Rewind: </b>Soll zurückgesprungen werden, wenn die Grenzen (Anfang / Ende) erreicht wurden.</li><li><b>Aus: </b> Navigieren nur bis zum Anfang oder Ende möglich</li></ul>
+                default: loop
+                options:
+                  loop: Loop
+                  rewind: Rewind
+                  none: Aus
+
               autoplay:
                 type: enable.enable
                 label: Autoplay
@@ -340,20 +350,55 @@ form:
                 description: Legen Sie fest, ob der Link während des Window Resize Events auf die Slide angewendet werden soll. Kann bei Aktivierung Probleme verursachen. Verhindert bei Deaktivierung jedoch, dass ein Linkwechsel beim Resize durchgeführt wird.
                 default: true
 
-              looping:
-                type: select.select
-                label: Looping
-                description: Definieren Sie, wie über die Slides iteriert werden soll.<ul><li><b>Loop: </b>Unendlicher Loop. Dupliziert die letzten und ersten Elemente, um eine Loop-Illusion zu erhalten.</li><li><b>Rewind: </b>Soll zurückgesprungen werden, wenn die Grenzen (Anfang / Ende) erreicht wurden.</li><li><b>Aus: </b> Navigieren nur bis zum Anfang oder Ende möglich</li></ul>
-                default: loop
-                options:
-                  loop: Loop
-                  rewind: Rewind
-                  none: Aus
+              mouseDrag:
+                type: enable.enable
+                label: Mausziehen
+                description: Aktivieren oder deakivieren Sie das Mausziehen.
+                default: true
+
+              touchDrag:
+                type: enable.enable
+                label: Touchziehen
+                description: Aktivieren oder deakivieren Sie das Touchziehen.
+                default: true
+
+              pullDrag:
+                type: enable.enable
+                label: Pullziehen
+                description: Aktivieren oder deakivieren Sie das Pullziehen (Stage zur Kante).
+                default: true
+
+              freeDrag:
+                type: enable.enable
+                label: Freiziehen
+                description: Aktivieren oder deakivieren Sie das Freiziehen (Element zur Kante).
+                default: false
+
+        tab_animate:
+            label: Animation
+            fields:
+
+              _info_animate_class:
+                type: separator.note
+                class: alert alert-info
+                content: Bitte bedenken Sie benutzerdefinierte Animationsbibliotheken wie z.B.: <a href="https://animate.style" target"_blank" title="Animate.css">Animate.css</a>, wenn Sie die nächsten zwei Option ändern möchten.
+
+              animateIn:
+                type: input.text
+                label: Animation Herein
+                description: Klasse für CSS3 Animation, die für das Hereinsliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist.
+                placeholder: jede CSS Kasse z.B.: Animate.css
+              
+              animateOut:
+                type: input.text
+                label: Animation Hinaus
+                description: Klasse für CSS3 Animation, die für das Hinaussliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist.
+                placeholder: jede CSS Kasse z.B.: Animate.css
 
               slideTransition:
                 type: select.select
                 label: Slideübergang
-                description: Wählen Sie den Übergangstyp, denn Sie für den Slideübergang verwenden möchten.
+                description: Wählen Sie den Übergangstyp, denn Sie für die Stage verwenden möchten.
                 default: none
                 options:
                   none: Keinen
@@ -405,7 +450,7 @@ form:
               smartSpeed:
                 type: input.text
                 label: Übergangsgeschwindigkeit
-                description: Die Zeit (in Millisekunden), die standardmäßig für den Übergang zwischen zwei Slides verwendet wird (alle Events und Autoplay).
+                description: Die Zeit (in Millisekunden), die standardmäßig für den Übergang zwischen zwei Slides verwendet wird (alle Events).
                 placeholder: 250
                 default: 250
 
@@ -423,29 +468,12 @@ form:
                 placeholder: 250
                 default: 250
 
-              mouseDrag:
-                type: enable.enable
-                label: Mausziehen
-                description: Aktivieren oder deakivieren Sie das Mausziehen.
-                default: true
-
-              touchDrag:
-                type: enable.enable
-                label: Touchziehen
-                description: Aktivieren oder deakivieren Sie das Touchziehen.
-                default: true
-
-              pullDrag:
-                type: enable.enable
-                label: Pullziehen
-                description: Aktivieren oder deakivieren Sie das Pullziehen (Stage zur Kante).
-                default: true
-
-              freeDrag:
-                type: enable.enable
-                label: Freiziehen
-                description: Aktivieren oder deakivieren Sie das Freiziehen (Element zur Kante).
-                default: false
+              autoplayTSpeed:
+                type: input.text
+                label: Übergangsgeschwindigkeit Autoplay
+                description: Die Zeit (in Millisekunden), die für den Übergang zwischen zwei Slides bei Autoplay-Events verwendet wird.
+                placeholder: 250
+                default: 250
 
         tab_controls:
             label: Elemente
@@ -523,18 +551,18 @@ form:
                 placeholder: 0
                 default: 0
 
-              slideBy:
-                type: input.text
-                label: Slidinganzahl
-                description: Die Anzahl an Slides, die bei einem Slide-Event geslided werden sollen.
-                placeholder: 1
-                default: 1
-
               item_count:
                 type: input.text
                 label: Slideanzahl
                 description: Legen Sie fest wieviele Slides gleichzeitig am Bildschirm angezeigt werden sollen.
                 placeholder: ''
+                default: 1
+
+              slideBy:
+                type: input.text
+                label: Slidinganzahl
+                description: Die Anzahl an Slides, die bei einem Slide-Event geslided werden sollen.
+                placeholder: 1
                 default: 1
 
               item_space:
