@@ -59,6 +59,16 @@ form:
                 description: Benutzerdefinierter Text für den Titel des Particles.
                 placeholder: 'Titel eingeben'
 
+              direction:
+                type: select.select
+                label: Richtung
+                description: Wählen Sie die Richtung für das Carousel. Üblicherweise entspricht dies der Leserichtung. Standardmäßig wird die Richtung vom Gantry Framework bezogen.
+                default: gantry
+                options:
+                  gantry: Gantry-kontrolliert
+                  ltr: LTR (Left-To-Right)
+                  rtl: RTL (Right-To-Left)
+
               responsiveRefreshRate:
                 type: input.text
                 label: Responsive Refresh Rate
@@ -70,6 +80,18 @@ form:
                 type: enable.enable
                 label: Prüfe Sichtbarkeit
                 description: Sie können diese Option deaktivieren wenn Sie wissen, dass das Carousel immer angezeigt wird. Dies verhindert den aufwändigen und erzwungenen Browser Layout Reflow von <code>$element.is(':visible')</code>.
+
+              merge:
+                type: enable.enable
+                label: Strecken
+                description: Elemente strecken. Evalulierung der <code>data</code> Attribute innerhalb der Elemente (ob für das Element definiert). Hat in der OwlCarousel Version 2.3.4 möglicherweise keinen Effekt. Bitte prüfen Sie auch die Einstellung <b>Strecken</b> für einzelne Slides.
+                default: false
+
+              mergeFit:
+                type: enable.enable
+                label: Strecken anpassen
+                description: Anpassung der gestreckten Elemente z.B.: wenn der Bildschirm kleiner als der Elementwert ist. Bitte prüfen Sie auch die Einstellung <b>Strecken</b> für einzelne Slides.
+                default: true
 
               navElement:
                 type: input.text
@@ -653,6 +675,11 @@ form:
                     label: Button Klassen
                     description: Setzen Sie Klassen für die individuelle Gestaltung des Buttons.
                     default: 'button-outline'
+                  .mergevalue:
+                    type: input.text
+                    label: Strecken
+                    description: Ändern Sie diesen Wert, wenn Sie möchten dass diese Slide über mehrere einzelne Slides gestreckt wird. Zum Beispiel wenn Sie die <b>Slideanzahl</b> Einstellung bereits verändert haben. Wenn Sie eine <b>Slideanzahl</b> von 5 verwenden und diesen Wert auf 2 setzen, dann nimmt diese Slide 2/5 des verfügbaren Carouselplatzes ein.
+                    default: 1
                   .showItem:
                     type: select.select
                     label: Zeige Slide

@@ -57,6 +57,16 @@ form:
           description: Customize the title text for the Particle.
           placeholder: 'Enter title'
 
+         direction:
+           type: select.select
+           label: Direction
+           description: Select the direction for the carousel. Typically you would use the reading direction. By default the direction is obtained from the Gantry framework.
+           default: gantry
+           options:
+             gantry: Gantry-controlled
+             ltr: LTR (Left-To-Right)
+             rtl: RTL (Right-To-Left)
+
         responsiveRefreshRate:
           type: input.text
           label: Responsive Refresh Rate
@@ -68,6 +78,18 @@ form:
           type: input.checkbox
           label: Check Visible
           description: If you know that the carousel will always be visible you can disable this setting to prevent the expensive browser layout forced reflow the <code>$element.is(':visible')</code> does.
+          default: true
+
+        merge:
+          type: input.checkbox
+          label: Stretch
+          description: Stretch items. Looking for the respective <code>data</code> attribute inside items (whether defined for the item). Might has no effect in the OwlCarousel version 2.3.4. Please also check the <b>Stretch</b> setting for single slides.
+          default: false
+
+        mergeFit:
+          type: input.checkbox
+          label: Stretch Fit
+          description: Fit stretched items if screen is smaller than items value. Please also check the <b>Stretch</b> setting for single slides.
           default: true
 
         navElement:
@@ -656,6 +678,11 @@ form:
               label: Button Classes
               description: Set CSS classes for the button.
               default: 'button-outline'
+            .mergevalue:
+              type: input.text
+              label: Stretch Slide
+              description: Change this value if you want that this slide stretches over multiple single slides. E.g. you changed the <b>Slide Count</b> option previously. If you use a <b>Slide Count</b> of 5 and set this value to 2 then it stretches 2/5 of the carousel space.
+              default: 1
             .showItem:
               type: select.select
               label: Show Item
