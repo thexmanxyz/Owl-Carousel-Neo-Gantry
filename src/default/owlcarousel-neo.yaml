@@ -59,8 +59,64 @@ form:
                 description: Customize the title text for the Particle.
                 placeholder: 'Enter title'
 
-        tab_appearance:
-            label: Appearance
+              direction:
+                type: select.select
+                label: Direction
+                description: Select the direction for the carousel. Typically you would use the reading direction. By default the direction is obtained from the Gantry framework.
+                default: gantry
+                options:
+                  gantry: Gantry-controlled
+                  ltr: LTR (Left-To-Right)
+                  rtl: RTL (Right-To-Left)
+
+              responsiveRefreshRate:
+                type: input.text
+                label: Responsive Refresh Rate
+                description: Responsive refresh rate used during resize events. Smaller values mean more frequent updates.
+                placeholder: 200
+                default: 200
+
+              checkVisible:
+                type: enable.enable
+                label: Check Visible
+                description: If you know that the carousel will always be visible you can disable this setting to prevent the expensive browser layout forced reflow the <code>$element.is(':visible')</code> does.
+                default: true
+
+              merge:
+                type: enable.enable
+                label: Stretch
+                description: Stretch items. Looking for the respective <code>data</code> attribute inside items (whether defined for the item). Might has no effect in the OwlCarousel version 2.3.4. Please also check the <b>Stretch</b> setting for single slides.
+                default: false
+
+              mergeFit:
+                type: enable.enable
+                label: Stretch Fit
+                description: Fit stretched items if screen is smaller than items value. Please also check the <b>Stretch</b> setting for single slides.
+                default: true
+
+              navElement:
+                type: input.text
+                label: Navigation DOM Element
+                description: DOM element type for a single directional navigation link.
+                placeholder: div
+                default: div
+              
+              itemElement:
+                type: input.text
+                label: Item DOM Element
+                description: DOM element type used for <code>owl-item</code>.
+                placeholder: div
+                default: div
+              
+              stageElement:
+                type: input.text
+                label: Stage DOM Element
+                description: DOM element type use for <code>owl-stage</code>.
+                placeholder: div
+                default: div
+
+        tab_look:
+            label: Look
             fields:
 
               neo.style:
@@ -280,6 +336,16 @@ form:
             label: Behavior
             fields:
 
+              looping:
+                type: select.select
+                label: Looping
+                description: Select how you want to be iterated over the slides.<ul><li><b>Loop: </b>Infinity loop. Duplicate last and first items to get loop illusion.</li><li><b>Rewind: </b>Should be gone backwards when the boundary (start / end) is reached.</li><li><b>Off: </b> Navigation only possible until start or end.</li></ul>
+                default: loop
+                options:
+                  loop: Loop
+                  rewind: Rewind
+                  off: Off
+
               autoplay:
                 type: enable.enable
                 label: Autoplay
@@ -297,51 +363,6 @@ form:
                 label: Autoplay Hover Pause
                 description: Enable or disable the Autoplay when hovering the current slide.
                 default: false
-
-              looping:
-                type: select.select
-                label: Looping
-                description: Select how you want to be iterated over the slides.<ul><li><b>Loop: </b>Infinity loop. Duplicate last and first items to get loop illusion.</li><li><b>Rewind: </b>Should be gone backwards when the boundary (start / end) is reached.</li><li><b>Off: </b> Navigation only possible until start or end.</li></ul>
-                default: loop
-                options:
-                  loop: Loop
-                  rewind: Rewind
-                  off: Off
-
-              startPosition:
-                type: input.text
-                label: Start Position
-                description: The start position the carousel is loaded with. Starts with 0.
-                placeholder: 0
-                default: 0
-
-              slideBy:
-                type: input.text
-                label: Sliding Count
-                description: The amount of slides to be slided on a slide event.
-                placeholder: 1
-                default: 1
-
-              smartSpeed:
-                type: input.text
-                label: Transition Speed
-                description: The amount of time (in milliseconds) used between transition of two slides by default (all events plus autoplay).
-                placeholder: 250
-                default: 250
-
-              navSpeed:
-                type: input.text
-                label: Transition Speed Buttons
-                description: The amount of time (in milliseconds) used between transition of two slides for navigation button events.
-                placeholder: 250
-                default: 250
-
-              dotsSpeed:
-                type: input.text
-                label: Transition Speed Dots
-                description: The amount of time (in milliseconds) used between transition of two slides for navigation dots events.
-                placeholder: 250
-                default: 250
 
               title_link:
                 type: enable.enable
@@ -395,6 +416,150 @@ form:
                 label: Free Drag
                 description: Enable or disable the free drag (item to edge).
                 default: false
+
+              responsive_option:
+                type: collection.list
+                array: true
+                label: Responsive Options
+                description: Set plugin options at specific breakpoints (e.g. device width).
+                value: name
+                ajax: true
+                fields:
+                  .name:
+                    type: input.text
+                  .breakpoint:
+                    type: input.text
+                    label: Breakpoint
+                    description: Define at what width (in pixel) the here defined options should be applied.
+                    placeholder: 768
+                    default: 768
+                  .custom_option:
+                    type: collection.list
+                    array: true
+                    label: Custom Option
+                    description: Set custom option that is not pre-defined by the Particle above.
+                    value: name
+                    ajax: true
+                    fields:
+                      .name:
+                        type: input.text
+                      .key:
+                        type: input.text
+                        label: Key
+                        description: Enter the key for this option.
+                        placeholder: any OwlCarousel2 option
+                      .value:
+                        type: input.text
+                        label: Value
+                        description: Enter the value for this option.
+                        placeholder: a valid value for the option
+                      .useQuote:
+                        type: enable.enable
+                        label: Use Quote
+                        description: Enable this option if the <b>Value</b> is a character string.
+                        default: false
+                        
+        tab_animate:
+            label: Animate
+            fields:
+
+              _info_animate_class:
+                type: separator.note
+                class: alert alert-info
+                content: Please mind custom animation libraries like <a href="https://animate.style" target"_blank" title="Animate.css">Animate.css</a> when changing the following two settings.
+
+              animateIn:
+                type: input.text
+                label: Animate In
+                description: Class for CSS3 animation used during slide-in (e.g. Animate.css). Only works for single slide view.
+                placeholder: every CSS class e.g. Animate.CSS
+
+              animateOut:
+                type: input.text
+                label: Animate Out
+                description: Class for CSS3 animation used during slide-out (e.g. Animate.css). Only works for single slide view.
+                placeholder: every CSS class e.g. Animate.CSS
+
+              slideTransition:
+                type: select.select
+                label: Slide Transition
+                description: Select the transition type you want to use for the stage.
+                default: none
+                options:
+                  none: None
+                  ease: Ease
+                  linear: Linear
+                  ease-in: Ease-In
+                  ease-out: Ease-Out
+                  ease-in-out: Ease-In-Out
+
+              fallbackEasing:
+                type: select.select
+                label: Fallback Easing
+                description: Select the easing fallback type you want to use for CSS2 <code>$.animate</code>.
+                default: swing
+                options:
+                  swing: Swing
+                  linear: Linear
+                  easeInQuad: easeInQuad
+                  easeOutQuad: easeOutQuad
+                  easeInOutQuad: easeInOutQuad
+                  easeInCubic: easeInCubic
+                  easeOutCubic: easeOutCubic
+                  easeInOutCubic: easeInOutCubic
+                  easeInQuart: easeInQuart
+                  easeOutQuart: easeOutQuart
+                  easeInOutQuart: easeInOutQuart
+                  easeInQuint: easeInQuint
+                  easeOutQuint: easeOutQuint
+                  easeInOutQuint: easeInOutQuint
+                  easeInExpo: easeInExpo
+                  easeOutExpo: easeOutExpo
+                  easeInOutExpo: easeInOutExpo
+                  easeInSine: easeInSine
+                  easeOutSine: easeOutSine
+                  easeInOutSine: easeInOutSine
+                  easeInCirc: easeInCirc
+                  easeOutCirc: easeOutCirc
+                  easeInOutCirc: easeInOutCirc
+                  easeInElastic: easeInElastic
+                  easeOutElastic: easeOutElastic
+                  easeInOutElastic: easeInOutElastic
+                  easeInBack: easeInBack
+                  easeOutBack: easeOutBack
+                  easeInOutBack: easeInOutBack
+                  easeInBounce: easeInBounce
+                  easeOutBounce: easeOutBounce
+                  easeInOutBounce: easeInOutBounce
+
+
+              smartSpeed:
+                type: input.text
+                label: Transition Speed
+                description: The amount of time (in milliseconds) used between transition of two slides by default (all events).
+                placeholder: 250
+                default: 250
+
+              navSpeed:
+                type: input.text
+                label: Transition Speed Buttons
+                description: The amount of time (in milliseconds) used between transition of two slides for navigation button events.
+                placeholder: 250
+                default: 250
+
+              dotsSpeed:
+                type: input.text
+                label: Transition Speed Dots
+                description: The amount of time (in milliseconds) used between transition of two slides for navigation dots events.
+                placeholder: 250
+                default: 250
+
+              autoplayTSpeed:
+                type: input.text
+                label: Transition Speed Autoplay
+                description: The amount of time (in milliseconds) used between transition of two slides for autoplay events.
+                placeholder: 250
+                default: 250
 
         tab_controls:
             label: Controls
@@ -464,11 +629,26 @@ form:
         tab_slides:
             label: Slides
             fields:
+
+              startPosition:
+                type: input.text
+                label: Start Position
+                description: The start position the carousel is loaded with. Starts with 0.
+                placeholder: 0
+                default: 0
+
               item_count:
                 type: input.text
                 label: Slide Count
                 description: The number of items you want to see simultaneously on the screen.
                 placeholder: 'number of slides'
+                default: 1
+
+              slideBy:
+                type: input.text
+                label: Slideby Count
+                description: The amount of slides that will be slided during a slide event.
+                placeholder: 1
                 default: 1
 
               item_space:
@@ -483,6 +663,13 @@ form:
                 label: Slide Centering
                 description: Centers the current slide in case there are multiple slides (more than 1) shown.
                 default: false
+
+              stage_padding:
+                type: input.text
+                label: Stage Padding 
+                description: Padding left and right on stage (can see neighbours).
+                placeholder: padding in px
+                default: 0
 
               items:
                 type: collection.list
@@ -532,6 +719,11 @@ form:
                     label: Button Classes
                     description: Set CSS classes for the button.
                     default: 'button-outline'
+                  .mergevalue:
+                    type: input.text
+                    label: Stretch Slide
+                    description: Change this value if you want that this slide stretches over multiple single slides. E.g. you changed the <b>Slide Count</b> option previously. If you use a <b>Slide Count</b> of 5 and set this value to 2 then it stretches 2/5 of the carousel space.
+                    default: 1
                   .showItem:
                     type: select.select
                     label: Show Item
