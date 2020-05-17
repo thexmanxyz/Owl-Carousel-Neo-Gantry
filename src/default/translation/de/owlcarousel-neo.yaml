@@ -84,13 +84,13 @@ form:
               merge:
                 type: enable.enable
                 label: Strecken
-                description: Elemente strecken. Evalulierung der <code>data</code> Attribute innerhalb der Elemente (ob für das Element definiert). Hat in der OwlCarousel Version 2.3.4 möglicherweise keinen Effekt. Bitte prüfen Sie auch die Einstellung <b>Strecken</b> für einzelne Slides.
+                description: Elemente strecken (mergen). Evalulierung der <code>data</code> Attribute innerhalb der Elemente (ob für das Element definiert). Hat in der OwlCarousel Version 2.3.4 möglicherweise keinen Effekt. Bitte prüfen Sie auch die Einstellung <b>Strecken</b> für einzelne Slides.
                 default: false
 
               mergeFit:
                 type: enable.enable
                 label: Strecken anpassen
-                description: Anpassung der gestreckten Elemente z.B.: wenn der Bildschirm kleiner als der Elementwert ist. Bitte prüfen Sie auch die Einstellung <b>Strecken</b> für einzelne Slides.
+                description: Anpassung der gestreckten (gemergedten) Elemente z.B.: wenn der Bildschirm kleiner als der Elementwert ist. Bitte prüfen Sie auch die Einstellung <b>Strecken</b> für einzelne Slides.
                 default: true
 
               navElement:
@@ -416,6 +416,95 @@ form:
                 description: Aktivieren oder deakivieren Sie das Freiziehen (Element zur Kante).
                 default: false
 
+              responsive_option:
+                type: collection.list
+                array: true
+                label: Responsive Optionen
+                description: Setzen Sie OwlCarousel Plugin Optionen bei bestimmten Breakpoints (z.B.: Gerätebreite).
+                value: name
+                ajax: true
+                fields:
+                  .name:
+                    type: input.text
+                  .breakpoint:
+                    type: input.text
+                    label: Breakpoint
+                    description: Legen Sie fest, bei welcher Breite (in Pixel) die hier definierten Optionen angewendet werde sollen. Die übergeordneten Einstellungen werden überschrieben, deshalb brauchen Sie wahrscheinlich zwei Breakpoints, um das erwartete Resultat zu erhalten.
+                    placeholder: 768
+                    default: 768
+                  .item_count:
+                    type: input.text
+                    label: Slideanzahl
+                    description: Legen Sie fest wieviele Slides gleichzeitig am Bildschirm angezeigt werden sollen.
+                    placeholder: ''
+                    default: 1
+                  .slideBy:
+                    type: input.text
+                    label: Slidinganzahl
+                    description: Die Anzahl an Slides, die bei einem Slide-Event geslided werden sollen.
+                    placeholder: 1
+                    default: 1
+                  .item_space:
+                    type: input.text
+                    label: Slideabstand
+                    description: Der Abstand der zwischen den Slides eingefügt werden soll.
+                    placeholder: Abstand in px
+                    default: 0
+                  .item_center:
+                    type: enable.enable
+                    label: Slidezentrierung
+                    description: Zentriert die aktuelle Slide wenn mehrere Slides (mehr als 1) angezeigt werden.
+                    default: false
+                  .stage_padding:
+                    type: input.text
+                    label: Stage Abstand 
+                    description: Abstand links und recht der Stage (Nachbarn werden sichtbar).
+                    placeholder: Abstand in px
+                    default: 0
+                  .animateIn:
+                    type: input.text
+                    label: Animation Herein
+                    description: Klasse für CSS3 Animation, die für das Hereinsliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist.
+                    placeholder: jede CSS Kasse z.B.: Animate.css
+                  .animateOut:
+                    type: input.text
+                    label: Animation Hinaus
+                    description: Klasse für CSS3 Animation, die für das Hinaussliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist.
+                    placeholder: jede CSS Kasse z.B.: Animate.css
+                  ._info_responsive_custom_options:
+                    type: separator.note
+                    class: alert alert-info
+                    content: Wenn Ihre gewünschte Einstellung oben nicht gelisted wurde, verwenden Sie bitte die folgenden Einstellungen.
+                  .custom_option:
+                    type: collection.list
+                    array: true
+                    label: Benutzerdefinierte Optionen
+                    description: Legen Sie eine benutzerdefinierte Option fest, die von dem Particle nicht bereits oben vordefiniert wurde.
+                    value: name
+                    ajax: true
+                    fields:
+                      .name:
+                        type: input.text
+                      ._info_responsive_options:
+                        type: separator.note
+                        class: alert alert-info
+                        content: Bitte folgen Sie <a href="https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html" target"_blank" title="OwlCarousel2 Optionen">diesem Link</a>, um mehr Informationen über die vorhandenen OwlCarousel2 parameter zu erfahren. Mehr Informationen zum OwlCarousel2 Responsive Mode <a href="https://owlcarousel2.github.io/OwlCarousel2/demos/responsive.html" target"_blank" title="OwlCarousel2 Responsive Mode">finden Sie hier</a>.
+                      .key:
+                        type: input.text
+                        label: Schlüssel
+                        description: Geben Sie den Schlüssel für diese Option ein.
+                        placeholder: beliebige OwlCarousel2 Option
+                      .value:
+                        type: input.text
+                        label: Wert
+                        description: Geben Sie den Wert für diese Option ein.
+                        placeholder: ein gültiger Wert für diese Option
+                      .useQuote:
+                        type: enable.enable
+                        label: Verwende Anführungszeichen
+                        description: Aktivieren Sie diese Option, wenn der definierte <b>Wert</b> einer Zeichenkette enspricht.
+                        default: false
+
         tab_animate:
             label: Animation
             fields:
@@ -430,7 +519,7 @@ form:
                 label: Animation Herein
                 description: Klasse für CSS3 Animation, die für das Hereinsliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist.
                 placeholder: jede CSS Kasse z.B.: Animate.css
-              
+
               animateOut:
                 type: input.text
                 label: Animation Hinaus
@@ -678,7 +767,7 @@ form:
                   .mergevalue:
                     type: input.text
                     label: Strecken
-                    description: Ändern Sie diesen Wert, wenn Sie möchten dass diese Slide über mehrere einzelne Slides gestreckt wird. Zum Beispiel wenn Sie die <b>Slideanzahl</b> Einstellung bereits verändert haben. Wenn Sie eine <b>Slideanzahl</b> von 5 verwenden und diesen Wert auf 2 setzen, dann nimmt diese Slide 2/5 des verfügbaren Carouselplatzes ein.
+                    description: Ändern Sie diesen Wert, wenn Sie möchten dass diese Slide über mehrere einzelne Slides gestreckt (gemerged) wird. Zum Beispiel wenn Sie die <b>Slideanzahl</b> Einstellung bereits verändert haben. Wenn Sie eine <b>Slideanzahl</b> von 5 verwenden und diesen Wert auf 2 setzen, dann nimmt diese Slide 2/5 des verfügbaren Carouselplatzes ein.
                     default: 1
                   .showItem:
                     type: select.select

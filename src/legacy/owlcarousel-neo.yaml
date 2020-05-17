@@ -83,13 +83,13 @@ form:
         merge:
           type: input.checkbox
           label: Stretch
-          description: Stretch items. Looking for the respective <code>data</code> attribute inside items (whether defined for the item). Might has no effect in the OwlCarousel version 2.3.4. Please also check the <b>Stretch</b> setting for single slides.
+          description: Stretch (merge) items. Looking for the respective <code>data</code> attribute inside items (whether defined for the item). Might has no effect in the OwlCarousel version 2.3.4. Please also check the <b>Stretch</b> setting for single slides.
           default: false
 
         mergeFit:
           type: input.checkbox
           label: Stretch Fit
-          description: Fit stretched items if screen is smaller than items value. Please also check the <b>Stretch</b> setting for single slides.
+          description: Fit stretched (merged) items if screen is smaller than items value. Please also check the <b>Stretch</b> setting for single slides.
           default: true
 
         navElement:
@@ -416,6 +416,95 @@ form:
           description: Enable or disable the free drag (item to edge).
           default: false
 
+        responsive_option:
+          type: collection.list
+          array: true
+          label: Responsive Options
+          description: Set OwlCarousel plugin options at specific breakpoints (e.g. device width).
+          value: name
+          ajax: true
+          fields:
+            .name:
+              type: input.text
+            .breakpoint:
+              type: input.text
+              label: Breakpoint
+              description: Define at what width (in pixel) the here defined options should be applied. The basic settings are overriden so you might need to define at least two breakpoints for your desired behavior.
+              placeholder: 768
+              default: 768
+            .item_count:
+              type: input.text
+              label: Slide Count
+              description: The number of items you want to see simultaneously on the screen.
+              placeholder: 'number of slides'
+              default: 1
+            .slideBy:
+              type: input.text
+              label: Slideby Count
+              description: The amount of slides that will be slided during a slide event.
+              placeholder: 1
+              default: 1
+            .item_space:
+              type: input.text
+              label: Slide Space
+              description: The space to be inserted between the slides 
+              placeholder: space in px
+              default: 0
+            .item_center:
+              type: enable.enable
+              label: Slide Centering
+              description: Centers the current slide in case there are multiple slides (more than 1) shown.
+              default: false
+            .stage_padding:
+              type: input.text
+              label: Stage Padding 
+              description: Padding left and right on stage (can see neighbours).
+              placeholder: padding in px
+              default: 0
+            .animateIn:
+              type: input.text
+              label: Animate In
+              description: Class for CSS3 animation used during slide-in (e.g. Animate.css). Only works for single slide view.
+              placeholder: every CSS class e.g. Animate.CSS
+            .animateOut:
+              type: input.text
+              label: Animate Out
+              description: Class for CSS3 animation used during slide-out (e.g. Animate.css). Only works for single slide view.
+              placeholder: every CSS class e.g. Animate.CSS
+            ._info_responsive_custom_options:
+              type: separator.note
+              class: alert alert-info
+              content: If your setting is not listed above, please use the following options.
+            .custom_option:
+              type: collection.list
+              array: true
+              label: Custom Options
+              description: Set custom option that is not pre-defined by the Particle above.
+              value: name
+              ajax: true
+              fields:
+                .name:
+                  type: input.text
+                ._info_responsive_options:
+                  type: separator.note
+                  class: alert alert-info
+                  content: Please check <a href="https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html" target"_blank" title="OwlCarousel2 options">this link</a> for more information about the OwlCarousel2 parameters and <a href="https://owlcarousel2.github.io/OwlCarousel2/demos/responsive.html" target"_blank" title="OwlCarousel2 responsive mode">this link</a> for more information about the responsive mode.
+                .key:
+                  type: input.text
+                  label: Key
+                  description: Enter the key for this option.
+                  placeholder: any OwlCarousel2 option
+                .value:
+                  type: input.text
+                  label: Value
+                  description: Enter the value for this option.
+                  placeholder: a valid value for the option
+                .useQuote:
+                  type: input.checkbox
+                  label: Use Quote
+                  description: Enable this option if the <b>Value</b> is a character string.
+                  default: false
+
     set_animate:
       type: container.set
       label: Animate
@@ -681,7 +770,7 @@ form:
             .mergevalue:
               type: input.text
               label: Stretch Slide
-              description: Change this value if you want that this slide stretches over multiple single slides. E.g. you changed the <b>Slide Count</b> option previously. If you use a <b>Slide Count</b> of 5 and set this value to 2 then it stretches 2/5 of the carousel space.
+              description: Change this value if you want that this slide stretches over (merges) multiple single slides. E.g. you changed the <b>Slide Count</b> option previously. If you use a <b>Slide Count</b> of 5 and set this value to 2 then it stretches 2/5 of the carousel space.
               default: 1
             .showItem:
               type: select.select

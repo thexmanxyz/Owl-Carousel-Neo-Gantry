@@ -180,8 +180,33 @@
     {% set rtlValue = direction == 'rtl' ? 'true' : 'false' %}
 {% endif %}
 
-{% block particle %}
+{%- if particle.responsive_option|length > 0 -%}
+    {%- set responsive -%}
+    {
+        {%- for option in particle.responsive_option -%}
+            {%- set hItemCount = option.item_count|default(1) -%}
+            {%- set hSlideBy = option.slideBy|default(1) -%}
+            {%- set hItemSpace = option.item_space|default(0) -%}
+            {%- set hStagePadding = particle.stage_padding|default(0) -%}
+            {%- set hItemCenter = option.item_center|default(false) -%}
+            {{option.breakpoint|e('js')}}: {
+                items: {{hItemCount|e('js')}},
+                slideBy: {{hSlideBy|e('js')}},
+                margin: {{hItemSpace|e('js')}},
+                center: {{hItemCenter ? 'true' : 'false'}},
+                stagePadding: {{hStagePadding|e('js')}},
+                animateIn: '{{option.animateIn|e('js')}}',
+                animateOut: '{{option.animateOut|e('js')}}',
+                {%- for custom in option.custom_option -%}
+                {{custom.key|e('js')}}: {% if custom.useQuote %}'{% endif %}{{custom.value|e('js')}}{% if custom.useQuote %}'{% endif %},
+                {%- endfor -%}
+            },
+        {%- endfor -%}
+     }
+    {%- endset -%}
+{%- endif -%}
 
+{% block particle %}
     {%- scripts in jsPlace with { priority: jsPrior } -%}
         {%- do gantry.load('jquery') -%}
         <script type="{{scriptType}}" src="{{url(jsPath)}}"{{jsExecAttr}}></script>
@@ -197,83 +222,78 @@
                 var owl = jQuery('#g-owlcarousel-{{ id }}');
                 owl.owlCarousel({
                     items: {{particle.item_count|default(1)}},
-                    {% if itemSpace != 0 %}
+                    {%- if itemSpace != 0 -%}
                     margin: {{itemSpace|e('js')}},
-                    {% endif %}
-                    {% if stagePadding and stagePadding != 0 %}
+                    {%- endif -%}
+                    {%- if stagePadding and stagePadding != 0 -%}
                     stagePadding: {{stagePadding|e('js')}},
-                    {% endif %}
-                    {% if itemCenter %}
+                    {%- endif -%}
+                    {%- if itemCenter -%}
                     center: true,
-                    {% endif %}
-                    {% if startPosition and startPosition > 0 %}
+                    {%- endif -%}
+                    {%- if startPosition and startPosition > 0 -%}
                     startPosition: {{startPosition|e('js')}},
-                    {% endif %}
-                    {% if slideBy > 1 %}
-                    slideBy: {{startPosition|e('js')}},
-                    {% endif %}
-                    {% if smartSpeed != 250 %}
+                    {%- endif -%}
+                    {%- if slideBy > 1 -%}
+                    slideBy: {{slideBy|e('js')}},
+                    {%- endif -%}
+                    {%- if smartSpeed != 250 -%}
                     smartSpeed: {{smartSpeed|e('js')}},
-                    {% endif %}
-                    {% if navSpeed != 250 %}
+                    {%- endif -%}
+                    {%- if navSpeed != 250 -%}
                     navSpeed: {{navSpeed|e('js')}},
-                    {% endif %}       
-                    {% if dotsSpeed != 250 %}
+                    {%- endif -%}       
+                    {%- if dotsSpeed != 250 -%}
                     dotsSpeed: {{dotsSpeed|e('js')}},
-                    {% endif %}
-                    {% if autoplaySpeed != 250 %}
+                    {%- endif -%}
+                    {%- if autoplaySpeed != 250 -%}
                     autoplaySpeed: {{autoplaySpeed|e('js')}},
-                    {% endif %}
-                    {% if slideTransition != 'none' %}
+                    {%- endif -%}
+                    {%- if slideTransition != 'none' -%}
                     slideTransition: '{{slideTransition|e('js')}}',
-                    {% endif %}
-                    {% if fallbackEasing != 'swing' %}
+                    {%- endif -%}
+                    {%- if fallbackEasing != 'swing' -%}
                     fallbackEasing: '{{fallbackEasing|e('js')}}',
-                    {% endif %}
-                    {% if responsiveRefreshRate != 200 %}
+                    {%-endif -%}
+                    {%- if responsiveRefreshRate != 200 -%}
                     responsiveRefreshRate: {{responsiveRefreshRate|e('js')}},
-                    {% endif %}
-                    {% if not checkVisible %}
+                    {%- endif -%}
+                    {%- if not checkVisible -%}
                     checkVisible: false,
-                    {% endif %}
-                    {% if navElement != 'div' %}
+                    {%- endif -%}
+                    {%- if navElement != 'div' -%}
                     navElement: '{{navElement|e('js')}}',
-                    {% endif %}             
-                    {% if itemElement != 'div' %}
+                    {%- endif -%}             
+                    {%- if itemElement != 'div' -%}
                     itemElement: '{{itemElement|e('js')}}',
-                    {% endif %}              
-                    {% if stageElement != 'div' %}
+                    {%- endif -%}              
+                    {%- if stageElement != 'div' -%}
                     stageElement: '{{stageElement|e('js')}}',
-                    {% endif %}  
-                    {% if navContainer and navContainer != '' %}
+                    {%- endif -%}  
+                    {%- if navContainer and navContainer != '' -%}
                     navContainer: '{{navContainer|e('js')}}',
-                    {% endif %}
-                    {% if dotsContainer and dotsContainer != '' %}
+                    {%- endif -%}
+                    {%- if dotsContainer and dotsContainer != '' -%}
                     dotsContainer: '{{dotsContainer|e('js')}}',      
-                    {% endif %}                   
-                    {% if particle.animateIn %}
+                    {%- endif -%}                   
+                    {%- if particle.animateIn -%}
                     animateIn: '{{particle.animateIn|e('js')}}',
-                    {% endif %}
-                    {% if particle.animateOut %}
+                    {%- endif -%}
+                    {%- if particle.animateOut -%}
                     animateOut: '{{particle.animateOut|e('js')}}',
-                    {% endif %}
-                    {% if merge %}
+                    {%- endif -%}
+                    {%- if merge -%}
                     merge: true,
-                    {% endif %}
-                    {% if not mergeFit %}
+                    {%- endif -%}
+                    {%- if not mergeFit -%}
                     mergeFit: false,
-                    {% endif %}
-                    
-
-                    //responsive
-                    
-                    
+                    {%- endif -%}
                     rtl: {{rtlValue}},
-                    {% if looping == 'loop' %}
+                    {%- if looping == 'loop' -%}
                     loop: true,
-                    {% elseif looping == 'rewind' %}
+                    {%- elseif looping == 'rewind' -%}
                     rewind: true,
-                    {% endif %}
+                    {%- endif -%}
                     navText: ['{{ particle.prevText|default('<i class="fa ' ~ arrowLeft ~ '" aria-hidden="true"></i>')|e('js') }}', '{{ particle.nextText|default('<i class="fa ' ~ arrowRight ~ '" aria-hidden="true"></i>')|e('js') }}'],
                     {%- if nav == 'true' and not particle.delaySlideElements -%}
                     nav: true,
@@ -300,23 +320,26 @@
                     {%- else -%}
                     autoplay: false,
                     {%- endif -%}
-                    {% if not mouseDrag %}
+                    {%- if not mouseDrag -%}
                     mouseDrag: false,
-                    {% endif %}
-                    {% if not touchDrag %}
+                    {%- endif -%}
+                    {%- if not touchDrag -%}
                     touchDrag: false,
-                    {% endif %}
-                    {% if not pullDrag %}     
+                    {%- endif -%}
+                    {%- if not pullDrag -%}     
                     pullDrag: false,
-                    {% endif %}
-                    {% if freeDrag %}
+                    {%- endif -%}
+                    {%- if freeDrag -%}
                     freeDrag: true,
-                    {% endif %}
+                    {%- endif -%}
                     {%- if particle.lazyLoadImages -%}
                     lazyLoad: true,
                         {%- if loadEager > 0 -%}
                             lazyLoadEager: {{ loadEager|e('js') }},
                         {%- endif -%}
+                    {%- endif -%}
+                    {%- if responsive and responsive != '' -%}
+                    responsive: {{responsive|raw}}
                     {%- endif -%}
                 });
 
