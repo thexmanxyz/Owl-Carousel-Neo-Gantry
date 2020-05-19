@@ -64,6 +64,19 @@ form:
           placeholder: 200
           default: 200
 
+        responsiveBaseElement:
+          type: input.text
+          label: Responsive Base Element
+          description: As default all responsive breakpoints are corresponding with <code>window</code> width. This option gives you an opportunity to change it to your own class/id.
+          placeholder: .myCustomWrapper
+          default: ''
+
+        urlHashListener:
+          type: enable.enable
+          label: URL Hash Listener
+          description: Listen to URL hash changes. The <code>data-hash</code> attribute on items is required.
+          default: false
+
         checkVisible:
           type: input.checkbox
           label: Check Visible
@@ -96,7 +109,7 @@ form:
       label: Look
       fields:
 
-        neo.style:
+        all.style:
           type: select.select
           label: Style
           description: Select one of the predefined styles. Not all settings below apply to all styles. Please mind the note above each section. This decision was made to keep compatibility with the original Particle.<ul><li><b>Helium: </b> Configurable with settings below.</li><li><b>Neo Style 1: </b>Top (dots) and bottom (arrows, title).</li><li><b>Neo Style 2: </b>Top (arrows, title) and bottom (dots).</li><li><b>Neo Style 3: </b>Top (arrows, dots) and bottom (title).</li><li><b>Neo Style 4: </b>Top (title) and bottom (arrows, dots).</li></ul>
@@ -107,6 +120,12 @@ form:
             style-neo2: Neo Style 2
             style-neo3: Neo Style 3
             style-neo4: Neo Style 4
+
+        all.background:
+              type: input.colorpicker
+              label: Background
+              description: Custom background for the carousel.
+              default: ''
 
         _info_appearance_helium:
           type: separator.note
@@ -455,7 +474,7 @@ form:
               placeholder: 'space in px (default: 0)'
               default: ''
             .item_center:
-              type: enable.enable
+              type: input.checkbox
               label: Slide Centering
               description: Centers the current slide in case there are multiple slides (more than 1) shown.
               default: false
@@ -687,8 +706,8 @@ form:
         startPosition:
           type: input.text
           label: Start Position
-          description: The start position the carousel is loaded with. Starts with 0.
-          placeholder: 0
+          description: The start position the carousel is loaded with. Starts with 0. If you want to that the start position is determined by URL hash, use <code>URLHash</code>.
+          placeholder: number or URLHash
           default: 0
 
         item_count:
@@ -718,6 +737,12 @@ form:
           description: Centers the current slide in case there are multiple slides (more than 1) shown.
           default: false
 
+        autoWidth:
+          type: enable.enable
+          label: Manual Dimension
+          description: If you enable this option the grid is disabled and you can manually set the dimension for each slide element within the single slide settings. 
+          default: false
+
         stage_padding:
           type: input.text
           label: Stage Padding 
@@ -743,6 +768,23 @@ form:
               type: input.imagepicker
               label: Image
               description: Select desired image.
+            .background:
+              type: input.colorpicker
+              label: Background
+              description: Custom background color for the slide e.g. when there is no image used.
+              default: ''
+            .manual_width:
+              type: input.text
+              label: Manual Width
+              description: The manual width applied to the <code>style</code> attribute of the slide item. This option should be used together with <strong>Manual Width</strong> located at the general slide settings.
+              default: ''
+              placeholder: e.g. 250 (in pixel)
+            .manual_height:
+              type: input.text
+              label: Manual Height
+              description: The manual height applied to the <code>style</code> attribute of the slide item. This option should be used together with <strong>Manual Dimension</strong> located at the general slide settings.
+              default: ''
+              placeholder: e.g. 250 (in pixel)
             .link:
               type: input.text
               label: Link
@@ -778,10 +820,16 @@ form:
               label: Stretch Slide
               description: Change this value if you want that this slide stretches over (merges) multiple single slides. E.g. you changed the <b>Slide Count</b> option previously. If you use a <b>Slide Count</b> of 5 and set this value to 2 then it stretches 2/5 of the carousel space.
               default: 1
+            .hash:
+              type: input.text
+              label: Hash
+              description: 'The hash value used for <code>data-hash</code> attribute appended to the slide. Without #.'
+              default: ''
+              placeholder: e.g. myHash
             .showItem:
               type: select.select
-              label: Show Item
-              description: Select the front end rendering behaviour for the item.
+              label: Show Slide
+              description: Select the front end rendering behaviour for the slide.
               default: yes
               options:
                 yes: Yes

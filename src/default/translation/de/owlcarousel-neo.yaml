@@ -66,6 +66,19 @@ form:
                 placeholder: 200
                 default: 200
 
+              responsiveBaseElement:
+                type: input.text
+                label: Responsive Basiselement
+                description: Standardmäßig werden alle Responsive Breakpoints an der Browser <code>window</code> Breite ausgerichtet. Diese Option gibt Ihnen die Möglichkeit diese Einstellung zu ändern und eine eigene Klasse bzw. Id für das Basiselement zu definieren.
+                placeholder: .myCustomWrapper
+                default: ''
+
+              urlHashListener:
+                type: enable.enable
+                label: URL Hash Listener
+                description: Höre auf URL Hash Veränderungen. Das <code>data-hash</code> Attribut muss gesetzt worden sein.
+                default: false
+
               checkVisible:
                 type: enable.enable
                 label: Prüfe Sichtbarkeit
@@ -96,7 +109,7 @@ form:
             label: Aussehen
             fields:
 
-              neo.style:
+              all.style:
                 type: select.select
                 label: Style
                 description: Wählen Sie eine der vorhanden Vorlagen aus. Nicht alle der unten angeführten Einstellungen gelten für jedes Style. Bitte beachten Sie die Notiz über jedem Abschnitt. Diese Entscheidung wurde getroffen, um die Kompatibilität mit dem Original Particle zu wahren.<ul><li><b>Helium: </b> Einstellbar mit den Einstellungen weiter unten.</li><li><b>Neo Style 1: </b>Oben (Punkte) und unten (Pfeile, Titel).</li><li><b>Neo Style 2: </b>Oben (Pfeile, Titel) und unten (Punkte).</li><li><b>Neo Style 3: </b>Oben (Pfeile, Punkte) und unten (Titel).</li><li><b>Neo Style 4: </b>Oben (Titel) und unten (Pfeile, Punkte).</li></ul>
@@ -107,6 +120,12 @@ form:
                   style-neo2: Neo Style 2
                   style-neo3: Neo Style 3
                   style-neo4: Neo Style 4
+
+              all.background:
+                    type: input.colorpicker
+                    label: Hintergrund
+                    description: Benutzerdefinierter Hintergrund für das Carousel.
+                    default: ''
 
               _info_appearance_helium:
                 type: separator.note
@@ -684,8 +703,8 @@ form:
               startPosition:
                 type: input.text
                 label: Startposition
-                description: Die Startposition mit der das Carousel geladen wird. Startet mit 0.
-                placeholder: 0
+                description: Die Startposition mit der das Carousel geladen wird. Startet mit 0. Wenn Sie möchten, dass die Startposition vom URL hash bestimmt wird, verwenden Sie bitte <code>URLHash</code>.
+                placeholder: Zahl oder URLHash
                 default: 0
 
               item_count:
@@ -715,6 +734,12 @@ form:
                 description: Zentriert die aktuelle Slide wenn mehrere Slides (mehr als 1) angezeigt werden.
                 default: false
 
+              autoWidth:
+                type: enable.enable
+                label: Manuelle Größe
+                description: Wenn Sie diese Option aktivieren, wird das Grid deaktiviert und Sie können die Größe für jede Slide manuell setzen. Diese Option ist in den Einstellungen für einzelne Slides vorhanden. 
+                default: false
+
               stage_padding:
                 type: input.text
                 label: Stage Abstand 
@@ -740,6 +765,23 @@ form:
                     type: input.imagepicker
                     label: Bild
                     description: Wählen Sie ein Bild für die Slide.
+                  .background:
+                    type: input.colorpicker
+                    label: Hintergrund
+                    description: Benutzerdefinierte Farbe für die Slide z.B.: wenn kein Bild verwendet wrd.
+                    default: ''
+                  .manual_width:
+                    type: input.text
+                    label: Manuelle Breite
+                    description: Die manuelle Breite die auf das <code>style</code> Attribut des Slideelements angewendet wird. Diese Option sollte zusammen mit der Einstellung <strong>Manuelle Größe</strong> in den allgemeinen Slide Einstellungen verwendet werden.
+                    default: ''
+                    placeholder: z.B.: 250 (in pixel)
+                  .manual_height:
+                    type: input.text
+                    label: Manuelle Höhe
+                    description: Die manuelle Höhe die auf das <code>style</code> Attribut des Slideelements angewendet wird. Diese Option sollte zusammen mit der Einstellung <strong>Manuelle Größe</strong> in den allgemeinen Slide Einstellungen verwendet werden.
+                    default: ''
+                    placeholder: z.B.: 250 (in pixel)
                   .link:
                     type: input.text
                     label: Link
@@ -775,6 +817,12 @@ form:
                     label: Strecken
                     description: Ändern Sie diesen Wert, wenn Sie möchten dass diese Slide über mehrere einzelne Slides gestreckt (gemerged) wird. Zum Beispiel wenn Sie die <b>Slideanzahl</b> Einstellung bereits verändert haben. Wenn Sie eine <b>Slideanzahl</b> von 5 verwenden und diesen Wert auf 2 setzen, dann nimmt diese Slide 2/5 des verfügbaren Carouselplatzes ein.
                     default: 1
+                  .hash:
+                    type: input.text
+                    label: Hash
+                    description: 'Der Hash-Wert der für das <code>data-hash</code> Attribut, dass für die Slide gesetzt wird. Ohne #.'
+                    default: ''
+                    placeholder: z.B.: meinHash
                   .showItem:
                     type: select.select
                     label: Zeige Slide
