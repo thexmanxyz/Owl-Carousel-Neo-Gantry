@@ -57,16 +57,6 @@ form:
           description: Benutzerdefinierter Text für den Titel des Particles.
           placeholder: 'Titel eingeben'
 
-        direction:
-          type: select.select
-          label: Richtung
-          description: Wählen Sie die Richtung für das Carousel. Üblicherweise entspricht dies der Leserichtung. Standardmäßig wird die Richtung vom Gantry Framework bezogen.
-          default: gantry
-          options:
-            gantry: Gantry-kontrolliert
-            ltr: LTR (Left-To-Right)
-            rtl: RTL (Right-To-Left)
-
         responsiveRefreshRate:
           type: input.text
           label: Responsive Refresh Rate
@@ -78,18 +68,6 @@ form:
           type: input.checkbox
           label: Prüfe Sichtbarkeit
           description: Sie können diese Option deaktivieren wenn Sie wissen, dass das Carousel immer angezeigt wird. Dies verhindert den aufwändigen und erzwungenen Browser Layout Reflow von <code>$element.is(':visible')</code>.
-          default: true
-
-        merge:
-          type: input.checkbox
-          label: Strecken
-          description: Elemente strecken (mergen). Evalulierung der <code>data</code> Attribute innerhalb der Elemente (ob für das Element definiert). Hat in der OwlCarousel Version 2.3.4 möglicherweise keinen Effekt. Bitte prüfen Sie auch die Einstellung <b>Strecken</b> für einzelne Slides.
-          default: false
-
-        mergeFit:
-          type: input.checkbox
-          label: Strecken anpassen
-          description: Anpassung der gestreckten (gemergedten) Elemente z.B.: wenn der Bildschirm kleiner als der Elementwert ist. Bitte prüfen Sie auch die Einstellung <b>Strecken</b> für einzelne Slides.
           default: true
 
         navElement:
@@ -336,6 +314,16 @@ form:
       label: Verhalten
       fields:
 
+        direction:
+          type: select.select
+          label: Richtung
+          description: Wählen Sie die Richtung für das Carousel. Üblicherweise entspricht dies der Leserichtung. Standardmäßig wird die Richtung vom Gantry Framework bezogen.
+          default: gantry
+          options:
+            gantry: Gantry-kontrolliert
+            ltr: LTR (Left-To-Right)
+            rtl: RTL (Right-To-Left)
+
         looping:
           type: select.select
           label: Looping
@@ -393,6 +381,18 @@ form:
           description: Legen Sie fest, ob der Link während des Window Resize Events auf die Slide angewendet werden soll. Kann bei Aktivierung Probleme verursachen. Verhindert bei Deaktivierung jedoch, dass ein Linkwechsel beim Resize durchgeführt wird.
           default: true
 
+        merge:
+          type: input.checkbox
+          label: Strecken
+          description: Elemente strecken (mergen). Evalulierung der <code>data</code> Attribute innerhalb der Elemente (ob für das Element definiert). Hat in der OwlCarousel Version 2.3.4 möglicherweise keinen Effekt. Bitte prüfen Sie auch die Einstellung <b>Strecken</b> für einzelne Slides.
+          default: false
+
+        mergeFit:
+          type: input.checkbox
+          label: Strecken anpassen
+          description: Anpassung der gestreckten (gemergedten) Elemente z.B.: wenn der Bildschirm kleiner als der Elementwert ist. Bitte prüfen Sie auch die Einstellung <b>Strecken</b> für einzelne Slides.
+          default: true
+
         mouseDrag:
           type: input.checkbox
           label: Mausziehen
@@ -431,26 +431,30 @@ form:
               type: input.text
               label: Breakpoint
               description: Legen Sie fest, bei welcher Breite (in Pixel) die hier definierten Optionen angewendet werde sollen. Die übergeordneten Einstellungen werden überschrieben, deshalb brauchen Sie wahrscheinlich zwei Breakpoints, um das erwartete Resultat zu erhalten.
-              placeholder: 768
-              default: 768
+              placeholder: z.B.: 768 (in pixel)
+              default: ''
+            ._info_responsive_settings:
+              type: separator.note
+              class: alert alert-info
+              content: Diese Einstellungen überschreiben die globalen Einstellunge des Plugins. Wenn Sie einen Breakpoint bei z.B.: 768px setzen, werden die unten gelisteten Einstellung ab 768px und darüber angewendet.
             .item_count:
               type: input.text
               label: Slideanzahl
               description: Legen Sie fest wieviele Slides gleichzeitig am Bildschirm angezeigt werden sollen.
-              placeholder: ''
+              placeholder: 'Slides sichtbar'
               default: 1
             .slideBy:
               type: input.text
               label: Slidinganzahl
               description: Die Anzahl an Slides, die bei einem Slide-Event geslided werden sollen.
-              placeholder: 1
-              default: 1
+              placeholder: 'Distanz (Standard: 1)'
+              default: ''
             .item_space:
               type: input.text
               label: Slideabstand
               description: Der Abstand der zwischen den Slides eingefügt werden soll.
-              placeholder: Abstand in px
-              default: 0
+              placeholder: 'Abstand in px (Standard: 0)'
+              default: ''
             .item_center:
               type: enable.enable
               label: Slidezentrierung
@@ -460,18 +464,20 @@ form:
               type: input.text
               label: Stage Abstand 
               description: Abstand links und recht der Stage (Nachbarn werden sichtbar).
-              placeholder: Abstand in px
-              default: 0
+              placeholder: Abstand in px (Standard: 0)
+              default: ''
             .animateIn:
               type: input.text
               label: Animation Herein
-              description: Klasse für CSS3 Animation, die für das Hereinsliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist.
+              description: Klasse für CSS3 Animation, die für das Hereinsliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist. Wenn Sie die globale Animation deaktivieren möchten, geben Sie bitte <code>none</code> ein.
               placeholder: jede CSS Kasse z.B.: Animate.css
+              default: ''
             .animateOut:
               type: input.text
               label: Animation Hinaus
-              description: Klasse für CSS3 Animation, die für das Hinaussliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist.
+              description: Klasse für CSS3 Animation, die für das Hinaussliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist. Wenn Sie die globale Animation deaktivieren möchten, geben Sie bitte <code>none</code> ein.
               placeholder: jede CSS Kasse z.B.: Animate.css
+              default: ''
             ._info_responsive_custom_options:
               type: separator.note
               class: alert alert-info
@@ -690,14 +696,14 @@ form:
           type: input.text
           label: Slideanzahl
           description: Legen Sie fest wieviele Slides gleichzeitig am Bildschirm angezeigt werden sollen.
-          placeholder: ''
+          placeholder: 'Slides sichtbar'
           default: 1
 
         slideBy:
           type: input.text
           label: Slidinganzahl
           description: Die Anzahl an Slides, die bei einem Slide-Event geslided werden sollen.
-          placeholder: 1
+          placeholder: Distanz
           default: 1
 
         item_space:

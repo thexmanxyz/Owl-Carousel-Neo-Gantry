@@ -59,16 +59,6 @@ form:
                 description: Customize the title text for the Particle.
                 placeholder: 'Enter title'
 
-              direction:
-                type: select.select
-                label: Direction
-                description: Select the direction for the carousel. Typically you would use the reading direction. By default the direction is obtained from the Gantry framework.
-                default: gantry
-                options:
-                  gantry: Gantry-controlled
-                  ltr: LTR (Left-To-Right)
-                  rtl: RTL (Right-To-Left)
-
               responsiveRefreshRate:
                 type: input.text
                 label: Responsive Refresh Rate
@@ -80,18 +70,6 @@ form:
                 type: enable.enable
                 label: Check Visible
                 description: If you know that the carousel will always be visible you can disable this setting to prevent the expensive browser layout forced reflow the <code>$element.is(':visible')</code> does.
-                default: true
-
-              merge:
-                type: enable.enable
-                label: Stretch
-                description: Stretch (merge) items. Looking for the respective <code>data</code> attribute inside items (whether defined for the item). Might has no effect in the OwlCarousel version 2.3.4. Please also check the <b>Stretch</b> setting for single slides.
-                default: false
-
-              mergeFit:
-                type: enable.enable
-                label: Stretch Fit
-                description: Fit stretched (merged) items if screen is smaller than items value. Please also check the <b>Stretch</b> setting for single slides.
                 default: true
 
               navElement:
@@ -336,6 +314,16 @@ form:
             label: Behavior
             fields:
 
+              direction:
+                type: select.select
+                label: Direction
+                description: Select the direction for the carousel. Typically you would use the reading direction. By default the direction is obtained from the Gantry framework.
+                default: gantry
+                options:
+                  gantry: Gantry-controlled
+                  ltr: LTR (Left-To-Right)
+                  rtl: RTL (Right-To-Left)
+
               looping:
                 type: select.select
                 label: Looping
@@ -393,6 +381,18 @@ form:
                 description: Define if the link should be applied to the slide during the window resize event. Can cause issues when activated. If you deactivate this setting the link switch will not be done during resize.
                 default: true
 
+              merge:
+                type: enable.enable
+                label: Stretch
+                description: Stretch (merge) items. Looking for the respective <code>data</code> attribute inside items (whether defined for the item). Might has no effect in the OwlCarousel version 2.3.4. Please also check the <b>Stretch</b> setting for single slides.
+                default: false
+
+              mergeFit:
+                type: enable.enable
+                label: Stretch Fit
+                description: Fit stretched (merged) items if screen is smaller than items value. Please also check the <b>Stretch</b> setting for single slides.
+                default: true
+
               mouseDrag:
                 type: enable.enable
                 label: Mouse Drag
@@ -431,26 +431,30 @@ form:
                     type: input.text
                     label: Breakpoint
                     description: Define at what width (in pixel) the here defined options should be applied. The basic settings are overriden so you might need to define at least two breakpoints for your desired behavior.
-                    placeholder: 768
-                    default: 768
+                    placeholder: e.g. 768 (in pixel)
+                    default: ''                  
+                  ._info_responsive_settings:
+                    type: separator.note
+                    class: alert alert-info
+                    content: These settings override the global settings of the plugin. If you define a breakpoint at e.g. 768px the below settings are attached at 768px and above.
                   .item_count:
                     type: input.text
                     label: Slide Count
                     description: The number of items you want to see simultaneously on the screen.
-                    placeholder: 'number of slides'
-                    default: 1
+                    placeholder: 'number of slides (default: 1)'
+                    default: ''
                   .slideBy:
                     type: input.text
                     label: Slideby Count
                     description: The amount of slides that will be slided during a slide event.
-                    placeholder: 1
-                    default: 1
+                    placeholder: 'slideby amount (default: 1)'
+                    default: ''
                   .item_space:
                     type: input.text
                     label: Slide Space
                     description: The space to be inserted between the slides 
-                    placeholder: space in px
-                    default: 0
+                    placeholder: 'space in px (default: 0)'
+                    default: ''
                   .item_center:
                     type: enable.enable
                     label: Slide Centering
@@ -460,18 +464,20 @@ form:
                     type: input.text
                     label: Stage Padding 
                     description: Padding left and right on stage (can see neighbours).
-                    placeholder: padding in px
-                    default: 0
+                    placeholder: 'padding in px (default: 0)'
+                    default: ''
                   .animateIn:
                     type: input.text
                     label: Animate In
-                    description: Class for CSS3 animation used during slide-in (e.g. Animate.css). Only works for single slide view.
+                    description: Class for CSS3 animation used during slide-in (e.g. Animate.css). Only works for single slide view. If you want to disable the global animation enter <code>none</code>.
                     placeholder: every CSS class e.g. Animate.CSS
+                    default: ''
                   .animateOut:
                     type: input.text
                     label: Animate Out
-                    description: Class for CSS3 animation used during slide-out (e.g. Animate.css). Only works for single slide view.
+                    description: Class for CSS3 animation used during slide-out (e.g. Animate.css). Only works for single slide view. If you want to disable the global animation enter <code>none</code>.
                     placeholder: every CSS class e.g. Animate.CSS
+                    default: ''
                   ._info_responsive_custom_options:
                     type: separator.note
                     class: alert alert-info
@@ -695,7 +701,7 @@ form:
                 type: input.text
                 label: Slideby Count
                 description: The amount of slides that will be slided during a slide event.
-                placeholder: 1
+                placeholder: slideby amount
                 default: 1
 
               item_space:

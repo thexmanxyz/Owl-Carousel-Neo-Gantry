@@ -182,25 +182,46 @@
 
 {%- if particle.responsive_option|length > 0 -%}
     {%- set responsive -%}
-    {
+        {
         {%- for option in particle.responsive_option -%}
-            {%- set hItemCount = option.item_count|default(1) -%}
-            {%- set hSlideBy = option.slideBy|default(1) -%}
-            {%- set hItemSpace = option.item_space|default(0) -%}
-            {%- set hStagePadding = particle.stage_padding|default(0) -%}
-            {%- set hItemCenter = option.item_center|default(false) -%}
-            {{option.breakpoint|e('js')}}: {
-                items: {{hItemCount|e('js')}},
-                slideBy: {{hSlideBy|e('js')}},
-                margin: {{hItemSpace|e('js')}},
-                center: {{hItemCenter ? 'true' : 'false'}},
-                stagePadding: {{hStagePadding|e('js')}},
-                animateIn: '{{option.animateIn|e('js')}}',
-                animateOut: '{{option.animateOut|e('js')}}',
-                {%- for custom in option.custom_option -%}
-                {{custom.key|e('js')}}: {% if custom.useQuote %}'{% endif %}{{custom.value|e('js')}}{% if custom.useQuote %}'{% endif %},
-                {%- endfor -%}
-            },
+            {%- set breakpoint = option.breakpoint|default('') -%}
+            {%- if breakpoint != '' -%}
+                {%- set hItemCount = option.item_count|default('') -%}
+                {%- set hSlideBy = option.slideBy|default('') -%}
+                {%- set hItemSpace = option.item_space|default('') -%}
+                {%- set hStagePadding = particle.stage_padding|default('') -%}
+                {%- set hItemCenter = option.item_center|default('') -%}
+                {%- set hAnimateIn = option.animateIn|default('') -%}
+                {%- set hAnimateOut = option.animateOut|default('') -%}
+                {{breakpoint|e('js')}}: {
+                    {%- if hItemCount != '' -%}
+                    items: {{hItemCount|e('js')}},
+                    {%- endif -%}
+                    {%- if hSlideBy != '' -%}
+                    slideBy: {{hSlideBy|e('js')}},
+                    {%- endif -%}
+                    {%- if hItemSpace != '' -%}
+                    margin: {{hItemSpace|e('js')}},
+                    {%- endif -%}
+                    {%- if hItemCenter != '' -%}
+                    center: {{hItemCenter ? 'true' : 'false'}},
+                    {%- endif -%}
+                    {%- if hStagePadding != '' -%}
+                    stagePadding: {{hStagePadding|e('js')}},
+                    {%- endif -%} 
+                    {%- if hAnimateIn != '' -%}
+                    {%- set hAnimateIn = (hAnimateIn == 'none') ? '' : hAnimateIn -%}
+                    animateIn: '{{hAnimateIn|e('js')}}',
+                    {%- endif -%} 
+                    {%- if hAnimateOut != '' -%}
+                    {%- set hAnimateOut = (hAnimateOut == 'none') ? '' : hAnimateOut -%}
+                    animateOut: '{{hAnimateOut|e('js')}}',
+                    {%- endif -%} 
+                    {%- for custom in option.custom_option -%}
+                    {{custom.key|e('js')}}: {% if custom.useQuote %}'{% endif %}{{custom.value|e('js')}}{% if custom.useQuote %}'{% endif %},
+                    {%- endfor -%}
+                },
+            {%- endif -%}
         {%- endfor -%}
      }
     {%- endset -%}
