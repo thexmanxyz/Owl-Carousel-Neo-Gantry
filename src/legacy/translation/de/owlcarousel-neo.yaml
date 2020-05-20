@@ -57,10 +57,22 @@ form:
           description: Benutzerdefinierter Text für den Titel des Particles.
           placeholder: 'Titel eingeben'
 
+        checkVisible:
+          type: input.checkbox
+          label: Prüfe Sichtbarkeit
+          description: Sie können diese Option deaktivieren wenn Sie wissen, dass das Carousel immer angezeigt wird. Dies verhindert den aufwändigen und erzwungenen Browser Layout Reflow von <code>$element.is(':visible')</code>.
+          default: true
+
+        urlHashListener:
+          type: input.checkbox
+          label: URL Hash Listener
+          description: Höre auf URL Hash Veränderungen und erkenne Slides mit dem gleichen Datennamen (<code>data-hash</code> mit <code>myHash</code>. Das <code>data-hash</code> Attribut muss auf die Slide gesetzt worden sein.
+          default: false
+
         responsiveRefreshRate:
           type: input.text
-          label: Responsive Refresh Rate
-          description: Die Responsive Refresh Rate die während Resize-Events verwendet wird. Kleinere Werte bedeuten häufigere Updates.
+          label: Responsive Aktualisierungsrate
+          description: Die Responsive Aktualisierungsrate die während Resize-Events verwendet wird. Kleinere Werte bedeuten häufigere Updates.
           placeholder: 200
           default: 200
 
@@ -70,18 +82,6 @@ form:
           description: Standardmäßig werden alle Responsive Breakpoints an der Browser <code>window</code> Breite ausgerichtet. Diese Option gibt Ihnen die Möglichkeit diese Einstellung zu ändern und eine eigene Klasse bzw. Id für das Basiselement zu definieren.
           placeholder: .myCustomWrapper
           default: ''
-
-        urlHashListener:
-          type: enable.enable
-          label: URL Hash Listener
-          description: Höre auf URL Hash Veränderungen. Das <code>data-hash</code> Attribut muss gesetzt worden sein.
-          default: false
-
-        checkVisible:
-          type: input.checkbox
-          label: Prüfe Sichtbarkeit
-          description: Sie können diese Option deaktivieren wenn Sie wissen, dass das Carousel immer angezeigt wird. Dies verhindert den aufwändigen und erzwungenen Browser Layout Reflow von <code>$element.is(':visible')</code>.
-          default: true
 
         navElement:
           type: input.text
@@ -403,7 +403,7 @@ form:
         merge:
           type: input.checkbox
           label: Strecken
-          description: Elemente strecken (mergen). Evalulierung der <code>data</code> Attribute innerhalb der Elemente (ob für das Element definiert). Hat in der OwlCarousel Version 2.3.4 möglicherweise keinen Effekt. Bitte prüfen Sie auch die Einstellung <b>Strecken</b> für einzelne Slides.
+          description: Elemente strecken (mergen). Evalulierung der <code>data</code> Attribute der Elemente (ob für das Element definiert). Hat in der OwlCarousel Version 2.3.4 möglicherweise keinen Effekt. Bitte prüfen Sie auch die Einstellung <b>Strecken</b> für einzelne Slides.
           default: false
 
         mergeFit:
@@ -459,9 +459,9 @@ form:
             .item_count:
               type: input.text
               label: Slideanzahl
-              description: Legen Sie fest wieviele Slides gleichzeitig am Bildschirm angezeigt werden sollen.
-              placeholder: 'Slides sichtbar'
-              default: 1
+              description: Legen Sie fest, wieviele Slides gleichzeitig am Bildschirm angezeigt werden sollen.
+              placeholder: 'Slides sichtbar (Standard: 1)'
+              default: ''
             .slideBy:
               type: input.text
               label: Slidinganzahl
@@ -477,24 +477,24 @@ form:
             .item_center:
               type: input.checkbox
               label: Slidezentrierung
-              description: Zentriert die aktuelle Slide wenn mehrere Slides (mehr als 1) angezeigt werden.
+              description: Zentriert die aktuelle Slide wenn mehrere Slides (mehr als eine) angezeigt werden.
               default: false
             .stage_padding:
               type: input.text
               label: Stage Abstand 
               description: Abstand links und recht der Stage (Nachbarn werden sichtbar).
-              placeholder: Abstand in px (Standard: 0)
+              placeholder: 'Abstand in px (Standard: 0)'
               default: ''
             .animateIn:
               type: input.text
               label: Animation Herein
-              description: Klasse für CSS3 Animation, die für das Hereinsliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist. Wenn Sie die globale Animation deaktivieren möchten, geben Sie bitte <code>none</code> ein.
+              description: Klasse für CSS3 Animation, die für das Hereinsliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist. Wenn Sie die globale Animation deaktivieren möchten, geben Sie bitte <code>none</code> ein. <code>fadeOut</code> ist die einzige vordefinierte CSS Animationsstyle.
               placeholder: jede CSS Kasse z.B.: Animate.css
               default: ''
             .animateOut:
               type: input.text
               label: Animation Hinaus
-              description: Klasse für CSS3 Animation, die für das Hinaussliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist. Wenn Sie die globale Animation deaktivieren möchten, geben Sie bitte <code>none</code> ein.
+              description: Klasse für CSS3 Animation, die für das Hinaussliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist. Wenn Sie die globale Animation deaktivieren möchten, geben Sie bitte <code>none</code> ein. <code>fadeOut</code> ist die einzige vordefinierte CSS Animationsstyle.
               placeholder: jede CSS Kasse z.B.: Animate.css
               default: ''
             ._info_responsive_custom_options:
@@ -514,7 +514,7 @@ form:
                 ._info_responsive_options:
                   type: separator.note
                   class: alert alert-info
-                  content: Bitte folgen Sie <a href="https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html" target"_blank" title="OwlCarousel2 Optionen">diesem Link</a>, um mehr Informationen über die vorhandenen OwlCarousel2 parameter zu erfahren. Mehr Informationen zum OwlCarousel2 Responsive Mode <a href="https://owlcarousel2.github.io/OwlCarousel2/demos/responsive.html" target"_blank" title="OwlCarousel2 Responsive Mode">finden Sie hier</a>.
+                  content: Bitte folgen Sie <a href="https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html" target"_blank" title="OwlCarousel2 Optionen">diesem Link</a>, um mehr Informationen über die vorhandenen OwlCarousel2 Parameter zu erfahren. Mehr Informationen zum OwlCarousel2 Responsive Mode <a href="https://owlcarousel2.github.io/OwlCarousel2/demos/responsive.html" target"_blank" title="OwlCarousel2 Responsive Mode">finden Sie hier</a>.
                 .key:
                   type: input.text
                   label: Schlüssel
@@ -539,18 +539,18 @@ form:
          _info_animate_class:
            type: separator.note
            class: alert alert-info
-           content: Bitte bedenken Sie benutzerdefinierte Animationsbibliotheken wie z.B.: <a href="https://animate.style" target"_blank" title="Animate.css">Animate.css</a>, wenn Sie die nächsten zwei Option ändern möchten.
+           content: Bitte denken Sie an benutzerdefinierte Animationsbibliotheken wie z.B.: <a href="https://animate.style" target"_blank" title="Animate.css">Animate.css</a>, wenn Sie die nächsten zwei Option ändern möchten. Mehr Informationen finden Sie auch in der <a href="https://owlcarousel2.github.io/OwlCarousel2/demos/animate.html" target"_blank" title="OwlCarousel2 Animationsdokumentation">OwlCarousel2 Dokumentation</a>.
 
         animateIn:
           type: input.text
           label: Animation Herein
-          description: Klasse für CSS3 Animation, die für das Hereinsliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist.
+          description: Klasse für CSS3 Animation, die für das Hereinsliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist. <code>fadeOut</code> ist die einzige vordefinierte CSS Animationsstyle.
           placeholder: jede CSS Kasse z.B.: Animate.css
         
         animateOut:
           type: input.text
           label: Animation Hinaus
-          description: Klasse für CSS3 Animation, die für das Hinaussliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist.
+          description: Klasse für CSS3 Animation, die für das Hinaussliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist. <code>fadeOut</code> ist die einzige vordefinierte CSS Animationsstyle.
           placeholder: jede CSS Kasse z.B.: Animate.css
 
         slideTransition:
@@ -607,28 +607,28 @@ form:
 
         smartSpeed:
           type: input.text
-          label: Übergangsgeschwindigkeit
+          label: Übergangs- geschwindigkeit
           description: Die Zeit (in Millisekunden), die standardmäßig für den Übergang zwischen zwei Slides verwendet wird (alle Events).
           placeholder: 250
           default: 250
 
         navSpeed:
           type: input.text
-          label: Übergangsgeschwindigkeit Buttons
+          label: Übergangs- geschwindigkeit Buttons
           description: Die Zeit (in Millisekunden), die für den Übergang zwischen zwei Slides bei Navigationbutton-Events verwendet wird.
           placeholder: 250
           default: 250
 
         dotsSpeed:
           type: input.text
-          label: Übergangsgeschwindigkeit Punkte
+          label: Übergangs- geschwindigkeit Punkte
           description: Die Zeit (in Millisekunden), die für den Übergang zwischen zwei Slides bei Navigationspunkten-Events verwendet wird.
           placeholder: 250
           default: 250
 
         autoplayTSpeed:
           type: input.text
-          label: Übergangsgeschwindigkeit Autoplay
+          label: Übergangs- geschwindigkeit Autoplay
           description: Die Zeit (in Millisekunden), die für den Übergang zwischen zwei Slides bei Autoplay-Events verwendet wird.
           placeholder: 250
           default: 250
@@ -707,14 +707,14 @@ form:
         startPosition:
           type: input.text
           label: Starposition
-          description: Die Startposition mit der das Carousel geladen wird. Startet mit 0. Wenn Sie möchten, dass die Startposition vom URL hash bestimmt wird, verwenden Sie bitte <code>URLHash</code>.
+          description: Die Startposition mit der das Carousel geladen wird. Das erste Element hat die Position 0. Wenn Sie möchten, dass die Startposition vom URL Hash bestimmt werden soll, verwenden Sie bitte <code>URLHash</code>.
           placeholder: Zahl oder URLHash
           default: 0
 
         item_count:
           type: input.text
           label: Slideanzahl
-          description: Legen Sie fest wieviele Slides gleichzeitig am Bildschirm angezeigt werden sollen.
+          description: Legen Sie fest, wieviele Slides gleichzeitig am Bildschirm angezeigt werden sollen.
           placeholder: 'Slides sichtbar'
           default: 1
 
@@ -732,24 +732,35 @@ form:
           placeholder: Abstand in px
           default: 0
 
+        stage_padding:
+          type: input.text
+          label: Stageabstand 
+          description: Abstand links und recht der Stage (Nachbarn werden sichtbar).
+          placeholder: Abstand in px
+          default: 0
+
         item_center:
           type: input.checkbox
           label: Slidezentrierung
-          description: Zentriert die aktuelle Slide wenn mehrere Slides (mehr als 1) angezeigt werden.
+          description: Zentriert die aktuelle Slide wenn mehrere Slides (mehr als eine) angezeigt werden.
           default: false
 
         autoWidth:
-          type: enable.enable
+          type: input.checkbox
           label: Manuelle Größe
           description: Wenn Sie diese Option aktivieren, wird das Grid deaktiviert und Sie können die Größe für jede Slide manuell setzen. Diese Option ist in den Einstellungen für einzelne Slides vorhanden. 
           default: false
 
-        stage_padding:
-          type: input.text
-          label: Stage Abstand 
-          description: Abstand links und recht der Stage (Nachbarn werden sichtbar).
-          placeholder: Abstand in px
-          default: 0
+        autoHeight:
+          type: input.checkbox
+          label: Automatische Höhe
+          description: Wenn Sie diese Option aktivieren, wird die Höhe für jede Slide automatisch bestimmt. Dadurch wird auch das gesamte Carousel an die Größe der Slide angepasst. Im Moment diese Option funktioniert nur, wenn maximal eine Slide am Bildschirm sichtbar ist.
+          default: false
+
+        autoHeightClass:
+          type: input.selectize
+          label: Automatische Höhe Klasse
+          description: Setzen Sie individuelle Klassen für die <strong>Automatische Höhe</strong> Funktion. Wird nur hinzugefügt, wenn <strong>Automatische Höhe</strong> aktiviert ist.
 
         items:
           type: collection.list
@@ -816,17 +827,17 @@ form:
               label: Button Klassen
               description: Setzen Sie Klassen für die individuelle Gestaltung des Buttons.
               default: 'button-outline'
-            .mergevalue:
-              type: input.text
-              label: Strecken
-              description: Ändern Sie diesen Wert, wenn Sie möchten dass diese Slide über mehrere einzelne Slides gestreckt (gemerged) wird. Zum Beispiel wenn Sie die <b>Slideanzahl</b> Einstellung bereits verändert haben. Wenn Sie eine <b>Slideanzahl</b> von 5 verwenden und diesen Wert auf 2 setzen, dann nimmt diese Slide 2/5 des verfügbaren Carouselplatzes ein.
-              default: 1
             .hash:
               type: input.text
               label: Hash
-              description: 'Der Hash-Wert der für das <code>data-hash</code> Attribut, dass für die Slide gesetzt wird. Ohne #.'
+              description: 'Der Hash-Wert der für das <code>data-hash</code> Attribut der Slide gesetzt wird. Bitte ohne # eingeben und denken Sie daran, dass Sie den <strong>URL Hash Listener</strong> in den globalen Einstellung aktivieren müssen.'
               default: ''
               placeholder: z.B.: meinHash
+            .mergevalue:
+              type: input.text
+              label: Strecken
+              description: Ändern Sie diesen Wert, wenn Sie möchten, dass diese Slide über mehrere einzelne Slides gestreckt (gemerged) wird. Zum Beispiel wenn Sie die <b>Slideanzahl</b> Einstellung bereits verändert haben. Wenn Sie eine <b>Slideanzahl</b> von 5 verwenden und diesen Wert auf 2 setzen, dann nimmt diese Slide 2/5 des verfügbaren Carouselplatzes ein.
+              default: 1
             .showItem:
               type: select.select
               label: Zeige Slide

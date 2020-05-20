@@ -177,6 +177,7 @@
 {% set stagePadding = particle.stage_padding|default(0) %}
 {% set itemCenter = particle.item_center|default(false) %}
 {% set autoWidth = particle.autoWidth|default(false) %}
+{% set autoHeight = particle.autoHeight|default(false) %}
 
 {% set rtlValue = '' %}
 {% if direction == 'gantry' %}
@@ -261,6 +262,12 @@
                     {%- endif -%}
                     {%- if autoWidth -%}
                     autoWidth: true,
+                    {%- endif -%}
+                    {%- if autoHeight -%}
+                    autoHeight: true,
+                    {%- endif -%}
+                    {%- if particle.autoHeightClass -%}
+                    autoHeightClass: 'owl-height {{particle.autoHeightClass|e('js')}}',
                     {%- endif -%}
                     {%- if startPosition != '0' -%}
                         {%- if startPosition matches '/^\\d+$/' -%}

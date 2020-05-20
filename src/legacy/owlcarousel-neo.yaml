@@ -57,6 +57,18 @@ form:
           description: Customize the title text for the Particle.
           placeholder: 'Enter title'
 
+        checkVisible:
+          type: input.checkbox
+          label: Check Visible
+          description: If you know that the carousel will always be visible you can disable this setting to prevent the expensive browser layout forced reflow the <code>$element.is(':visible')</code> does.
+          default: true
+
+        urlHashListener:
+          type: input.checkbox
+          label: URL Hash Listener
+          description: Listen to URL hash changes and check for slides with the same data name (<code>data-hash</code> with <code>myHash</code>). The <code>data-hash</code> attribute on the slide is required.
+          default: false
+
         responsiveRefreshRate:
           type: input.text
           label: Responsive Refresh Rate
@@ -67,21 +79,9 @@ form:
         responsiveBaseElement:
           type: input.text
           label: Responsive Base Element
-          description: As default all responsive breakpoints are corresponding with <code>window</code> width. This option gives you an opportunity to change it to your own class/id.
+          description: By default all responsive breakpoints are corresponding with <code>window</code> width. This option gives you the opportunity to change it to your own class/id.
           placeholder: .myCustomWrapper
           default: ''
-
-        urlHashListener:
-          type: enable.enable
-          label: URL Hash Listener
-          description: Listen to URL hash changes. The <code>data-hash</code> attribute on items is required.
-          default: false
-
-        checkVisible:
-          type: input.checkbox
-          label: Check Visible
-          description: If you know that the carousel will always be visible you can disable this setting to prevent the expensive browser layout forced reflow the <code>$element.is(':visible')</code> does.
-          default: true
 
         navElement:
           type: input.text
@@ -217,6 +217,7 @@ form:
             theme-b: Black
             theme-w: White
             accent: Accent
+
         all.arrow:
           type: select.select
           label: Navigation Arrows
@@ -355,19 +356,19 @@ form:
         autoplay:
           type: input.checkbox
           label: Autoplay
-          description: Enable or disable the Autoplay.
+          description: Enable or disable the autoplay.
           default: false
 
         autoplaySpeed:
           type: input.text
           label: Autoplay Speed
-          description: Set the speed of the Autoplay, in milliseconds.
+          description: Set the speed of the autoplay, in milliseconds.
           placeholder: 5000
 
         autoplayHoverPause:
           type: input.checkbox
           label: Autoplay Hover Pause
-          description: Enable or disable the Autoplay when hovering the current slide.
+          description: Enable or disable the autoplay when hovering the current slide.
           default: false
 
         title_link:
@@ -402,7 +403,7 @@ form:
         merge:
           type: input.checkbox
           label: Stretch
-          description: Stretch (merge) items. Looking for the respective <code>data</code> attribute inside items (whether defined for the item). Might has no effect in the OwlCarousel version 2.3.4. Please also check the <b>Stretch</b> setting for single slides.
+          description: Stretch (merge) items. Looking for the respective <code>data</code> attribute (whether defined for the item). Might has no effect in the OwlCarousel version 2.3.4. Please also check the <b>Stretch</b> setting for single slides.
           default: false
 
         mergeFit:
@@ -459,8 +460,8 @@ form:
               type: input.text
               label: Slide Count
               description: The number of items you want to see simultaneously on the screen.
-              placeholder: 'number of slides'
-              default: 1
+              placeholder: 'number of slides (default: 1)'
+              default: ''
             .slideBy:
               type: input.text
               label: Slideby Count
@@ -476,7 +477,7 @@ form:
             .item_center:
               type: input.checkbox
               label: Slide Centering
-              description: Centers the current slide in case there are multiple slides (more than 1) shown.
+              description: Centers the current slide in case there are multiple slides (more than one) shown.
               default: false
             .stage_padding:
               type: input.text
@@ -487,13 +488,13 @@ form:
             .animateIn:
               type: input.text
               label: Animate In
-              description: Class for CSS3 animation used during slide-in (e.g. Animate.css). Only works for single slide view. If you want to disable the global animation enter <code>none</code>.
+              description: Class for CSS3 animation used during slide-in (e.g. Animate.css). Only works for single slide view. If you want to disable the global animation enter <code>none</code>. <code>fadeOut</code> is the only built-in CSS animate style.
               placeholder: every CSS class e.g. Animate.CSS
               default: ''
             .animateOut:
               type: input.text
               label: Animate Out
-              description: Class for CSS3 animation used during slide-out (e.g. Animate.css). Only works for single slide view. If you want to disable the global animation enter <code>none</code>.
+              description: Class for CSS3 animation used during slide-out (e.g. Animate.css). Only works for single slide view. If you want to disable the global animation enter <code>none</code>. <code>fadeOut</code> is the only built-in CSS animate style.
               placeholder: every CSS class e.g. Animate.CSS
               default: ''
             ._info_responsive_custom_options:
@@ -538,18 +539,18 @@ form:
          _info_animate_class:
            type: separator.note
            class: alert alert-info
-           content: Please mind custom animation libraries like <a href="https://animate.style" target"_blank" title="Animate.css">Animate.css</a> when changing the following two settings.
+           content: Please mind custom animation libraries like <a href="https://animate.style" target"_blank" title="Animate.css">Animate.css</a> when changing the following two settings.  Also check the <a href="https://owlcarousel2.github.io/OwlCarousel2/demos/animate.html" target"_blank" title="OwlCarousel2 Animate Documentation">OwlCarousel2 documentation</a> on the animation topic.
 
         animateIn:
           type: input.text
           label: Animate In
-          description: Class for CSS3 animation used during slide-in (e.g. Animate.css). Only works for single slide view.
+          description: Class for CSS3 animation used during slide-in (e.g. Animate.css). Only works for single slide view. <code>fadeOut</code> is the only built-in CSS animate style.
           placeholder: every CSS class e.g. Animate.CSS
 
         animateOut:
           type: input.text
           label: Animate Out
-          description: Class for CSS3 animation used during slide-out (e.g. Animate.css). Only works for single slide view.
+          description: Class for CSS3 animation used during slide-out (e.g. Animate.css). Only works for single slide view. <code>fadeOut</code> is the only built-in CSS animate style.
           placeholder: every CSS class e.g. Animate.CSS
 
         slideTransition:
@@ -706,7 +707,7 @@ form:
         startPosition:
           type: input.text
           label: Start Position
-          description: The start position the carousel is loaded with. Starts with 0. If you want to that the start position is determined by URL hash, use <code>URLHash</code>.
+          description: The start position the carousel is loaded with. First element has position 0. If you want that the start position is determined by the URL attached hash, use <code>URLHash</code>.
           placeholder: number or URLHash
           default: 0
 
@@ -731,24 +732,35 @@ form:
           placeholder: space in px
           default: 0
 
-        item_center:
-          type: input.checkbox
-          label: Slide Centering
-          description: Centers the current slide in case there are multiple slides (more than 1) shown.
-          default: false
-
-        autoWidth:
-          type: enable.enable
-          label: Manual Dimension
-          description: If you enable this option the grid is disabled and you can manually set the dimension for each slide element within the single slide settings. 
-          default: false
-
         stage_padding:
           type: input.text
           label: Stage Padding 
           description: Padding left and right on stage (can see neighbours).
           placeholder: padding in px
           default: 0
+
+        item_center:
+          type: input.checkbox
+          label: Slide Centering
+          description: Centers the current slide in case there are multiple slides (more than one) shown.
+          default: false
+
+        autoWidth:
+          type: input.checkbox
+          label: Manual Dimension
+          description: If you enable this option the grid is disabled and you can manually set the dimension for each slide element within the single slide settings. 
+          default: false
+
+        autoHeight:
+          type: input.checkbox
+          label: Auto Height
+          description: If you enable this option the height for each slide is determined automatically and triggers carousel resizing. At the moment it only works only one item on screen.
+          default: false
+
+        autoHeightClass:
+          type: input.selectize
+          label: Auto Height Class
+          description: Set specific CSS classes for the <strong>Auto Height</strong> behavior. Only added when <strong>Auto Height</strong> is enabled.
 
         items:
           type: collection.list
@@ -776,7 +788,7 @@ form:
             .manual_width:
               type: input.text
               label: Manual Width
-              description: The manual width applied to the <code>style</code> attribute of the slide item. This option should be used together with <strong>Manual Width</strong> located at the general slide settings.
+              description: The manual width applied to the <code>style</code> attribute of the slide item. This option should be used together with <strong>Manual Dimension</strong> located at the general slide settings.
               default: ''
               placeholder: e.g. 250 (in pixel)
             .manual_height:
@@ -815,17 +827,17 @@ form:
               label: Button Classes
               description: Set CSS classes for the button.
               default: 'button-outline'
+            .hash:
+              type: input.text
+              label: Hash
+              description: "The hash value used for <code>data-hash</code> attribute appended to the slide. Please enter without # and don't forget to activate the <strong>URL Hash Listener</strong> in the global settings."
+              default: ''
+              placeholder: e.g. myHash
             .mergevalue:
               type: input.text
               label: Stretch Slide
               description: Change this value if you want that this slide stretches over (merges) multiple single slides. E.g. you changed the <b>Slide Count</b> option previously. If you use a <b>Slide Count</b> of 5 and set this value to 2 then it stretches 2/5 of the carousel space.
               default: 1
-            .hash:
-              type: input.text
-              label: Hash
-              description: 'The hash value used for <code>data-hash</code> attribute appended to the slide. Without #.'
-              default: ''
-              placeholder: e.g. myHash
             .showItem:
               type: select.select
               label: Show Slide
