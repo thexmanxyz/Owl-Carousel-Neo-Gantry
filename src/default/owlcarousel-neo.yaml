@@ -353,6 +353,12 @@ form:
                   rewind: Rewind
                   off: Off
 
+              mouseWheel:
+                type: enable.enable
+                label: Mouse Wheel Navigation
+                description: Enable to allow scrolling through slides with the mouse wheel. You need the jQuery Mousewheel library for this feature to work.
+                default: false
+
               autoplay:
                 type: enable.enable
                 label: Autoplay
@@ -488,13 +494,13 @@ form:
                   .animateIn:
                     type: input.text
                     label: Animate In
-                    description: Class for CSS3 animation used during slide-in (e.g. Animate.css). Only works for single slide view. If you want to disable the global animation enter <code>none</code>. <code>fadeOut</code> is the only built-in CSS animate style.
+                    description: Class for CSS3 animation used during slide-in (e.g. Animate.css). Only works for single slide view and only in browsers that support <code>perspective</code>. If you want to disable the global animation enter <code>none</code>. <strong>fadeOut</strong> is the only built-in CSS animate style.
                     placeholder: every CSS class e.g. Animate.CSS
                     default: ''
                   .animateOut:
                     type: input.text
                     label: Animate Out
-                    description: Class for CSS3 animation used during slide-out (e.g. Animate.css). Only works for single slide view. If you want to disable the global animation enter <code>none</code>. <code>fadeOut</code> is the only built-in CSS animate style.
+                    description: Class for CSS3 animation used during slide-out (e.g. Animate.css). Only works for single slide view and only in browsers that support <code>perspective</code>. If you want to disable the global animation enter <code>none</code>. <strong>fadeOut</strong> is the only built-in CSS animate style.
                     placeholder: every CSS class e.g. Animate.CSS
                     default: ''
                   ._info_responsive_custom_options:
@@ -543,13 +549,13 @@ form:
               animateIn:
                 type: input.text
                 label: Animate In
-                description: Class for CSS3 animation used during slide-in (e.g. Animate.css). Only works for single slide view. <code>fadeOut</code> is the only built-in CSS animate style.
+                description: Class for CSS3 animation used during slide-in (e.g. Animate.css). Only works for single slide view and only in browsers that support <code>perspective</code>. <strong>fadeOut</strong> is the only built-in CSS animate style.
                 placeholder: every CSS class e.g. Animate.CSS
 
               animateOut:
                 type: input.text
                 label: Animate Out
-                description: Class for CSS3 animation used during slide-out (e.g. Animate.css). Only works for single slide view. <code>fadeOut</code> is the only built-in CSS animate style.
+                description: Class for CSS3 animation used during slide-out (e.g. Animate.css). Only works for single slide view and only in browsers that support <code>perspective</code>. <strong>fadeOut</strong> is the only built-in CSS animate style.
                 placeholder: every CSS class e.g. Animate.CSS
 
               slideTransition:

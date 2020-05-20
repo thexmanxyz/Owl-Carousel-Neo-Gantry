@@ -392,6 +392,17 @@
                     {%- endif -%}
                 });
 
+                {%- if particle.mouseWheel -%}
+                    owl.on('mousewheel', '.owl-stage', function (e) {
+                        if (e.deltaY>0) {
+                            owl.trigger('next.owl');
+                        } else {
+                            owl.trigger('prev.owl');
+                        }
+                        e.preventDefault();
+                    });
+                {%- endif -%}
+
                 {%- if particle.slideLink == 'custom' -%}
                     var eachSlide = function(width) {
                         var windowWidth = jQuery(window).width();

@@ -353,6 +353,12 @@ form:
                   rewind: Rewind
                   off: Aus
 
+              mouseWheel:
+                type: enable.enable
+                label: Mausradnavigation
+                description: Aktivieren Sie diese Option, um mit dem Mausrad durch die Slides zu scrollen. Sie benötigen die jQuery Mousewheel library damit diese Einstellung funktioniert.
+                default: false
+
               autoplay:
                 type: enable.enable
                 label: Autoplay
@@ -488,13 +494,13 @@ form:
                   .animateIn:
                     type: input.text
                     label: Animation Herein
-                    description: Klasse für CSS3 Animation, die für das Hereinsliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist. Wenn Sie die globale Animation deaktivieren möchten, geben Sie bitte <code>none</code> ein. <code>fadeOut</code> ist die einzige vordefinierte CSS Animationsstyle.
+                    description: Klasse für CSS3 Animation, die für das Hereinsliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist und nur für Browser die <code>perspective</code> unterstützen. Wenn Sie die globale Animation deaktivieren möchten, geben Sie bitte <code>none</code> ein. <strong>fadeOut</strong> ist die einzige vordefinierte CSS Animationsstyle.
                     placeholder: jede CSS Kasse z.B.: Animate.css
                     default: ''
                   .animateOut:
                     type: input.text
                     label: Animation Hinaus
-                    description: Klasse für CSS3 Animation, die für das Hinaussliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist. Wenn Sie die globale Animation deaktivieren möchten, geben Sie bitte <code>none</code> ein. <code>fadeOut</code> ist die einzige vordefinierte CSS Animationsstyle.
+                    description: Klasse für CSS3 Animation, die für das Hinaussliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist und nur für Browser die <code>perspective</code> unterstützen. Wenn Sie die globale Animation deaktivieren möchten, geben Sie bitte <code>none</code> ein. <strong>fadeOut</strong> ist die einzige vordefinierte CSS Animationsstyle.
                     placeholder: jede CSS Kasse z.B.: Animate.css
                     default: ''
                   ._info_responsive_custom_options:
@@ -543,13 +549,13 @@ form:
               animateIn:
                 type: input.text
                 label: Animation Herein
-                description: Klasse für CSS3 Animation, die für das Hereinsliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist. <code>fadeOut</code> ist die einzige vordefinierte CSS Animationsstyle.
+                description: Klasse für CSS3 Animation, die für das Hereinsliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist und nur für Browser die <code>perspective</code> unterstützen. <strong>fadeOut</strong> ist die einzige vordefinierte CSS Animationsstyle.
                 placeholder: jede CSS Kasse z.B.: Animate.css
 
               animateOut:
                 type: input.text
                 label: Animation Hinaus
-                description: Klasse für CSS3 Animation, die für das Hinaussliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist. <code>fadeOut</code> ist die einzige vordefinierte CSS Animationsstyle.
+                description: Klasse für CSS3 Animation, die für das Hinaussliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist und nur für Browser die <code>perspective</code> unterstützen. <strong>fadeOut</strong> ist die einzige vordefinierte CSS Animationsstyle.
                 placeholder: jede CSS Kasse z.B.: Animate.css
 
               slideTransition:
