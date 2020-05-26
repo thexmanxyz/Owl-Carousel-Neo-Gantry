@@ -159,8 +159,8 @@
 
 {% set autoPlayHoverPause = particle.autoplayHoverPause|default(false) %}
 {% set looping = particle.looping|default('loop') %}
-{% set startPosition = particle.startPosition|default(0) %}
-{% set slideBy = particle.slideBy|default(1) %}
+{% set slideLinkBreakpoint = particle.slideLinkBreakpoint|default('disable') %}
+{% set slideLinkCustomBreakpoint = particle.slideLinkCustomBreakpoint|default(480) %}
 {% set mouseDrag = particle.mouseDrag|default(true) %}
 {% set touchDrag = particle.touchDrag|default(true) %}
 {% set pullDrag = particle.pullDrag|default(true) %}
@@ -173,6 +173,8 @@
 {% set dotsSpeed = particle.dotsSpeed|default(250) %}
 {% set autoplaySpeed = particle.autoplayTSpeed|default(250) %}
 
+{% set startPosition = particle.startPosition|default(0) %}
+{% set slideBy = particle.slideBy|default(1) %}
 {% set itemSpace = particle.item_space|default(0) %}
 {% set stagePadding = particle.stage_padding|default(0) %}
 {% set itemCenter = particle.item_center|default(false) %}
@@ -184,6 +186,17 @@
     {% set rtlValue = gantry.page.direction == 'rtl' ? 'true' : 'false' %}
 {% else %}
     {% set rtlValue = direction == 'rtl' ? 'true' : 'false' %}
+{% endif %}
+
+{% if slideLinkBreakpoint == 'custom' %}
+    {% set slideLinkBreakpointPx = slideLinkCustomBreakpoint %}
+{% elseif slideLinkBreakpoint != 'disable' %}
+    {% set slideLinkBreakpointPx = gantry.config.styles.breakpoints[slideLinkBreakpoint] %}
+    {% if slideLinkBreakpointPx ends with 'rem' %}
+        {% set slideLinkBreakpointPx = (slideLinkBreakpointPx|slice(0, slideLinkBreakpointPx.length - 3)) * 16 %}
+    {% else %}
+        {% set slideLinkBreakpointPx = slideLinkBreakpointPx|slice(0, slideLinkBreakpointPx.length - 2) %}
+    {% endif %}
 {% endif %}
 
 {% set slideItemStyle = (particle.delaySlideElements) ? 'display: none;' : '' %}
@@ -403,7 +416,7 @@
                     });
                 {%- endif -%}
 
-                {%- if particle.slideLink == 'custom' -%}
+                {%- if particle.slideLink == 'custom' and slideLinkBreakpoint != 'disable' -%}
                     var eachSlide = function(width) {
                         var windowWidth = jQuery(window).width();
                         jQuery('.g-owlcarousel-item').each(function() {
@@ -435,7 +448,8 @@
                             }
                         });
                     };
-                    var checkSize = function() { eachSlide({{particle.slideLinkBreakpoint|e|default(480)}}); };
+
+                    var checkSize = function() { eachSlide({{ slideLinkBreakpointPx|e('js') }}); };
                     checkSize();
                     {%- if particle.slideLinkResize|default(true) -%}
                         var resizeTimer;
@@ -499,7 +513,10 @@
                         {% if particle.slideLink == 'enable' %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" tabindex="-1">{% endif %}
                             <div class="g-owlcarousel-item-wrapper">
                                 <div class="g-owlcarousel-item-img">
-                                    <img {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}src="{{ url(item.image)|e }}" alt="{{ item.title|e }}" />
+                                    <picture>
+                                        <source {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}srcset="images/leitl/Fotoshooting4.jpg" media="(max-width: 600px)">
+                                        <img {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}src="{{ url(item.image)|e }}" alt="{{ item.title|e }}" />
+                                    </picture>
                                 </div>
                                 <div class="g-owlcarousel-item-content-container">
                                     <div class="g-owlcarousel-item-content-wrapper">

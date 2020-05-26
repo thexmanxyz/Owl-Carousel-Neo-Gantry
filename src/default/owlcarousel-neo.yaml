@@ -386,16 +386,29 @@ form:
               slideLink:
                 type: select.select
                 label: Slide Link
-                description: Add the button or title link on the whole slide instead. When using the <b>Custom Breakpoint</b> option the pixel value below is used to determine the breakpoint.
+                description: Add the button or title link on the whole slide instead. When using the <b>Breakpoint</b> option the next two options are used to determine the breakpoint.
                 default: disable
                 options:
                   enable: Enable
                   disable: Disable
-                  custom: Custom Breakpoint
+                  custom: Breakpoint
 
               slideLinkBreakpoint:
-                type: input.text
+                type: select.select
                 label: Slide Link Breakpoint
+                description: Define at what device width the link should only be applied on the whole slide (default options only works with <code>rem</code> and <code>px</code>). You have to select <b>Breakpoint</b> in the the <b>Slide Link</b> setting. If you want to define a custom value use <b>Custom Breakpoint</b> and the next field.
+                default: disable
+                options:
+                  disable: Disable
+                  large-desktop-container: Large Desktop
+                  desktop-container: Desktop
+                  tablet-container: Tablet
+                  large-mobile-container: Large Mobile
+                  custom: Custom Breakpoint
+
+              slideLinkCustomBreakpoint:
+                type: input.text
+                label: Slide Link Custom Breakpoint
                 description: Define at what width (in pixel) the link should only be applied on the whole slide. You have to select <b>Custom Breakpoint</b> in the the <b>Slide Link</b> setting.
                 placeholder: 480
                 default: 480

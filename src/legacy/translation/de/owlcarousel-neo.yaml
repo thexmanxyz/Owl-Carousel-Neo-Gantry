@@ -386,16 +386,29 @@ form:
         slideLink:
           type: select.select
           label: Slide Link
-          description: Wählen Sie aus, ob der Button oder Titel Link stattdessen auf die ganze Slide angewendet werden soll. Wenn die Option <b>Benutzerdefinierter Breakpoint</b> ausgewählt wurde, wird der Pixelwert im nächsten Feld als Breakpoint verwendet.
+          description: Wählen Sie aus, ob der Button oder Titel Link stattdessen auf die ganze Slide angewendet werden soll (Standardoptionen funktionieren nur mit <code>rem</code> und <code>px</code>). Wenn die Option <b>Breakpoint</b> ausgewählt wurde, werden die nächsten zwei Felder für die Erzeugung des Breakpoints berücksichtig.
           default: disable
           options:
             enable: Aktiviert
             disable: Deaktiviert
-            custom: Benutzerdefinierter Breakpoint
+            custom: Breakpoint
 
         slideLinkBreakpoint:
-          type: input.text
+          type: select.select
           label: Slide Link Breakpoint
+          description: Legen Sie fest, ab welcher Gerätegröße der Link auf die ganze Slide angewedet werden soll. Sie müssen <b>Breakpoint</b> in der <b>Slide Link</b> Einstellung auswählen. Wenn Sie einen benutzerdefinierten Wert festlegen möchten, verwenden Sie bitte <b>Benutzerdefinierter breakpoint</b> und das nächste Feld.
+          default: disable
+          options:
+            disable: Deaktiviert
+            large-desktop-container: Großer Desktop
+            desktop-container: Desktop
+            tablet-container: Tablet
+            large-mobile-container: Großes Mobile
+            custom: Benutzerdefinierter Breakpoint
+
+        slideLinkCustomBreakpoint:
+          type: input.text
+          label: Slide Link Benutzerdefinierter Breakpoint
           description: Legen Sie fest, ab welcher Breite (in Pixel) der Link auf die ganze Slide angewedet werden soll. Sie müssen <b>Benutzerdefinierter Breakpoint</b> in der <b>Slide Link</b> Einstellung auswählen.
           placeholder: 480
           default: 480
