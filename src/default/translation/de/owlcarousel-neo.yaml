@@ -71,6 +71,26 @@ form:
                 description: Höre auf URL Hash Veränderungen und erkenne Slides mit dem gleichen Datennamen (<code>data-hash</code> mit <code>myHash</code>. Das <code>data-hash</code> Attribut muss auf die Slide gesetzt worden sein.
                 default: false
 
+              video:
+                type: enable.enable
+                label: Video
+                description: Aktivieren Sie diese Option, um Videos auf Slides zu verwenden (standardmäßig eine Höhe von 400px).
+                default: false
+
+              videoHeight:
+                type: input.text
+                label: Videohöhe
+                description: Die Standardhöhe, die für eingebettete Videos verwendet wird.
+                placeholder: z.B.: 640 in Pixel
+                default: ''
+
+              videoWidth:
+                type: input.text
+                label: Video Breite
+                description: Die Standardbreite, die für eingebettete Videos verwendet wird.
+                placeholder: z.B.: 360 in Pixel
+                default: ''
+
               responsiveRefreshRate:
                 type: input.text
                 label: Responsive Aktualisierungsrate
@@ -491,7 +511,7 @@ form:
                     type: input.text
                     label: Slideabstand
                     description: Der Abstand der zwischen den Slides eingefügt werden soll.
-                    placeholder: 'Abstand in px (Standard: 0)'
+                    placeholder: 'Abstand in pixel (Standard: 0)'
                     default: ''
                   .item_center:
                     type: enable.enable
@@ -502,7 +522,7 @@ form:
                     type: input.text
                     label: Stage Abstand 
                     description: Abstand links und recht der Stage (Nachbarn werden sichtbar).
-                    placeholder: 'Abstand in px (Standard: 0)'
+                    placeholder: 'Abstand in pixel (Standard: 0)'
                     default: ''
                   .animateIn:
                     type: input.text
@@ -745,14 +765,14 @@ form:
                 type: input.text
                 label: Slideabstand
                 description: Der Abstand der zwischen den Slides eingefügt werden soll.
-                placeholder: Abstand in px
+                placeholder: Abstand in pixel
                 default: 0
 
               stage_padding:
                 type: input.text
                 label: Stageabstand 
                 description: Abstand links und recht der Stage (Nachbarn werden sichtbar).
-                placeholder: Abstand in px
+                placeholder: Abstand in pixel
                 default: 0
 
               item_center:
@@ -796,6 +816,12 @@ form:
                     type: input.imagepicker
                     label: Bild
                     description: Wählen Sie ein Bild für die Slide.
+                  .video:
+                    type: input.text
+                    label: Video
+                    description: Wenn Sie statt einem Bild ein Video anzeigen möchten. Wenn Sie hier einen Pfad festlegen, dann werden die oben gesetzten Bildeinstellung ignoriert.
+                    placeholder: 'pfad/zum/video'
+                    default: ''
                   .background:
                     type: input.colorpicker
                     label: Hintergrund
@@ -879,7 +905,7 @@ form:
               lazyLoadImages:
                 type: enable.enable
                 label: Lazy Load Bilder
-                description: Aktiviere um Bilder per Lazy Load zu laden.
+                description: Aktivieren Sie diese Option, um Bilder per Lazy Load zu laden.
                 default: false
 
               lazyLoadEager:

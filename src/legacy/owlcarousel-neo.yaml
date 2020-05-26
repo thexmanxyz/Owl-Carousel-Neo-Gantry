@@ -69,6 +69,26 @@ form:
           description: Listen to URL hash changes and check for slides with the same data name (<code>data-hash</code> with <code>myHash</code>). The <code>data-hash</code> attribute on the slide is required.
           default: false
 
+        video:
+          type: input.checkbox
+          label: Video
+          description: Enable to support videos on slides (by default 400px height).
+          default: false
+
+        videoHeight:
+          type: input.text
+          label: Video Height
+          description: The default height used for embedded videos.
+          placeholder: e.g. 640 in pixel
+          default: ''
+
+        videoWidth:
+          type: input.text
+          label: Video Width
+          description: The default width used for embedded videos.
+          placeholder: e.g. 360 in pixel
+          default: ''
+
         responsiveRefreshRate:
           type: input.text
           label: Responsive Refresh Rate
@@ -491,7 +511,7 @@ form:
               type: input.text
               label: Slide Space
               description: The space to be inserted between the slides 
-              placeholder: 'space in px (default: 0)'
+              placeholder: 'space in pixel (default: 0)'
               default: ''
             .item_center:
               type: input.checkbox
@@ -502,7 +522,7 @@ form:
               type: input.text
               label: Stage Padding 
               description: Padding left and right on stage (can see neighbours).
-              placeholder: 'padding in px (default: 0)'
+              placeholder: 'padding in pixel (default: 0)'
               default: ''
             .animateIn:
               type: input.text
@@ -748,14 +768,14 @@ form:
           type: input.text
           label: Slide Space
           description: The space to be inserted between the slides 
-          placeholder: space in px
+          placeholder: space in pixel
           default: 0
 
         stage_padding:
           type: input.text
           label: Stage Padding 
           description: Padding left and right on stage (can see neighbours).
-          placeholder: padding in px
+          placeholder: padding in pixel
           default: 0
 
         item_center:
@@ -799,6 +819,12 @@ form:
               type: input.imagepicker
               label: Image
               description: Select desired image.
+            .video:
+              type: input.text
+              label: Video
+              description: If you want to use a video instead of an image. If you set this path, the image setting above are ignored.
+              placeholder: 'path/to/video'
+              default: ''
             .background:
               type: input.colorpicker
               label: Background

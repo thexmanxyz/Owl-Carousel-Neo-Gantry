@@ -181,6 +181,10 @@
 {% set autoWidth = particle.autoWidth|default(false) %}
 {% set autoHeight = particle.autoHeight|default(false) %}
 
+{% set video = particle.video|default(false) %}
+{% set videoHeight = particle.videoHeight|default('') %}
+{% set videoWidth = particle.videoWidth|default('') %}
+
 {% set rtlValue = '' %}
 {% if direction == 'gantry' %}
     {% set rtlValue = gantry.page.direction == 'rtl' ? 'true' : 'false' %}
@@ -394,6 +398,15 @@
                     {%- if freeDrag -%}
                     freeDrag: true,
                     {%- endif -%}
+                    {%- if video -%}
+                    video: true,
+                    {%- endif -%}
+                    {%- if videoHeight and videoHeight != '' -%}
+                    videoHeight: {{videoHeight|e('js')}},
+                    {%- endif -%}
+                    {%- if videoWidth and videoWidth != '' -%}
+                    videoWidth: {{videoWidth|e('js')}},
+                    {%- endif -%}
                     {%- if particle.lazyLoadImages -%}
                     lazyLoad: true,
                         {%- if loadEager > 0 -%}
@@ -509,14 +522,19 @@
                     {%- set slideItemStyle = slideItemStyle ~ ((item.manual_width) ? 'width: ' ~ item.manual_width ~ 'px;' : '') -%}
                     {%- set slideItemStyle = slideItemStyle ~ ((item.manual_height) ? 'height: ' ~ item.manual_height ~ 'px;' : '') -%}
                     {%- set slideItemStyle = slideItemStyle ~ ((item.background) ? 'background: ' ~ item.background ~ ';' : '') -%}
-                    <div class="g-owlcarousel-item {{ item.class|e }}" {% if slideItemStyle and slideItemStyle != '' %} style="{{slideItemStyle|e}}"{% endif %}{% if item.mergevalue and item.mergevalue != '1' %} data-merge="{{item.mergevalue|e}}"{% endif %}{% if item.hash and item.hash != '' %} data-hash="{{item.hash|e}}"{% endif %}>
+                    <div class="g-owlcarousel-item{{ item.class|e ? ' ' ~ item.class|e : '' }}" {% if slideItemStyle and slideItemStyle != '' %} style="{{slideItemStyle|e}}"{% endif %}{% if item.mergevalue and item.mergevalue != '1' %} data-merge="{{item.mergevalue|e}}"{% endif %}{% if item.hash and item.hash != '' %} data-hash="{{item.hash|e}}"{% endif %}>
                         {% if particle.slideLink == 'enable' %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" tabindex="-1">{% endif %}
                             <div class="g-owlcarousel-item-wrapper">
                                 <div class="g-owlcarousel-item-img">
-                                    <picture>
-                                        <source {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}srcset="images/leitl/Fotoshooting4.jpg" media="(max-width: 600px)">
-                                        <img {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}src="{{ url(item.image)|e }}" alt="{{ item.title|e }}" />
-                                    </picture>
+                                    {% set itemVideo = item.video|default('') %}
+                                    {% if itemVideo != '' %}
+                                        <a class="owl-video" href="{{ url(itemVideo)|e }}"></a>
+                                    {% else %}
+                                        <picture>
+                                            <source {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}srcset="images/leitl/Fotoshooting4.jpg" media="(max-width: 600px)">
+                                            <img {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}src="{{ url(item.image)|e }}" alt="{{ item.title|e }}" />
+                                        </picture>
+                                    {% endif %}
                                 </div>
                                 <div class="g-owlcarousel-item-content-container">
                                     <div class="g-owlcarousel-item-content-wrapper">
