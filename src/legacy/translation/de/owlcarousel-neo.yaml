@@ -70,7 +70,7 @@ form:
           default: false
 
         video:
-          type: enable.enable
+          type: input.checkbox
           label: Video
           description: Aktivieren Sie diese Option, um Videos auf Slides zu verwenden (standardmäßig eine Höhe von 400px).
           default: false
@@ -819,6 +819,38 @@ form:
               type: input.imagepicker
               label: Bild
               description: Wählen Sie ein Bild für die Slide.
+            .responsiveImages:
+              type: collection.list
+              array: true
+              label: Responsive Bilder
+              description: Erstellen Sie Responsive Bilder für unterschiedliche Bildschirmgrößen. Diese Bilder werden verwendet, wenn der definierte Breakpoint (Breite) erreicht wurde.
+              value: name
+              ajax: true
+              fields:
+                .name:
+                  type: input.text
+                .breakpoint:
+                  type: select.select
+                  label: Breakpoint
+                  description: Legen Sie fest, bis zu welcher Gerätegröße das Bild angewendet werden soll. Wenn Sie eine benutzerdefinierte Breite verwenden möchten, dann wählen Sie bitte die Option <b>Benutzerdefinierter Breakpoint</b> und setzen die benutzerdefinierte Breite im nächsten Feld.
+                  default: disable
+                  options:
+                    disable: Deaktiviert
+                    large-desktop-container: Großer Desktop
+                    desktop-container: Desktop
+                    tablet-container: Tablet
+                    large-mobile-container: Großes Mobile
+                    custom: Benutzerdefinierter Breakpoint        
+                .customBreakpoint:
+                  type: input.text
+                  label: Benutzerdefinierter Breakpoint
+                  description: Definiert den Breakpoint (<code>max-width</code>), ab welchem das hier definierte Bild verwendet werden soll. Damit diese Einstellung Wirkung zeigt, muss die obere Option richtig gesetzt worden sein.
+                  placeholder: 'z.B.: 500px'
+                  default: ''
+                .img:
+                  type: input.imagepicker
+                  label: Bild
+                  description: Bitte wählen Sie das wünschte Bild für den definierten Breakpoint.
             .video:
               type: input.text
               label: Video

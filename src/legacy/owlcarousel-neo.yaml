@@ -819,6 +819,38 @@ form:
               type: input.imagepicker
               label: Image
               description: Select desired image.
+            .responsiveImages:
+              type: collection.list
+              array: true
+              label: Responsive Images
+              description: Define responsive images for different screen sizes. These images are used when the defined breakpoint (width) is reached.
+              value: name
+              ajax: true
+              fields:
+                .name:
+                  type: input.text
+                .breakpoint:
+                  type: select.select
+                  label: Breakpoint
+                  description: Define until what device width the image should be applied. If you want to set a custom width please use <b>Custom Breakpoint</b> and define a custom width in the field below.
+                  default: disable
+                  options:
+                    disable: Disable
+                    large-desktop-container: Large Desktop
+                    desktop-container: Desktop
+                    tablet-container: Tablet
+                    large-mobile-container: Large Mobile
+                    custom: Custom Breakpoint        
+                .customBreakpoint:
+                  type: input.text
+                  label: Custom Breakpoint
+                  description: Defines at what breakpoint (<code>max-width</code>) the here defined image should be used. It is necessary to change the option above appropriately.
+                  placeholder: 'e.g. 500px'
+                  default: ''
+                .img:
+                  type: input.imagepicker
+                  label: Image
+                  description: Select desired image for the defined breakpoint.
             .video:
               type: input.text
               label: Video

@@ -531,7 +531,14 @@
                                         <a class="owl-video" href="{{ url(itemVideo)|e }}"></a>
                                     {% else %}
                                         <picture>
-                                            <source {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}srcset="images/leitl/Fotoshooting4.jpg" media="(max-width: 600px)">
+                                            {% for image in item.responsiveImages %}
+                                                {% if image.breakpoint and image.breakpoint != 'disable' %}
+                                                    {% set imgWidth = (image.breakpoint == 'custom') ? image.customBreakpoint : gantry.config.styles.breakpoints[image.breakpoint]  %}
+                                                    {% if imgWidth and imgWidth != '' and image.img %}
+                                                        <source {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}srcset="{{ url(image.img)|e }}" media="(max-width: {{ imgWidth|e }})">
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
                                             <img {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}src="{{ url(item.image)|e }}" alt="{{ item.title|e }}" />
                                         </picture>
                                     {% endif %}
