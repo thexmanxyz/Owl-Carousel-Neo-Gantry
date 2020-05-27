@@ -59,11 +59,78 @@ form:
                 description: Customize the title text for the Particle.
                 placeholder: 'Enter title'
 
-        tab_appearance:
-            label: Appearance
+              checkVisible:
+                type: enable.enable
+                label: Check Visible
+                description: If you know that the carousel will always be visible you can disable this setting to prevent the expensive browser layout forced reflow the <code>$element.is(':visible')</code> does.
+                default: true
+
+              urlHashListener:
+                type: enable.enable
+                label: URL Hash Listener
+                description: Listen to URL hash changes and check for slides with the same data name (<code>data-hash</code> with <code>myHash</code>). The <code>data-hash</code> attribute on the slide is required.
+                default: false
+
+              video:
+                type: enable.enable
+                label: Video
+                description: Enable to support videos on slides (by default 400px height).
+                default: false
+
+              videoHeight:
+                type: input.text
+                label: Video Height
+                description: The default height used for embedded videos.
+                placeholder: e.g. 640 in pixel
+                default: ''
+
+              videoWidth:
+                type: input.text
+                label: Video Width
+                description: The default width used for embedded videos.
+                placeholder: e.g. 360 in pixel
+                default: ''
+
+              responsiveRefreshRate:
+                type: input.text
+                label: Responsive Refresh Rate
+                description: Responsive refresh rate used during resize events. Smaller values mean more frequent updates.
+                placeholder: 200
+                default: 200
+
+              responsiveBaseElement:
+                type: input.text
+                label: Responsive Base Element
+                description: By default all responsive breakpoints are corresponding with <code>window</code> width. This option gives you the opportunity to change it to your own class/id.
+                placeholder: .myCustomWrapper
+                default: ''
+
+              navElement:
+                type: input.text
+                label: Navigation DOM Element
+                description: DOM element type for a single directional navigation link.
+                placeholder: div
+                default: div
+
+              itemElement:
+                type: input.text
+                label: Item DOM Element
+                description: DOM element type used for <code>owl-item</code>.
+                placeholder: div
+                default: div
+
+              stageElement:
+                type: input.text
+                label: Stage DOM Element
+                description: DOM element type use for <code>owl-stage</code>.
+                placeholder: div
+                default: div
+
+        tab_look:
+            label: Look
             fields:
 
-              neo.style:
+              all.style:
                 type: select.select
                 label: Style
                 description: Select one of the predefined styles. Not all settings below apply to all styles. Please mind the note above each section. This decision was made to keep compatibility with the original Particle.<ul><li><b>Helium: </b> Configurable with settings below.</li><li><b>Neo Style 1: </b>Top (dots) and bottom (arrows, title).</li><li><b>Neo Style 2: </b>Top (arrows, title) and bottom (dots).</li><li><b>Neo Style 3: </b>Top (arrows, dots) and bottom (title).</li><li><b>Neo Style 4: </b>Top (title) and bottom (arrows, dots).</li></ul>
@@ -74,6 +141,12 @@ form:
                   style-neo2: Neo Style 2
                   style-neo3: Neo Style 3
                   style-neo4: Neo Style 4
+
+              all.background:
+                    type: input.colorpicker
+                    label: Background
+                    description: Custom background for the carousel.
+                    default: ''
 
               _info_appearance_helium:
                 type: separator.note
@@ -279,22 +352,49 @@ form:
         tab_behavior:
             label: Behavior
             fields:
+
+              direction:
+                type: select.select
+                label: Direction
+                description: Select the direction for the carousel. Typically you would use the reading direction. By default the direction is obtained from the Gantry framework.
+                default: gantry
+                options:
+                  gantry: Gantry-controlled
+                  ltr: LTR (Left-To-Right)
+                  rtl: RTL (Right-To-Left)
+
+              looping:
+                type: select.select
+                label: Looping
+                description: Select how you want to be iterated over the slides.<ul><li><b>Loop: </b>Infinity loop. Duplicate last and first items to get loop illusion.</li><li><b>Rewind: </b>Should be gone backwards when the boundary (start / end) is reached.</li><li><b>Off: </b> Navigation only possible until start or end.</li></ul>
+                default: loop
+                options:
+                  loop: Loop
+                  rewind: Rewind
+                  off: Off
+
+              mouseWheel:
+                type: enable.enable
+                label: Mouse Wheel Navigation
+                description: Enable to allow scrolling through slides with the mouse wheel. You need the jQuery Mousewheel library for this feature to work.
+                default: false
+
               autoplay:
                 type: enable.enable
                 label: Autoplay
-                description: Enable or disable the Autoplay.
+                description: Enable or disable the autoplay.
                 default: false
 
               autoplaySpeed:
                 type: input.text
                 label: Autoplay Speed
-                description: Set the speed of the Autoplay, in milliseconds.
+                description: Set the speed of the autoplay, in milliseconds.
                 placeholder: 5000
 
               autoplayHoverPause:
                 type: enable.enable
                 label: Autoplay Hover Pause
-                description: Enable or disable the Autoplay when hovering the current slide.
+                description: Enable or disable the autoplay when hovering the current slide.
                 default: false
 
               title_link:
@@ -306,16 +406,29 @@ form:
               slideLink:
                 type: select.select
                 label: Slide Link
-                description: Add the button or title link on the whole slide instead. When using the <b>Custom Breakpoint</b> option the pixel value below is used to determine the breakpoint.
+                description: Add the button or title link on the whole slide instead. When using the <b>Breakpoint</b> option the next two options are used to determine the breakpoint.
                 default: disable
                 options:
                   enable: Enable
                   disable: Disable
-                  custom: Custom Breakpoint
+                  custom: Breakpoint
 
               slideLinkBreakpoint:
-                type: input.text
+                type: select.select
                 label: Slide Link Breakpoint
+                description: Define at what device width the link should only be applied on the whole slide (default options only works with <code>rem</code> and <code>px</code>). You have to select <b>Breakpoint</b> in the the <b>Slide Link</b> setting. If you want to define a custom value use <b>Custom Breakpoint</b> and the next field.
+                default: disable
+                options:
+                  disable: Disable
+                  large-desktop-container: Large Desktop
+                  desktop-container: Desktop
+                  tablet-container: Tablet
+                  large-mobile-container: Large Mobile
+                  custom: Custom Breakpoint
+
+              slideLinkCustomBreakpoint:
+                type: input.text
+                label: Slide Link Custom Breakpoint
                 description: Define at what width (in pixel) the link should only be applied on the whole slide. You have to select <b>Custom Breakpoint</b> in the the <b>Slide Link</b> setting.
                 placeholder: 480
                 default: 480
@@ -325,6 +438,238 @@ form:
                 label: Slide Link Resize
                 description: Define if the link should be applied to the slide during the window resize event. Can cause issues when activated. If you deactivate this setting the link switch will not be done during resize.
                 default: true
+
+              merge:
+                type: enable.enable
+                label: Stretch
+                description: Stretch (merge) items. Looking for the respective <code>data</code> attribute (whether defined for the item). Might has no effect in the OwlCarousel version 2.3.4. Please also check the <b>Stretch</b> setting for single slides.
+                default: false
+
+              mergeFit:
+                type: enable.enable
+                label: Stretch Fit
+                description: Fit stretched (merged) items if screen is smaller than items value. Please also check the <b>Stretch</b> setting for single slides.
+                default: true
+
+              mouseDrag:
+                type: enable.enable
+                label: Mouse Drag
+                description: Enable or disable the mouse drag.
+                default: true
+
+              touchDrag:
+                type: enable.enable
+                label: Touch Drag
+                description: Enable or disable the touch drag.
+                default: true
+
+              pullDrag:
+                type: enable.enable
+                label: Pull Drag
+                description: Enable or disable the pull drag (stage to edge).
+                default: true
+
+              freeDrag:
+                type: enable.enable
+                label: Free Drag
+                description: Enable or disable the free drag (item to edge).
+                default: false
+
+              responsive_option:
+                type: collection.list
+                array: true
+                label: Responsive Options
+                description: Set OwlCarousel plugin options at specific breakpoints (e.g. device width).
+                value: name
+                ajax: true
+                fields:
+                  .name:
+                    type: input.text
+                  .breakpoint:
+                    type: input.text
+                    label: Breakpoint
+                    description: Define at what width (in pixel) the here defined options should be applied. The basic settings are overriden so you might need to define at least two breakpoints for your desired behavior.
+                    placeholder: e.g. 768 (in pixel)
+                    default: ''
+                  ._info_responsive_settings:
+                    type: separator.note
+                    class: alert alert-info
+                    content: These settings override the global settings of the plugin. If you define a breakpoint at e.g. 768px the below settings are attached at 768px and above.
+                  .item_count:
+                    type: input.text
+                    label: Slide Count
+                    description: The number of items you want to see simultaneously on the screen.
+                    placeholder: 'number of slides (default: 1)'
+                    default: ''
+                  .slideBy:
+                    type: input.text
+                    label: Slideby Count
+                    description: The amount of slides that will be slided during a slide event.
+                    placeholder: 'slideby amount (default: 1)'
+                    default: ''
+                  .item_space:
+                    type: input.text
+                    label: Slide Space
+                    description: The space to be inserted between the slides 
+                    placeholder: 'space in pixel (default: 0)'
+                    default: ''
+                  .item_center:
+                    type: enable.enable
+                    label: Slide Centering
+                    description: Centers the current slide in case there are multiple slides (more than one) shown.
+                    default: false
+                  .stage_padding:
+                    type: input.text
+                    label: Stage Padding 
+                    description: Padding left and right on stage (can see neighbours).
+                    placeholder: 'padding in pixel (default: 0)'
+                    default: ''
+                  .animateIn:
+                    type: input.text
+                    label: Animate In
+                    description: Class for CSS3 animation used during slide-in (e.g. Animate.css). Only works for single slide view and only in browsers that support <code>perspective</code>. If you want to disable the global animation enter <code>none</code>. <strong>fadeOut</strong> is the only built-in CSS animate style.
+                    placeholder: every CSS class e.g. Animate.CSS
+                    default: ''
+                  .animateOut:
+                    type: input.text
+                    label: Animate Out
+                    description: Class for CSS3 animation used during slide-out (e.g. Animate.css). Only works for single slide view and only in browsers that support <code>perspective</code>. If you want to disable the global animation enter <code>none</code>. <strong>fadeOut</strong> is the only built-in CSS animate style.
+                    placeholder: every CSS class e.g. Animate.CSS
+                    default: ''
+                  ._info_responsive_custom_options:
+                    type: separator.note
+                    class: alert alert-info
+                    content: If your setting is not listed above, please use the following options.
+                  .custom_option:
+                    type: collection.list
+                    array: true
+                    label: Custom Options
+                    description: Set custom option that is not pre-defined by the Particle above.
+                    value: name
+                    ajax: true
+                    fields:
+                      .name:
+                        type: input.text
+                      ._info_responsive_options:
+                        type: separator.note
+                        class: alert alert-info
+                        content: Please check <a href="https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html" target"_blank" title="OwlCarousel2 options">this link</a> for more information about the OwlCarousel2 parameters and <a href="https://owlcarousel2.github.io/OwlCarousel2/demos/responsive.html" target"_blank" title="OwlCarousel2 responsive mode">this link</a> for more information about the responsive mode.
+                      .key:
+                        type: input.text
+                        label: Key
+                        description: Enter the key for this option.
+                        placeholder: any OwlCarousel2 option
+                      .value:
+                        type: input.text
+                        label: Value
+                        description: Enter the value for this option.
+                        placeholder: a valid value for the option
+                      .useQuote:
+                        type: enable.enable
+                        label: Use Quote
+                        description: Enable this option if the <b>Value</b> is a character string.
+                        default: false
+                        
+        tab_animate:
+            label: Animate
+            fields:
+
+              _info_animate_class:
+                type: separator.note
+                class: alert alert-info
+                content: Please mind custom animation libraries like <a href="https://animate.style" target"_blank" title="Animate.css">Animate.css</a> when changing the following two settings. Also check the <a href="https://owlcarousel2.github.io/OwlCarousel2/demos/animate.html" target"_blank" title="OwlCarousel2 Animate Documentation">OwlCarousel2 documentation</a> on the animation topic.
+
+              animateIn:
+                type: input.text
+                label: Animate In
+                description: Class for CSS3 animation used during slide-in (e.g. Animate.css). Only works for single slide view and only in browsers that support <code>perspective</code>. <strong>fadeOut</strong> is the only built-in CSS animate style.
+                placeholder: every CSS class e.g. Animate.CSS
+
+              animateOut:
+                type: input.text
+                label: Animate Out
+                description: Class for CSS3 animation used during slide-out (e.g. Animate.css). Only works for single slide view and only in browsers that support <code>perspective</code>. <strong>fadeOut</strong> is the only built-in CSS animate style.
+                placeholder: every CSS class e.g. Animate.CSS
+
+              slideTransition:
+                type: select.select
+                label: Slide Transition
+                description: Select the transition type you want to use for the stage.
+                default: none
+                options:
+                  none: None
+                  ease: Ease
+                  linear: Linear
+                  ease-in: Ease-In
+                  ease-out: Ease-Out
+                  ease-in-out: Ease-In-Out
+
+              fallbackEasing:
+                type: select.select
+                label: Fallback Easing
+                description: Select the easing fallback type you want to use for CSS2 <code>$.animate</code>.
+                default: swing
+                options:
+                  swing: Swing
+                  linear: Linear
+                  easeInQuad: easeInQuad
+                  easeOutQuad: easeOutQuad
+                  easeInOutQuad: easeInOutQuad
+                  easeInCubic: easeInCubic
+                  easeOutCubic: easeOutCubic
+                  easeInOutCubic: easeInOutCubic
+                  easeInQuart: easeInQuart
+                  easeOutQuart: easeOutQuart
+                  easeInOutQuart: easeInOutQuart
+                  easeInQuint: easeInQuint
+                  easeOutQuint: easeOutQuint
+                  easeInOutQuint: easeInOutQuint
+                  easeInExpo: easeInExpo
+                  easeOutExpo: easeOutExpo
+                  easeInOutExpo: easeInOutExpo
+                  easeInSine: easeInSine
+                  easeOutSine: easeOutSine
+                  easeInOutSine: easeInOutSine
+                  easeInCirc: easeInCirc
+                  easeOutCirc: easeOutCirc
+                  easeInOutCirc: easeInOutCirc
+                  easeInElastic: easeInElastic
+                  easeOutElastic: easeOutElastic
+                  easeInOutElastic: easeInOutElastic
+                  easeInBack: easeInBack
+                  easeOutBack: easeOutBack
+                  easeInOutBack: easeInOutBack
+                  easeInBounce: easeInBounce
+                  easeOutBounce: easeOutBounce
+                  easeInOutBounce: easeInOutBounce
+
+              smartSpeed:
+                type: input.text
+                label: Transition Speed
+                description: The amount of time (in milliseconds) used between transition of two slides by default (all events).
+                placeholder: 250
+                default: 250
+
+              navSpeed:
+                type: input.text
+                label: Transition Speed Buttons
+                description: The amount of time (in milliseconds) used between transition of two slides for navigation button events.
+                placeholder: 250
+                default: 250
+
+              dotsSpeed:
+                type: input.text
+                label: Transition Speed Dots
+                description: The amount of time (in milliseconds) used between transition of two slides for navigation dots events.
+                placeholder: 250
+                default: 250
+
+              autoplayTSpeed:
+                type: input.text
+                label: Transition Speed Autoplay
+                description: The amount of time (in milliseconds) used between transition of two slides for autoplay events.
+                placeholder: 250
+                default: 250
 
         tab_controls:
             label: Controls
@@ -394,6 +739,65 @@ form:
         tab_slides:
             label: Slides
             fields:
+
+              startPosition:
+                type: input.text
+                label: Start Position
+                description: The start position the carousel is loaded with. First element has position 0. If you want that the start position is determined by the URL attached hash, use <code>URLHash</code>.
+                placeholder: number or URLHash
+                default: 0
+
+              item_count:
+                type: input.text
+                label: Slide Count
+                description: The number of items you want to see simultaneously on the screen.
+                placeholder: 'number of slides'
+                default: 1
+
+              slideBy:
+                type: input.text
+                label: Slideby Count
+                description: The amount of slides that will be slided during a slide event.
+                placeholder: slideby amount
+                default: 1
+
+              item_space:
+                type: input.text
+                label: Slide Space
+                description: The space to be inserted between the slides 
+                placeholder: space in pixel
+                default: 0
+
+              stage_padding:
+                type: input.text
+                label: Stage Padding 
+                description: Padding left and right on stage (can see neighbours).
+                placeholder: padding in pixel
+                default: 0
+
+              item_center:
+                type: enable.enable
+                label: Slide Centering
+                description: Centers the current slide in case there are multiple slides (more than one) shown.
+                default: false
+
+              autoWidth:
+                type: enable.enable
+                label: Manual Dimension
+                description: If you enable this option the grid is disabled and you can manually set the dimension for each slide element within the single slide settings. 
+                default: false
+
+              autoHeight:
+                type: enable.enable
+                label: Auto Height
+                description: If you enable this option the height for each slide is determined automatically and triggers carousel resizing. At the moment it only works only one item on screen.
+                default: false
+
+              autoHeightClass:
+                type: input.selectize
+                label: Auto Height Class
+                description: Set specific CSS classes for the <strong>Auto Height</strong> behavior. Only added when <strong>Auto Height</strong> is enabled.
+
               items:
                 type: collection.list
                 array: true
@@ -412,6 +816,61 @@ form:
                     type: input.imagepicker
                     label: Image
                     description: Select desired image.
+                  .responsiveImages:
+                    type: collection.list
+                    array: true
+                    label: Responsive Images
+                    description: Define responsive images for different screen sizes. These images are used when the defined breakpoint (width) is reached.
+                    value: name
+                    ajax: true
+                    fields:
+                      .name:
+                        type: input.text
+                      .breakpoint:
+                        type: select.select
+                        label: Breakpoint
+                        description: Define until what device width the image should be applied. If you want to set a custom width please use <b>Custom Breakpoint</b> and define a custom width in the field below.
+                        default: disable
+                        options:
+                          disable: Disable
+                          large-desktop-container: Large Desktop
+                          desktop-container: Desktop
+                          tablet-container: Tablet
+                          large-mobile-container: Large Mobile
+                          custom: Custom Breakpoint        
+                      .customBreakpoint:
+                        type: input.text
+                        label: Custom Breakpoint
+                        description: Defines at what breakpoint (<code>max-width</code>) the here defined image should be used. It is necessary to change the option above appropriately.
+                        placeholder: 'e.g. 500px'
+                        default: ''
+                      .img:
+                        type: input.imagepicker
+                        label: Image
+                        description: Select desired image for the defined breakpoint.
+                  .video:
+                    type: input.text
+                    label: Video
+                    description: If you want to use a video instead of an image. If you set this path, the image setting above are ignored.
+                    placeholder: 'path/to/video'
+                    default: ''
+                  .background:
+                    type: input.colorpicker
+                    label: Background
+                    description: Custom background color for the slide e.g. when there is no image used.
+                    default: ''
+                  .manual_width:
+                    type: input.text
+                    label: Manual Width
+                    description: The manual width applied to the <code>style</code> attribute of the slide item. This option should be used together with <strong>Manual Dimension</strong> located at the general slide settings.
+                    default: ''
+                    placeholder: e.g. 250 (in pixel)
+                  .manual_height:
+                    type: input.text
+                    label: Manual Height
+                    description: The manual height applied to the <code>style</code> attribute of the slide item. This option should be used together with <strong>Manual Dimension</strong> located at the general slide settings.
+                    default: ''
+                    placeholder: e.g. 250 (in pixel)
                   .link:
                     type: input.text
                     label: Link
@@ -442,10 +901,21 @@ form:
                     label: Button Classes
                     description: Set CSS classes for the button.
                     default: 'button-outline'
+                  .hash:
+                    type: input.text
+                    label: Hash
+                    description: "The hash value used for <code>data-hash</code> attribute appended to the slide. Please enter without # and don't forget to activate the <strong>URL Hash Listener</strong> in the global settings."
+                    default: ''
+                    placeholder: e.g. myHash
+                  .mergevalue:
+                    type: input.text
+                    label: Stretch Slide
+                    description: Change this value if you want that this slide stretches over (merges) multiple single slides. E.g. you changed the <b>Slide Count</b> option previously. If you use a <b>Slide Count</b> of 5 and set this value to 2 then it stretches 2/5 of the carousel space.
+                    default: 1
                   .showItem:
                     type: select.select
-                    label: Show Item
-                    description: Select the front end rendering behaviour for the item.
+                    label: Show Slide
+                    description: Select the front end rendering behaviour for the Slide.
                     default: yes
                     options:
                       yes: Yes

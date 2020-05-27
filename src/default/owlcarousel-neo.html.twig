@@ -38,13 +38,15 @@
 
 {% set neoTheme = all.theme|default('theme-b') %}
 
-{% if neo.style and neo.style != 'helium' %}
-    {% set ctnClasses = ' style-neo ' ~ neo.style %}
+{% if all.style and all.style != 'helium' %}
+    {% set ctnClasses = ' style-neo ' ~ all.style %}
     {% set neoTheme = (neoTheme == 'accent') ? 'theme-b' : neoTheme %}
     {% set ctnClasses = ctnClasses ~ ' sn-' ~ neoTheme %}
 {% endif %}
 
-{% if neo.style and neo.style == 'helium' %}
+{% set carouselBackground = all.background|default('') %}
+
+{% if all.style and all.style == 'helium' %}
     {% if neoTheme != 'accent' %}
         {% set heliumColor = neoTheme == 'theme-b' ? 'color-b' : 'color-w' %}
         {% set ctnClasses = ctnClasses ~ ' sh-' ~ heliumColor %}
@@ -79,7 +81,7 @@
     {% set ctnClasses = ctnClasses ~ ' sa-' ~ dotSize %}
 {% endif %}
 
-{% if neo.style != 'helium' %}
+{% if all.style != 'helium' %}
     {% set hCtrlClass1 = (neoTheme == 'theme-b') ? 'control-d-g1' : 'control-d-g2' %}
 
     {% set hCtrlClass2 = all.dots_color|default(hCtrlClass1) %}
@@ -94,7 +96,7 @@
     {% set hCtrlClass2 = (hCtrlClass2 != 'default') ? hCtrlClass2 : hCtrlClass1 %}
     {% set ctnClasses = ctnClasses ~ ' sa-' ~ hCtrlClass2 %}
 
-{% elseif neo.style == 'helium' %}
+{% elseif all.style == 'helium' %}
 
     {% if all.dots_color and all.dots_color != 'default' %}
         {% set ctnClasses = ctnClasses ~ ' sa-' ~ all.dots_color %}
@@ -142,10 +144,115 @@
 {{ _self.isEnabled(particle.autoplay|default(false)) }}
 {%- endset -%}
 
+{% set direction = particle.direction|default('gantry') %}
+{% set responsiveRefreshRate = particle.responsiveRefreshRate|default(200) %}
+{% set responsiveBaseElement = particle.responsiveBaseElement|default('') %}
+{% set urlHashListener = particle.urlHashListener|default(false) %}
+{% set checkVisible = particle.checkVisible|default(true) %}
+{% set merge = particle.merge|default(false) %}
+{% set mergeFit = particle.mergeFit|default(true) %}
+{% set navElement = particle.navElement|default('div') %}
+{% set itemElement = particle.itemElement|default('div') %}
+{% set stageElement = particle.stageElement|default('div') %}
+{% set navContainer = particle.navContainer|default(false) %}
+{% set dotsContainer = particle.dotsContainer|default(false) %}
+
 {% set autoPlayHoverPause = particle.autoplayHoverPause|default(false) %}
+{% set looping = particle.looping|default('loop') %}
+{% set slideLinkBreakpoint = particle.slideLinkBreakpoint|default('disable') %}
+{% set slideLinkCustomBreakpoint = particle.slideLinkCustomBreakpoint|default(480) %}
+{% set mouseDrag = particle.mouseDrag|default(true) %}
+{% set touchDrag = particle.touchDrag|default(true) %}
+{% set pullDrag = particle.pullDrag|default(true) %}
+{% set freeDrag = particle.freeDrag|default(false) %}
+
+{% set slideTransition = particle.slideTransition|default('none') %}
+{% set fallbackEasing = particle.fallbackEasing|default('swing') %}
+{% set smartSpeed = particle.smartSpeed|default(250) %}
+{% set navSpeed = particle.navSpeed|default(250) %}
+{% set dotsSpeed = particle.dotsSpeed|default(250) %}
+{% set autoplaySpeed = particle.autoplayTSpeed|default(250) %}
+
+{% set startPosition = particle.startPosition|default(0) %}
+{% set slideBy = particle.slideBy|default(1) %}
+{% set itemSpace = particle.item_space|default(0) %}
+{% set stagePadding = particle.stage_padding|default(0) %}
+{% set itemCenter = particle.item_center|default(false) %}
+{% set autoWidth = particle.autoWidth|default(false) %}
+{% set autoHeight = particle.autoHeight|default(false) %}
+
+{% set video = particle.video|default(false) %}
+{% set videoHeight = particle.videoHeight|default('') %}
+{% set videoWidth = particle.videoWidth|default('') %}
+
+{% set rtlValue = '' %}
+{% if direction == 'gantry' %}
+    {% set rtlValue = gantry.page.direction == 'rtl' ? 'true' : 'false' %}
+{% else %}
+    {% set rtlValue = direction == 'rtl' ? 'true' : 'false' %}
+{% endif %}
+
+{% if slideLinkBreakpoint == 'custom' %}
+    {% set slideLinkBreakpointPx = slideLinkCustomBreakpoint %}
+{% elseif slideLinkBreakpoint != 'disable' %}
+    {% set slideLinkBreakpointPx = gantry.config.styles.breakpoints[slideLinkBreakpoint] %}
+    {% if slideLinkBreakpointPx ends with 'rem' %}
+        {% set slideLinkBreakpointPx = (slideLinkBreakpointPx|slice(0, slideLinkBreakpointPx.length - 3)) * 16 %}
+    {% else %}
+        {% set slideLinkBreakpointPx = slideLinkBreakpointPx|slice(0, slideLinkBreakpointPx.length - 2) %}
+    {% endif %}
+{% endif %}
+
+{% set slideItemStyle = (particle.delaySlideElements) ? 'display: none;' : '' %}
+
+{%- if particle.responsive_option|length > 0 -%}
+    {%- set responsive -%}
+        {
+        {%- for option in particle.responsive_option -%}
+            {%- set breakpoint = option.breakpoint|default('') -%}
+            {%- if breakpoint != '' -%}
+                {%- set hItemCount = option.item_count|default('') -%}
+                {%- set hSlideBy = option.slideBy|default('') -%}
+                {%- set hItemSpace = option.item_space|default('') -%}
+                {%- set hStagePadding = particle.stage_padding|default('') -%}
+                {%- set hItemCenter = option.item_center|default('') -%}
+                {%- set hAnimateIn = option.animateIn|default('') -%}
+                {%- set hAnimateOut = option.animateOut|default('') -%}
+                {{breakpoint|e('js')}}: {
+                    {%- if hItemCount != '' -%}
+                    items: {{hItemCount|e('js')}},
+                    {%- endif -%}
+                    {%- if hSlideBy != '' -%}
+                    slideBy: {{hSlideBy|e('js')}},
+                    {%- endif -%}
+                    {%- if hItemSpace != '' -%}
+                    margin: {{hItemSpace|e('js')}},
+                    {%- endif -%}
+                    {%- if hItemCenter != '' -%}
+                    center: {{hItemCenter ? 'true' : 'false'}},
+                    {%- endif -%}
+                    {%- if hStagePadding != '' -%}
+                    stagePadding: {{hStagePadding|e('js')}},
+                    {%- endif -%} 
+                    {%- if hAnimateIn != '' -%}
+                    {%- set hAnimateIn = (hAnimateIn == 'none') ? '' : hAnimateIn -%}
+                    animateIn: '{{hAnimateIn|e('js')}}',
+                    {%- endif -%} 
+                    {%- if hAnimateOut != '' -%}
+                    {%- set hAnimateOut = (hAnimateOut == 'none') ? '' : hAnimateOut -%}
+                    animateOut: '{{hAnimateOut|e('js')}}',
+                    {%- endif -%} 
+                    {%- for custom in option.custom_option -%}
+                    {{custom.key|e('js')}}: {% if custom.useQuote %}'{% endif %}{{custom.value|e('js')}}{% if custom.useQuote %}'{% endif %},
+                    {%- endfor -%}
+                },
+            {%- endif -%}
+        {%- endfor -%}
+     }
+    {%- endset -%}
+{%- endif -%}
 
 {% block particle %}
-
     {%- scripts in jsPlace with { priority: jsPrior } -%}
         {%- do gantry.load('jquery') -%}
         <script type="{{scriptType}}" src="{{url(jsPath)}}"{{jsExecAttr}}></script>
@@ -160,9 +267,99 @@
             var loadOwlCarousel = function() {
                 var owl = jQuery('#g-owlcarousel-{{ id }}');
                 owl.owlCarousel({
-                    items: 1,
-                    rtl: {%- if gantry.page.direction == 'rtl' -%}true{%- else -%}false{%- endif -%},
+                    items: {{particle.item_count|default(1)}},
+                    {%- if itemSpace != 0 -%}
+                    margin: {{itemSpace|e('js')}},
+                    {%- endif -%}
+                    {%- if stagePadding and stagePadding != 0 -%}
+                    stagePadding: {{stagePadding|e('js')}},
+                    {%- endif -%}
+                    {%- if itemCenter -%}
+                    center: true,
+                    {%- endif -%}
+                    {%- if autoWidth -%}
+                    autoWidth: true,
+                    {%- endif -%}
+                    {%- if autoHeight -%}
+                    autoHeight: true,
+                    {%- endif -%}
+                    {%- if particle.autoHeightClass -%}
+                    autoHeightClass: 'owl-height {{particle.autoHeightClass|e('js')}}',
+                    {%- endif -%}
+                    {%- if startPosition != '0' -%}
+                        {%- if startPosition matches '/^\\d+$/' -%}
+                            {%- set startPosition = startPosition|e('js') -%}
+                        {%- else -%}
+                            {%- set startPosition = "'" ~ startPosition|e('js') ~ "'" -%}                        
+                        {%- endif -%}
+                        startPosition: {{startPosition}},
+                    {%- endif -%}
+                    {%- if slideBy > 1 -%}
+                    slideBy: {{slideBy|e('js')}},
+                    {%- endif -%}
+                    {%- if smartSpeed != 250 -%}
+                    smartSpeed: {{smartSpeed|e('js')}},
+                    {%- endif -%}
+                    {%- if navSpeed != 250 -%}
+                    navSpeed: {{navSpeed|e('js')}},
+                    {%- endif -%}       
+                    {%- if dotsSpeed != 250 -%}
+                    dotsSpeed: {{dotsSpeed|e('js')}},
+                    {%- endif -%}
+                    {%- if autoplaySpeed != 250 -%}
+                    autoplaySpeed: {{autoplaySpeed|e('js')}},
+                    {%- endif -%}
+                    {%- if slideTransition != 'none' -%}
+                    slideTransition: '{{slideTransition|e('js')}}',
+                    {%- endif -%}
+                    {%- if fallbackEasing != 'swing' -%}
+                    fallbackEasing: '{{fallbackEasing|e('js')}}',
+                    {%-endif -%}
+                    {%- if responsiveRefreshRate != 200 -%}
+                    responsiveRefreshRate: {{responsiveRefreshRate|e('js')}},
+                    {%- endif -%}
+                    {%- if not checkVisible -%}
+                    checkVisible: false,
+                    {%- endif -%}
+                    {%- if urlHashListener -%}
+                    URLhashListener: true,
+                    {%- endif -%}
+                    {%- if navElement != 'div' -%}
+                    navElement: '{{navElement|e('js')}}',
+                    {%- endif -%}             
+                    {%- if itemElement != 'div' -%}
+                    itemElement: '{{itemElement|e('js')}}',
+                    {%- endif -%}              
+                    {%- if stageElement != 'div' -%}
+                    stageElement: '{{stageElement|e('js')}}',
+                    {%- endif -%}  
+                    {%- if navContainer and navContainer != '' -%}
+                    navContainer: '{{navContainer|e('js')}}',
+                    {%- endif -%}
+                    {%- if dotsContainer and dotsContainer != '' -%}
+                    dotsContainer: '{{dotsContainer|e('js')}}',      
+                    {%- endif -%}         
+                    {%- if responsiveBaseElement != '' -%}
+                    responsiveBaseElement: '{{responsiveBaseElement|e('js')}}',
+                    {%- endif -%}           
+                    {%- if particle.animateIn -%}
+                    animateIn: '{{particle.animateIn|e('js')}}',
+                    {%- endif -%}
+                    {%- if particle.animateOut -%}
+                    animateOut: '{{particle.animateOut|e('js')}}',
+                    {%- endif -%}
+                    {%- if merge -%}
+                    merge: true,
+                    {%- endif -%}
+                    {%- if not mergeFit -%}
+                    mergeFit: false,
+                    {%- endif -%}
+                    rtl: {{rtlValue}},
+                    {%- if looping == 'loop' -%}
                     loop: true,
+                    {%- elseif looping == 'rewind' -%}
+                    rewind: true,
+                    {%- endif -%}
                     navText: ['{{ particle.prevText|default('<i class="fa ' ~ arrowLeft ~ '" aria-hidden="true"></i>')|e('js') }}', '{{ particle.nextText|default('<i class="fa ' ~ arrowRight ~ '" aria-hidden="true"></i>')|e('js') }}'],
                     {%- if nav == 'true' and not particle.delaySlideElements -%}
                     nav: true,
@@ -170,7 +367,7 @@
                     nav: false,
                     {%- endif -%}
                     {%- if particle.nav_class -%}
-                    navClass: ['owl-prev {{particle.nav_class|e}}','owl-next {{particle.nav_class|e}}'],
+                    navClass: ['owl-prev {{particle.nav_class|e('js')}}','owl-next {{particle.nav_class|e('js')}}'],
                     {%- endif -%}
                     {%- if dots == 'true' and not particle.delaySlideElements -%}
                     dots: true,
@@ -178,7 +375,7 @@
                     dots: false,
                     {%- endif -%}
                     {%- if particle.dots_class -%}
-                    dotsClass: 'owl-dots {{particle.dots_class|e}}',
+                    dotsClass: 'owl-dots {{particle.dots_class|e('js')}}',
                     {%- endif -%}
                     {%- if autoPlay == 'true' -%}
                     autoplay: true,
@@ -189,15 +386,50 @@
                     {%- else -%}
                     autoplay: false,
                     {%- endif -%}
+                    {%- if not mouseDrag -%}
+                    mouseDrag: false,
+                    {%- endif -%}
+                    {%- if not touchDrag -%}
+                    touchDrag: false,
+                    {%- endif -%}
+                    {%- if not pullDrag -%}     
+                    pullDrag: false,
+                    {%- endif -%}
+                    {%- if freeDrag -%}
+                    freeDrag: true,
+                    {%- endif -%}
+                    {%- if video -%}
+                    video: true,
+                    {%- endif -%}
+                    {%- if videoHeight and videoHeight != '' -%}
+                    videoHeight: {{videoHeight|e('js')}},
+                    {%- endif -%}
+                    {%- if videoWidth and videoWidth != '' -%}
+                    videoWidth: {{videoWidth|e('js')}},
+                    {%- endif -%}
                     {%- if particle.lazyLoadImages -%}
                     lazyLoad: true,
                         {%- if loadEager > 0 -%}
                             lazyLoadEager: {{ loadEager|e('js') }},
                         {%- endif -%}
                     {%- endif -%}
+                    {%- if responsive and responsive != '' -%}
+                    responsive: {{responsive|raw}}
+                    {%- endif -%}
                 });
 
-                {%- if particle.slideLink == 'custom' -%}
+                {%- if particle.mouseWheel -%}
+                    owl.on('mousewheel', '.owl-stage', function (e) {
+                        if (e.deltaY>0) {
+                            owl.trigger('next.owl');
+                        } else {
+                            owl.trigger('prev.owl');
+                        }
+                        e.preventDefault();
+                    });
+                {%- endif -%}
+
+                {%- if particle.slideLink == 'custom' and slideLinkBreakpoint != 'disable' -%}
                     var eachSlide = function(width) {
                         var windowWidth = jQuery(window).width();
                         jQuery('.g-owlcarousel-item').each(function() {
@@ -206,7 +438,7 @@
                                 jQuery(this).find('a').each(function() {
                                     if(jQuery(this).hasClass('button')) {
                                         jQuery(this).parent().attr('data-html', jQuery(this)[0].outerHTML);
-                                        var newButton = jQuery(this).clone().removeAttr('href').removeAttr('target');
+                                        var newButton = jQuery(this).clone().removeAttr('href').removeAttr('target').removeAttr('aria-label');
                                         jQuery(this).replaceWith(newButton[0].outerHTML.replace('<a ', '<span ').replace('<\/a', '<\/span'));
                                     } else {
                                         jQuery(this).children().attr('data-html', jQuery(this)[0].outerHTML);
@@ -229,7 +461,8 @@
                             }
                         });
                     };
-                    var checkSize = function() { eachSlide({{particle.slideLinkBreakpoint|e|default(480)}}); };
+
+                    var checkSize = function() { eachSlide({{ slideLinkBreakpointPx|e('js') }}); };
                     checkSize();
                     {%- if particle.slideLinkResize|default(true) -%}
                         var resizeTimer;
@@ -266,9 +499,7 @@
 
     <div class="{{ particle.class|e }}"{{cAttrs|raw}}>
         {% if particle.title %}<h2 class="g-title">{{ particle.title|raw }}</h2>{% endif %}
-
-        <div id="g-owlcarousel-{{ id }}" class="g-owlcarousel owl-carousel{% if all.imageOverlay != 'disable' %} has-color-overlay{% endif %}{{ctnClasses}}">
-
+        <div id="g-owlcarousel-{{ id }}" class="g-owlcarousel owl-carousel{% if all.imageOverlay != 'disable' %} has-color-overlay{% endif %}{{ctnClasses}}"{% if carouselBackground and carouselBackground != '' %} style="background: {{carouselBackground|e}};"{% endif %}>
             {% for item in particle.items %}
                 {% set showItem = item.showItem|default('yes') %}
                 {% set titleText = (item.linktitle) ? item.linktitle|e : item.title|e %}
@@ -288,17 +519,35 @@
                     {% endif %}
                 {% endif %}
                 {% if showItem == 'yes' %}
-                    <div class="g-owlcarousel-item {{ item.class|e }}" {% if particle.delaySlideElements %} style="display: none;"{% endif %}>
-                        {% if particle.slideLink == 'enable' %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" tabindex="-1">{% endif %}
+                    {%- set slideItemStyle = slideItemStyle ~ ((item.manual_width) ? 'width: ' ~ item.manual_width ~ 'px;' : '') -%}
+                    {%- set slideItemStyle = slideItemStyle ~ ((item.manual_height) ? 'height: ' ~ item.manual_height ~ 'px;' : '') -%}
+                    {%- set slideItemStyle = slideItemStyle ~ ((item.background) ? 'background: ' ~ item.background ~ ';' : '') -%}
+                    <div class="g-owlcarousel-item{{ item.class|e ? ' ' ~ item.class|e : '' }}" {% if slideItemStyle and slideItemStyle != '' %} style="{{slideItemStyle|e}}"{% endif %}{% if item.mergevalue and item.mergevalue != '1' %} data-merge="{{item.mergevalue|e}}"{% endif %}{% if item.hash and item.hash != '' %} data-hash="{{item.hash|e}}"{% endif %}>
+                        {% if particle.slideLink == 'enable' %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" aria-label="{{ titleText }}" tabindex="-1">{% endif %}
                             <div class="g-owlcarousel-item-wrapper">
                                 <div class="g-owlcarousel-item-img">
-                                    <img {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}src="{{ url(item.image)|e }}" alt="{{ item.title|e }}" />
+                                    {% set itemVideo = item.video|default('') %}
+                                    {% if itemVideo != '' %}
+                                        <a class="owl-video" href="{{ url(itemVideo)|e }}"></a>
+                                    {% else %}
+                                        <picture>
+                                            {% for image in item.responsiveImages %}
+                                                {% if image.breakpoint and image.breakpoint != 'disable' %}
+                                                    {% set imgWidth = (image.breakpoint == 'custom') ? image.customBreakpoint : gantry.config.styles.breakpoints[image.breakpoint]  %}
+                                                    {% if imgWidth and imgWidth != '' and image.img %}
+                                                        <source {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}srcset="{{ url(image.img)|e }}" media="(max-width: {{ imgWidth|e }})">
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            <img {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}src="{{ url(item.image)|e }}" alt="{{ item.title|e }}" />
+                                        </picture>
+                                    {% endif %}
                                 </div>
                                 <div class="g-owlcarousel-item-content-container">
                                     <div class="g-owlcarousel-item-content-wrapper">
                                         <div class="g-owlcarousel-item-content">
                                             {% if item.title and particle.enable_title|default(true) %}
-                                                {% if particle.title_link and particle.slideLink != 'enable' %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" tabindex="-1">{% endif %}
+                                                {% if particle.title_link and particle.slideLink != 'enable' %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" aria-label="{{ titleText }}" tabindex="-1">{% endif %}
                                                     <h1 class="g-owlcarousel-item-title{% if particle.title_class %} {{ particle.title_class|e }}{% endif %}">{{ item.title|raw }}</h1>
                                                 {% if particle.title_link and particle.slideLink != 'enable' %}</a>{% endif %}
                                             {% endif %}
@@ -307,9 +556,9 @@
                                             {% endif %}
                                             {% if item.link and particle.enable_btn %}
                                                 <div class="g-owlcarousel-item-link {{ particle.button_class|e }}">
-                                                    {% set btnClasses = (particle.button_class|e) ? ' ' ~ particle.button_class|e : '' %}
-                                                    {% set btnClasses = btnClasses ~ ((item.buttonclass|e) ? ' ' ~ item.buttonclass|e : '') %}
-                                                    <{% if particle.slideLink != 'enable' %}a target="_self" href="{{ item.link|e }}"{% else %}span{% endif %} class="g-owlcarousel-item-button button{{btnClasses}}" title="{{ buttonTitle }}" tabindex="-1">{{ item.linktext|raw }}</{% if particle.slideLink != 'enable' %}a{% else %}span{% endif %}>
+                                                    {% set btnClasses = (particle.button_class) ? ' ' ~ particle.button_class : '' %}
+                                                    {% set btnClasses = btnClasses ~ ((item.buttonclass) ? ' ' ~ item.buttonclass : '') %}
+                                                    <{% if particle.slideLink != 'enable' %}a target="_self" href="{{ item.link|e }}"{% else %}span{% endif %} class="g-owlcarousel-item-button button{{ btnClasses|e }}" title="{{ buttonTitle }}" tabindex="-1">{{ item.linktext|raw }}</{% if particle.slideLink != 'enable' %}a{% else %}span{% endif %}>
                                                 </div>
                                             {% endif %}
                                         </div>
@@ -320,10 +569,8 @@
                     </div>
                 {% endif %}
             {% endfor %}
-
         </div>
     </div>
-
 {% endblock %}
 
 {%- macro getResourceFilePath(element, cdnUrl, api, cdnFile, locFile, type) -%}
