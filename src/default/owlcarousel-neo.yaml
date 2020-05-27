@@ -643,7 +643,6 @@ form:
                   easeOutBounce: easeOutBounce
                   easeInOutBounce: easeInOutBounce
 
-
               smartSpeed:
                 type: input.text
                 label: Transition Speed
