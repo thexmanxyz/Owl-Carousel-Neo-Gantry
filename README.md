@@ -62,6 +62,12 @@ Please be aware that the template folder path varies in dependence of the used C
 1. Go to your Gantry templating backend (e.g. Extensions/Templates).
 2. Switch to **Layout** and add the new appearing Particle called **Owl Carousel Neo** either globally to your site (**base outline**), to a specific template or page by dragging it to the designated section.
 3. Configure the appearance according to your favor.
+
+Many of the provided options are directly passed over to the [OwlCarousel2 API](https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html). Please check out the link to find out more about the available options.
+
+Please also take a look at the [OwlCarousel2 demo page ](https://owlcarousel2.github.io/OwlCarousel2/demos/demos.html) which provides many useful hints on how the carousel plugin works. Many of the existing options are already included in **Owl Carousel Neo** but if you are desperately missing a feature. Please [open an issue](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/issues/new) with your feature request.
+
+If you need a list of all supported API [options](https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html) for the responsive mode of the carousel, please [visit this page](https://owlcarousel2.github.io/OwlCarousel2/demos/responsive.html) and scroll to the bottom.
  
 ## Supported Parameters, Particle Options and Features
 * All settings of the original Particle are included and compatible
@@ -179,7 +185,7 @@ A few example configurations which show the new design of the Particle:
 ![15](/screenshots/frontend_demo7.png)
 
 ## Future Tasks
-- [ ] Include `aria` attributes for links
+- [ ] Add more OwlCarousel2 API options / events / callbacks if necessary.
 
 ## Known Issues
 None

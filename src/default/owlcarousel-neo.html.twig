@@ -438,7 +438,7 @@
                                 jQuery(this).find('a').each(function() {
                                     if(jQuery(this).hasClass('button')) {
                                         jQuery(this).parent().attr('data-html', jQuery(this)[0].outerHTML);
-                                        var newButton = jQuery(this).clone().removeAttr('href').removeAttr('target');
+                                        var newButton = jQuery(this).clone().removeAttr('href').removeAttr('target').removeAttr('aria-label');
                                         jQuery(this).replaceWith(newButton[0].outerHTML.replace('<a ', '<span ').replace('<\/a', '<\/span'));
                                     } else {
                                         jQuery(this).children().attr('data-html', jQuery(this)[0].outerHTML);
@@ -523,7 +523,7 @@
                     {%- set slideItemStyle = slideItemStyle ~ ((item.manual_height) ? 'height: ' ~ item.manual_height ~ 'px;' : '') -%}
                     {%- set slideItemStyle = slideItemStyle ~ ((item.background) ? 'background: ' ~ item.background ~ ';' : '') -%}
                     <div class="g-owlcarousel-item{{ item.class|e ? ' ' ~ item.class|e : '' }}" {% if slideItemStyle and slideItemStyle != '' %} style="{{slideItemStyle|e}}"{% endif %}{% if item.mergevalue and item.mergevalue != '1' %} data-merge="{{item.mergevalue|e}}"{% endif %}{% if item.hash and item.hash != '' %} data-hash="{{item.hash|e}}"{% endif %}>
-                        {% if particle.slideLink == 'enable' %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" tabindex="-1">{% endif %}
+                        {% if particle.slideLink == 'enable' %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" aria-label="{{ titleText }}" tabindex="-1">{% endif %}
                             <div class="g-owlcarousel-item-wrapper">
                                 <div class="g-owlcarousel-item-img">
                                     {% set itemVideo = item.video|default('') %}
@@ -547,7 +547,7 @@
                                     <div class="g-owlcarousel-item-content-wrapper">
                                         <div class="g-owlcarousel-item-content">
                                             {% if item.title and particle.enable_title|default(true) %}
-                                                {% if particle.title_link and particle.slideLink != 'enable' %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" tabindex="-1">{% endif %}
+                                                {% if particle.title_link and particle.slideLink != 'enable' %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" aria-label="{{ titleText }}" tabindex="-1">{% endif %}
                                                     <h1 class="g-owlcarousel-item-title{% if particle.title_class %} {{ particle.title_class|e }}{% endif %}">{{ item.title|raw }}</h1>
                                                 {% if particle.title_link and particle.slideLink != 'enable' %}</a>{% endif %}
                                             {% endif %}
