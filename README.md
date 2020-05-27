@@ -107,35 +107,43 @@ Insight of the *Owl Carousel Neo - Gantry Particle* configuration:
 ![1](/screenshots/backend_general.png)
 
 
-**Backend (2)** - *[Appearance](/screenshots/backend_appearance.png)*
+**Backend (2)** - *[Look](/screenshots/backend_look.png)*
 
-![2](/screenshots/backend_appearance.png)
-
-
-**Backend (3)** - *[Behavior](/screenshots/backend_behavior.png)*
-
-![3](/screenshots/backend_behavior.png)
+![2](/screenshots/backend_look.png)
 
 
-**Backend (4)** - *[Controls](/screenshots/backend_controls.png)*
+**Backend (3)** - *[Behavior](/screenshots/backend_behavior_1.png)*
 
-![4](/screenshots/backend_controls.png)
+![3](/screenshots/backend_behavior_1.png)
 
-**Backend (5)** - *[Slides (1)](/screenshots/backend_slides1.png)*
 
-![5](/screenshots/backend_slides1.png)
+**Backend (4)** - *[Behavior Responsive](/screenshots/backend_behavior_2.png)*
 
-**Backend (6)** - *[Slides (2)](/screenshots/backend_slides2.png)*
+![4](/screenshots/backend_behavior_2.png)
 
-![6](/screenshots/backend_slides2.png)
+**Backend (5)** - *[Animate](/screenshots/backend_animate.png)*
 
-**Backend (7)** - *[Timing](/screenshots/backend_timing.png)*
+![5](/screenshots/backend_animate.png)
 
-![7](/screenshots/backend_timing.png)
+**Backend (6)** - *[Controls](/screenshots/backend_controls.png)*
 
-**Backend (8)** - *[API](/screenshots/backend_api.png)*
+![6](/screenshots/backend_controls.png)
 
-![8](/screenshots/backend_api.png)
+**Backend (7)** - *[Slides (1)](/screenshots/backend_slides1.png)*
+
+![7](/screenshots/backend_slides1.png)
+
+**Backend (8)** - *[Slides (2)](/screenshots/backend_slides2.png)*
+
+![8](/screenshots/backend_slides2.png)
+
+**Backend (9)** - *[Timing](/screenshots/backend_timing.png)*
+
+![9](/screenshots/backend_timing.png)
+
+**Backend (10)** - *[API](/screenshots/backend_api.png)*
+
+![10](/screenshots/backend_api.png)
 ___
 
 A few example configurations which show the new design of the Particle:
