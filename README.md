@@ -72,10 +72,11 @@ If you need a list of all supported API [options](https://owlcarousel2.github.io
 ## Supported Parameters, Particle Options and Features
 * All settings of the original Particle are included and compatible
 * Updated to latest version of [Owl Carousel 2](https://owlcarousel2.github.io/OwlCarousel2/)
+* Supports most of the [API options](https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html) offered by Owl Carousel 2
 * Four new basic alignment styles for the slider
 * Two themes (black or white) for the new styles
 * Default Helium style with many additional settings (dots, navigation and text)
-* Lazy loading of images included
+* Lazy and responsive loading of images included
 * Timing of slides (annual or one-time)
 * Seven different control colors (independently per control type)
 * Dot navigation alignment
@@ -97,6 +98,13 @@ If you need a list of all supported API [options](https://owlcarousel2.github.io
   * Asynchronous
   * Deferred
 
+If you need more information on how Owl Carousel 2 works please mind also these resources:
+ * [General Documentation](https://owlcarousel2.github.io/OwlCarousel2/docs/started-welcome.html)
+ * [API Options](https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html)
+ * [Demo Page](https://owlcarousel2.github.io/OwlCarousel2/demos/demos.html)
+
+Most of the settings outlined within the API options are also supported by this Particle. Even though some of them are named differently to reflect their real behavior. Please also check the field descriptions in the Particle which offer more information about each option.
+
 ## Showroom
 Insight of the *Owl Carousel Neo - Gantry Particle* configuration:
 
@@ -105,35 +113,43 @@ Insight of the *Owl Carousel Neo - Gantry Particle* configuration:
 ![1](/screenshots/backend_general.png)
 
 
-**Backend (2)** - *[Appearance](/screenshots/backend_appearance.png)*
+**Backend (2)** - *[Look](/screenshots/backend_look.png)*
 
-![2](/screenshots/backend_appearance.png)
-
-
-**Backend (3)** - *[Behavior](/screenshots/backend_behavior.png)*
-
-![3](/screenshots/backend_behavior.png)
+![2](/screenshots/backend_look.png)
 
 
-**Backend (4)** - *[Controls](/screenshots/backend_controls.png)*
+**Backend (3)** - *[Behavior](/screenshots/backend_behavior_1.png)*
 
-![4](/screenshots/backend_controls.png)
+![3](/screenshots/backend_behavior_1.png)
 
-**Backend (5)** - *[Slides (1)](/screenshots/backend_slides1.png)*
 
-![5](/screenshots/backend_slides1.png)
+**Backend (4)** - *[Behavior Responsive](/screenshots/backend_behavior_2.png)*
 
-**Backend (6)** - *[Slides (2)](/screenshots/backend_slides2.png)*
+![4](/screenshots/backend_behavior_2.png)
 
-![6](/screenshots/backend_slides2.png)
+**Backend (5)** - *[Animate](/screenshots/backend_animate.png)*
 
-**Backend (7)** - *[Timing](/screenshots/backend_timing.png)*
+![5](/screenshots/backend_animate.png)
 
-![7](/screenshots/backend_timing.png)
+**Backend (6)** - *[Controls](/screenshots/backend_controls.png)*
 
-**Backend (8)** - *[API](/screenshots/backend_api.png)*
+![6](/screenshots/backend_controls.png)
 
-![8](/screenshots/backend_api.png)
+**Backend (7)** - *[Slides (1)](/screenshots/backend_slides1.png)*
+
+![7](/screenshots/backend_slides1.png)
+
+**Backend (8)** - *[Slides (2)](/screenshots/backend_slides2.png)*
+
+![8](/screenshots/backend_slides2.png)
+
+**Backend (9)** - *[Timing](/screenshots/backend_timing.png)*
+
+![9](/screenshots/backend_timing.png)
+
+**Backend (10)** - *[API](/screenshots/backend_api.png)*
+
+![10](/screenshots/backend_api.png)
 ___
 
 A few example configurations which show the new design of the Particle:

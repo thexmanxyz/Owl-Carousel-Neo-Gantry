@@ -57,12 +57,79 @@ form:
           description: Benutzerdefinierter Text für den Titel des Particles.
           placeholder: 'Titel eingeben'
 
-    set_appearance:
+        checkVisible:
+          type: input.checkbox
+          label: Prüfe Sichtbarkeit
+          description: Sie können diese Option deaktivieren wenn Sie wissen, dass das Carousel immer angezeigt wird. Dies verhindert den aufwändigen und erzwungenen Browser Layout Reflow von <code>$element.is(':visible')</code>.
+          default: true
+
+        urlHashListener:
+          type: input.checkbox
+          label: URL Hash Listener
+          description: Höre auf URL Hash Veränderungen und erkenne Slides mit dem gleichen Datennamen (<code>data-hash</code> mit <code>myHash</code>. Das <code>data-hash</code> Attribut muss auf die Slide gesetzt worden sein.
+          default: false
+
+        video:
+          type: input.checkbox
+          label: Video
+          description: Aktivieren Sie diese Option, um Videos auf Slides zu verwenden (standardmäßig eine Höhe von 400px).
+          default: false
+
+        videoHeight:
+          type: input.text
+          label: Videohöhe
+          description: Die Standardhöhe, die für eingebettete Videos verwendet wird.
+          placeholder: z.B.: 640 in Pixel
+          default: ''
+
+        videoWidth:
+          type: input.text
+          label: Video Breite
+          description: Die Standardbreite, die für eingebettete Videos verwendet wird.
+          placeholder: z.B.: 360 in Pixel
+          default: ''
+
+        responsiveRefreshRate:
+          type: input.text
+          label: Responsive Aktualisierungsrate
+          description: Die Responsive Aktualisierungsrate die während Resize-Events verwendet wird. Kleinere Werte bedeuten häufigere Updates.
+          placeholder: 200
+          default: 200
+
+        responsiveBaseElement:
+          type: input.text
+          label: Responsive Basiselement
+          description: Standardmäßig werden alle Responsive Breakpoints an der Browser <code>window</code> Breite ausgerichtet. Diese Option gibt Ihnen die Möglichkeit diese Einstellung zu ändern und eine eigene Klasse bzw. Id für das Basiselement zu definieren.
+          placeholder: .myCustomWrapper
+          default: ''
+
+        navElement:
+          type: input.text
+          label: Navigation DOM Element
+          description: DOM Elementtyp, der für einzelne direktionale Navigationlinks verwendet wird.
+          placeholder: div
+          default: div
+
+        itemElement:
+          type: input.text
+          label: Item DOM Element
+          description: DOM Elementtyp, der für <code>owl-item</code> Elemente verwendet wird.
+          placeholder: div
+          default: div
+  
+        stageElement:
+          type: input.text
+          label: Stage DOM Element
+          description: Dom Elementtyp, der für <code>owl-stage</code> verwendet wird.
+          placeholder: div
+          default: div
+
+    set_look:
       type: container.set
-      label: Darstellung
+      label: Aussehen
       fields:
 
-        neo.style:
+        all.style:
           type: select.select
           label: Style
           description: Wählen Sie eine der vorhanden Vorlagen aus. Nicht alle der unten angeführten Einstellungen gelten für jedes Style. Bitte beachten Sie die Notiz über jedem Abschnitt. Diese Entscheidung wurde getroffen, um die Kompatibilität mit dem Original Particle zu wahren.<ul><li><b>Helium: </b> Einstellbar mit den Einstellungen weiter unten.</li><li><b>Neo Style 1: </b>Oben (Punkte) und unten (Pfeile, Titel).</li><li><b>Neo Style 2: </b>Oben (Pfeile, Titel) und unten (Punkte).</li><li><b>Neo Style 3: </b>Oben (Pfeile, Punkte) und unten (Titel).</li><li><b>Neo Style 4: </b>Oben (Titel) und unten (Pfeile, Punkte).</li></ul>
@@ -73,6 +140,12 @@ form:
             style-neo2: Neo Style 2
             style-neo3: Neo Style 3
             style-neo4: Neo Style 4
+
+        all.background:
+              type: input.colorpicker
+              label: Hintergrund
+              description: Benutzerdefinierter Hintergrund für das Carousel.
+              default: ''
 
         _info_appearance_helium:
           type: separator.note
@@ -279,6 +352,33 @@ form:
       type: container.set
       label: Verhalten
       fields:
+
+        direction:
+          type: select.select
+          label: Richtung
+          description: Wählen Sie die Richtung für das Carousel. Üblicherweise entspricht dies der Leserichtung. Standardmäßig wird die Richtung vom Gantry Framework bezogen.
+          default: gantry
+          options:
+            gantry: Gantry-kontrolliert
+            ltr: LTR (Left-To-Right)
+            rtl: RTL (Right-To-Left)
+
+        looping:
+          type: select.select
+          label: Looping
+          description: Definieren Sie, wie über die Slides iteriert werden soll.<ul><li><b>Loop: </b>Unendlicher Loop. Dupliziert die letzten und ersten Elemente, um eine Loop-Illusion zu erhalten.</li><li><b>Rewind: </b>Soll zurückgesprungen werden, wenn die Grenzen (Anfang / Ende) erreicht wurden.</li><li><b>Aus: </b> Navigieren nur bis zum Anfang oder Ende möglich</li></ul>
+          default: loop
+          options:
+            loop: Loop
+            rewind: Rewind
+            off: Aus
+
+        mouseWheel:
+          type: input.checkbox
+          label: Mausradnavigation
+          description: Aktivieren Sie diese Option, um mit dem Mausrad durch die Slides zu scrollen. Sie benötigen die jQuery Mousewheel library damit diese Einstellung funktioniert.
+          default: false
+
         autoplay:
           type: input.checkbox
           label: Autoplay
@@ -292,7 +392,7 @@ form:
           placeholder: 5000
 
         autoplayHoverPause:
-          type: enable.enable
+          type: input.checkbox
           label: Autoplay Hover Pause
           description: Aktiviert oder deaktiviert Autoplay wenn über die aktuelle Slide gehovert wird.
           default: false
@@ -306,16 +406,29 @@ form:
         slideLink:
           type: select.select
           label: Slide Link
-          description: Wählen Sie aus, ob der Button oder Titel Link stattdessen auf die ganze Slide angewendet werden soll. Wenn die Option <b>Benutzerdefinierter Breakpoint</b> ausgewählt wurde, wird der Pixelwert im nächsten Feld als Breakpoint verwendet.
+          description: Wählen Sie aus, ob der Button oder Titel Link stattdessen auf die ganze Slide angewendet werden soll (Standardoptionen funktionieren nur mit <code>rem</code> und <code>px</code>). Wenn die Option <b>Breakpoint</b> ausgewählt wurde, werden die nächsten zwei Felder für die Erzeugung des Breakpoints berücksichtig.
           default: disable
           options:
             enable: Aktiviert
             disable: Deaktiviert
-            custom: Benutzerdefinierter Breakpoint
+            custom: Breakpoint
 
         slideLinkBreakpoint:
-          type: input.text
+          type: select.select
           label: Slide Link Breakpoint
+          description: Legen Sie fest, ab welcher Gerätegröße der Link auf die ganze Slide angewedet werden soll. Sie müssen <b>Breakpoint</b> in der <b>Slide Link</b> Einstellung auswählen. Wenn Sie einen benutzerdefinierten Wert festlegen möchten, verwenden Sie bitte <b>Benutzerdefinierter breakpoint</b> und das nächste Feld.
+          default: disable
+          options:
+            disable: Deaktiviert
+            large-desktop-container: Großer Desktop
+            desktop-container: Desktop
+            tablet-container: Tablet
+            large-mobile-container: Großes Mobile
+            custom: Benutzerdefinierter Breakpoint
+
+        slideLinkCustomBreakpoint:
+          type: input.text
+          label: Slide Link Benutzerdefinierter Breakpoint
           description: Legen Sie fest, ab welcher Breite (in Pixel) der Link auf die ganze Slide angewedet werden soll. Sie müssen <b>Benutzerdefinierter Breakpoint</b> in der <b>Slide Link</b> Einstellung auswählen.
           placeholder: 480
           default: 480
@@ -325,6 +438,239 @@ form:
           label: Slide Link Resize
           description: Legen Sie fest, ob der Link während des Window Resize Events auf die Slide angewendet werden soll. Kann bei Aktivierung Probleme verursachen. Verhindert bei Deaktivierung jedoch, dass ein Linkwechsel beim Resize durchgeführt wird.
           default: true
+
+        merge:
+          type: input.checkbox
+          label: Strecken
+          description: Elemente strecken (mergen). Evalulierung der <code>data</code> Attribute der Elemente (ob für das Element definiert). Hat in der OwlCarousel Version 2.3.4 möglicherweise keinen Effekt. Bitte prüfen Sie auch die Einstellung <b>Strecken</b> für einzelne Slides.
+          default: false
+
+        mergeFit:
+          type: input.checkbox
+          label: Strecken anpassen
+          description: Anpassung der gestreckten (gemergedten) Elemente z.B.: wenn der Bildschirm kleiner als der Elementwert ist. Bitte prüfen Sie auch die Einstellung <b>Strecken</b> für einzelne Slides.
+          default: true
+
+        mouseDrag:
+          type: input.checkbox
+          label: Mausziehen
+          description: Aktivieren oder deakivieren Sie das Mausziehen.
+          default: true
+
+        touchDrag:
+          type: input.checkbox
+          label: Touchziehen
+          description: Aktivieren oder deakivieren Sie das Touchziehen.
+          default: true
+
+        pullDrag:
+          type: input.checkbox
+          label: Pullziehen
+          description: Aktivieren oder deakivieren Sie das Pullziehen (Stage zur Kante).
+          default: true
+
+        freeDrag:
+          type: input.checkbox
+          label: Freiziehen
+          description: Aktivieren oder deakivieren Sie das Freiziehen (Element zur Kante).
+          default: false
+
+        responsive_option:
+          type: collection.list
+          array: true
+          label: Responsive Optionen
+          description: Setzen Sie OwlCarousel Plugin Optionen bei bestimmten Breakpoints (z.B.: Gerätebreite).
+          value: name
+          ajax: true
+          fields:
+            .name:
+              type: input.text
+            .breakpoint:
+              type: input.text
+              label: Breakpoint
+              description: Legen Sie fest, bei welcher Breite (in Pixel) die hier definierten Optionen angewendet werde sollen. Die übergeordneten Einstellungen werden überschrieben, deshalb brauchen Sie wahrscheinlich zwei Breakpoints, um das erwartete Resultat zu erhalten.
+              placeholder: z.B.: 768 (in pixel)
+              default: ''
+            ._info_responsive_settings:
+              type: separator.note
+              class: alert alert-info
+              content: Diese Einstellungen überschreiben die globalen Einstellunge des Plugins. Wenn Sie einen Breakpoint bei z.B.: 768px setzen, werden die unten gelisteten Einstellung ab 768px und darüber angewendet.
+            .item_count:
+              type: input.text
+              label: Slideanzahl
+              description: Legen Sie fest, wieviele Slides gleichzeitig am Bildschirm angezeigt werden sollen.
+              placeholder: 'Slides sichtbar (Standard: 1)'
+              default: ''
+            .slideBy:
+              type: input.text
+              label: Slidinganzahl
+              description: Die Anzahl an Slides, die bei einem Slide-Event geslided werden sollen.
+              placeholder: 'Distanz (Standard: 1)'
+              default: ''
+            .item_space:
+              type: input.text
+              label: Slideabstand
+              description: Der Abstand der zwischen den Slides eingefügt werden soll.
+              placeholder: 'Abstand in pixel (Standard: 0)'
+              default: ''
+            .item_center:
+              type: input.checkbox
+              label: Slidezentrierung
+              description: Zentriert die aktuelle Slide wenn mehrere Slides (mehr als eine) angezeigt werden.
+              default: false
+            .stage_padding:
+              type: input.text
+              label: Stage Abstand 
+              description: Abstand links und recht der Stage (Nachbarn werden sichtbar).
+              placeholder: 'Abstand in pixel (Standard: 0)'
+              default: ''
+            .animateIn:
+              type: input.text
+              label: Animation Herein
+              description: Klasse für CSS3 Animation, die für das Hereinsliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist und nur für Browser die <code>perspective</code> unterstützen. Wenn Sie die globale Animation deaktivieren möchten, geben Sie bitte <code>none</code> ein. <strong>fadeOut</strong> ist die einzige vordefinierte CSS Animationsstyle.
+              placeholder: jede CSS Kasse z.B.: Animate.css
+              default: ''
+            .animateOut:
+              type: input.text
+              label: Animation Hinaus
+              description: Klasse für CSS3 Animation, die für das Hinaussliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist und nur für Browser die <code>perspective</code> unterstützen. Wenn Sie die globale Animation deaktivieren möchten, geben Sie bitte <code>none</code> ein. <strong>fadeOut</strong> ist die einzige vordefinierte CSS Animationsstyle.
+              placeholder: jede CSS Kasse z.B.: Animate.css
+              default: ''
+            ._info_responsive_custom_options:
+              type: separator.note
+              class: alert alert-info
+              content: Wenn Ihre gewünschte Einstellung oben nicht gelisted wurde, verwenden Sie bitte die folgenden Einstellungen.
+            .custom_option:
+              type: collection.list
+              array: true
+              label: Benutzerdefinierte Optionen
+              description: Legen Sie eine benutzerdefinierte Option fest, die von dem Particle nicht bereits oben vordefiniert wurde.
+              value: name
+              ajax: true
+              fields:
+                .name:
+                  type: input.text
+                ._info_responsive_options:
+                  type: separator.note
+                  class: alert alert-info
+                  content: Bitte folgen Sie <a href="https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html" target"_blank" title="OwlCarousel2 Optionen">diesem Link</a>, um mehr Informationen über die vorhandenen OwlCarousel2 Parameter zu erfahren. Mehr Informationen zum OwlCarousel2 Responsive Mode <a href="https://owlcarousel2.github.io/OwlCarousel2/demos/responsive.html" target"_blank" title="OwlCarousel2 Responsive Mode">finden Sie hier</a>.
+                .key:
+                  type: input.text
+                  label: Schlüssel
+                  description: Geben Sie den Schlüssel für diese Option ein.
+                  placeholder: beliebige OwlCarousel2 Option
+                .value:
+                  type: input.text
+                  label: Wert
+                  description: Geben Sie den Wert für diese Option ein.
+                  placeholder: ein gültiger Wert für diese Option
+                .useQuote:
+                  type: input.checkbox
+                  label: Verwende Anführungszeichen
+                  description: Aktivieren Sie diese Option, wenn der definierte <b>Wert</b> einer Zeichenkette enspricht.
+                  default: false
+
+    set_animate
+      type: container.set
+      label: Animation
+      fields:
+
+         _info_animate_class:
+           type: separator.note
+           class: alert alert-info
+           content: Bitte denken Sie an benutzerdefinierte Animationsbibliotheken wie z.B.: <a href="https://animate.style" target"_blank" title="Animate.css">Animate.css</a>, wenn Sie die nächsten zwei Option ändern möchten. Mehr Informationen über Animationen finden Sie auch in der <a href="https://owlcarousel2.github.io/OwlCarousel2/demos/animate.html" target"_blank" title="OwlCarousel2 Animationsdokumentation">OwlCarousel2 Dokumentation</a>.
+
+        animateIn:
+          type: input.text
+          label: Animation Herein
+          description: Klasse für CSS3 Animation, die für das Hereinsliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist und nur für Browser die <code>perspective</code> unterstützen. <strong>fadeOut</strong> ist die einzige vordefinierte CSS Animationsstyle.
+          placeholder: jede CSS Kasse z.B.: Animate.css
+        
+        animateOut:
+          type: input.text
+          label: Animation Hinaus
+          description: Klasse für CSS3 Animation, die für das Hinaussliden verwendet werden soll (z.B.: Animate.css). Funktioniert nur wenn eine Slide sichtbar ist und nur für Browser die <code>perspective</code> unterstützen. <strong>fadeOut</strong> ist die einzige vordefinierte CSS Animationsstyle.
+          placeholder: jede CSS Kasse z.B.: Animate.css
+
+        slideTransition:
+          type: select.select
+          label: Slideübergang
+          description: Wählen Sie den Übergangstyp, denn Sie für die Stage verwenden möchten.
+          default: none
+          options:
+            none: Keinen
+            ease: Ease
+            linear: Linear
+            ease-in: Ease-In
+            ease-out: Ease-Out
+            ease-in-out: Ease-In-Out
+
+        fallbackEasing:
+          type: select.select
+          label: Fallback Easing
+          description: Wählen Sie den Easing Fallback Typ, den Sie für <code>$.animate</code> verwenden möchten.
+          default: swing
+          options:
+            swing: Swing
+            linear: Linear
+            easeInQuad: easeInQuad
+            easeOutQuad: easeOutQuad
+            easeInOutQuad: easeInOutQuad
+            easeInCubic: easeInCubic
+            easeOutCubic: easeOutCubic
+            easeInOutCubic: easeInOutCubic
+            easeInQuart: easeInQuart
+            easeOutQuart: easeOutQuart
+            easeInOutQuart: easeInOutQuart
+            easeInQuint: easeInQuint
+            easeOutQuint: easeOutQuint
+            easeInOutQuint: easeInOutQuint
+            easeInExpo: easeInExpo
+            easeOutExpo: easeOutExpo
+            easeInOutExpo: easeInOutExpo
+            easeInSine: easeInSine
+            easeOutSine: easeOutSine
+            easeInOutSine: easeInOutSine
+            easeInCirc: easeInCirc
+            easeOutCirc: easeOutCirc
+            easeInOutCirc: easeInOutCirc
+            easeInElastic: easeInElastic
+            easeOutElastic: easeOutElastic
+            easeInOutElastic: easeInOutElastic
+            easeInBack: easeInBack
+            easeOutBack: easeOutBack
+            easeInOutBack: easeInOutBack
+            easeInBounce: easeInBounce
+            easeOutBounce: easeOutBounce
+            easeInOutBounce: easeInOutBounce
+
+        smartSpeed:
+          type: input.text
+          label: Übergangs- geschwindigkeit
+          description: Die Zeit (in Millisekunden), die standardmäßig für den Übergang zwischen zwei Slides verwendet wird (alle Events).
+          placeholder: 250
+          default: 250
+
+        navSpeed:
+          type: input.text
+          label: Übergangs- geschwindigkeit Buttons
+          description: Die Zeit (in Millisekunden), die für den Übergang zwischen zwei Slides bei Navigationbutton-Events verwendet wird.
+          placeholder: 250
+          default: 250
+
+        dotsSpeed:
+          type: input.text
+          label: Übergangs- geschwindigkeit Punkte
+          description: Die Zeit (in Millisekunden), die für den Übergang zwischen zwei Slides bei Navigationspunkten-Events verwendet wird.
+          placeholder: 250
+          default: 250
+
+        autoplayTSpeed:
+          type: input.text
+          label: Übergangs- geschwindigkeit Autoplay
+          description: Die Zeit (in Millisekunden), die für den Übergang zwischen zwei Slides bei Autoplay-Events verwendet wird.
+          placeholder: 250
+          default: 250
 
     set_controls:
       type: container.set
@@ -396,6 +742,65 @@ form:
       type: container.set
       label: Slides
       fields:
+
+        startPosition:
+          type: input.text
+          label: Starposition
+          description: Die Startposition mit der das Carousel geladen wird. Das erste Element hat die Position 0. Wenn Sie möchten, dass die Startposition vom URL Hash bestimmt werden soll, verwenden Sie bitte <code>URLHash</code>.
+          placeholder: Zahl oder URLHash
+          default: 0
+
+        item_count:
+          type: input.text
+          label: Slideanzahl
+          description: Legen Sie fest, wieviele Slides gleichzeitig am Bildschirm angezeigt werden sollen.
+          placeholder: 'Slides sichtbar'
+          default: 1
+
+        slideBy:
+          type: input.text
+          label: Slidinganzahl
+          description: Die Anzahl an Slides, die bei einem Slide-Event geslided werden sollen.
+          placeholder: Distanz
+          default: 1
+
+        item_space:
+          type: input.text
+          label: Slideabstand
+          description: Der Abstand der zwischen den Slides eingefügt werden soll.
+          placeholder: Abstand in pixel
+          default: 0
+
+        stage_padding:
+          type: input.text
+          label: Stageabstand 
+          description: Abstand links und recht der Stage (Nachbarn werden sichtbar).
+          placeholder: Abstand in pixel
+          default: 0
+
+        item_center:
+          type: input.checkbox
+          label: Slidezentrierung
+          description: Zentriert die aktuelle Slide wenn mehrere Slides (mehr als eine) angezeigt werden.
+          default: false
+
+        autoWidth:
+          type: input.checkbox
+          label: Manuelle Größe
+          description: Wenn Sie diese Option aktivieren, wird das Grid deaktiviert und Sie können die Größe für jede Slide manuell setzen. Diese Option ist in den Einstellungen für einzelne Slides vorhanden. 
+          default: false
+
+        autoHeight:
+          type: input.checkbox
+          label: Automatische Höhe
+          description: Wenn Sie diese Option aktivieren, wird die Höhe für jede Slide automatisch bestimmt. Dadurch wird auch das gesamte Carousel an die Größe der Slide angepasst. Im Moment diese Option funktioniert nur, wenn maximal eine Slide am Bildschirm sichtbar ist.
+          default: false
+
+        autoHeightClass:
+          type: input.selectize
+          label: Automatische Höhe Klasse
+          description: Setzen Sie individuelle Klassen für die <strong>Automatische Höhe</strong> Funktion. Wird nur hinzugefügt, wenn <strong>Automatische Höhe</strong> aktiviert ist.
+
         items:
           type: collection.list
           array: true
@@ -414,6 +819,61 @@ form:
               type: input.imagepicker
               label: Bild
               description: Wählen Sie ein Bild für die Slide.
+            .responsiveImages:
+              type: collection.list
+              array: true
+              label: Responsive Bilder
+              description: Erstellen Sie Responsive Bilder für unterschiedliche Bildschirmgrößen. Diese Bilder werden verwendet, wenn der definierte Breakpoint (Breite) erreicht wurde.
+              value: name
+              ajax: true
+              fields:
+                .name:
+                  type: input.text
+                .breakpoint:
+                  type: select.select
+                  label: Breakpoint
+                  description: Legen Sie fest, bis zu welcher Gerätegröße das Bild angewendet werden soll. Wenn Sie eine benutzerdefinierte Breite verwenden möchten, dann wählen Sie bitte die Option <b>Benutzerdefinierter Breakpoint</b> und setzen die benutzerdefinierte Breite im nächsten Feld.
+                  default: disable
+                  options:
+                    disable: Deaktiviert
+                    large-desktop-container: Großer Desktop
+                    desktop-container: Desktop
+                    tablet-container: Tablet
+                    large-mobile-container: Großes Mobile
+                    custom: Benutzerdefinierter Breakpoint        
+                .customBreakpoint:
+                  type: input.text
+                  label: Benutzerdefinierter Breakpoint
+                  description: Definiert den Breakpoint (<code>max-width</code>), ab welchem das hier definierte Bild verwendet werden soll. Damit diese Einstellung Wirkung zeigt, muss die obere Option richtig gesetzt worden sein.
+                  placeholder: 'z.B.: 500px'
+                  default: ''
+                .img:
+                  type: input.imagepicker
+                  label: Bild
+                  description: Bitte wählen Sie das wünschte Bild für den definierten Breakpoint.
+            .video:
+              type: input.text
+              label: Video
+              description: Wenn Sie statt einem Bild ein Video anzeigen möchten. Wenn Sie hier einen Pfad festlegen, dann werden die oben gesetzten Bildeinstellung ignoriert.
+              placeholder: 'pfad/zum/video'
+              default: ''
+            .background:
+              type: input.colorpicker
+              label: Hintergrund
+              description: Benutzerdefinierte Farbe für die Slide z.B.: wenn kein Bild verwendet wrd.
+              default: ''
+            .manual_width:
+              type: input.text
+              label: Manuelle Breite
+              description: Die manuelle Breite die auf das <code>style</code> Attribut des Slideelements angewendet wird. Diese Option sollte zusammen mit der Einstellung <strong>Manuelle Größe</strong> in den allgemeinen Slide Einstellungen verwendet werden.
+              default: ''
+              placeholder: z.B.: 250 (in pixel)
+            .manual_height:
+              type: input.text
+              label: Manuelle Höhe
+              description: Die manuelle Höhe die auf das <code>style</code> Attribut des Slideelements angewendet wird. Diese Option sollte zusammen mit der Einstellung <strong>Manuelle Größe</strong> in den allgemeinen Slide Einstellungen verwendet werden.
+              default: ''
+              placeholder: z.B.: 250 (in pixel)
             .link:
               type: input.text
               label: Link
@@ -444,6 +904,17 @@ form:
               label: Button Klassen
               description: Setzen Sie Klassen für die individuelle Gestaltung des Buttons.
               default: 'button-outline'
+            .hash:
+              type: input.text
+              label: Hash
+              description: 'Der Hash-Wert der für das <code>data-hash</code> Attribut der Slide gesetzt wird. Bitte ohne # eingeben und denken Sie daran, dass Sie den <strong>URL Hash Listener</strong> in den globalen Einstellung aktivieren müssen.'
+              default: ''
+              placeholder: z.B.: meinHash
+            .mergevalue:
+              type: input.text
+              label: Strecken
+              description: Ändern Sie diesen Wert, wenn Sie möchten, dass diese Slide über mehrere einzelne Slides gestreckt (gemerged) wird. Zum Beispiel wenn Sie die <b>Slideanzahl</b> Einstellung bereits verändert haben. Wenn Sie eine <b>Slideanzahl</b> von 5 verwenden und diesen Wert auf 2 setzen, dann nimmt diese Slide 2/5 des verfügbaren Carouselplatzes ein.
+              default: 1
             .showItem:
               type: select.select
               label: Zeige Slide
@@ -470,7 +941,7 @@ form:
         lazyLoadImages:
           type: input.checkbox
           label: Lazy Load Bilder
-          description: Aktiviere um Bilder per Lazy Load zu laden.
+          description: Aktivieren Sie diese Option, um Bilder per Lazy Load zu laden.
           default: false
 
         lazyLoadEager:
@@ -481,7 +952,7 @@ form:
           default: 0
 
         delaySlideElements:
-          type: enable.enable
+          type: input.checkbox
           label: Verzögere Slide-Elemente
           description: Aktivieren Sie diese Option, um das Laden der Slide-Elemente und Slide-Steuerelemente zu verzögern. Ändern Sie diese Einstellung nur, wenn Sie wissen, was sie tun (experimentell).
           default: false

@@ -1314,4 +1314,12 @@ $overlay11-c2: #212624;
     @include owl-overlay(bl, $overlay9-c1, $overlay9-c2);
     @include owl-overlay(vi, $overlay10-c1, $overlay10-c2);
     @include owl-overlay(tu, $overlay11-c1, $overlay11-c2);
+
+    .owl-video-wrapper {
+        height: 400px;
+        > iframe {
+            position: relative;
+            z-index: 1; 
+        }
+    }
 }
