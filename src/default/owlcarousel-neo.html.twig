@@ -556,9 +556,9 @@
                                             {% endif %}
                                             {% if item.link and particle.enable_btn %}
                                                 <div class="g-owlcarousel-item-link {{ particle.button_class|e }}">
-                                                    {% set btnClasses = (particle.button_class|e) ? ' ' ~ particle.button_class|e : '' %}
-                                                    {% set btnClasses = btnClasses ~ ((item.buttonclass|e) ? ' ' ~ item.buttonclass|e : '') %}
-                                                    <{% if particle.slideLink != 'enable' %}a target="_self" href="{{ item.link|e }}"{% else %}span{% endif %} class="g-owlcarousel-item-button button{{btnClasses}}" title="{{ buttonTitle }}" tabindex="-1">{{ item.linktext|raw }}</{% if particle.slideLink != 'enable' %}a{% else %}span{% endif %}>
+                                                    {% set btnClasses = (particle.button_class) ? ' ' ~ particle.button_class : '' %}
+                                                    {% set btnClasses = btnClasses ~ ((item.buttonclass) ? ' ' ~ item.buttonclass : '') %}
+                                                    <{% if particle.slideLink != 'enable' %}a target="_self" href="{{ item.link|e }}"{% else %}span{% endif %} class="g-owlcarousel-item-button button{{ btnClasses|e }}" title="{{ buttonTitle }}" tabindex="-1">{{ item.linktext|raw }}</{% if particle.slideLink != 'enable' %}a{% else %}span{% endif %}>
                                                 </div>
                                             {% endif %}
                                         </div>
