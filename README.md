@@ -68,6 +68,8 @@ Many of the provided options are directly passed over to the [OwlCarousel2 API](
 Please also take a look at the [OwlCarousel2 demo page ](https://owlcarousel2.github.io/OwlCarousel2/demos/demos.html) which provides many useful hints on how the carousel plugin works. Many of the existing options are already included in **Owl Carousel Neo** but if you are desperately missing a feature. Please [open an issue](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/issues/new) with your feature request.
 
 If you need a list of all supported API [options](https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html) for the responsive mode of the carousel, please [visit this page](https://owlcarousel2.github.io/OwlCarousel2/demos/responsive.html) and scroll to the bottom.
+
+Most of the settings outlined within the API options are supported by this Particle. Even though some of them are named differently to reflect their real behavior. Please also check the field descriptions in the Particle which offer more information about each option.
  
 ## Supported Parameters, Particle Options and Features
 * All settings of the original Particle are included and compatible
@@ -97,13 +99,6 @@ If you need a list of all supported API [options](https://owlcarousel2.github.io
 * JS execution
   * Asynchronous
   * Deferred
-
-If you need more information on how Owl Carousel 2 works please mind also these resources:
- * [General Documentation](https://owlcarousel2.github.io/OwlCarousel2/docs/started-welcome.html)
- * [API Options](https://owlcarousel2.github.io/OwlCarousel2/docs/api-options.html)
- * [Demo Page](https://owlcarousel2.github.io/OwlCarousel2/demos/demos.html)
-
-Most of the settings outlined within the API options are also supported by this Particle. Even though some of them are named differently to reflect their real behavior. Please also check the field descriptions in the Particle which offer more information about each option.
 
 ## Showroom
 Insight of the *Owl Carousel Neo - Gantry Particle* configuration:
