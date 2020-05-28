@@ -489,7 +489,7 @@ form:
               type: input.text
               label: Breakpoint
               description: Define at what width (in pixel) the here defined options should be applied. The basic settings are overriden so you might need to define at least two breakpoints for your desired behavior.
-              placeholder: e.g. 768 (in pixel)
+              placeholder: e.g. 768 in pixel
               default: ''
             ._info_responsive_settings:
               type: separator.note
@@ -867,13 +867,13 @@ form:
               label: Manual Width
               description: The manual width applied to the <code>style</code> attribute of the slide item. This option should be used together with <strong>Manual Dimension</strong> located at the general slide settings.
               default: ''
-              placeholder: e.g. 250 (in pixel)
+              placeholder: e.g. 250 in pixel
             .manual_height:
               type: input.text
               label: Manual Height
               description: The manual height applied to the <code>style</code> attribute of the slide item. This option should be used together with <strong>Manual Dimension</strong> located at the general slide settings.
               default: ''
-              placeholder: e.g. 250 (in pixel)
+              placeholder: e.g. 250 in pixel
             .link:
               type: input.text
               label: Link

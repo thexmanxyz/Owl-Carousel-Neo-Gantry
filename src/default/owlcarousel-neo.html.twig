@@ -201,6 +201,7 @@
     {% else %}
         {% set slideLinkBreakpointPx = slideLinkBreakpointPx|slice(0, slideLinkBreakpointPx.length - 2) %}
     {% endif %}
+    {% set slideLinkBreakpointPx = slideLinkBreakpointPx - 1 %}
 {% endif %}
 
 {% set slideItemStyle = (particle.delaySlideElements) ? 'display: none;' : '' %}
@@ -454,8 +455,12 @@
                                     var link = jQuery(this).find('> a');
                                     link.parent().html(link.html());
                                     jQuery(this).find('[data-html]').each(function() {
-                                        jQuery(this).html(jQuery(this).attr('data-html'));
-                                        jQuery(this).removeAttr('data-html');
+                                        if(jQuery(this).is('h1')) {
+                                            jQuery(this).replaceWith(jQuery(this).attr('data-html'));
+                                        } else {
+                                            jQuery(this).html(jQuery(this).attr('data-html'));
+                                            jQuery(this).removeAttr('data-html');
+                                        }
                                     });
                                 }
                             }
@@ -535,7 +540,13 @@
                                                 {% if image.breakpoint and image.breakpoint != 'disable' %}
                                                     {% set imgWidth = (image.breakpoint == 'custom') ? image.customBreakpoint : gantry.config.styles.breakpoints[image.breakpoint]  %}
                                                     {% if imgWidth and imgWidth != '' and image.img %}
-                                                        <source {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}srcset="{{ url(image.img)|e }}" media="(max-width: {{ imgWidth|e }})">
+                                                        {% if imgWidth ends with 'rem' %}
+                                                            {% set imgWidth = (imgWidth|slice(0, imgWidth.length - 3)) * 16 %}
+                                                        {% else %}
+                                                            {% set imgWidth = imgWidth|slice(0, imgWidth.length - 2) %}
+                                                        {% endif %}
+                                                        {% set imgWidth = (image.breakpoint == 'custom') ? imgWidth : imgWidth - 1 %}
+                                                        <source {% if particle.lazyLoadImages %}class="owl-lazy" data-{% endif %}srcset="{{ url(image.img)|e }}" media="(max-width: {{ imgWidth|e }}px)">
                                                     {% endif %}
                                                 {% endif %}
                                             {% endfor %}

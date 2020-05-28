@@ -489,7 +489,7 @@ form:
               type: input.text
               label: Breakpoint
               description: Legen Sie fest, bei welcher Breite (in Pixel) die hier definierten Optionen angewendet werde sollen. Die übergeordneten Einstellungen werden überschrieben, deshalb brauchen Sie wahrscheinlich zwei Breakpoints, um das erwartete Resultat zu erhalten.
-              placeholder: z.B.: 768 (in pixel)
+              placeholder: z.B.: 768 in pixel
               default: ''
             ._info_responsive_settings:
               type: separator.note
@@ -867,13 +867,13 @@ form:
               label: Manuelle Breite
               description: Die manuelle Breite die auf das <code>style</code> Attribut des Slideelements angewendet wird. Diese Option sollte zusammen mit der Einstellung <strong>Manuelle Größe</strong> in den allgemeinen Slide Einstellungen verwendet werden.
               default: ''
-              placeholder: z.B.: 250 (in pixel)
+              placeholder: z.B.: 250 in pixel
             .manual_height:
               type: input.text
               label: Manuelle Höhe
               description: Die manuelle Höhe die auf das <code>style</code> Attribut des Slideelements angewendet wird. Diese Option sollte zusammen mit der Einstellung <strong>Manuelle Größe</strong> in den allgemeinen Slide Einstellungen verwendet werden.
               default: ''
-              placeholder: z.B.: 250 (in pixel)
+              placeholder: z.B.: 250 in pixel
             .link:
               type: input.text
               label: Link
