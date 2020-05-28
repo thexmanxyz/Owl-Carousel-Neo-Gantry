@@ -430,8 +430,8 @@ form:
           type: input.text
           label: Slide Link Benutzerdefinierter Breakpoint
           description: Legen Sie fest, ab welcher Breite (in Pixel) der Link auf die ganze Slide angewedet werden soll. Sie müssen <b>Benutzerdefinierter Breakpoint</b> in der <b>Slide Link</b> Einstellung auswählen.
-          placeholder: 480
-          default: 480
+          placeholder: z.B.: 480 in Pixel
+          default: ''
 
         slideLinkResize:
           type: input.checkbox

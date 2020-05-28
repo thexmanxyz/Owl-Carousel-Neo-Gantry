@@ -160,7 +160,7 @@
 {% set autoPlayHoverPause = particle.autoplayHoverPause|default(false) %}
 {% set looping = particle.looping|default('loop') %}
 {% set slideLinkBreakpoint = particle.slideLinkBreakpoint|default('disable') %}
-{% set slideLinkCustomBreakpoint = particle.slideLinkCustomBreakpoint|default(480) %}
+{% set slideLinkCustomBreakpoint = particle.slideLinkCustomBreakpoint|default('') %}
 {% set mouseDrag = particle.mouseDrag|default(true) %}
 {% set touchDrag = particle.touchDrag|default(true) %}
 {% set pullDrag = particle.pullDrag|default(true) %}
@@ -429,7 +429,7 @@
                     });
                 {%- endif -%}
 
-                {%- if particle.slideLink == 'custom' and slideLinkBreakpoint != 'disable' -%}
+                {%- if particle.slideLink == 'custom' and slideLinkBreakpoint != 'disable' and slideLinkBreakpointPx != '' -%}
                     var eachSlide = function(width) {
                         var windowWidth = jQuery(window).width();
                         jQuery('.g-owlcarousel-item').each(function() {

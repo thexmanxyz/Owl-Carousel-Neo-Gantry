@@ -430,8 +430,8 @@ form:
                 type: input.text
                 label: Slide Link Custom Breakpoint
                 description: Define at what width (in pixel) the link should only be applied on the whole slide. You have to select <b>Custom Breakpoint</b> in the the <b>Slide Link</b> setting.
-                placeholder: 480
-                default: 480
+                placeholder: e.g. 480 in pixel
+                default: ''
 
               slideLinkResize:
                 type: enable.enable
