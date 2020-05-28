@@ -9,24 +9,24 @@ This project contains a Gantry Particle and is based on the default **Gantry Hel
 * Gantry Templating Framework and Theme
 
 ## Download
-Choose the correct download for your target platform. The Joomla Plugin System is supported for all Gantry themes globally or locally for the templates Helium and Hydrogen. The latest Particle version is **v1.3.1**.
+Choose the correct download for your target platform. The Joomla Plugin System is supported for all Gantry themes globally or locally for the templates Helium and Hydrogen. The latest Particle version is **v1.3.2**.
 
 **Attention:** When migrating from **v1.0.5** or below to **v1.2.0** or higher the existing settings of the Particle will be reset.
 ___
 **Default Particle:**
-[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.1/ocn.particle.only.EN.v1.3.1.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.1/ocn.particle.only.DE.v1.3.1.zip)
+[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.2/ocn.particle.only.EN.v1.3.2.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.2/ocn.particle.only.DE.v1.3.2.zip)
 
 **Legacy Particle - Gantry <5.3.2:**
-[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.1/ocn.particle.only.legacy.EN.v1.3.1.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.1/ocn.particle.only.legacy.DE.v1.3.1.zip)
+[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.2/ocn.particle.only.legacy.EN.v1.3.2.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.2/ocn.particle.only.legacy.DE.v1.3.2.zip)
 
 **Joomla Plugin - All Templates (Global):**
-[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.1/ocn.j3.global.EN.v1.3.1.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.1/ocn.j3.global.DE.v1.3.1.zip)
+[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.2/ocn.j3.global.EN.v1.3.2.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.2/ocn.j3.global.DE.v1.3.2.zip)
 
 **Joomla Plugin - Hydrogen:**
-[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.1/ocn.j3.hydrogen.EN.v1.3.1.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.1/ocn.j3.hydrogen.DE.v1.3.1.zip)
+[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.2/ocn.j3.hydrogen.EN.v1.3.2.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.2/ocn.j3.hydrogen.DE.v1.3.2.zip)
 
 **Joomla Plugin - Helium:**
-[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.1/ocn.j3.helium.EN.v1.3.1.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.1/ocn.j3.helium.DE.v1.3.1.zip)
+[English](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.2/ocn.j3.helium.EN.v1.3.2.zip) / [German](https://github.com/thexmanxyz/Owl-Carousel-Neo-Gantry/releases/download/v1.3.2/ocn.j3.helium.DE.v1.3.2.zip)
 ___
 
 ## Automatic Installation (Joomla only)
