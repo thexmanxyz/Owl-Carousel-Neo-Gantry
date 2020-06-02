@@ -69,26 +69,6 @@ form:
           description: Höre auf URL Hash Veränderungen und erkenne Slides mit dem gleichen Datennamen (<code>data-hash</code> mit <code>myHash</code>. Das <code>data-hash</code> Attribut muss auf die Slide gesetzt worden sein.
           default: false
 
-        video:
-          type: input.checkbox
-          label: Video
-          description: Aktivieren Sie diese Option, um Videos auf Slides zu verwenden (standardmäßig eine Höhe von 400px).
-          default: false
-
-        videoHeight:
-          type: input.text
-          label: Videohöhe
-          description: Die Standardhöhe, die für eingebettete Videos verwendet wird.
-          placeholder: z.B.: 640 in Pixel
-          default: ''
-
-        videoWidth:
-          type: input.text
-          label: Video Breite
-          description: Die Standardbreite, die für eingebettete Videos verwendet wird.
-          placeholder: z.B.: 360 in Pixel
-          default: ''
-
         responsiveRefreshRate:
           type: input.text
           label: Responsive Aktualisierungsrate
@@ -397,12 +377,6 @@ form:
           description: Aktiviert oder deaktiviert Autoplay wenn über die aktuelle Slide gehovert wird.
           default: false
 
-        title_link:
-          type: input.checkbox
-          label: Titel Link
-          description: Bei Aktivierung wird der Button Link auch für das Titel Element gesetzt. 
-          default: false
-
         slideLink:
           type: select.select
           label: Slide Link
@@ -682,6 +656,12 @@ form:
           description: Aktiviert oder deaktiviert explizit die Darstellung des Titels.
           default: true
 
+        title_link:
+          type: input.checkbox
+          label: Titel Link
+          description: Bei Aktivierung wird der Button Link auch für das Titel Element gesetzt. 
+          default: false
+
         enable_desc:
           type: input.checkbox
           label: Beschreibung
@@ -705,6 +685,12 @@ form:
           label: Navigationspunkte
           description: Aktiviert oder deaktiviert explizit die Darstellung der Navigationspunkte.
           default: true
+
+        dots_title:
+          type: input.checkbox
+          label: Navigationspunkte Titel
+          description: Aktiviert oder deaktiviert den Titel der Navigationspunkte. Als Titel wird der Slide-Titel verwendet (Accessability).
+          default: false
 
         _info_elements_class:
           type: separator.note
@@ -738,11 +724,34 @@ form:
           label: Navigationspunkte Klassen
           description: Setzen Sie Klassen für die individuelle Gestaltungauf den Container der Navigationspunkte.
 
+    set_video:
+      type: container.set
+      label: Video
+      fields:
+        video:
+          type: input.checkbox
+          label: Video
+          description: Aktivieren Sie diese Option, um Videos auf Slides zu verwenden (standardmäßig eine Höhe von 400px).
+          default: false
+
+        videoHeight:
+          type: input.text
+          label: Videohöhe
+          description: Die Standardhöhe, die für eingebettete Videos verwendet wird.
+          placeholder: z.B.: 640 in Pixel
+          default: ''
+
+        videoWidth:
+          type: input.text
+          label: Video Breite
+          description: Die Standardbreite, die für eingebettete Videos verwendet wird.
+          placeholder: z.B.: 360 in Pixel
+          default: ''
+
     set_slides:
       type: container.set
       label: Slides
       fields:
-
         startPosition:
           type: input.text
           label: Starposition

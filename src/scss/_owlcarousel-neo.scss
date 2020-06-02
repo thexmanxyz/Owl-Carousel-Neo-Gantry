@@ -126,6 +126,16 @@
         font: inherit;
     }
 
+    div.owl-dot button.owl-dot {
+        vertical-align: top;
+        margin: 0 !important;
+        background: transparent !important; 
+    }
+
+    div.owl-dot {
+        vertical-align: middle;
+    }
+
     &.owl-loaded {
         display: block;
     }

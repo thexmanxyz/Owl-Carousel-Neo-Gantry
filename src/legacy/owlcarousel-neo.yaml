@@ -69,26 +69,6 @@ form:
           description: Listen to URL hash changes and check for slides with the same data name (<code>data-hash</code> with <code>myHash</code>). The <code>data-hash</code> attribute on the slide is required.
           default: false
 
-        video:
-          type: input.checkbox
-          label: Video
-          description: Enable to support videos on slides (by default 400px height).
-          default: false
-
-        videoHeight:
-          type: input.text
-          label: Video Height
-          description: The default height used for embedded videos.
-          placeholder: e.g. 640 in pixel
-          default: ''
-
-        videoWidth:
-          type: input.text
-          label: Video Width
-          description: The default width used for embedded videos.
-          placeholder: e.g. 360 in pixel
-          default: ''
-
         responsiveRefreshRate:
           type: input.text
           label: Responsive Refresh Rate
@@ -397,12 +377,6 @@ form:
           description: Enable or disable the autoplay when hovering the current slide.
           default: false
 
-        title_link:
-          type: input.checkbox
-          label: Title Link
-          description: Enable to apply the button link also on the title element.
-          default: false
-
         slideLink:
           type: select.select
           label: Slide Link
@@ -682,6 +656,12 @@ form:
           description: Enable or disable the title rendering explicitly
           default: true
 
+        title_link:
+          type: input.checkbox
+          label: Title Link
+          description: Enable to apply the button link also on the title element.
+          default: false
+
         enable_desc:
           type: input.checkbox
           label: Description
@@ -705,6 +685,12 @@ form:
           label: Navigation Dots
           description: Enable or disable the navigation dots rendering explicitly.
           default: true
+
+        dots_title:
+          type: input.checkbox
+          label: Navigation Dots Title
+          description: Enable or disable the navigation dots title. The title is taken from the slide title (accessability).
+          default: false
 
         _info_elements_class:
           type: separator.note
@@ -738,11 +724,34 @@ form:
           label: Navigation Dots Classes
           description: Set specific CSS classes on the navigation dots container.
 
+    set_video:
+      type: container.set
+      label: Video
+      fields:
+        video:
+          type: input.checkbox
+          label: Video
+          description: Enable to support videos on slides (by default 400px height).
+          default: false
+
+        videoHeight:
+          type: input.text
+          label: Video Height
+          description: The default height used for embedded videos.
+          placeholder: e.g. 640 in pixel
+          default: ''
+
+        videoWidth:
+          type: input.text
+          label: Video Width
+          description: The default width used for embedded videos.
+          placeholder: e.g. 360 in pixel
+          default: ''
+
     set_slides:
       type: container.set
       label: Slides
       fields:
-
         startPosition:
           type: input.text
           label: Start Position

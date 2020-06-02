@@ -144,6 +144,8 @@
 {{ _self.isEnabled(particle.autoplay|default(false)) }}
 {%- endset -%}
 
+{% set dotsTitle = particle.dots_title|default(false) %}
+
 {% set direction = particle.direction|default('gantry') %}
 {% set responsiveRefreshRate = particle.responsiveRefreshRate|default(200) %}
 {% set responsiveBaseElement = particle.responsiveBaseElement|default('') %}
@@ -375,6 +377,10 @@
                     {%- else -%}
                     dots: false,
                     {%- endif -%}
+                    {%- if dotsTitle -%}
+                    dotData: true,
+                    dotsData: true,
+                    {%- endif -%}
                     {%- if particle.dots_class -%}
                     dotsClass: 'owl-dots {{particle.dots_class|e('js')}}',
                     {%- endif -%}
@@ -527,7 +533,8 @@
                     {%- set slideItemStyle = slideItemStyle ~ ((item.manual_width) ? 'width: ' ~ item.manual_width ~ 'px;' : '') -%}
                     {%- set slideItemStyle = slideItemStyle ~ ((item.manual_height) ? 'height: ' ~ item.manual_height ~ 'px;' : '') -%}
                     {%- set slideItemStyle = slideItemStyle ~ ((item.background) ? 'background: ' ~ item.background ~ ';' : '') -%}
-                    <div class="g-owlcarousel-item{{ item.class|e ? ' ' ~ item.class|e : '' }}" {% if slideItemStyle and slideItemStyle != '' %} style="{{slideItemStyle|e}}"{% endif %}{% if item.mergevalue and item.mergevalue != '1' %} data-merge="{{item.mergevalue|e}}"{% endif %}{% if item.hash and item.hash != '' %} data-hash="{{item.hash|e}}"{% endif %}>
+                    {%- set dataDots = (item.title) ? '<button role="button" class="owl-dot" title="' ~ item.title ~ '" aria-label="' ~ item.title ~ '"><span></span></button>' : '' -%}
+                    <div class="g-owlcarousel-item{{ item.class|e ? ' ' ~ item.class|e : '' }}" {% if slideItemStyle and slideItemStyle != '' %} style="{{slideItemStyle|e}}"{% endif %}{% if dotsTitle %} data-dot="{{ dataDots|e }}"{% endif %}{% if item.mergevalue and item.mergevalue != '1' %} data-merge="{{item.mergevalue|e}}"{% endif %}{% if item.hash and item.hash != '' %} data-hash="{{item.hash|e}}"{% endif %}>
                         {% if particle.slideLink == 'enable' %}<a target="_self" href="{{ item.link|e }}" title="{{ titleText }}" aria-label="{{ titleText }}" tabindex="-1">{% endif %}
                             <div class="g-owlcarousel-item-wrapper">
                                 <div class="g-owlcarousel-item-img">
